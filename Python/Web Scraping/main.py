@@ -7,19 +7,23 @@ from bs4 import BeautifulSoup
 # try pip install bs4 and pip install requests.
 # All packages via py -m pip freeze are in the Requirements.txt in the main folder; install via pip install -m Requirements.txt
 
-url = 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite'
+#url = 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite'
+url = 'https://mvnrepository.com/artifact/org.apache.commons'
 response = requests.get(url)
 print(response)
 
 soup = BeautifulSoup(response.text, 'html.parser')
 soup.findAll('a')
-#print(soup)
+print(soup)
+
+"""
 lists = soup.select("#mf-itn li")
 print(lists)
 for x in lists:
     print(x.text)
 string1 = str(soup)
 #print(string1)
+"""
 
 #one_a_tag = soup.findAll('a')[36]
 #link = one_a_tag['href']
