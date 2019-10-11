@@ -1,0 +1,5 @@
+Research questions by next week->Thursday evening
+Github Repository incl. structure, meeting notes
+Languages: Java or Python
+Recommendation: Read papers about dependencies to find more research questions
+Current question: How do dependencies evolve in Maven, Gradle? In Dockers (Helm)?
