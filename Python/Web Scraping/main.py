@@ -51,7 +51,7 @@ for y in range(len(Linklist2)-1):
 
     Linklist3=[]
     for x in Linklist:
-        if x.startswith('/artifact/org.apache.maven') and not x.endswith('/usages'):
+        if x.startswith('/artifact/org.apache') and not x.endswith('/usages'):
             Linklist3.append(x)
     print(Linklist3)
 
