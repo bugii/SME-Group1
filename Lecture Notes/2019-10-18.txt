@@ -1,0 +1,23 @@
+Avoid blacklisting by contacting the website and telling them about the research project
+Note the link towards the graph drawing tool with examples https://arxiv.org/abs/1909.03249
+
+Questions:
+- Is there a trend towards grand, unifying libraries that offer a large array of functions, or is the trend towards scattered, smaller
+libraries with only very few functions (aka microservices)? How to assess this (i.e. should we look at the average project size)?
+- Do dependencies destabilize code? Assumption: Github issue trackers/bug reports can be quantitatively assessed to quantify code stability.
+- How to know whether or not it's the dependencies that destabilize the code?
+- Are there patterns in dependency growth/shrinking in a project over time? What are those patterns?
+- Note how often updates and maintenance are performed in those projects
+
+Also: Find an ecosystem to work with, to be sure that there are no outgoing dependencies and all dependency trees can be drawn completely.
+Github is not an easy system to search through.
+Apache ecosystem with only Maven: https://repo.maven.apache.org/maven2/
+Apache ecosystem: https://projects.apache.org/projects.html
+
+Recommendations:
+	- Have a look at Black Duck
+	- Use Github commit log to find out when poms change instead of shotgun approach
+
+For next week:
+	- Slides, first draft, preferably on Google Docs to share with Sebastiano
+	- Ecosystems to analyze
