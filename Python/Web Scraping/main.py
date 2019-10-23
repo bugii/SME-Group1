@@ -1,40 +1,27 @@
 import requests
 import urllib.request
-import time
 from bs4 import BeautifulSoup
+import functions
 
-# installed requests and bs4 via py -m pip install bs4 and py -m pip install requests; alternatively, you may
-# try pip install bs4 and pip install requests.
-# All packages via py -m pip freeze are in the Requirements.txt in the main folder; install via pip install -m Requirements.txt
+# I installed the requests library and bs4 library via the following command line input: "py -m pip install bs4" and
+# "py -m pip install requests"; alternatively, you can try "pip install bs4" and "pip install requests".
+# This can also be done at once: All packages (via py -m pip freeze) are in the Requirements.txt in the main folder;
+# they can be installed via "pip install -m Requirements.txt".
 
-#url = 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite'
-url = 'https://mvnrepository.com/artifact/org.apache.commons'
-response = requests.get(url)
-#sleep is here just to get used to it early on: Don't spam servers, you run the risk of being blocked
-time.sleep(0.1)
-print(response)
+# Here we scan the complete https://repo.maven.apache.org/maven2/ and copy all the .pom links into a txt in the main
+# directory.
 
-soup = BeautifulSoup(response.text, 'html.parser')
-soup.findAll('a')
-#print(soup)
+open('output.txt', 'w').close() # Clears the output file at the beginning.
+functions.deepscan_url('https://repo.maven.apache.org/maven2/')
 
+# We now want to copy the contents (all the lines, the urls) from output.txt into a list.
 
-for link in soup.find_all('a'):
-    #find all links that do not end on "usages" (otherwise all links would be de facto duplicated)
-    if(link.get('href').startswith('/artifact/org.apache.commons') and not link.get('href').endswith('usages')):
-        print(link.get('href'))
+with open("output.txt") as f:
+    content = f.readlines()
+content = [x.strip() for x in content]
 
+# Next, we create another txt, this time containing the dependencies.
 
-"""
-lists = soup.select("")
-print(lists)
-for x in lists:
-    print(x.text)
-string1 = str(soup)
-#print(string1)
-"""
-
-#one_a_tag = soup.findAll('a')[36]
-#link = one_a_tag['href']
-#download_url = 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite'+ link
-#urllib.request.urlretrieve(download_url, './' + link[link.find('/turnstile_') + 1:])
+open('dependencies.txt', 'w').close() # Clears the dependencies file at the beginning.
+for x in content:
+    functions.dependencies_from_pom_url(x)

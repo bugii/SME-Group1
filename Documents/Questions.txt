@@ -1,0 +1,11 @@
+Research:
+	- Do newer projects (looking at the latest release) have more or less dependencies than other projects from the past, considering the last 5 years of releases?
+	- Use the above question for Helm charts and Maven projects.
+	- Is there a visible trend whether or not today's projects update their dependencies more often than projects from the past? Has the update behavior changed?
+	- Is there a trend towards grand, unifying libraries that offer a large array of functions, or is the trend towards scattered, smaller
+	libraries with only very few functions (aka microservices)? How to assess this (i.e. should we look at the average project size)?
+	- Do dependencies destabilize code? Assumption: Github issue trackers/bug reports can be quantitatively assessed to quantify code stability.
+
+Other:
+	- How to avoid getting blacklisted while webscraping?
+	- What are the advantages of using Micrograph over any other Graph Drawing Tool, i.e. Network X (Python)?
