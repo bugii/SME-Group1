@@ -1,4 +1,9 @@
-# Introduction to Helm
+# Motivation
+
+1. With the increase in popularity of microservices, dependency analysis
+in that field becomes important
+
+# Introduction to Helm, Kubernetes and Docker
 
 In order to understand what Helm does, you need to look into two other technologies, namely Kubernetes and Containers. 
 
@@ -18,3 +23,11 @@ In Helm, one chart may depend on any number of other charts. For example, you ma
 
 1. Dynamically, using the requirements.yaml file (example: https://github.com/jfrog/charts/blob/master/stable/artifactory-ha/requirements.yaml), or
 2. Manually, by copying a chart and putting it in the charts/ directory of the Helm chart (example: https://github.com/helm/charts/tree/master/stable/weave-scope/charts)
+
+# Data
+
+# Methodology
+
+# Results
+
+# Disucssion
