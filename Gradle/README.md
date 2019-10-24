@@ -1,6 +1,6 @@
-Introduction 
+# **Introduction** 
 
-#What is Gradle?# 
+## What is Gradle?
 
 Gradle is an open-source build-automation system that builds upon the concepts of Apache Ant and Apache Maven and introduces a Groovy-based domain-specific language (DSL) instead of the XML form used by Apache Maven for declaring the project configuration.[2] Gradle uses a directed acyclic graph ("DAG") to determine the order in which tasks can be run.
 
