@@ -28,9 +28,19 @@ Gradle provide tools to visualize, navigate and analyze the dependency graph of 
 
 ### How dependency resolution works (brief outline of how this work)
 
-Given a required dependency, Gradle attempts to resolve the dependency by searching for the module the dependency points at.
+1.Given a required dependency, Gradle attempts to resolve the dependency by searching for the module the dependency points at. Each repository is inspected in order. Gradle looks for metadata files describing the module (module, .pom or ivy.xml file) or directly for artifact files. 
 
+  *If the dependency is declared as a dynamic version, Gradle will resolve this to the highest available concrete version in the repository. For Maven repositories, this is done using the maven-metadata.xml file, while for Ivy repositories this is done by directory listing.
+  
+    *If the module metadata is a POM file that has a parent POM declared, Gradle will recusively attempt to resolve each of the parent modules for the POM.ç
+    
+2. Once each repository has been inspected for the module, Gradle will choose the best one to use by using the following criteria: 
+  *For a dynamic version, a 'higher' concrete version is preferred over a 'lower' version.
+  *Modules declared by a module metadata file (.module, .pom or ivy.xml file) are preferred over modules that have an artifact file only.
+  *Modules from earlier repositories are preferred over modules in later repositories.
+  *When the dependency is declared by a concrete version and a module metadata file is found in a repository, there is no need to continue searching later repositories and the remainder of the process is short-circuited.
 
+3. All of the artifacts for the module are then requested from the same repository that was chosen in the process above.
 
 
 
