@@ -1,0 +1,7 @@
+digraph {
+config->discovery[color=blue]
+school_service->discovery[color=blue]
+school_service->config[color=blue]
+school_ui->discovery[color=blue]
+school_ui->config[color=blue]
+}

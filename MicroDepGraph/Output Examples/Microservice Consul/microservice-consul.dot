@@ -1,0 +1,6 @@
+digraph {
+customer->consul[color=blue]
+catalog->consul[color=blue]
+order->consul[color=blue]
+apache->consul[color=blue]
+}
