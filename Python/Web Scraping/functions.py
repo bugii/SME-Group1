@@ -4,7 +4,7 @@ import os
 import requests
 import urllib.request
 from bs4 import BeautifulSoup
-
+import subprocess
 
 def wait_random():
 # Generates a random wait time, usually around 1 to 2 seconds, with some longer intervals up to 7 seconds added for
@@ -17,7 +17,6 @@ def wait_random():
         time.sleep(0.8)
         time.sleep(int1*2)
 
-
 def write_to_txt(string1):
 # Writes the string supplied into a txt file in the main directory.
     f = open("output.txt", "a")
@@ -28,7 +27,6 @@ def write_to_dependencies_txt(string1):
     f = open("dependencies.txt", "a")
     f.write(string1 + "\n")
     f.close()
-
 
 def return_all_links(url):
 # As it says: Returns all links from a website.
@@ -41,7 +39,6 @@ def return_all_links(url):
     for link in soup.find_all('a'):
         Linklist.append(link.get('href'))
     return(Linklist)
-
 
 def deepscan_url(url):
 # Note that this is a very specific block of code. It extracts all urls that end on .pom.
@@ -80,10 +77,12 @@ def create_dependency_from_str_soup(soup):
 
     return(outputline)
 
-
 def dependencies_from_pom_url(url):
     response = requests.get(url)
     print(response)
     wait_random()
     soup = BeautifulSoup(response.text, 'html.parser')
     write_to_dependencies_txt(create_dependency_from_str_soup(str(soup)))
+
+def command_window(*args):
+    return subprocess.check_call(['git'] + list(args))
