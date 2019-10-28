@@ -85,4 +85,5 @@ def dependencies_from_pom_url(url):
     write_to_dependencies_txt(create_dependency_from_str_soup(str(soup)))
 
 def command_window(*args):
-    return subprocess.check_call(['git'] + list(args))
+    subprocess.check_output(list(args))
+    return subprocess.getoutput(list(args))
