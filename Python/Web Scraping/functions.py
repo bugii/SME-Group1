@@ -85,5 +85,25 @@ def dependencies_from_pom_url(url):
     write_to_dependencies_txt(create_dependency_from_str_soup(str(soup)))
 
 def command_window(*args):
-    subprocess.check_output(list(args))
-    return subprocess.getoutput(list(args))
+    # Allows command window inputs via String Arguments (separated by commas), i.e. ("git", "status") for "git status"
+    # If the first keyword starts with "cwd=", i.e. ("cwd=Folder01", "dir"), it executes the following commands in this
+    # very subdirectory (here it would list the content of Folder01 via the "dir" command).
+    if args[0].startswith("cwd="):
+        directory = args[0][4:]
+        out = subprocess.check_output(list(args[1:]), cwd=directory)
+        return out.decode() # returns a string with integrated newline characters (readability)
+    else:
+        subprocess.check_output(list(args))
+        return subprocess.getoutput(list(args))
+
+def file_to_stringlist(filename, directory):
+    # Straightforward: Tries to read the file in the given directory and outputs a list with the lines.
+    # Note that "directory" can be left empty for home directory.
+    try:
+        with open(directory + filename) as f:
+            content = f.readlines()
+        content = [x.strip() for x in content]
+    except:
+        print("Error in file_to_string method: File or directory invalid.")
+        content = "~FILE NOT FOUND!~"
+    return content
