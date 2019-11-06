@@ -98,12 +98,12 @@ def command_window(*args):
 
 def file_to_stringlist(filename, directory):
     # Straightforward: Tries to read the file in the given directory and outputs a list with the lines.
-    # Note that "directory" can be left empty for home directory.
+    # Example: ("file99.txt", "Repositories/Folder01/"). Note that "directory" can be left empty for home directory.
     try:
         with open(directory + filename) as f:
             content = f.readlines()
         content = [x.strip() for x in content]
     except:
         print("Error in file_to_string method: File or directory invalid.")
-        content = "~FILE NOT FOUND!~"
+        content = ["~FILE NOT FOUND!~"]
     return content
