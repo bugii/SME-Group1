@@ -1,0 +1,13 @@
+digraph {
+configuration_microservice->discovery_microservice[color=blue]
+gateway_microservice->configuration_microservice[color=blue]
+gateway_microservice->discovery_microservice[color=blue]
+cart_microservice->configuration_microservice[color=blue]
+cart_microservice->gateway_microservice[color=blue]
+cart_microservice->discovery_microservice[color=blue]
+cart_microservice->redis[color=blue]
+product_catalog_microservice->configuration_microservice[color=blue]
+product_catalog_microservice->gateway_microservice[color=blue]
+product_catalog_microservice->discovery_microservice[color=blue]
+product_catalog_microservice->mongodb[color=blue]
+}

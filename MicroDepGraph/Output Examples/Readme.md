@@ -1,0 +1,1 @@
+If the name starts with a **(+)** it means that inside we can find something related to the supposed structure of the architecture.
