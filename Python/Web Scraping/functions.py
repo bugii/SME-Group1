@@ -24,6 +24,7 @@ def write_to_txt(string1):
     f.close()
 
 def write_to_dependencies_txt(string1):
+    # Writes string1 to the txt-file and adds a newline character.
     f = open("dependencies.txt", "a")
     f.write(string1 + "\n")
     f.close()
