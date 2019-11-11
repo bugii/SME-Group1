@@ -44,6 +44,7 @@ def search_github(page):
         time.sleep(5)
 
         repo_url = i['repository']['url']
+        print('Repo:', repo_url)
 
         # get the latest update date
         repo = session.get(repo_url).json()
@@ -62,8 +63,6 @@ def search_github(page):
         # save project object inside the folder
         with open(folder_name + '/project.pkl', 'wb') as f:
             pickle.dump(project, f, pickle.HIGHEST_PROTOCOL)
-
-        run_analysis(folder_name)
 
 
 if __name__ == '__main__':
