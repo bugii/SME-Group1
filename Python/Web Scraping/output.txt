@@ -1,4 +1,0 @@
-https://repo.maven.apache.org/maven2/HTTPClient/HTTPClient/0.3-3/HTTPClient-0.3-3.pom
-https://repo.maven.apache.org/maven2/abbot/abbot/0.12.3/abbot-0.12.3.pom
-https://repo.maven.apache.org/maven2/abbot/abbot/0.13.0/abbot-0.13.0.pom
-https://repo.maven.apache.org/maven2/abbot/abbot/1.4.0/abbot-1.4.0.pom

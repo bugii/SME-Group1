@@ -10,7 +10,7 @@ import script
 
 # This is just a test. It downloads my homework from 2 years ago into a local repo, then creates a log.
 
-
+"""
 output = functions.command_window("git", "status")
 #print(str(output))
 functions.command_window("cwd=Repositories", "git", "clone", "https://github.com/chfaes/Assignment-6.git", "-b", "master")
@@ -20,7 +20,6 @@ output = functions.command_window("dir")
 #print(str(output))
 output = functions.command_window("cwd=Repositories/Assignment-6", "git", "log", "--stat")
 print(output)
-"""
 #print(functions.file_to_stringlist("customer.py", "Repositories/Assignment-6/"))
 """
 
@@ -29,7 +28,7 @@ print(output)
 Apache_Project_Links = []
 url = "https://github.com/apache?utf8=%E2%9C%93&q=&type=source&language="
 i = 1
-while i!=0 and i<2:
+while i!=0 and i<5:
     i += 1
     output = functions.return_all_links(url)
     if output[0]==0:
@@ -47,13 +46,17 @@ print(Apache_Project_Links)
 #functions.command_window("mkdir", "Repositories") # Creates Repositories Folder
 
 for i in Apache_Project_Links:
+    functions.write_to_txt(i, "ApacheGithubLinks.txt")
+
+"""
+for i in Apache_Project_Links:
     try:
         functions.command_window("cwd=Repositories", "git", "clone", "https://github.com" + i, "-b",
                                  "master")
     except:
         print("Try block")
     time.sleep(10)
-
+"""
 """
 # Here we scan the complete https://repo.maven.apache.org/maven2/ and copy all the .pom links into a txt in the main
 # directory.

@@ -17,9 +17,9 @@ def wait_random():
         time.sleep(2.8)
         time.sleep(int1*2)
 
-def write_to_txt(string1):
+def write_to_txt(string1, filename):
     # Writes the string supplied into a txt file in the main directory.
-    f = open("output.txt", "a")
+    f = open(filename, "a")
     f.write(string1+"\n")
     f.close()
 
