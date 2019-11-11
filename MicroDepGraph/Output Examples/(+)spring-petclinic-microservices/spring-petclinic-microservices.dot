@@ -1,0 +1,15 @@
+digraph {
+discovery_server->config_server[color=blue]
+customers_service->config_server[color=blue]
+customers_service->discovery_server[color=blue]
+visits_service->config_server[color=blue]
+visits_service->discovery_server[color=blue]
+vets_service->config_server[color=blue]
+vets_service->discovery_server[color=blue]
+api_gateway->config_server[color=blue]
+api_gateway->discovery_server[color=blue]
+admin_server->config_server[color=blue]
+admin_server->discovery_server[color=blue]
+hystrix_dashboard->config_server[color=blue]
+hystrix_dashboard->discovery_server[color=blue]
+}

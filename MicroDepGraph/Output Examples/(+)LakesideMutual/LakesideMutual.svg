@@ -1,0 +1,25 @@
+<svg width="100px" height="155px"
+ viewBox="0.00 0.00 75.13 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform=" rotate(0) translate(4 112)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 71.1304,-112 71.1304,4 -4,4"/>
+<!-- proxy -->
+<g id="node1" class="node">
+<title>proxy</title>
+<ellipse fill="none" stroke="#000000" cx="33.5652" cy="-90" rx="33.6305" ry="18"/>
+<text text-anchor="middle" x="33.5652" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">proxy</text>
+</g>
+<!-- app -->
+<g id="node2" class="node">
+<title>app</title>
+<ellipse fill="none" stroke="#000000" cx="33.5652" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="33.5652" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">app</text>
+</g>
+<!-- proxy&#45;&gt;app -->
+<g id="edge1" class="edge">
+<title>proxy&#45;&gt;app</title>
+<path fill="none" stroke="#0000ff" d="M33.5652,-71.8314C33.5652,-64.131 33.5652,-54.9743 33.5652,-46.4166"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="37.0653,-46.4132 33.5652,-36.4133 30.0653,-46.4133 37.0653,-46.4132"/>
+</g>
+</g>
+</svg>

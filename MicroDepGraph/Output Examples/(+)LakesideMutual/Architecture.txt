@@ -1,0 +1,41 @@
+Architecture Overview
+The following diagram shows an overview of the core components that are the building blocks for the services Lakeside Mutual provides to its customers and its employees:
+
+Lakeside Mutual
+
+The following sections contain a short description of each service:
+
+Customer Core
+The Customer Core backend is a Spring Boot application that manages the personal data about individual customers. It provides this data to the other backend services through an HTTP resource API.
+
+Customer Self-Service Backend
+The Customer Self-Service backend is a Spring Boot application that provides an HTTP resource API for the Customer Self-Service frontend.
+
+Customer Self-Service Frontend
+The Customer Self-Service frontend is a React application that allows users to register themselves, view their current insurance policy and change their address.
+
+Customer Management Backend
+The Customer Management backend is a Spring Boot application that provides an HTTP resource API for the Customer Management frontend and the Customer Self-Service frontend. In addition, WebSockets are used to implement the chat feature to deliver chat messages in realtime between the callcenter agent using the Customer Management frontend and the Customer logged into the Self-Service frontend.
+
+Customer Management Frontend
+The Customer Management frontend is a React application that allows Customer-Service operators to interact with customers and help them resolve issues related to Lakeside Mutual's insurance products.
+
+Policy Management Backend
+The Policy Management backend is a Spring Boot application that provides an HTTP resource API for the Customer Self-Service frontend and the Policy Management frontend. It also sends a message (via ActiveMQ messaging) to the Risk Management Server whenever an insurance policy is created / updated.
+
+Policy Management Frontend
+The Policy Management frontend is a Vue.js application that allows Lakeside Mutual employees to view and manage the insurance policies of individual customers.
+
+Risk Management Server
+The Risk-Management server is a Node.js application that gathers data about customers / policies and can generate a customer data report on demand.
+
+Risk Management Client
+The Risk-Management client is a command-line tool built with Node.js. It allows the professionals of Lakeside Mutual to periodically download a customer data report which helps them during risk assessment.
+
+Eureka Server
+Eureka Server provides a service registry. It is a regular Spring Boot application to which all other Spring services can connect to access other services. For example, the Customer Self-Service Backend uses Eureka to connect to the Customer Core. Usage of Eureka is optional.
+
+Spring Boot Admin
+Spring Boot Admin is an open source software for managing and monitoring Spring Boot applications. It is a Spring Boot application too. Usage within the Lakeside Mutual services is optional and only included for convenience with all security disabled.
+
+To learn more about individual components, please have a look at the README file in the corresponding subfolder.
