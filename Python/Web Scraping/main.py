@@ -3,13 +3,14 @@ import urllib.request
 from bs4 import BeautifulSoup
 import functions
 import time
+import script
 
 # I installed the requests library and bs4 library via the following command line input: "py -m pip install bs4" and
 # "py -m pip install requests"; alternatively, you can try "pip install bs4" and "pip install requests".
 
 # This is just a test. It downloads my homework from 2 years ago into a local repo, then creates a log.
 
-"""
+
 output = functions.command_window("git", "status")
 #print(str(output))
 functions.command_window("cwd=Repositories", "git", "clone", "https://github.com/chfaes/Assignment-6.git", "-b", "master")
@@ -18,7 +19,8 @@ output = functions.command_window("git", "log", "--stat")
 output = functions.command_window("dir")
 #print(str(output))
 output = functions.command_window("cwd=Repositories/Assignment-6", "git", "log", "--stat")
-#print(output)
+print(output)
+"""
 #print(functions.file_to_stringlist("customer.py", "Repositories/Assignment-6/"))
 """
 
