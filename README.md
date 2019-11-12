@@ -67,6 +67,12 @@ Docker compose files contain a lot of valuable information and is the main resou
 
 #### Data 
 
+Note: Before running the script make sure that you have all the dependencies installed. Do:
+
+```python
+pip install -r Python/Docker/requirements.txt
+```
+
 The data can be fetched using the following command:
 
 ```
@@ -91,8 +97,36 @@ res = session.get('https://api.github.com/search/code',
 ```
 
 This request is sent for all as many pages as wished, 10 times in our case.
-From this response the repository urls can be extracted and fetched in the next step.
+From this response the repository urls can be extracted and fetched in the next step. Downloading all the latest releases and
+extracting the last-updated date are then achieved.
 
+In order to get the actual size of all the microservices for each project, the docker image directory was changed to an
+external hard drive. That way we could prevent our machine from running out of memory and not delete all the images
+after each project, which would have been very inefficient in case of docker. For Ubuntu, create a file inside:
+/etc/docker/deamon.json. Put into the file:
+
+```json
+{
+    "data-root": "/mnt/hdd/docker"
+}
+```
+
+When it comes to getting the size of the images, the following cases have been distinguished:
+1. only "image" field
+2. only "build" field, either with or without subfields: build the image at the specified location. 
+   If it has subfields: build the image at location specified in "context". If "dockerfile" present, append the name to the path,
+   otherwise default to Dockerfile.
+3. "image" and "build": build as before, image is just the name
+4. If field contains variables: ignore
+5. If does not have any services: ignore 
+
+Note: In order to be able to run the script, it may be required to allow docker to run commands as a non-root user. In
+Linux this is done via the following commands:
+
+```python
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
 
 ### Part 3: Visualization
 
