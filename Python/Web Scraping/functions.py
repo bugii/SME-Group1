@@ -19,7 +19,7 @@ def wait_random():
 
 def write_to_txt(string1, filename):
     # Writes the string supplied into a txt file in the main directory.
-    f = open(filename, "a")
+    f = open(filename, "a", encoding="utf-8")
     f.write(string1+"\n")
     f.close()
 
@@ -104,12 +104,12 @@ def file_to_stringlist(filename, directory):
     # Straightforward: Tries to read the file in the given directory and outputs a list with the lines.
     # Example: ("file99.txt", "Repositories/Folder01/"). Note that "directory" can be left empty for home directory.
     try:
-        with open(directory + filename) as f:
+        with open(directory + filename, encoding="utf-8") as f:
             content = f.readlines()
-        content = [x.strip() for x in content]
     except:
-        print("Error in file_to_string method: File or directory invalid.")
+        print("Error in file_to_string method.")
         content = ["~FILE NOT FOUND!~"]
+    content = [x.strip() for x in content]
     return content
 
 def filter_apache_repositories(Linklist):
@@ -118,3 +118,18 @@ def filter_apache_repositories(Linklist):
         if link.startswith("/apache/") and link.count("/")==2:
             Newlist.append(link)
     return Newlist
+
+def create_timeline(file_list, filename):
+    # Needs a list to iterate over. Everytime it findes an entry starting with pom.xml, it iterates back to find the
+    # associated commit id and date. Outputs a list with the commit-date-tuples.
+    output = []
+    for idx, element in enumerate(file_list):
+        if element.startswith(filename):
+            j=idx-1
+            while not file_list[j].startswith("Date: "):
+                j-=1
+            k=j-1
+            while not file_list[k].startswith("commit "):
+                k-=1
+            output.append((file_list[j], file_list[k]))
+    return output

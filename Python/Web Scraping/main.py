@@ -24,11 +24,11 @@ print(output)
 """
 
 # Here we scan Github for all Apache Source Projects.
-
+"""
 Apache_Project_Links = []
 url = "https://github.com/apache?utf8=%E2%9C%93&q=&type=source&language="
 i = 1
-while i!=0 and i<5:
+while i!=0 and i<2:
     i += 1
     output = functions.return_all_links(url)
     if output[0]==0:
@@ -39,7 +39,7 @@ while i!=0 and i<5:
         Apache_Project_Links.extend(output)
         url = "https://github.com/apache?language=&page=" + str(i) + "&q=&type=source&utf8=%E2%9C%93"
         print("Waiting 10 seconds...")
-        time.sleep(10)
+        time.sleep(10.2)
 
 print(Apache_Project_Links)
 #functions.command_window("rm", "-rf", "Repositories") # Erases Repositories Folder
@@ -48,15 +48,26 @@ print(Apache_Project_Links)
 for i in Apache_Project_Links:
     functions.write_to_txt(i, "ApacheGithubLinks.txt")
 
-"""
-for i in Apache_Project_Links:
+
+for i in functions.file_to_stringlist("ApacheGithubLinks.txt", ""):
     try:
         functions.command_window("cwd=Repositories", "git", "clone", "https://github.com" + i, "-b",
                                  "master")
     except:
-        print("Try block")
+        print("Exception in cloning.")
+    print("Writing log for "  + i[i.rindex("/"):])
+    output = functions.command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
+    functions.write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/")+1:] + ".txt")
     time.sleep(10)
 """
+
+output = functions.file_to_stringlist("pom.xml", "Repositories/struts-site/")
+print(output.count("<dependency>"))
+output = functions.file_to_stringlist("Git_Log_struts-site.txt", "Logs/")
+print(output)
+print(functions.create_timeline(output, "pom.xml"))
+
+
 """
 # Here we scan the complete https://repo.maven.apache.org/maven2/ and copy all the .pom links into a txt in the main
 # directory.
