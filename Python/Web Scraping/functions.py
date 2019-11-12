@@ -5,6 +5,7 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup
 import subprocess
+import re
 
 def wait_random():
     # Generates a random wait time, usually around 1 to 2 seconds, with some longer intervals up to 7 seconds added for
@@ -118,3 +119,31 @@ def filter_apache_repositories(Linklist):
         if link.startswith("/apache/") and link.count("/")==2:
             Newlist.append(link)
     return Newlist
+
+def get_release_with_date(preroot):
+    # Create a function to take the releases, the parameter is the url to the github project "https://github.com/apache/[project_name]"
+    # The output is gonna be a list with all the releases of the project with their respective creation date.
+    # Being each element of the list in the format "[release_name,yyyy-mm-dd]"
+    root = preroot+"/releases"  #we add to the project url "/releases"
+    releaselist = []        # create a variable to keep the releases with their respective time
+    url = root
+    page = requests.get(url)    #request for the page
+    data = page.text
+    soup = BeautifulSoup(data, features="html.parser")
+
+    while page.status_code == 200:      # While we get the page correctly
+        for link in soup.find_all("a"):
+            if re.search("/releases/tag/", link.get('href')):
+                release = re.sub(".*/", "", link.get("href"))       # Here we take the name of the releases
+                page1 = requests.get(root+"/tag/"+release)      # Here we look for the page of the release to take the information from it
+                data1 = page1.text
+                soup1 = BeautifulSoup(data1, features="html.parser")
+                date = soup1.find_all("relative-time")[0]
+                date = re.sub("T.*", "", date.get("datetime"))
+                releaselist.append([release, date])             # We include the release and the date in the list
+        url = root + "?after=" + release                    # We look for the next page of the release with the next patron [root + ?after=" + and the las release]
+        page = requests.get(url)
+        data = page.text
+        soup = BeautifulSoup(data, features="html.parser")
+
+    return releaselist                                  #We return the list
