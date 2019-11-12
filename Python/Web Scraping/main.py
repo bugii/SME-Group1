@@ -61,12 +61,17 @@ for i in functions.file_to_stringlist("ApacheGithubLinks.txt", ""):
     time.sleep(10)
 """
 
-output = functions.file_to_stringlist("pom.xml", "Repositories/struts-site/")
-print(output.count("<dependency>"))
 output = functions.file_to_stringlist("Git_Log_struts-site.txt", "Logs/")
 print(output)
-print(functions.create_timeline(output, "pom.xml"))
+output = functions.create_timeline(output, "pom.xml")
+print(output)
 
+for i in output:
+    try:
+        functions.command_window("cwd=Repositories/struts-site", "git", "checkout", i[1][7:], "pom.xml")
+        print(i[0] + " : " + str(functions.file_to_stringlist("pom.xml", "Repositories/struts-site/").count("<dependency>")))
+    except:
+        print("Pom.xml did not exist for " + i[1])
 
 """
 # Here we scan the complete https://repo.maven.apache.org/maven2/ and copy all the .pom links into a txt in the main
