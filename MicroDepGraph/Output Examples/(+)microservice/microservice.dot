@@ -1,7 +1,0 @@
-digraph {
-customer->eureka[color=blue]
-catalog->eureka[color=blue]
-order->eureka[color=blue]
-zuul->eureka[color=blue]
-turbine->eureka[color=blue]
-}

@@ -1,1 +1,0 @@
-Found at <https://github.com/microservices-patterns/ftgo-application>

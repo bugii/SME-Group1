@@ -1,0 +1,8 @@
+digraph {
+odm_decisionserverconsole->dbserver[color=blue]
+odm_decisionrunner->odm_decisionserverconsole[color=blue]
+odm_decisionrunner->dbserver[color=blue]
+odm_decisionserverruntime->odm_decisionserverconsole[color=blue]
+odm_decisionserverruntime->dbserver[color=blue]
+odm_decisioncenter->dbserver[color=blue]
+}

@@ -1,1 +1,0 @@
-Found at <https://github.com/oktadeveloper/okta-spring-microservices-docker-example>
