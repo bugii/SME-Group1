@@ -121,7 +121,7 @@ def filter_apache_repositories(Linklist):
     return Newlist
 
 def create_timeline(file_list, filename):
-    # Needs a list to iterate over. Everytime it findes an entry starting with pom.xml, it iterates back to find the
+    # Needs a list to iterate over. Every time it finds an entry starting with "filename", it iterates back to find the
     # associated commit id and date. Outputs a list with the commit-date-tuples.
     output = []
     for idx, element in enumerate(file_list):
@@ -145,6 +145,7 @@ def get_release_with_date(preroot):
     page = requests.get(url)    #request for the page
     data = page.text
     soup = BeautifulSoup(data, features="html.parser")
+    releases = "-1"
 
     while page.status_code == 200:      # While we get the page correctly
         for link in soup.find_all("a"):
@@ -156,11 +157,13 @@ def get_release_with_date(preroot):
                 date = soup1.find_all("relative-time")[0]
                 date = re.sub("T.*", "", date.get("datetime"))
                 releaselist.append([release, date])             # We include the release and the date in the list
-        url = root + "?after=" + release                    # We look for the next page of the release with the next patron [root + ?after=" + and the las release]
-        page = requests.get(url)
-        data = page.text
-        soup = BeautifulSoup(data, features="html.parser")
-
+        if releases != "-1":
+            url = root + "?after=" + release                    # We look for the next page of the release with the next patron [root + ?after=" + and the las release]
+            page = requests.get(url)
+            data = page.text
+            soup = BeautifulSoup(data, features="html.parser")
+        else:
+            page.status_code = 404
     return releaselist                                  #We return the list
 
 def get_bugs_period(project,from_date,to_date):
@@ -174,9 +177,10 @@ def get_bugs_period(project,from_date,to_date):
     page = requests.get(url)    #request the page
     data = page.text
     soup = BeautifulSoup(data, features="html.parser")      #make the parser
+    bugs = -1
     for element in soup.find_all("div"):                    #if we find the div tag
         if element.get("data-issue-table-model-state") != None: # We check if we found the following information
             bugs = element.get("data-issue-table-model-state")   #and we take the information
             bugs = re.sub(".*\"total\":","",bugs)
             bugs = re.sub(",.*","",bugs)
-    return int(bugs)
+    return int(bugs) # if the project can't be found on Jira, it returns -1.

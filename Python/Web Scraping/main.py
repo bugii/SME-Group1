@@ -59,8 +59,25 @@ for i in functions.file_to_stringlist("ApacheGithubLinks.txt", ""):
     output = functions.command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
     functions.write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/")+1:] + ".txt")
     time.sleep(10)
-"""
+    output = functions.file_to_stringlist("Git_Log_" + i[i.rindex("/")+1:] + ".txt", "Logs/")
+    print(output)
+    output = functions.create_timeline(output, "pom.xml")
+    print(output)
+    for j in output:
+        try:
+            functions.command_window("cwd=Repositories/" + i[i.rindex("/")+1:], "git", "checkout", j[1][7:], "pom.xml")
+            depnumb = functions.file_to_stringlist("pom.xml", "Repositories"+ i[i.rindex("/"):] + "/").count("<dependency>")
+            print("Writing to file " + i[i.rindex("/")+1:]+ str(depnumb))
+            functions.write_to_txt(j[0] + " : " + str(depnumb), "Timeline/"+i[i.rindex("/")+1:]+".txt")
+            time.sleep(1)
+        except:
+            print("Pom.xml did not exist for " + j[1])
 
+
+"""
+print(functions.get_bugs_period("https://github.com/apache/incubator", "2018-02-07", "2019-11-12"))
+print(functions.get_release_with_date("https://github.com/apache/incubator"))
+"""
 output = functions.file_to_stringlist("Git_Log_struts-site.txt", "Logs/")
 print(output)
 output = functions.create_timeline(output, "pom.xml")
@@ -70,23 +87,8 @@ for i in output:
     try:
         functions.command_window("cwd=Repositories/struts-site", "git", "checkout", i[1][7:], "pom.xml")
         print(i[0] + " : " + str(functions.file_to_stringlist("pom.xml", "Repositories/struts-site/").count("<dependency>")))
+        time.sleep(1)
     except:
         print("Pom.xml did not exist for " + i[1])
 
-"""
-# Here we scan the complete https://repo.maven.apache.org/maven2/ and copy all the .pom links into a txt in the main
-# directory.
-
-open('output.txt', 'w').close() # Clears the output file at the beginning.
-functions.deepscan_url('https://repo.maven.apache.org/maven2/')
-
-# We now want to copy the contents (all the lines, the urls) from output.txt into a list.
-
-content = functions.file_to_stringlist("output.txt")
-
-# Next, we create another txt, this time containing the dependencies.
-
-open('dependencies.txt', 'w').close() # Clears the dependencies file at the beginning.
-for x in content:
-    functions.dependencies_from_pom_url(x)
 """
