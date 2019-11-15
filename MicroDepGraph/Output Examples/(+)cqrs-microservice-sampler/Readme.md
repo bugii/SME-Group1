@@ -1,1 +1,0 @@
-Found at <https://github.com/benwilcock/cqrs-microservice-sampler>

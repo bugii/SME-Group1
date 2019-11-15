@@ -1,4 +1,0 @@
-digraph {
-payment->rabbitmq[color=blue]
-dispatch->rabbitmq[color=blue]
-}

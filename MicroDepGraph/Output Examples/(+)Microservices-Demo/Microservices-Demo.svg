@@ -1,0 +1,163 @@
+<svg width="659px" height="347px"
+ viewBox="0.00 0.00 494.31 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform=" rotate(0) translate(4 256)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-256 490.3067,-256 490.3067,4 -4,4"/>
+<!-- config -->
+<g id="node1" class="node">
+<title>config</title>
+<ellipse fill="none" stroke="#000000" cx="267.3898" cy="-90" rx="35.9154" ry="18"/>
+<text text-anchor="middle" x="267.3898" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">config</text>
+</g>
+<!-- eureka -->
+<g id="node2" class="node">
+<title>eureka</title>
+<ellipse fill="none" stroke="#000000" cx="267.3898" cy="-18" rx="36.5383" ry="18"/>
+<text text-anchor="middle" x="267.3898" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">eureka</text>
+</g>
+<!-- config&#45;&gt;eureka -->
+<g id="edge1" class="edge">
+<title>config&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M267.3898,-71.8314C267.3898,-64.131 267.3898,-54.9743 267.3898,-46.4166"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="270.8899,-46.4132 267.3898,-36.4133 263.8899,-46.4133 270.8899,-46.4132"/>
+</g>
+<!-- subject -->
+<g id="node3" class="node">
+<title>subject</title>
+<ellipse fill="none" stroke="#000000" cx="38.3898" cy="-162" rx="38.2799" ry="18"/>
+<text text-anchor="middle" x="38.3898" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">subject</text>
+</g>
+<!-- subject&#45;&gt;config -->
+<g id="edge3" class="edge">
+<title>subject&#45;&gt;config</title>
+<path fill="none" stroke="#0000ff" d="M68.234,-150.4458C74.22,-148.231 80.4847,-145.9855 86.3898,-144 133.8366,-128.0471 189.0551,-111.9192 225.9072,-101.4971"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="227.1155,-104.7931 235.7926,-98.7137 225.2183,-98.055 227.1155,-104.7931"/>
+</g>
+<!-- subject&#45;&gt;eureka -->
+<g id="edge2" class="edge">
+<title>subject&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M59.4884,-146.7411C85.2254,-128.3332 130.2705,-96.7741 170.3898,-72 190.7319,-59.4385 214.1346,-46.372 232.856,-36.239"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="234.7577,-39.1904 241.9067,-31.3709 231.4418,-33.0255 234.7577,-39.1904"/>
+</g>
+<!-- verb -->
+<g id="node4" class="node">
+<title>verb</title>
+<ellipse fill="none" stroke="#000000" cx="123.3898" cy="-162" rx="28.3913" ry="18"/>
+<text text-anchor="middle" x="123.3898" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">verb</text>
+</g>
+<!-- verb&#45;&gt;config -->
+<g id="edge5" class="edge">
+<title>verb&#45;&gt;config</title>
+<path fill="none" stroke="#0000ff" d="M145.8898,-150.75C169.0987,-139.1456 205.6077,-120.8911 232.5515,-107.4191"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="234.2665,-110.4748 241.6455,-102.8722 231.1359,-104.2138 234.2665,-110.4748"/>
+</g>
+<!-- verb&#45;&gt;eureka -->
+<g id="edge4" class="edge">
+<title>verb&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M137.2614,-146.3258C153.601,-128.0566 181.7708,-97.1591 207.3898,-72 218.2261,-61.3583 230.6405,-50.049 241.3548,-40.5445"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="243.9706,-42.9047 249.1625,-33.6691 239.3444,-37.6512 243.9706,-42.9047"/>
+</g>
+<!-- article -->
+<g id="node5" class="node">
+<title>article</title>
+<ellipse fill="none" stroke="#000000" cx="204.3898" cy="-162" rx="35.3257" ry="18"/>
+<text text-anchor="middle" x="204.3898" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">article</text>
+</g>
+<!-- article&#45;&gt;config -->
+<g id="edge7" class="edge">
+<title>article&#45;&gt;config</title>
+<path fill="none" stroke="#0000ff" d="M219.0016,-145.3008C227.0325,-136.1226 237.1428,-124.568 246.0423,-114.3971"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="248.9062,-116.4392 252.8572,-106.6087 243.6381,-111.8297 248.9062,-116.4392"/>
+</g>
+<!-- article&#45;&gt;eureka -->
+<g id="edge6" class="edge">
+<title>article&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M205.3837,-143.9275C207.0032,-125.1427 211.2532,-95.2879 222.3898,-72 227.63,-61.0422 235.5977,-50.4424 243.3799,-41.5785"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="246.1911,-43.6927 250.3912,-33.9659 241.0421,-38.9505 246.1911,-43.6927"/>
+</g>
+<!-- adjective -->
+<g id="node6" class="node">
+<title>adjective</title>
+<ellipse fill="none" stroke="#000000" cx="341.3898" cy="-162" rx="45.7829" ry="18"/>
+<text text-anchor="middle" x="341.3898" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">adjective</text>
+</g>
+<!-- adjective&#45;&gt;config -->
+<g id="edge9" class="edge">
+<title>adjective&#45;&gt;config</title>
+<path fill="none" stroke="#0000ff" d="M324.2267,-145.3008C314.4693,-135.8071 302.0989,-123.771 291.3919,-113.3534"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="293.5588,-110.5784 283.9508,-106.1134 288.6773,-115.5955 293.5588,-110.5784"/>
+</g>
+<!-- adjective&#45;&gt;eureka -->
+<g id="edge8" class="edge">
+<title>adjective&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M337.7188,-143.9313C333.4214,-125.1496 325.215,-95.2973 312.3898,-72 306.5322,-61.3595 298.4271,-50.8302 290.7077,-41.9341"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="293.0954,-39.3553 283.8023,-34.267 287.894,-44.0399 293.0954,-39.3553"/>
+</g>
+<!-- noun -->
+<g id="node7" class="node">
+<title>noun</title>
+<ellipse fill="none" stroke="#000000" cx="435.3898" cy="-162" rx="30.2015" ry="18"/>
+<text text-anchor="middle" x="435.3898" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">noun</text>
+</g>
+<!-- noun&#45;&gt;config -->
+<g id="edge11" class="edge">
+<title>noun&#45;&gt;config</title>
+<path fill="none" stroke="#0000ff" d="M411.5262,-150.8212C406.5396,-148.5317 401.3045,-146.162 396.3898,-144 365.6483,-130.4767 330.4644,-115.8014 304.6146,-105.1675"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="305.7733,-101.8598 295.1932,-101.3006 303.1153,-108.3355 305.7733,-101.8598"/>
+</g>
+<!-- noun&#45;&gt;eureka -->
+<g id="edge10" class="edge">
+<title>noun&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M418.8144,-146.774C398.9859,-128.6666 364.6679,-97.6648 334.3898,-72 321.6116,-61.1687 307.174,-49.4664 294.9818,-39.7338"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="296.9533,-36.8298 286.9478,-33.3455 292.5966,-42.3088 296.9533,-36.8298"/>
+</g>
+<!-- sentence -->
+<g id="node8" class="node">
+<title>sentence</title>
+<ellipse fill="none" stroke="#000000" cx="267.3898" cy="-234" rx="44.0602" ry="18"/>
+<text text-anchor="middle" x="267.3898" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">sentence</text>
+</g>
+<!-- sentence&#45;&gt;config -->
+<g id="edge17" class="edge">
+<title>sentence&#45;&gt;config</title>
+<path fill="none" stroke="#0000ff" d="M267.3898,-215.7623C267.3898,-191.201 267.3898,-147.2474 267.3898,-118.3541"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="270.8899,-118.0896 267.3898,-108.0896 263.8899,-118.0897 270.8899,-118.0896"/>
+</g>
+<!-- sentence&#45;&gt;eureka -->
+<g id="edge13" class="edge">
+<title>sentence&#45;&gt;eureka</title>
+<path fill="none" stroke="#0000ff" d="M310.0114,-228.9898C364.5739,-221.5981 454.4645,-205.79 474.3898,-180 528.1264,-110.4468 383.8357,-53.853 309.0739,-30.0881"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="310.0372,-26.7223 299.4487,-27.0874 307.9538,-33.4051 310.0372,-26.7223"/>
+</g>
+<!-- sentence&#45;&gt;subject -->
+<g id="edge14" class="edge">
+<title>sentence&#45;&gt;subject</title>
+<path fill="none" stroke="#0000ff" d="M230.7561,-223.8713C194.0277,-213.529 135.9662,-196.669 86.3898,-180 83.6218,-179.0693 80.7747,-178.0815 77.9144,-177.0665"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="78.8281,-173.6748 68.234,-173.5542 76.4406,-180.2551 78.8281,-173.6748"/>
+</g>
+<!-- sentence&#45;&gt;verb -->
+<g id="edge15" class="edge">
+<title>sentence&#45;&gt;verb</title>
+<path fill="none" stroke="#0000ff" d="M239.2833,-219.9468C215.0426,-207.8264 180.0679,-190.339 154.8882,-177.7492"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="156.2697,-174.5269 145.7602,-173.1852 153.1392,-180.7879 156.2697,-174.5269"/>
+</g>
+<!-- sentence&#45;&gt;article -->
+<g id="edge18" class="edge">
+<title>sentence&#45;&gt;article</title>
+<path fill="none" stroke="#0000ff" d="M252.4597,-216.937C244.4205,-207.7494 234.3684,-196.2613 225.5376,-186.1689"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="227.9982,-183.6659 218.7791,-178.4449 222.7302,-188.2755 227.9982,-183.6659"/>
+</g>
+<!-- sentence&#45;&gt;adjective -->
+<g id="edge12" class="edge">
+<title>sentence&#45;&gt;adjective</title>
+<path fill="none" stroke="#0000ff" d="M284.5529,-217.3008C294.1041,-208.0077 306.1592,-196.2784 316.7069,-186.0158"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="319.3369,-188.3402 324.0635,-178.8581 314.4554,-183.3231 319.3369,-188.3402"/>
+</g>
+<!-- sentence&#45;&gt;noun -->
+<g id="edge16" class="edge">
+<title>sentence&#45;&gt;noun</title>
+<path fill="none" stroke="#0000ff" d="M298.8048,-221.2192C325.0091,-210.4698 363.2766,-194.5666 396.3898,-180 398.2328,-179.1893 400.1209,-178.3493 402.024,-177.4953"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="403.8692,-180.5014 411.5262,-173.1788 400.974,-174.1282 403.8692,-180.5014"/>
+</g>
+</g>
+</svg>
