@@ -30,6 +30,20 @@ def write_to_dependencies_txt(string1):
     f.write(string1 + "\n")
     f.close()
 
+def clear_folder(folder):
+    print("Clearing folder: " + folder)
+    command_window("rm", "-rf", folder)  # Erases folder
+    command_window("mkdir", folder)  # Creates folder
+
+def clear_main(list_to_clear):
+    # clears all folders in list_to_clear (i.e. "f:Folder034"); deletes the other files (i.e. "myfile01") in main directory
+    for i in list_to_clear:
+        if i.startswith("f:"):
+            clear_folder(i[2:])
+        else:
+            print("Deleting: " + i)
+            command_window("rm", "-rf", i)
+
 def return_all_links(url):
     # As it says: Returns all links from a website. If the website does not respond with 200, it returns a list with 0 as
     # the only element.
@@ -122,7 +136,7 @@ def filter_apache_repositories(Linklist):
 
 def create_timeline(file_list, filename):
     # Needs a list to iterate over. Every time it finds an entry starting with "filename", it iterates back to find the
-    # associated commit id and date. Outputs a list with the commit-date-tuples.
+    # associated commit id and date. Outputs a list with the commit-date-tuples. Only functions with github logs.
     output = []
     for idx, element in enumerate(file_list):
         if element.startswith(filename):
@@ -184,3 +198,59 @@ def get_bugs_period(project,from_date,to_date):
             bugs = re.sub(".*\"total\":","",bugs)
             bugs = re.sub(",.*","",bugs)
     return int(bugs) # if the project can't be found on Jira, it returns -1.
+
+def generate_Apache_link_list(upper_boundary):
+    # Scans the github Apache repositories (see "url") and copies all project links into a .txt file; also returns
+    # them as a list.
+    Apache_Project_Links = []
+    i = 1
+    while i != -1 and i <= upper_boundary:
+        if i == 1:
+            url = "https://github.com/apache?utf8=%E2%9C%93&q=&type=source&language="
+        else:
+            url = "https://github.com/apache?language=&page=" + str(i) + "&q=&type=source&utf8=%E2%9C%93"
+        output = return_all_links(url)
+        if output[0] == 0:
+            i = -1
+        else:
+            output = filter_apache_repositories(output)
+            Apache_Project_Links.extend(output)
+            print("Page " + str(i) + " done. Waiting 10 seconds...")
+            time.sleep(10.1)
+            i += 1
+    for i in Apache_Project_Links:
+        write_to_txt(i, "ApacheGithubLinks.txt")
+    return Apache_Project_Links
+
+def write_dependency_timelines(txt, dir):
+    # from the .txt file in directory dir: Uses the entries as links to clone the github repositories, extract the
+    # number of dependecies and write them into a file in the "timeline" folder. After that, it clears the "repositories"
+    # folder.
+    for i in file_to_stringlist(txt, dir):
+        clear_folder("Repositories")
+        try:
+            command_window("cwd=Repositories", "git", "clone", "https://github.com" + i, "-b", "master")
+        except:
+            print("Exception in cloning.")
+        print("Writing log for " + i[i.rindex("/"):])
+        output = command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
+        write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/") + 1:] + ".txt")
+        time.sleep(1)
+        output = file_to_stringlist("Git_Log_" + i[i.rindex("/") + 1:] + ".txt", "Logs/")
+        output = create_timeline(output, "pom.xml")
+        for j in output:
+            try:
+                command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], "pom.xml")
+                depnumb = file_to_stringlist("pom.xml", "Repositories" + i[i.rindex("/"):] + "/").count("<dependency>")
+                print("Writing to file " + i[i.rindex("/") + 1:] + " : " + str(depnumb))
+                write_to_txt(j[0] + " : " + str(depnumb), "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
+                time.sleep(1)
+            except:
+                print("Pom.xml did not exist for " + j[1])
+
+def write_release_timelines(txt, dir):
+    for i in file_to_stringlist(txt, dir):
+        for j in get_release_with_date("https://github.com" + i):
+            write_to_txt(j[1] + " : " + j[0], "Releases/" + i[i.rindex("/") + 1:] + ".txt")
+            print("Writing releases for " + i[i.rindex("/") + 1:])
+            time.sleep(1)
