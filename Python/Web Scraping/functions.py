@@ -224,8 +224,8 @@ def generate_Apache_link_list(upper_boundary):
 
 def write_dependency_timelines(txt, dir):
     # from the .txt file in directory dir: Uses the entries as links to clone the github repositories, extract the
-    # number of dependecies and write them into a file in the "timeline" folder. After that, it clears the "repositories"
-    # folder.
+    # number of dependencies and write them into a file in the "timeline" folder. After that, it clears the
+    # "repositories" folder.
     for i in file_to_stringlist(txt, dir):
         clear_folder("Repositories")
         try:
@@ -273,7 +273,7 @@ def check_doc(link):
             if re.search("/pom\.xml", element.get('href')):
                 link1 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
                 if link1 not in list[0]:
-                   lista[0].append(link1)
+                   list[0].append(link1)
             if re.search("/build\.gradle", element.get('href')):
                 link2 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
                 if link2 not in list[1]:
