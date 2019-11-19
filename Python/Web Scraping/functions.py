@@ -254,3 +254,38 @@ def write_release_timelines(txt, dir):
             write_to_txt(j[1] + " : " + j[0], "Releases/" + i[i.rindex("/") + 1:] + ".txt")
             print("Writing releases for " + i[i.rindex("/") + 1:])
             time.sleep(1)
+
+
+
+def check_doc(link):
+    # This function look for all the pom.xml and build.gradle int the project and keep their relative dir in a list
+    # In case it finds a pom.xml or a build.gradle in the main directory is gonna return a list having two booleans,[contains pom, contains gradle], true in case it found it, false otherwise.
+
+    i=1
+    list=[[],[]]
+    root= link
+    link+= "/search?q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle&unscoped_q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle"
+    page = requests.get(link)
+    data = page.text
+    soup = BeautifulSoup(data, features="html.parser")
+    while page.status_code== 200:
+        for element in soup.find_all("a"):
+            if re.search("/pom\.xml", element.get('href')):
+                link1 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
+                if link1 not in list[0]:
+                   lista[0].append(link1)
+            if re.search("/build\.gradle", element.get('href')):
+                link2 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
+                if link2 not in list[1]:
+                    list[1].append(link2)
+        i += 1
+        link = root + "search?p="+ str(i) + "&q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle&unscoped_q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle"
+        page = requests.get(link)
+        data = page.text
+        soup = BeautifulSoup(data, features="html.parser")
+    bollist = [False, False]
+    if "pom.xml" in list[0]:
+        bollist[0] = True
+    if "build.gradle" in list[1]:
+        bollist[1] = True
+    return bollist
