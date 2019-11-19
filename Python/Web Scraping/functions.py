@@ -264,7 +264,7 @@ def check_doc(link):
     i=1
     list=[[],[]]
     root= link
-    link+= "/search?q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle&unscoped_q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle"
+    link+= "/search?q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle&unscoped_q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle"
     page = requests.get(link)
     data = page.text
     soup = BeautifulSoup(data, features="html.parser")
@@ -279,7 +279,7 @@ def check_doc(link):
                 if link2 not in list[1]:
                     list[1].append(link2)
         i += 1
-        link = root + "search?p="+ str(i) + "&q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle&unscoped_q=dependencies+filename%3Apom+extension%3Axml+OR+dependencies+filename%3Abuild+extension%3Agradle"
+        link = root + "search?p="+ str(i) + "&q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle&unscoped_q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle"
         page = requests.get(link)
         data = page.text
         soup = BeautifulSoup(data, features="html.parser")
