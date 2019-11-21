@@ -97,9 +97,12 @@ def date_adder(date, days):
 
 
 def clear_folder(folder):
-    print("Clearing folder: " + folder)
-    command_window("rm", "-rf", folder)  # Erases folder
-    command_window("mkdir", folder)  # Creates folder
+    try:
+        print("Clearing folder: " + folder)
+        command_window("rm", "-rf", folder)  # Erases folder
+        command_window("mkdir", folder)  # Creates folder
+    except:
+        print("Cannot clear folder " + folder)
 
 def clear_main(list_to_clear):
     # clears all folders in list_to_clear (i.e. "f:Folder034"); deletes the other files (i.e. "myfile01") in main directory
@@ -303,32 +306,37 @@ def write_dependency_timelines(txt, dir, smart_search):
         clear_folder("Repositories")
         try:
             command_window("cwd=Repositories", "git", "clone", "https://github.com" + i, "-b", "master")
+            print("Writing log for " + i[i.rindex("/"):])
+            output = command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
+            write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/") + 1:] + ".txt")
+            time.sleep(0.1)
+            output = file_to_stringlist("Git_Log_" + i[i.rindex("/") + 1:] + ".txt", "Logs/")
+            output = create_timeline(output, "pom.xml")
+            for j in output:
+                try:
+                    command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], "pom.xml")
+                    depnumb = file_to_stringlist("pom.xml", "Repositories" + i[i.rindex("/"):] + "/").count(
+                        "<dependency>")
+                    print("Writing to file " + i[i.rindex("/") + 1:] + " : " + str(depnumb))
+                    write_to_txt(j[0] + " : " + str(depnumb), "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
+                    time.sleep(0.1)
+                except:
+                    print("Pom.xml did not exist for " + j[1])
         except:
             print("Exception in cloning.")
-        print("Writing log for " + i[i.rindex("/"):])
-        output = command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
-        write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/") + 1:] + ".txt")
-        time.sleep(0.1)
-        output = file_to_stringlist("Git_Log_" + i[i.rindex("/") + 1:] + ".txt", "Logs/")
-        output = create_timeline(output, "pom.xml")
-        for j in output:
-            try:
-                command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], "pom.xml")
-                depnumb = file_to_stringlist("pom.xml", "Repositories" + i[i.rindex("/"):] + "/").count(
-                    "<dependency>")
-                print("Writing to file " + i[i.rindex("/") + 1:] + " : " + str(depnumb))
-                write_to_txt(j[0] + " : " + str(depnumb), "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
-                time.sleep(0.1)
-            except:
-                print("Pom.xml did not exist for " + j[1])
+
 
 
 def write_release_timelines(txt, dir):
     for i in file_to_stringlist(txt, dir):
-        for j in get_release_with_date("https://github.com" + i):
-            write_to_txt(j[1] + " : " + j[0], "Releases/" + i[i.rindex("/") + 1:] + ".txt")
-            print("Writing releases for " + i[i.rindex("/") + 1:])
-            time.sleep(0.1)
+        print("["+i+"]---")
+        try:
+            for j in get_release_with_date("https://github.com" + i):
+                write_to_txt(j[1] + " : " + j[0], "Releases/" + i[i.rindex("/") + 1:] + ".txt")
+                print("Writing releases for " + i[i.rindex("/") + 1:])
+                time.sleep(0.1)
+        except:
+            print("Could not write releases for " + i[i.rindex("/") + 1:])
 
 
 
@@ -383,7 +391,12 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
             for k in dependencies:
                 best_date = date_normalization(k)
                 if not date1_greater_date2(best_date, j[:10]):
-                    numb_dependencies = str(k[-3:])
+                    l=-1
+                    while True:
+                        l=l-1
+                        if k[l] == " " or l < -10:
+                            break
+                    numb_dependencies = str(k[l+1:])
                     numb_release = str(j[:10])
                     try:
                         numb_bugs = str(get_bugs_period("https://github.com" + i, j[:10], date_adder(j[:10], bug_time)))
@@ -397,6 +410,12 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
                         write_to_txt(numb_dependencies + "::" + numb_bugs, "Timelines/complete.txt")
                         print("Writing: " + numb_dependencies + "::" + numb_bugs)
                     break
+
+def clean_up(file, folder):
+    temp_list = file_to_stringlist(file, folder)
+    for i in temp_list:
+        if i[-2] != "-" and i[0].isdigit():
+            write_to_txt(i, "output_clean.txt")
 
 
 

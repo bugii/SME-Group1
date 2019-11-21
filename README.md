@@ -47,6 +47,13 @@ Gradle provide tools to visualize, navigate and analyze the dependency graph of 
 
 3. All of the artifacts for the module are then requested from the same repository that was chosen in the process above.
 
+#### Dependencies in Apache projects
+
+In order to find out whether dependencies destabilize code, we built a tool to analyze Apache projects on Github.
+This tool, a python script, simply scans all Apache source projects for pom.xml (contain the dependencies of Maven projects) or build.gradle (Gradle projects) files.
+It then clones the repositories one by one, checks out all dependency files sequentially and stores the number of dependencies (including their date) in a text file in the Dependencies folder.
+Afterwards, it extracts all release dates and, based on those dates, sends a request to Jira to obtain the number of bugs following that release in a specified time window (i.e. two weeks).
+The raw data (dependencies, release date and bug count) is then written into a text file in the Timelines folder for further use.
 
 ### Part 2: Microservices
 
