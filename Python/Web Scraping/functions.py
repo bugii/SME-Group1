@@ -6,6 +6,8 @@ import urllib.request
 from bs4 import BeautifulSoup
 import subprocess
 import re
+from datetime import datetime
+from datetime import timedelta
 
 def wait_random():
     # Generates a random wait time, usually around 1 to 2 seconds, with some longer intervals up to 7 seconds added for
@@ -30,10 +32,77 @@ def write_to_dependencies_txt(string1):
     f.write(string1 + "\n")
     f.close()
 
+def date_normalization(date):
+    # expects input of the form 'Date:   Tue Nov 19 16:52:55 2019 +0000 [...]"; outputs 2019-11-19.
+    output = ""
+    try:
+        if date[27] == " ":
+            output = output + date[28:32]
+        else:
+            output = output + date[27:31]
+    except:
+        print("Unexpected date format. Returning empty string.")
+        return(output)
+    output = output + "-"
+    if date[12:15]=="Jan":
+        output = output + "01"
+    elif date[12:15]=="Feb":
+        output = output + "02"
+    elif date[12:15]=="Mar":
+        output = output + "03"
+    elif date[12:15]=="Apr":
+        output = output + "04"
+    elif date[12:15]=="May":
+        output = output + "05"
+    elif date[12:15]=="Jun":
+        output = output + "06"
+    elif date[12:15]=="Jul":
+        output = output + "07"
+    elif date[12:15]=="Aug":
+        output = output + "08"
+    elif date[12:15]=="Sep":
+        output = output + "09"
+    elif date[12:15]=="Oct":
+        output = output + "10"
+    elif date[12:15]=="Nov":
+        output = output + "11"
+    elif date[12:15]=="Dec":
+        output = output + "12"
+    output = output + "-"
+    if date[17]==" ":
+        output = output + "0" + date[16]
+    else:
+        output = output + date[16:18]
+    return(output)
+
+def date1_greater_date2(date1, date2):
+    # takes 2019-11-19, 2018-12-12 and compares the raw numbers for size; here, the first on is greater, so the function
+    # returns True.
+    try:
+        date1 = date1[:4] + date1[5:7] + date1[8:]
+        date2 = date2[:4] + date2[5:7] + date2[8:]
+        return int(date1)>int(date2)
+    except:
+        print("Invalid date comparison.")
+        return False
+
+def date_adder(date, days):
+    try:
+        datetime_object = datetime.strptime(date, '%Y-%m-%d').date()
+        datetime_object = datetime_object + timedelta(days)
+        return datetime_object.strftime('%Y-%m-%d')
+    except:
+        print("Invalid Date adder.")
+        return ""
+
+
 def clear_folder(folder):
-    print("Clearing folder: " + folder)
-    command_window("rm", "-rf", folder)  # Erases folder
-    command_window("mkdir", folder)  # Creates folder
+    try:
+        print("Clearing folder: " + folder)
+        command_window("rm", "-rf", folder)  # Erases folder
+        command_window("mkdir", folder)  # Creates folder
+    except:
+        print("Cannot clear folder " + folder)
 
 def clear_main(list_to_clear):
     # clears all folders in list_to_clear (i.e. "f:Folder034"); deletes the other files (i.e. "myfile01") in main directory
@@ -222,35 +291,133 @@ def generate_Apache_link_list(upper_boundary):
         write_to_txt(i, "ApacheGithubLinks.txt")
     return Apache_Project_Links
 
-def write_dependency_timelines(txt, dir):
+def write_dependency_timelines(txt, dir, smart_search):
     # from the .txt file in directory dir: Uses the entries as links to clone the github repositories, extract the
-    # number of dependecies and write them into a file in the "timeline" folder. After that, it clears the "repositories"
-    # folder.
+    # number of dependencies and write them into a file in the "timeline" folder. After that, it clears the
+    # "repositories" folder.
+    # If smart_search is True, repositories are cloned only if they contain either pom.xml or build.gradle files.
     for i in file_to_stringlist(txt, dir):
+        if smart_search:
+            pom_or_build = check_doc("https://github.com" + i)
+            print(pom_or_build)
+            if not pom_or_build[0] and not pom_or_build[1]:
+                print(i + " does not contain pom.xml or build.gradle. Proceeding to next link.")
+                continue
         clear_folder("Repositories")
         try:
             command_window("cwd=Repositories", "git", "clone", "https://github.com" + i, "-b", "master")
+            print("Writing log for " + i[i.rindex("/"):])
+            output = command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
+            write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/") + 1:] + ".txt")
+            time.sleep(0.1)
+            output = file_to_stringlist("Git_Log_" + i[i.rindex("/") + 1:] + ".txt", "Logs/")
+            output = create_timeline(output, "pom.xml")
+            for j in output:
+                try:
+                    command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], "pom.xml")
+                    depnumb = file_to_stringlist("pom.xml", "Repositories" + i[i.rindex("/"):] + "/").count(
+                        "<dependency>")
+                    print("Writing to file " + i[i.rindex("/") + 1:] + " : " + str(depnumb))
+                    write_to_txt(j[0] + " : " + str(depnumb), "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
+                    time.sleep(0.1)
+                except:
+                    print("Pom.xml did not exist for " + j[1])
         except:
             print("Exception in cloning.")
-        print("Writing log for " + i[i.rindex("/"):])
-        output = command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
-        write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/") + 1:] + ".txt")
-        time.sleep(1)
-        output = file_to_stringlist("Git_Log_" + i[i.rindex("/") + 1:] + ".txt", "Logs/")
-        output = create_timeline(output, "pom.xml")
-        for j in output:
-            try:
-                command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], "pom.xml")
-                depnumb = file_to_stringlist("pom.xml", "Repositories" + i[i.rindex("/"):] + "/").count("<dependency>")
-                print("Writing to file " + i[i.rindex("/") + 1:] + " : " + str(depnumb))
-                write_to_txt(j[0] + " : " + str(depnumb), "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
-                time.sleep(1)
-            except:
-                print("Pom.xml did not exist for " + j[1])
+
+
 
 def write_release_timelines(txt, dir):
     for i in file_to_stringlist(txt, dir):
-        for j in get_release_with_date("https://github.com" + i):
-            write_to_txt(j[1] + " : " + j[0], "Releases/" + i[i.rindex("/") + 1:] + ".txt")
-            print("Writing releases for " + i[i.rindex("/") + 1:])
-            time.sleep(1)
+        print("["+i+"]---")
+        try:
+            for j in get_release_with_date("https://github.com" + i):
+                write_to_txt(j[1] + " : " + j[0], "Releases/" + i[i.rindex("/") + 1:] + ".txt")
+                print("Writing releases for " + i[i.rindex("/") + 1:])
+                time.sleep(0.1)
+        except:
+            print("Could not write releases for " + i[i.rindex("/") + 1:])
+
+
+
+def check_doc(link):
+    # This function look for all the pom.xml and build.gradle int the project and keep their relative dir in a list
+    # In case it finds a pom.xml or a build.gradle in the main directory is gonna return a list having two booleans,[contains pom, contains gradle], true in case it found it, false otherwise.
+
+    i=1
+    list=[[],[]]
+    root= link
+    link+= "/search?q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle&unscoped_q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle"
+    page = requests.get(link)
+    data = page.text
+    soup = BeautifulSoup(data, features="html.parser")
+    while page.status_code== 200:
+        for element in soup.find_all("a"):
+            if re.search("/pom\.xml", element.get('href')):
+                link1 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
+                if link1 not in list[0]:
+                   list[0].append(link1)
+            if re.search("/build\.gradle", element.get('href')):
+                link2 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
+                if link2 not in list[1]:
+                    list[1].append(link2)
+        i += 1
+        link = root + "/search?p="+ str(i) + "&q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle&unscoped_q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle"
+        page = requests.get(link)
+        data = page.text
+        soup = BeautifulSoup(data, features="html.parser")
+    bollist = [False, False]
+    if "pom.xml" in list[0]:
+        bollist[0] = True
+    if "build.gradle" in list[1]:
+        bollist[1] = True
+    return bollist
+
+"""
+def check_existence_on_github(directory, filename):
+    # Given the directory, i.e. /apache/pulsar, and a filename, i.e. pom.xml, checks if that file exists (returns True).
+    page = requests.get("https://github.com"+directory+"/blob/master/"+filename)
+    return page.status_code!=404
+    """
+
+def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", include_release_date = False):
+    # for each project in the file in the main directory (by default "ApacheGithubLinks.txt") writes per release in
+    # the corresponding file (from the Releases folder) the number of dependencies directly before the release and
+    # the number of bugs after release (by bug_time, by default 14 days, from Jira) into a line.
+    content = file_to_stringlist(filename, "")
+    for i in content:
+        for j in (file_to_stringlist(i[8:] + ".txt", "Releases/")):
+            dependencies = file_to_stringlist(i[8:] + ".txt", "Dependencies/")
+            for k in dependencies:
+                best_date = date_normalization(k)
+                if not date1_greater_date2(best_date, j[:10]):
+                    l=-1
+                    while True:
+                        l=l-1
+                        if k[l] == " " or l < -10:
+                            break
+                    numb_dependencies = str(k[l+1:])
+                    numb_release = str(j[:10])
+                    try:
+                        numb_bugs = str(get_bugs_period("https://github.com" + i, j[:10], date_adder(j[:10], bug_time)))
+                    except:
+                        print("Invalid Jira request for bug number. Writing -1 instead.")
+                        numb_bugs = str(-1)
+                    if include_release_date:
+                        write_to_txt(numb_dependencies + "::" + numb_release + "::" + numb_bugs, "Timelines/complete.txt")
+                        print("Writing: " + numb_dependencies + "::" + numb_release + "::" + numb_bugs)
+                    else:
+                        write_to_txt(numb_dependencies + "::" + numb_bugs, "Timelines/complete.txt")
+                        print("Writing: " + numb_dependencies + "::" + numb_bugs)
+                    break
+
+def clean_up(file, folder):
+    temp_list = file_to_stringlist(file, folder)
+    for i in temp_list:
+        if i[-2] != "-" and i[0].isdigit():
+            write_to_txt(i, "output_clean.txt")
+
+
+
+
+

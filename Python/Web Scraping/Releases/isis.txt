@@ -1,0 +1,10 @@
+2019-06-01 : saveme1
+2019-05-13 : 2.0.0-M3_last_known_stable
+2019-05-20 : v2%2FpreSpring
+2019-01-14 : simpleapp-archetype-2.0.0-M2
+2019-01-14 : rel%2Fsimpleapp-archetype-2.0.0-M2
+2019-01-14 : rel%2Fisis-2.0.0-M2
+2019-01-14 : rel%2Fhelloworld-archetype-2.0.0-M2
+2019-01-14 : isis-2.0.0-M2
+2019-01-14 : helloworld-archetype-2.0.0-M2
+2019-01-12 : simpleapp-archetype-2.0.0-M2-RC1

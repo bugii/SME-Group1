@@ -1,0 +1,10 @@
+2019-09-25 : druid-0.16.0-incubating
+2019-09-14 : druid-0.16.0-incubating-rc3
+2019-09-12 : druid-0.16.0-incubating-rc2
+2019-09-11 : druid-0.16.0-incubating-rc1
+2019-08-16 : druid-0.15.1-incubating
+2019-08-01 : druid-0.15.1-incubating-rc2
+2019-07-30 : druid-0.15.1-incubating-rc1
+2019-06-27 : druid-0.15.0-incubating
+2019-06-12 : druid-0.15.0-incubating-rc2
+2019-06-07 : druid-0.15.0-incubating-rc1

@@ -1,0 +1,1996 @@
+commit 751b80a09a85c5ae6786006297845ac07542371c
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed Nov 20 17:01:35 2019 +0900
+
+    feat: move ci to gh-actions (#112)
+
+ .github/workflows/ci.yml |  49 +++
+ .travis.yml              |  14 +-
+ package-lock.json        | 986 ++++++++++++++++++++++++++++++++++-------------
+ package.json             |  19 +-
+ 4 files changed, 781 insertions(+), 287 deletions(-)
+
+commit 11381ff184b6d5a40edece3f1b3170e9894e346e
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Nov 15 19:29:27 2019 +0900
+
+    chore: update jasmine dependency (#114)
+
+ package.json             |  2 +-
+ tests/spec/coverage.json | 12 +++++-------
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+
+commit ee24d80df57e5578d2081318e9e7eb4e849d61a4
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Nov 15 19:03:55 2019 +0900
+
+    refactor: eslint setup (#113)
+    
+    * replace dependencies with @cordova/eslint-config
+    * update eslint config
+    * eslint corrections
+
+ .eslintrc.yml                                      |  17 +-
+ bin/templates/cordova/Api.js                       |  19 +-
+ bin/templates/cordova/lib/build.js                 |  10 +-
+ cordova-js-src/confighelper.js                     |   8 +-
+ cordova-js-src/exec.js                             |   4 -
+ cordova-js-src/platform.js                         |   1 -
+ package-lock.json                                  | 621 ++++++++++++---------
+ package.json                                       |  12 +-
+ tests/.eslintrc.yml                                |  19 -
+ tests/spec/unit/Api.spec.js                        |   3 +-
+ .../cordova/lib/ManifestJsonParser.spec.js         |   1 -
+ .../cordova/lib/SettingJsonParser.spec.js          |   1 -
+ .../spec/unit/templates/cordova/lib/build.spec.js  |   1 -
+ .../spec/unit/templates/cordova/lib/clean.spec.js  |   2 +-
+ .../unit/templates/cordova/lib/prepare.spec.js     |   3 -
+ 15 files changed, 386 insertions(+), 336 deletions(-)
+
+commit c5df1de68979447179534ed3d410a8451865b05b
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Sep 13 11:25:37 2019 +0900
+
+    chore: update development dependencies (#67)
+    
+    * Drop devDependencies tmp
+    
+    * Update devDependencies
+      * eslint@^6.1.0
+      * eslint-config-semistandard@^14.0.0
+      * eslint-config-standard@^13.0.1
+      * eslint-plugin-import@^2.18.2
+      * eslint-plugin-promise@^4.2.1
+    
+    * fix: eslint errors from dependency update
+
+ bin/templates/cordova/Api.js                       |  10 +-
+ bin/templates/cordova/handler.js                   |   2 +-
+ bin/templates/cordova/lib/build.js                 |   4 +-
+ bin/templates/cordova/lib/prepare.js               |  10 +-
+ bin/templates/cordova/parser.js                    |   2 +-
+ package-lock.json                                  | 201 +++++++++++++--------
+ package.json                                       |  15 +-
+ tests/spec/unit/Api.spec.js                        |  10 +-
+ tests/spec/unit/create.spec.js                     |   2 +-
+ .../cordova/lib/ManifestJsonParser.spec.js         |  10 +-
+ .../cordova/lib/PackageJsonParser.spec.js          |   4 +-
+ .../spec/unit/templates/cordova/lib/build.spec.js  |  26 +--
+ .../unit/templates/cordova/lib/prepare.spec.js     |  25 +--
+ tests/spec/unit/templates/cordova/lib/util.spec.js |   6 +-
+ tests/spec/unit/templates/parser.spec.js           |  24 +--
+ 15 files changed, 200 insertions(+), 151 deletions(-)
+
+commit 860b4a4a0c11562d50ff2b56582547b88a49403d
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Sep 13 10:55:34 2019 +0900
+
+    chore: bump electron dependencies (#68)
+    
+    - electron@^6.0.7
+    - electron-builder@^21.2.0
+    
+    - Set Electron Version in Base Configs
+
+ bin/templates/cordova/lib/build/base.json |   4 +-
+ package-lock.json                         | 572 ++++++++++++------------------
+ package.json                              |   4 +-
+ 3 files changed, 232 insertions(+), 348 deletions(-)
+
+commit 3bd22ad9d925ddf9936ea6f7519585dcbf5497af
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Sep 13 10:54:41 2019 +0900
+
+    chore: drop node 6 and 8 support (#69)
+
+ .travis.yml  | 2 --
+ package.json | 2 +-
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+
+commit ff14372d7375a2314d71355812417826e725ba68
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Nov 15 17:31:40 2019 +0900
+
+    chore: bump version to 2.0.0-dev (#110)
+
+ VERSION                | 2 +-
+ cordova-lib/cordova.js | 2 +-
+ package-lock.json      | 2 +-
+ package.json           | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+commit d758a46e123cef6e65b3fe4a7214654e79ea31db
+Author: Florian Bernard <florian.bernard64@gmail.com>
+Date:   Thu Sep 26 00:04:20 2019 +0200
+
+    fix typo (#96)
+
+ DOCUMENTATION.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 418a4a73e0a547c4a65695d6ffa6977029f81e27
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon Sep 2 10:28:04 2019 +0300
+
+    feat: Support Loading Local HTML Files or Remote URL in the BrowserWindow (#81)
+    
+    Co-Authored-By: エリス <erisu@users.noreply.github.com>
+
+ DOCUMENTATION.md                                   | 73 +++++++++++++++++++++-
+ bin/templates/cordova/lib/SettingJsonParser.js     | 16 ++++-
+ bin/templates/cordova/lib/prepare.js               |  2 +-
+ bin/templates/project/cdv-electron-main.js         | 12 ++--
+ .../cordova/lib/SettingJsonParser.spec.js          | 20 ++++--
+ .../unit/templates/cordova/lib/prepare.spec.js     |  8 +--
+ 6 files changed, 109 insertions(+), 22 deletions(-)
+
+commit 932bd675de59638d295aee96a111fa9a9b17b634
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Aug 20 18:02:11 2019 +0900
+
+    Update package-lock.json to version 1.2.0-dev
+
+ package-lock.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 74eb4e01ab8340f14c9e8cffb163c984b45b8d6a
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Aug 20 16:07:06 2019 +0900
+
+    Update JS snapshot to version 1.2.0-dev (via coho)
+
+ cordova-lib/cordova.js | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+
+commit 1f30786ca5f0874b8b048307ef7968b6903d5f05
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Aug 20 16:07:03 2019 +0900
+
+    Set VERSION to 1.2.0-dev (via coho)
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8d6c6a0e93f02b5a6d033eafcfe98c58e6c7509e
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Aug 20 15:42:16 2019 +0900
+
+    Updated RELEASENOTES.md & version for release 1.1.1 (electron-v1.1.1)
+
+ RELEASENOTES.md   | 8 ++++++++
+ package-lock.json | 2 +-
+ package.json      | 2 +-
+ 3 files changed, 10 insertions(+), 2 deletions(-)
+
+commit 13c2616936b050ff3077cf8d6329594f920b180d
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Aug 20 15:24:59 2019 +0900
+
+    chore: rebuilt package-lock.json for audit fix (#94)
+
+ package-lock.json | 735 +++++++++++++++++++++++++++---------------------------
+ 1 file changed, 362 insertions(+), 373 deletions(-)
+
+commit 2182fef3226f89e285e1a9e0ee79e2853ed79c16
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon Jul 22 16:17:31 2019 +0800
+
+    fix: filter icons only matching requirements (#79)
+    
+    Icons not matching requirements should be ignored and should not break
+    build if at least one correct icon is found.
+
+ bin/templates/cordova/lib/prepare.js               |  36 ++----
+ .../unit/templates/cordova/lib/prepare.spec.js     | 126 ++++++++++++++-------
+ 2 files changed, 96 insertions(+), 66 deletions(-)
+
+commit 46e2106723a6faec502c2cc71ca9ee8ae123de12
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Thu Jul 18 17:01:01 2019 +0900
+
+    fix: prepare missing dependencies failure (#89)
+    
+    * fix: prepare missing deps failure
+    * test: added test for undefined deps
+
+ bin/templates/cordova/lib/PackageJsonParser.js         | 18 ++++++++++--------
+ .../templates/cordova/lib/PackageJsonParser.spec.js    | 11 +++++++++++
+ 2 files changed, 21 insertions(+), 8 deletions(-)
+
+commit e451533654931a1a56d52d46a20516793df30063
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Thu Jul 18 16:58:22 2019 +0900
+
+    refactor: improve create test spec speed (#86)
+
+ tests/spec/unit/create.spec.js | 51 +++++++++++++++++++++++++++++++-----------
+ 1 file changed, 38 insertions(+), 13 deletions(-)
+
+commit 339778a896b9b3f5eb0aa8bcbe13001ac368b83e
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed Jul 17 16:20:54 2019 +0900
+
+    fix: use spyOn for process global var (#85)
+
+ tests/spec/unit/templates/cordova/lib/build.spec.js |  8 ++++----
+ tests/spec/unit/templates/cordova/lib/clean.spec.js | 12 +++---------
+ tests/spec/unit/templates/cordova/lib/run.spec.js   | 12 +++---------
+ 3 files changed, 10 insertions(+), 22 deletions(-)
+
+commit de08c6b50d6d11a002984abb1438991c648f2737
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Jun 28 11:40:02 2019 +0900
+
+    Update package-lock.json to version 1.2.0-dev
+
+ package-lock.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8b7745f63dd31a3f30368509bd44c9a1f5bb9f85
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Jun 28 11:38:00 2019 +0900
+
+    Update JS snapshot to version 1.2.0-dev (via coho)
+
+ cordova-lib/cordova.js | 47 ++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 38 insertions(+), 9 deletions(-)
+
+commit 924742cf71d9abc61f838b88bee38953decee048
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Jun 28 11:37:57 2019 +0900
+
+    Set VERSION to 1.2.0-dev (via coho)
+
+ VERSION      | 2 +-
+ package.json | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 71244b4ffd1482dbf084ff5f02a5fa49d95084b5
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Jun 28 11:28:38 2019 +0900
+
+    Updated RELEASENOTES & version for release 1.1.0 (electron-v1.1.0)
+
+ RELEASENOTES.md   | 23 +++++++++++++++++++++++
+ package-lock.json |  2 +-
+ package.json      |  2 +-
+ 3 files changed, 25 insertions(+), 2 deletions(-)
+
+commit d6421290247bd6842cf6ca4bcf658aa56a617b51
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Jun 28 11:01:06 2019 +0900
+
+    fix: display correct package version in CLI (#77)
+
+ bin/templates/cordova/version | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+commit 0e116d92dc21a2a0829ae28623dac4bd56587eeb
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Thu Jun 27 11:57:16 2019 +0900
+
+    Append Overridable/Top-Level per Platform Options (#76)
+
+ bin/templates/cordova/lib/build.js                 |  71 ++++-
+ .../spec/unit/templates/cordova/lib/build.spec.js  | 317 +++++++++++++++++++++
+ 2 files changed, 385 insertions(+), 3 deletions(-)
+
+commit e979872ce1acc29ed06cd748428215023c059817
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Wed Jun 26 16:42:18 2019 +0900
+
+    fix: Typo in Build: `Singning` -> `Signing` (#75)
+
+ bin/templates/cordova/lib/build.js                 | 14 ++++----
+ .../spec/unit/templates/cordova/lib/build.spec.js  | 38 +++++++++++-----------
+ 2 files changed, 26 insertions(+), 26 deletions(-)
+
+commit 6b0d08315bc24af85ad716ea94c55752322f0af6
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Jun 18 16:24:02 2019 +0900
+
+    Update devDependencies (#71)
+    
+    - eslint@^5.16.0
+    - eslint-plugin-import@^2.17.3
+    - eslint-plugin-promise@^4.1.1
+    - jasmine@^3.4.0
+    - nyc@^14.1.1
+
+ package-lock.json | 1531 ++++++++++++++++++-----------------------------------
+ package.json      |   10 +-
+ 2 files changed, 525 insertions(+), 1016 deletions(-)
+
+commit 4e9a3181487d3a2a976ed28846add54b42b26f09
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Sun Jun 16 16:36:14 2019 +0900
+
+    Bump dependency fs-extra@^8.0.1 (#66)
+    
+    * Bump dependency fs-extra@^8.0.1
+    * Package Lock Rebuild
+
+ package-lock.json | 2955 ++++++++++++++++++++++++++++-------------------------
+ package.json      |    2 +-
+ 2 files changed, 1570 insertions(+), 1387 deletions(-)
+
+commit 0c32148da52e8920382f88171dc8d4f5f16869ce
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Sat Jun 15 11:46:47 2019 +0900
+
+    Bump cordova-common@^3.2.0 (#70)
+
+ package-lock.json | 952 ++++++++++++++++++++++++++----------------------------
+ package.json      |   2 +-
+ 2 files changed, 451 insertions(+), 503 deletions(-)
+
+commit 4cc33ccc64839b375391519acd3ae1cae1285f45
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Thu Jun 13 14:33:56 2019 +0900
+
+    Fixed package.json version to 1.1.0-dev (#65)
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c535c1580550dca8f9e0fbd6281a8bfef1817f8e
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed May 29 11:47:13 2019 +0900
+
+    Fix Bundle Feature's Project Path Issue & Warning Output (#62)
+    
+    * Fixed Project Path Issue from Bundle Feature
+    * Update Warning and Verbose for Electron Package Size
+
+ bin/templates/cordova/lib/PackageJsonParser.js     |  4 +-
+ bin/templates/cordova/lib/prepare.js               |  2 +-
+ .../cordova/lib/PackageJsonParser.spec.js          | 10 ++-
+ .../unit/templates/cordova/lib/prepare.spec.js     | 78 +++++++++++-----------
+ 4 files changed, 50 insertions(+), 44 deletions(-)
+
+commit 13bef82667c110e2c0aaeab793055d9e47808955
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Tue May 28 12:55:30 2019 +0900
+
+    Set Author Name and Email to package.json (#58)
+
+ bin/templates/cordova/lib/PackageJsonParser.js                  | 9 ++++++++-
+ tests/spec/unit/templates/cordova/lib/PackageJsonParser.spec.js | 4 ++--
+ 2 files changed, 10 insertions(+), 3 deletions(-)
+
+commit 506553c5a113df968d01f94cdc8373c011163100
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue May 28 11:48:16 2019 +0900
+
+    Added Bundle Node Module Support (#54)
+    
+    * Added Bundle Node Module Support
+    
+    * Updated Warning Notification
+    Co-Authored-By: Jan Piotrowski <piotrowski+github@gmail.com>
+    
+    * Added Bundling Node Modules Docs
+
+ DOCUMENTATION.md                                   |  29 ++
+ bin/templates/cordova/lib/PackageJsonParser.js     |  18 +-
+ bin/templates/cordova/lib/prepare.js               |   4 +-
+ .../cordova/lib/PackageJsonParser.spec.js          | 352 ++++++++++++---------
+ .../unit/templates/cordova/lib/prepare.spec.js     | 187 ++++++++---
+ 5 files changed, 381 insertions(+), 209 deletions(-)
+
+commit 639b0c7d0683e36de8329cc9d919080e153e8d49
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon May 27 17:41:10 2019 +0900
+
+    Remove Maintainer Option from Linux Build JSON (#57)
+
+ bin/templates/cordova/lib/build.js         | 1 -
+ bin/templates/cordova/lib/build/linux.json | 1 -
+ 2 files changed, 2 deletions(-)
+
+commit 296c6d0c14bc75eb2359a667a75b304c74cb9737
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon May 27 17:39:56 2019 +0900
+
+    Allow Users to Set Linux App Category (#59)
+
+ bin/templates/cordova/lib/build.js                  | 3 +++
+ tests/spec/unit/templates/cordova/lib/build.spec.js | 5 +++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 229647c8d1714ded2a8628040646ae36c4cb062f
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon May 27 16:48:27 2019 +0900
+
+    Append package top-level key options (#51)
+    
+    Co-Authored-By: エリス <erisu@users.noreply.github.com>
+
+ bin/templates/cordova/lib/build.js                 |   7 +
+ .../spec/unit/templates/cordova/lib/build.spec.js  | 146 +++++++++++++++++++++
+ 2 files changed, 153 insertions(+)
+
+commit 454656b2bc348e05a04de2ac83847cae3bc1e170
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon May 27 15:07:56 2019 +0900
+
+    Implement Splash Screen handling (#48)
+    
+    Co-Authored-By: エリス <erisu@users.noreply.github.com>
+
+ bin/templates/cordova/lib/prepare.js               | 111 ++++--
+ .../unit/templates/cordova/lib/prepare.spec.js     | 389 ++++++++++++++++-----
+ 2 files changed, 385 insertions(+), 115 deletions(-)
+
+commit d74df959703fc9e00e357dd29211dd002860ce3e
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri May 24 14:58:05 2019 +0900
+
+    Updated DOCUMENTATION.md (#61)
+
+ DOCUMENTATION.md | 362 +++++++++++++++++++++++++++----------------------------
+ 1 file changed, 178 insertions(+), 184 deletions(-)
+
+commit 9bf4945d09c7100c5a9461af1e962291ac6222ed
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed May 1 20:57:15 2019 +0900
+
+    Add Node.js 12 to CI Services (#53)
+
+ .travis.yml | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit fe51a86bec855393b0fbea1d5c595c4b6895ed87
+Author: Jack Van Zyl <jackvanzyl@icloud.com>
+Date:   Thu Apr 25 08:43:46 2019 +0200
+
+    Update the config.xml path in the XHR load eventListener (#42)
+
+ cordova-js-src/confighelper.js | 2 +-
+ cordova-lib/cordova.js         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit f0b9f8d749a2c17a6ce025a859ae595921df0160
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Tue Apr 9 14:16:30 2019 +0900
+
+    Append Installer Icon to User Build Settings for Custom Builds (#45)
+
+ bin/templates/cordova/lib/build.js                 |  4 +++
+ .../spec/unit/templates/cordova/lib/build.spec.js  | 31 +++++++++++++++-------
+ 2 files changed, 25 insertions(+), 10 deletions(-)
+
+commit 8eb3a4b17f55a3b99b23f2777287c1776fc5a5e0
+Author: Yusrul <yusrul.nidzuan@gmail.com>
+Date:   Tue Apr 9 12:55:09 2019 +0800
+
+    Update README.md (#43)
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 95ca4de9d9b42b2cfc8141ddfb1ca9144b6a0e33
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Fri Mar 22 10:58:48 2019 +0900
+
+    Update System Requirements in DOCUMENTATION.md (#41)
+
+ DOCUMENTATION.md | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+commit 66b33d18c7649f776cdf1c56691bbe0325a15cf2
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Thu Mar 14 18:09:26 2019 +0900
+
+    GH-10 Updated version and RELEASENOTES.md for release 1.0.2
+
+ RELEASENOTES.md | 11 ++++++++++-
+ package.json    |  2 +-
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+
+commit a4663bdff2d551dc2b01877136744931fb8f2876
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Thu Mar 14 16:13:48 2019 +0900
+
+    Remove temp dir after create.spec.js test (#40)
+
+ tests/spec/unit/create.spec.js | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 8afbf6af47e85d1e7cce06a38ab26ddbd4706d90
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Mar 12 11:48:20 2019 +0900
+
+    Added Missing License Header to util.js (#39)
+
+ bin/templates/cordova/lib/util.js | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit 4007c3b4df93b1a2aa6e611855b042d1f97ea37a
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Mar 12 10:31:10 2019 +0900
+
+    Support User Defined Electron Settings (#38)
+    
+    * Support User Defined Electron Settings
+    * Move dev option to the appropriate location (#11)
+    * Updated Docs
+
+ DOCUMENTATION.md                                   | 116 +++++--
+ bin/templates/cordova/lib/SettingJsonParser.js     |  11 +-
+ bin/templates/cordova/lib/build.js                 |  15 +-
+ bin/templates/cordova/lib/prepare.js               |   7 +-
+ bin/templates/cordova/lib/util.js                  |  13 +
+ bin/templates/project/cdv-electron-main.js         |  10 +-
+ bin/templates/project/cdv-electron-settings.json   |  10 +-
+ .../cordova/lib/SettingJsonParser.spec.js          | 174 ++++++-----
+ .../spec/unit/templates/cordova/lib/build.spec.js  |  18 --
+ .../unit/templates/cordova/lib/prepare.spec.js     | 346 ++++++++++++++-------
+ tests/spec/unit/templates/cordova/lib/util.spec.js |  38 +++
+ 11 files changed, 497 insertions(+), 261 deletions(-)
+
+commit a23a0a2a7bf295e734f4f3b1a5d90283a7565cf0
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Mon Mar 11 12:51:49 2019 +0900
+
+    Remove nodeIntegration Warning by Setting Default to False (#37)
+    
+    * Remove nodeIntegration Warning by Setting Default to False
+
+ bin/templates/project/cdv-electron-main.js       | 3 ++-
+ bin/templates/project/cdv-electron-settings.json | 5 ++++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 220e95d7239a518e8965612883eaf2d3de23717f
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Mon Mar 11 11:58:00 2019 +0900
+
+    Rename Electron Main Entry File (#36)
+
+ DOCUMENTATION.md                                             |  2 +-
+ bin/lib/create.js                                            |  4 ++--
+ bin/templates/cordova/lib/PackageJsonParser.js               |  2 +-
+ bin/templates/cordova/lib/run.js                             |  2 +-
+ bin/templates/project/{main.js => cdv-electron-main.js}      |  0
+ .../unit/templates/cordova/lib/PackageJsonParser.spec.js     | 12 ++++++------
+ tests/spec/unit/templates/cordova/lib/run.spec.js            |  4 ++--
+ 7 files changed, 13 insertions(+), 13 deletions(-)
+
+commit 8649e607d605f8c705b983d7042aa73ba7da1c4f
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Mar 4 16:39:29 2019 +0900
+
+    Set VERSION to 1.1.0-dev (via coho)
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 42c87f6787079111e0da66fc8f673f6a1f17e5bd
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Mar 4 16:36:26 2019 +0900
+
+    GH-10 Updated version and RELEASENOTES.md for release 1.0.1
+
+ RELEASENOTES.md   | 6 ++++++
+ package-lock.json | 2 +-
+ package.json      | 2 +-
+ 3 files changed, 8 insertions(+), 2 deletions(-)
+
+commit 1cf1d263324da3ed7c0110ef0a519375603e6ef8
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Mon Mar 4 16:28:21 2019 +0900
+
+    Refactor and test build.js: (#35)
+    
+    - Implement unit tests for build.js
+    - Refactor build.js use throw Error instead of throw
+    - Fix platform mapping error
+
+ bin/templates/cordova/lib/build.js                 |    6 +-
+ .../spec/unit/templates/cordova/lib/build.spec.js  | 1299 ++++++++++++++++++++
+ 2 files changed, 1302 insertions(+), 3 deletions(-)
+
+commit 017727a673d293b2a4ca66a9104ca84e432c364f
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Thu Feb 28 14:59:33 2019 +0900
+
+    Improve Temp Folder Cleanup in Api.spec.js (#32)
+    
+    - Remove temp folder after tests
+    - Add temp folder to .npmignore
+
+ .npmignore                  |  3 ++-
+ tests/spec/unit/Api.spec.js | 19 ++++++-------------
+ 2 files changed, 8 insertions(+), 14 deletions(-)
+
+commit bd2e8061d3f8f39b314d1105d75bb859bad1ba20
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Thu Feb 28 14:57:56 2019 +0900
+
+    Update Run to Work with Pre-Cordova 9.x CLI (#33)
+    
+    - Change static path in run.js to dynamic
+    - Update unit tests
+    - Update DOCUMENTATION.md
+
+ DOCUMENTATION.md                                  | 7 +++++++
+ bin/templates/cordova/lib/run.js                  | 3 ++-
+ tests/spec/unit/templates/cordova/lib/run.spec.js | 4 +++-
+ 3 files changed, 12 insertions(+), 2 deletions(-)
+
+commit bf9f8f7d873376ac9f7cded9161867c0ee439e15
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 25 12:02:17 2019 +0900
+
+    Update JS snapshot to version 1.1.0-dev (via coho)
+
+ cordova-lib/cordova.js | 2762 ++++++++++++++++++++++--------------------------
+ 1 file changed, 1246 insertions(+), 1516 deletions(-)
+
+commit 0c02e817fa18bc4ed4adc70eb300a703a3d26b54
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 25 12:02:14 2019 +0900
+
+    Set VERSION to 1.1.0-dev (via coho)
+
+ VERSION      | 2 +-
+ package.json | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 842862db81417270eaef49ff0b29823733b26f25
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 25 11:59:59 2019 +0900
+
+    GH-10 Updated version and RELEASENOTES.md for release 1.0.0
+
+ RELEASENOTES.md | 36 +++++++++++++++++++++++++++++++++---
+ package.json    |  2 +-
+ 2 files changed, 34 insertions(+), 4 deletions(-)
+
+commit 6548e758613101a9e99221f4dba2c6375a0a98b5
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Mon Feb 25 11:43:21 2019 +0900
+
+    Asset Install Fix from Mobilespec Report (#30)
+    
+    * Asset Install Fix from Mobilespec Report
+    * handler.js cleanup and test refactor
+
+ bin/templates/cordova/handler.js |  8 +++-----
+ tests/spec/unit/handler.spec.js  | 37 +++++++++++++++++++++++--------------
+ 2 files changed, 26 insertions(+), 19 deletions(-)
+
+commit ff232ca3712083b66bf3f2f8347a25418fdf94b1
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Feb 22 16:13:51 2019 +0900
+
+    Correct File Header Licenses for Cordova JS Compile CMD (#29)
+
+ cordova-js-src/confighelper.js | 34 ++++++++++++++++++----------------
+ cordova-js-src/exec.js         | 34 ++++++++++++++++++----------------
+ cordova-js-src/platform.js     | 34 ++++++++++++++++++----------------
+ 3 files changed, 54 insertions(+), 48 deletions(-)
+
+commit 148ba0df25cfe68be788d948746fa3f7990ec480
+Merge: aaa3af1 03ac30e
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Feb 22 11:24:34 2019 +0900
+
+    Merge pull request #28 from erisu/test-cleanup
+    
+    * Remove stubbed tests in favor for parent method test.
+    * Removed un-needed comments.
+    * Refactor to use emit over console log.
+    * Spy on emit for testing and also remove un-needed printout during testing.
+    * Fixes lost scoping when prepare is called.
+
+commit 03ac30ef265c1b65594ff97dd503c608a2f0f957
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Feb 22 08:52:53 2019 +0900
+
+    Fix scope issue that causes prepare to not have API
+
+ bin/templates/cordova/lib/prepare.js               |  2 +-
+ .../unit/templates/cordova/lib/prepare.spec.js     | 60 +++++++++-------------
+ 2 files changed, 26 insertions(+), 36 deletions(-)
+
+commit dc028f2a8475b605de2371d767c3530f3206d51e
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Thu Feb 21 21:45:08 2019 +0900
+
+    Remove stubbed tests, comments and refactor to use emit
+
+ bin/templates/cordova/Api.js     |  15 ++----
+ bin/templates/cordova/lib/run.js |   1 -
+ tests/spec/unit/Api.spec.js      | 103 ++++++++++++---------------------------
+ 3 files changed, 35 insertions(+), 84 deletions(-)
+
+commit aaa3af10f1eb1f96091008e7f4a19b12596de370
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Thu Feb 21 21:03:05 2019 +0900
+
+    Build Script Improvements (#27)
+    
+    - Add emits for better usability
+    - Remove unused method argument
+
+ bin/templates/cordova/lib/build.js | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+commit 6e23472ea758b4d5393929370afac49b9a37b087
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Thu Feb 21 15:45:17 2019 +0900
+
+    Remove Unused and Unreachable Code (#24)
+
+ bin/templates/cordova/Api.js | 19 ++++---------------
+ 1 file changed, 4 insertions(+), 15 deletions(-)
+
+commit b7cf5a2d53282a56fc5a3edb2f13bd2ffb925e6b
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Thu Feb 21 14:03:01 2019 +0900
+
+    Apply Missing Apache License Header (#21)
+    
+    * Add License to README.md
+    * Added License to Test Fixtures
+
+ README.md                                 | 21 +++++++++++++++++++++
+ tests/spec/fixtures/test-config-1.xml     | 19 +++++++++++++++++++
+ tests/spec/fixtures/test-config-2.xml     | 19 +++++++++++++++++++
+ tests/spec/fixtures/test-config-empty.xml | 19 +++++++++++++++++++
+ tests/spec/fixtures/testapp/config.xml    | 19 +++++++++++++++++++
+ 5 files changed, 97 insertions(+)
+
+commit bc285b2828f41bdcc8ebc3d09e2641c351aa5862
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Thu Feb 21 12:58:05 2019 +0900
+
+    Updated Api.spec.js Async Tests to Return Promise (#25)
+
+ tests/spec/unit/Api.spec.js | 460 ++++++++++++++++++++------------------------
+ 1 file changed, 210 insertions(+), 250 deletions(-)
+
+commit 0cc78c37f61d08f5e53a431aa3677c75c9c705b3
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Wed Feb 20 18:13:17 2019 +0900
+
+    Add tests to Api.spec.js (#22)
+
+ bin/templates/cordova/Api.js                       |   2 +-
+ bin/templates/cordova/handler.js                   |   1 +
+ tests/spec/fixtures/testapp/config.xml             |  40 ++
+ tests/spec/fixtures/testapp/cordova/.gitkeep       |   0
+ .../fixtures/testplugin/src/electron/sample.json   |   3 +
+ tests/spec/fixtures/testplugin/www/plugin.js       |  26 ++
+ tests/spec/unit/Api.spec.js                        | 423 ++++++++++++++++++++-
+ tests/spec/unit/handler.spec.js                    |   7 +
+ 8 files changed, 482 insertions(+), 20 deletions(-)
+
+commit b9dfc104e30b470adbb084195d6003891879c966
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Wed Feb 20 17:42:47 2019 +0900
+
+    Test module.exports.prepare (#23)
+    
+    - Remove user specific repo declaration
+    - Correct size validation in prepareIcons
+
+ bin/templates/cordova/lib/prepare.js               |   2 +-
+ tests/spec/fixtures/test-config-1.xml              |   2 +-
+ tests/spec/fixtures/test-config-2.xml              |   2 +-
+ .../unit/templates/cordova/lib/prepare.spec.js     | 384 ++++++++++++++++++++-
+ 4 files changed, 370 insertions(+), 20 deletions(-)
+
+commit cd7658660dca0bbc90e395b95c11009aa4ceafab
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed Feb 20 15:46:45 2019 +0900
+
+    Adding New Test Specs (#19)
+    
+    - Added Run Test Spec
+    - Added Clean Test Spec
+    - Added Update Test Spec
+    - Added Missing Apache License
+
+ tests/spec/unit/lib/update.spec.js                 |  47 ++++++++
+ .../spec/unit/templates/cordova/lib/clean.spec.js  | 133 +++++++++++++++++++++
+ tests/spec/unit/templates/cordova/lib/run.spec.js  |  70 +++++++++++
+ 3 files changed, 250 insertions(+)
+
+commit b4ae1c9242eb5dff42219e9128752ff423dfd821
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed Feb 20 15:37:01 2019 +0900
+
+    Fix Audit Report For High Severity Vulnerability (#20)
+
+ package-lock.json | 2671 +++++++++++++++++++++++------------------------------
+ 1 file changed, 1177 insertions(+), 1494 deletions(-)
+
+commit 3eddfcbaa1f961cb00cfcf53e372a0ce89dd9244
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Tue Feb 19 12:27:53 2019 +0900
+
+    Refactor prepare.js and Increase Test Coverage (#18)
+
+ bin/templates/cordova/lib/ManifestJsonParser.js    | 132 ++++++++++++
+ bin/templates/cordova/lib/PackageJsonParser.js     |  61 ++++++
+ bin/templates/cordova/lib/SettingJsonParser.js     |  42 ++++
+ bin/templates/cordova/lib/prepare.js               | 185 +---------------
+ tests/spec/fixtures/test-config-1.xml              |  40 ++++
+ tests/spec/fixtures/test-config-2.xml              |  39 ++++
+ tests/spec/fixtures/test-config-empty.xml          |   7 +
+ .../cordova/lib/ManifestJsonParser.spec.js         | 239 +++++++++++++++++++++
+ .../cordova/lib/PackageJsonParser.spec.js          | 193 +++++++++++++++++
+ .../cordova/lib/SettingJsonParser.spec.js          | 177 +++++++++++++++
+ .../unit/templates/cordova/lib/prepare.spec.js     | 133 +-----------
+ 11 files changed, 948 insertions(+), 300 deletions(-)
+
+commit 14e42b654b4509d355046e9c1b7154bc0083ef33
+Merge: 47436f8 6d1dddf
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Feb 19 11:54:43 2019 +0900
+
+    Merge pull request #17 from erisu/test-improvement
+    
+    - Added Parser class test spec
+    - Added Handler export test spec
+    - Rename projectApi test spec to Api
+    - Refactor and add additional Api test coverage
+    - Refactor and added additional Create test coverage
+
+commit 6d1dddf6ba11a744956c03d4e5ac8a585a840262
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Feb 19 11:50:52 2019 +0900
+
+    Refactor Create Test Spec and Added Extra Coverage
+
+ tests/spec/unit/create.spec.js | 52 +++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 44 insertions(+), 8 deletions(-)
+
+commit ee3c06e04c7714f7a7f22c94c3e060b0d25e6fcb
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Feb 19 11:05:31 2019 +0900
+
+    Rename API Test Spec and Added Tests
+
+ tests/spec/unit/Api.spec.js        | 324 +++++++++++++++++++++++++++++++++++++
+ tests/spec/unit/projectApi.spec.js | 115 -------------
+ 2 files changed, 324 insertions(+), 115 deletions(-)
+
+commit e390b3c2ae7a0b73ca7071eb6f50755b9a78df25
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 18 14:49:16 2019 +0900
+
+    Added Unit Tests for Handler Export
+
+ bin/templates/cordova/handler.js |   6 +-
+ tests/spec/unit/handler.spec.js  | 379 ++++++++++++++++++++++++++++++++++++---
+ 2 files changed, 359 insertions(+), 26 deletions(-)
+
+commit 55f8399876eec8047207b3d2b7ec90fbc54c13c8
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 18 13:35:53 2019 +0900
+
+    Add Unit Test for Parser Class
+
+ tests/spec/unit/templates/parser.spec.js | 237 +++++++++++++++++++++++++++++++
+ 1 file changed, 237 insertions(+)
+
+commit 47436f85fff6c356c8042c18902db6cbece924c0
+Merge: 3bb9e64 5927470
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Mon Feb 18 11:30:39 2019 +0900
+
+    Merge pull request #16 from erisu/enable-ci-testing-prep
+    
+    Prepare to Enable Travis CI Testing
+
+commit 5927470b64a6146bfe5e07a2965cc40624b00f75
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 18 10:18:46 2019 +0900
+
+    Used map instead of Object.values for Node 6 support
+
+ bin/templates/cordova/lib/prepare.js | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit 503f0eb29bcb9e468ae61aedfbbd1637794284fa
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 18 10:12:39 2019 +0900
+
+    Use path.join method instead of hardcoding paths
+
+ .../unit/templates/cordova/lib/prepare.spec.js     | 203 ++++++++++-----------
+ 1 file changed, 100 insertions(+), 103 deletions(-)
+
+commit 16da7b7fe7e64df41debcef03fb76be67f74d5a2
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 18 09:43:01 2019 +0900
+
+    Update Travis CI for Windows
+
+ .travis.yml | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+commit e24515ce40535c1c1b01acf624463496581956be
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Feb 18 09:42:43 2019 +0900
+
+    Delete AppVeyor Config
+
+ appveyor.yml | 37 -------------------------------------
+ 1 file changed, 37 deletions(-)
+
+commit 3bb9e64d46a61d7174b0b066f1c24d9b73d2c3d5
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Fri Feb 15 12:17:05 2019 +0900
+
+    Implement SettingsJson Class Tests and Update Documentation (#15)
+
+ DOCUMENTATION.md                                   |   8 +-
+ .../unit/templates/cordova/lib/prepare.spec.js     | 129 +++++++++++++++++++++
+ 2 files changed, 131 insertions(+), 6 deletions(-)
+
+commit 31f6619f8bdc060ece266a13336997a66f436372
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Fri Feb 15 11:39:51 2019 +0900
+
+    Implement Electron Custom App Icons Functionality (#13)
+
+ DOCUMENTATION.md                                   |  45 +-
+ bin/lib/create.js                                  |   3 +
+ bin/templates/build-res/installer.png              | Bin 0 -> 39830 bytes
+ bin/templates/cordova/Api.js                       |   1 +
+ bin/templates/cordova/lib/build.js                 |   4 +-
+ bin/templates/cordova/lib/build/base.json          |   4 +-
+ bin/templates/cordova/lib/build/darwin.json        |   1 +
+ bin/templates/cordova/lib/build/linux.json         |   1 +
+ bin/templates/cordova/lib/build/win32.json         |   1 +
+ bin/templates/cordova/lib/prepare.js               | 216 ++++-
+ bin/templates/project/main.js                      |  23 +-
+ bin/templates/project/www/icons/icon.png           | Bin 0 -> 39830 bytes
+ package.json                                       |   1 +
+ .../unit/templates/cordova/lib/prepare.spec.js     | 893 +++++++++++++++++++++
+ 14 files changed, 1174 insertions(+), 19 deletions(-)
+
+commit 78e118560b64879fe57813ead13120f57fd63141
+Author: Jan Piotrowski <piotrowski+git@gmail.com>
+Date:   Mon Feb 11 18:37:07 2019 +0100
+
+    Add or update GitHub pull request and issue template
+
+ .github/ISSUE_TEMPLATE.md                  | 42 +++++++++++++++++++++++++
+ .github/ISSUE_TEMPLATE/BUG_REPORT.md       | 50 ++++++++++++++++++++++++++++++
+ .github/ISSUE_TEMPLATE/FEATURE_REQUEST.md  | 29 +++++++++++++++++
+ .github/ISSUE_TEMPLATE/SUPPORT_QUESTION.md | 27 ++++++++++++++++
+ .github/PULL_REQUEST_TEMPLATE.md           | 27 +++++++++++-----
+ 5 files changed, 168 insertions(+), 7 deletions(-)
+
+commit a98e81a52da41abe3865f44f4658148b08259cd5
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Jan 29 18:37:34 2019 +0900
+
+    Added NPM Ignore (#10)
+
+ .npmignore | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+commit 1875d49ded2a5165a6ceded9e533494c2e0d78e3
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Jan 29 18:37:04 2019 +0900
+
+    Updated README.md (#11)
+    
+    * Updated README.md with formatting
+
+ README.md | 59 +++++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 39 insertions(+), 20 deletions(-)
+
+commit 77c8ee58578c87ebf5832b2bf9ebe74fde00e4ac
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Tue Jan 29 15:36:53 2019 +0900
+
+    Electron Build Improvements (#9)
+    
+    * Remove `type` param from Linux base config
+    * Updated and pinned Cordova supported Electron version to `4.0.1`
+
+ bin/templates/cordova/lib/build/base.json  | 8 +++++---
+ bin/templates/cordova/lib/build/linux.json | 1 -
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+commit dacce3760f4c4c6af711638b4600db23803be1d0
+Author: Gedas Gardauskas <gedas.gardauskas@gmail.com>
+Date:   Tue Jan 29 14:41:56 2019 +0900
+
+    Create CDV Electron Settings JSON (#8)
+
+ bin/lib/create.js                                |  3 +++
+ bin/templates/cordova/lib/prepare.js             | 24 ++++++++++++++++++++++++
+ bin/templates/project/cdv-electron-settings.json |  3 +++
+ bin/templates/project/main.js                    |  6 +++++-
+ 4 files changed, 35 insertions(+), 1 deletion(-)
+
+commit ead40ce9bc4e5a9aae0c571636b03b50216b3f78
+Merge: 3af4318 4f1d61b
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Jan 18 08:57:57 2019 +0900
+
+    Merge pull request #7 from erisu/cordova9-prep
+    
+    Electron Platform Release Preparation (Cordova 9)
+
+commit 4f1d61b62b307be827401a9d412c4bfabdb73dc0
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Jan 15 16:43:09 2019 +0900
+
+    Updated Electron and Builder Dependencies
+
+ package-lock.json | 54 +++++++-----------------------------------------------
+ package.json      |  4 ++--
+ 2 files changed, 9 insertions(+), 49 deletions(-)
+
+commit 69e7670d7b0f9abb5a8ef4e64e3de55caff43fa1
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Jan 15 16:37:41 2019 +0900
+
+    Bump fs-extra@^7.0.1
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 353338f96f1b02abc7ee049e80f39a094b7cac9d
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Jan 15 16:35:21 2019 +0900
+
+    Bump cordova-common@^3.1.0
+
+ package-lock.json | 1057 +++++++++++++++++++++++++++++++++++++++++++++++------
+ package.json      |    2 +-
+ 2 files changed, 937 insertions(+), 122 deletions(-)
+
+commit f53e89bf2b2efabf4f0aebdcb6d5ddf8ece960f2
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Jan 15 16:26:36 2019 +0900
+
+    Updated Testing and Code Coverage Dependencies
+
+ package.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit b76c672260567a9f0f1d9f25a06dfd0e67219ebf
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Jan 15 16:23:24 2019 +0900
+
+    Updated ESlint Dependencies
+
+ package-lock.json | 4870 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ package.json      |    8 +-
+ 2 files changed, 4874 insertions(+), 4 deletions(-)
+
+commit 3af43187b8a032aed980b7d272e32267a68dfb8c
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed Dec 19 09:52:31 2018 +0900
+
+    Cleanup Bin Files (#6)
+
+ bin/templates/cordova/build        | 28 +++++++++++++---------------
+ bin/templates/cordova/clean        | 29 +++++++++++++----------------
+ bin/templates/cordova/lib/build.js | 10 +++++++---
+ bin/templates/cordova/lib/clean.js |  5 +++++
+ bin/templates/cordova/lib/run.js   |  8 ++++++++
+ bin/templates/cordova/run          | 29 +++++++++++++----------------
+ 6 files changed, 59 insertions(+), 50 deletions(-)
+
+commit 1765617c10d7597e091ae1abd1ea91f5892b2590
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Fri Dec 7 20:47:46 2018 +0900
+
+    Updated Correct Version Information (#5)
+
+ bin/templates/cordova/version | 2 +-
+ cordova-lib/cordova.js        | 2 +-
+ package.json                  | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 1125ee5c9b7910ad12221061b172e29c6115208f
+Merge: 3528b1d 2cdb5fb
+Author: エリス <erisu@users.noreply.github.com>
+Date:   Wed Dec 5 17:01:26 2018 +0900
+
+    Merge pull request #4 from erisu/electron-improvements
+    
+    Electron Improvements
+
+commit 2cdb5fb991d2eb30594b26a1dc502cb4b9ce0432
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Dec 5 16:14:55 2018 +0900
+
+    Updated Build Settings to Append Windows Signing Correctly
+
+ bin/templates/cordova/lib/build.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4ffa5ef19b9f374f4d20e066562db55013d69068
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Dec 5 13:29:23 2018 +0900
+
+    Updated Linux Build Settings to Set Author
+
+ bin/templates/cordova/lib/build.js         | 1 +
+ bin/templates/cordova/lib/build/linux.json | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit c1cb21dcd6f898995d3331a9bdfeeb1cab27d530
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Dec 5 13:27:50 2018 +0900
+
+    Fixed Creating Windows Build Settings
+
+ bin/templates/cordova/lib/build.js | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+commit 33ec10f9dd1d4ff2f6f0d27f757f822eb9315baa
+Author: Jan Piotrowski <piotrowski+github@gmail.com>
+Date:   Tue Dec 4 20:29:08 2018 +0900
+
+    Update DOCUMENTATION.md
+    
+    Co-Authored-By: erisu <erisu@users.noreply.github.com>
+
+ DOCUMENTATION.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8f0f3e769945c9476107eedda75572e51411dd87
+Author: Jan Piotrowski <piotrowski+github@gmail.com>
+Date:   Tue Dec 4 20:22:29 2018 +0900
+
+    Update DOCUMENTATION.md
+    
+    Co-Authored-By: erisu <erisu@users.noreply.github.com>
+
+ DOCUMENTATION.md | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 1767969b9f8ec4034a46ebd97cedc12dc5b1c1f1
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Dec 4 16:46:42 2018 +0900
+
+    Ensure that platform and platform_www dir exists before copy
+
+ bin/lib/create.js | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 9d580c39e776e67ca7f6cd36f9abe0e883d4fe39
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Nov 30 18:00:32 2018 +0900
+
+    Added DOCUMENTATION.md
+
+ DOCUMENTATION.md | 448 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 448 insertions(+)
+
+commit 8d210072b8e51d2a12e8d61ba07bd730a3b91dec
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Fri Nov 30 18:00:15 2018 +0900
+
+    Updated Default Base and Linux Build Configs
+
+ bin/templates/cordova/lib/build/base.json  | 22 +++++++++++-----------
+ bin/templates/cordova/lib/build/linux.json |  2 +-
+ 2 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 71ac46d21e8edfd2535eeb1c9d14b44056768899
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Nov 28 16:02:44 2018 +0900
+
+    Added Mac Apple Store Signing Support
+
+ bin/templates/cordova/lib/build.js | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+commit d691e96ede21d184e9190736c38950e6667529f9
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Mon Nov 26 12:17:22 2018 +0900
+
+    Updated Build Signing Config Settings
+
+ bin/templates/cordova/lib/build.js | 79 ++++++++++++++++++++++++++++++--------
+ 1 file changed, 62 insertions(+), 17 deletions(-)
+
+commit 3528b1dbbc5cc01308e5d0f0626ac1852c95c437
+Author: Jan Piotrowski <piotrowski@gmail.com>
+Date:   Thu Nov 15 11:44:04 2018 +0100
+
+    Update README.md
+
+ README.md | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+commit 7b8fd08ab0be4b59308de584dbc4d280b9ccecdb
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Wed Nov 14 15:51:46 2018 +0900
+
+    escape win32 posix path (#8)
+
+ bin/templates/cordova/lib/build.js | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 2602174ca481e2719b2039a2f6c9697929a83b8c
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Tue Nov 13 14:42:31 2018 +0900
+
+    fix location of main.js in run.js (#5)
+
+ bin/templates/cordova/lib/run.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8346521eb3c0aeda178c9ff066ef7f7e7af2d34f
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 15:44:40 2018 +0900
+
+    Improve build steps
+
+ bin/templates/cordova/lib/build.js                 | 249 ++++++++++++++++-----
+ .../cordova/lib/build/{mac.json => darwin.json}    |   0
+ .../cordova/lib/build/{windows.json => win32.json} |   0
+ 3 files changed, 189 insertions(+), 60 deletions(-)
+
+commit 3146a51ec18849d5c86e0c729b81aa9ae6a0e9f5
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Tue Nov 13 13:58:26 2018 +0900
+
+    change the name cordova-electron to electron (#4)
+
+ bin/templates/cordova/Api.js     | 2 +-
+ bin/templates/cordova/lib/run.js | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 6eb168718b5141afbc155177067a67ed77f1709f
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 14:25:34 2018 +0900
+
+    Fix Eslint
+
+ bin/templates/cordova/Api.js         | 4 ++--
+ bin/templates/cordova/lib/build.js   | 8 ++++----
+ bin/templates/cordova/lib/prepare.js | 6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
+
+commit 8b201d4cf06fb7afeec1be5d0f18533693659565
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 13:41:31 2018 +0900
+
+    Updated build step. Added missing license doc block
+
+ bin/templates/cordova/lib/build.js      | 39 ++++++++++++++++++---------------
+ bin/templates/cordova/lib/check_reqs.js |  2 --
+ bin/templates/cordova/lib/clean.js      |  2 --
+ bin/templates/cordova/lib/prepare.js    | 19 ++++++++++++++++
+ bin/templates/cordova/lib/run.js        |  2 --
+ 5 files changed, 40 insertions(+), 24 deletions(-)
+
+commit dfe095d4057501a9d5a2669ad6c2354299d22731
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 13:21:32 2018 +0900
+
+    Fix build targets and main.js path
+
+ bin/lib/create.js                            |  2 +-
+ bin/templates/cordova/lib/build/linux.json   | 10 +++++++---
+ bin/templates/cordova/lib/build/mac.json     | 17 ++++++++++++-----
+ bin/templates/cordova/lib/build/windows.json | 10 +++++++---
+ bin/templates/project/main.js                |  2 +-
+ 5 files changed, 28 insertions(+), 13 deletions(-)
+
+commit be90cee03d2e7e1182330e6c0999b0a243b4f4e8
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 13:08:06 2018 +0900
+
+    Improve Prepare for App package.json
+
+ bin/templates/cordova/lib/prepare.js | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
+
+commit 27d587ea7ca84ca6cd4a43f028c7dbfd27953ea5
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 12:00:55 2018 +0900
+
+    Temp Added Writter for App package.json
+
+ bin/templates/cordova/lib/prepare.js | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+commit 028bf43b3aaa431d8914a837dc86a4a87954b4cb
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Nov 13 11:00:27 2018 +0900
+
+    Build Improvement
+
+ bin/templates/cordova/Api.js                 | 151 ++-----------------------
+ bin/templates/cordova/lib/build.js           |  91 ++++++++++++++-
+ bin/templates/cordova/lib/build/base.json    |  15 +++
+ bin/templates/cordova/lib/build/linux.json   |  13 +++
+ bin/templates/cordova/lib/build/mac.json     |  15 +++
+ bin/templates/cordova/lib/build/windows.json |  11 ++
+ bin/templates/cordova/lib/prepare.js         | 160 +++++++++++++++++++++++++++
+ package.json                                 |   1 +
+ 8 files changed, 309 insertions(+), 148 deletions(-)
+
+commit b34269c9e31a6896a4113092359c1b4fb00ac567
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Thu Nov 8 15:17:30 2018 +0900
+
+    ESLint Fixes
+
+ bin/templates/cordova/Api.js    | 7 +++----
+ bin/templates/cordova/parser.js | 6 +++---
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+
+commit f3de449afc2b93094100a4c4bccfaf0ef05766a6
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Fri Nov 2 11:47:57 2018 +0900
+
+    Fix plugin to use browser settings (#2)
+    
+    * plugin's json name is unified to use browser settings in plugin.xml if there is no electron settings
+
+ bin/templates/cordova/Api.js | 32 +++++++++++++++++++++-----------
+ 1 file changed, 21 insertions(+), 11 deletions(-)
+
+commit fb7acc92d922e95d89eff48d514973c32abbfbc2
+Author: Ken Naito <fine14r3@gmail.com>
+Date:   Wed Oct 31 15:16:51 2018 +0900
+
+    plugin's json name is unified to (#1)
+
+ bin/templates/cordova/Api.js     | 3 +--
+ bin/templates/cordova/handler.js | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+commit ce736900774e4bbdfb1300fb6fcbbb93b9182e00
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Oct 31 08:57:36 2018 +0900
+
+    Implement Get Platform Info Version
+
+ bin/templates/cordova/Api.js  |  2 +-
+ bin/templates/cordova/version | 11 +++++++++--
+ 2 files changed, 10 insertions(+), 3 deletions(-)
+
+commit a690708b1ca1e77796b328d4ba9b7e422a27f2b8
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Oct 30 15:21:11 2018 +0900
+
+    Updated Parser
+    
+    - Convert Parser to Class
+    - Remove unusued methods
+    - Fixed copySync arguments
+
+ bin/templates/cordova/parser.js | 126 ++++++++++++++++++++--------------------
+ 1 file changed, 62 insertions(+), 64 deletions(-)
+
+commit 18dea7b04efc06a3265ec6647e63021e42004a0a
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Thu Sep 20 15:23:42 2018 +0900
+
+    Added Code Coverage
+
+ .gitignore   |  2 ++
+ package.json | 16 +++++++++++++++-
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+commit aa722361bc94ca227f86c8a9b84c0091295a1cc6
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Thu Sep 20 15:22:35 2018 +0900
+
+    Restructure Folders for Consistency Between Platforms
+
+ bin/create                                             |   4 ++--
+ bin/lib/create.js                                      |  12 ++++++------
+ bin/{template => templates}/cordova/Api.js             |   0
+ bin/{template => templates}/cordova/build              |   0
+ bin/{template => templates}/cordova/build.bat          |   0
+ bin/{template => templates}/cordova/clean              |   0
+ bin/{template => templates}/cordova/clean.bat          |   0
+ bin/{template => templates}/cordova/defaults.xml       |   0
+ bin/{template => templates}/cordova/handler.js         |   0
+ bin/{template => templates}/cordova/lib/build.js       |   0
+ bin/{template => templates}/cordova/lib/check_reqs.js  |   0
+ bin/{template => templates}/cordova/lib/clean.js       |   0
+ bin/{template => templates}/cordova/lib/run.js         |   0
+ bin/{template => templates}/cordova/log                |   0
+ bin/{template => templates}/cordova/parser.js          |   0
+ bin/{template => templates}/cordova/run                |   0
+ bin/{template => templates}/cordova/run.bat            |   0
+ bin/{template => templates}/cordova/version            |   0
+ bin/{template => templates}/cordova/version.bat        |   0
+ bin/{template => templates/project}/config.xml         |   0
+ bin/{template => templates/project}/main.js            |   0
+ bin/{template => templates/project}/www/css/index.css  |   0
+ bin/{template => templates/project}/www/img/logo.png   | Bin
+ bin/{template => templates/project}/www/img/splash.png | Bin
+ bin/{template => templates/project}/www/index.html     |   0
+ bin/{template => templates/project}/www/js/index.js    |   0
+ package.json                                           |   8 ++++----
+ {spec => tests}/.eslintrc.yml                          |   0
+ spec/unit.json => tests/spec/coverage.json             |   3 ++-
+ tests/spec/unit.json                                   |   9 +++++++++
+ {spec => tests/spec}/unit/create.spec.js               |   4 ++--
+ {spec => tests/spec}/unit/handler.spec.js              |   2 +-
+ {spec => tests/spec}/unit/projectApi.spec.js           |   2 +-
+ 33 files changed, 27 insertions(+), 17 deletions(-)
+
+commit 5f31e6ae2582e79de23514bb1faff22bbbff5b16
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 26 16:50:23 2018 +0900
+
+    Code Refactor 3
+
+ bin/lib/create.js                      |   2 +-
+ bin/template/cordova/Api.js            | 811 ++++++++++++++++-----------------
+ bin/template/cordova/lib/check_reqs.js |   2 +-
+ 3 files changed, 406 insertions(+), 409 deletions(-)
+
+commit 6602a82133dcaa17a7ae9213cd34c672831de2c1
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Thu Sep 20 14:34:13 2018 +0900
+
+    Code Refactor 2
+
+ bin/lib/create.js                      |   4 +-
+ bin/lib/update.js                      |   6 +-
+ bin/template/cordova/Api.js            | 300 +++++++++++++++------------------
+ bin/template/cordova/handler.js        |  73 ++++----
+ bin/template/cordova/lib/build.js      |   8 +-
+ bin/template/cordova/lib/check_reqs.js |   4 +-
+ bin/template/cordova/lib/clean.js      |  18 +-
+ bin/template/cordova/lib/run.js        |  12 +-
+ bin/template/cordova/parser.js         |  53 +++---
+ bin/template/main.js                   |   6 +-
+ bin/template/www/js/index.js           |  18 +-
+ spec/unit/create.spec.js               |  32 ++--
+ spec/unit/handler.spec.js              |   5 +-
+ spec/unit/projectApi.spec.js           |  28 +--
+ 14 files changed, 262 insertions(+), 305 deletions(-)
+
+commit a1b9309a7862db0bd68b37dc0b2d9694187cb838
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 17:05:35 2018 +0900
+
+    Code Refactor 1
+
+ bin/create                        |   35 +-
+ bin/lib/create.js                 |   12 +-
+ bin/template/cordova/Api.js       |   30 +-
+ bin/template/cordova/build        |   16 +-
+ bin/template/cordova/clean        |   21 +-
+ bin/template/cordova/defaults.xml |    1 -
+ bin/template/cordova/handler.js   |    6 +-
+ bin/template/cordova/log          |    2 +-
+ bin/template/cordova/parser.js    |   10 +-
+ bin/template/cordova/run          |   25 +-
+ bin/template/cordova/version      |    2 +-
+ bin/update                        |    2 +-
+ cordova-js-src/confighelper.js    |   44 +-
+ cordova-js-src/exec.js            |   37 +-
+ cordova-js-src/platform.js        |    9 +-
+ cordova-lib/cordova.js            | 2939 ++++++++++++++++++-------------------
+ spec/unit/create.spec.js          |   16 +-
+ spec/unit/handler.spec.js         |   36 +-
+ spec/unit/projectApi.spec.js      |   43 +-
+ 19 files changed, 1629 insertions(+), 1657 deletions(-)
+
+commit 1725eb462ac2fd4029d6cd4e6b3fe1aed7021e50
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 16:26:52 2018 +0900
+
+    Update Copyright Notice
+
+ NOTICE | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4c21a4ec89cdca2f0831d77359a0858de55d71d7
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 16:23:14 2018 +0900
+
+    Formatted Apache License to be Consistency
+    
+    https://apache.org/legal/src-headers.html
+
+ .eslintrc.yml                          | 17 +++++++++++++++++
+ .travis.yml                            | 17 +++++++++++++++++
+ CONTRIBUTING.md                        | 34 ++++++++++++++++-----------------
+ RELEASENOTES.md                        | 34 ++++++++++++++++-----------------
+ appveyor.yml                           | 10 ++++------
+ bin/create                             | 28 +++++++++++++--------------
+ bin/create.bat                         |  2 +-
+ bin/lib/create.js                      | 34 ++++++++++++++++-----------------
+ bin/lib/update.js                      | 28 +++++++++++++--------------
+ bin/template/config.xml                | 34 ++++++++++++++++-----------------
+ bin/template/cordova/Api.js            | 34 ++++++++++++++++-----------------
+ bin/template/cordova/build             | 29 ++++++++++++++--------------
+ bin/template/cordova/build.bat         |  6 +++---
+ bin/template/cordova/clean             | 29 ++++++++++++++--------------
+ bin/template/cordova/clean.bat         |  6 +++---
+ bin/template/cordova/defaults.xml      | 28 +++++++++++++--------------
+ bin/template/cordova/handler.js        |  4 ++--
+ bin/template/cordova/lib/build.js      | 34 ++++++++++++++++-----------------
+ bin/template/cordova/lib/check_reqs.js | 28 +++++++++++++--------------
+ bin/template/cordova/lib/clean.js      | 34 ++++++++++++++++-----------------
+ bin/template/cordova/lib/run.js        | 34 ++++++++++++++++-----------------
+ bin/template/cordova/log               | 30 +++++++++++++++--------------
+ bin/template/cordova/parser.js         |  4 ++--
+ bin/template/cordova/run               | 32 +++++++++++++++----------------
+ bin/template/cordova/run.bat           |  6 +++---
+ bin/template/cordova/version           | 28 +++++++++++++--------------
+ bin/template/cordova/version.bat       |  6 +++---
+ bin/template/main.js                   | 19 ++++++++++++++++++
+ bin/template/www/css/index.css         | 35 +++++++++++++++++-----------------
+ bin/template/www/index.html            |  4 ++--
+ bin/template/www/js/index.js           | 34 ++++++++++++++++-----------------
+ bin/update                             | 29 ++++++++++++++--------------
+ bin/update.bat                         |  2 +-
+ cordova-js-src/confighelper.js         | 34 ++++++++++++++++-----------------
+ cordova-js-src/exec.js                 | 34 ++++++++++++++++-----------------
+ cordova-js-src/platform.js             | 34 ++++++++++++++++-----------------
+ cordova-lib/cordova.js                 | 32 +++++++++++++++----------------
+ spec/.eslintrc.yml                     | 17 +++++++++++++++++
+ spec/unit/create.spec.js               | 34 ++++++++++++++++-----------------
+ spec/unit/handler.spec.js              |  4 ++--
+ spec/unit/projectApi.spec.js           | 34 ++++++++++++++++-----------------
+ 41 files changed, 507 insertions(+), 449 deletions(-)
+
+commit 43a5a63cbd8512b40dd5fb031405c6b4449ba275
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 16:03:52 2018 +0900
+
+    Updated Jasmine Test Structure
+
+ package.json                             | 2 +-
+ spec/.eslintrc.yml                       | 2 +-
+ spec/{support/jasmine.json => unit.json} | 6 ++----
+ spec/{ => unit}/create.spec.js           | 4 ++--
+ spec/{ => unit}/handler.spec.js          | 2 +-
+ spec/{ => unit}/projectApi.spec.js       | 4 ++--
+ 6 files changed, 9 insertions(+), 11 deletions(-)
+
+commit fa0e2914cec221c53135aabb37c2ec63a567b07d
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 01:52:24 2018 +0900
+
+    Delete random new line
+
+ .gitignore | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit fb5bb7042a12679fd5cb8682c6b21d2bddf9e2cf
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 01:50:50 2018 +0900
+
+    Drop Node 4 Support & Added Node 10 Support
+
+ .travis.yml  | 9 ++++++---
+ appveyor.yml | 2 +-
+ package.json | 2 +-
+ 3 files changed, 8 insertions(+), 5 deletions(-)
+
+commit 23028771f40ce2e6ae3ff0a2e6a0c01109b5e871
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 01:47:53 2018 +0900
+
+    Updated Test Commands
+
+ package.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 8dfe10483a5ea8f34e59a77642da8dbdbb2f852b
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 01:44:28 2018 +0900
+
+    Replaced shell.cp and shell.mkdir with fs-extra
+
+ bin/lib/create.js                 | 22 ++++++++--------------
+ bin/template/cordova/Api.js       | 15 +++++++--------
+ bin/template/cordova/handler.js   | 13 ++++++-------
+ bin/template/cordova/lib/clean.js |  5 ++---
+ bin/template/cordova/parser.js    |  7 +++----
+ spec/create.spec.js               | 12 ++++++------
+ spec/handler.spec.js              | 11 +++++------
+ spec/projectApi.spec.js           |  6 +++---
+ 8 files changed, 40 insertions(+), 51 deletions(-)
+
+commit 34b261fdf566c0c23540b13f208fa06217de8488
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 01:42:40 2018 +0900
+
+    Added fs-extra dependency
+
+ bin/{ => template/cordova}/lib/check_reqs.js | 0
+ package.json                                 | 1 +
+ 2 files changed, 1 insertion(+)
+
+commit 6edf2652eb061d8cb5f3648a5bc8517b227d8c1e
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Wed Sep 19 00:07:26 2018 +0900
+
+    Applied ESLint Corrections
+
+ .eslintrc.yml                     |  2 +-
+ bin/template/cordova/Api.js       |  6 ++--
+ bin/template/cordova/lib/build.js |  1 -
+ bin/template/cordova/lib/run.js   |  8 ++---
+ bin/template/main.js              | 62 +++++++++++++++++++--------------------
+ package.json                      |  2 +-
+ 6 files changed, 40 insertions(+), 41 deletions(-)
+
+commit c9083a4d55112f313185ccdd8646d0d46f820954
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:59:23 2018 +0900
+
+    Dropped deprecated engineStrict from package.json
+
+ package.json | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit d9ca092a9062db1a9ddf785c59b23689ae1eca78
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:56:15 2018 +0900
+
+    Dropped Bundle Dependencies
+
+ package.json | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit 94dd821c11c421b47713aa597f8565a9139560b9
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:54:47 2018 +0900
+
+    Bump tmp@^0.0.33
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b11d5f59a0013f45d1041d33d5da9243db38978b
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:54:26 2018 +0900
+
+    Bump jasmine@^3.2.0
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7b1dbe830b4161de1312a3b275200329967748ab
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:53:49 2018 +0900
+
+    Bump ESLint dependencies
+    
+    eslint@^5.6.0
+    eslint-config-semistandard@^12.0.1
+    eslint-config-standard@^12.0.0
+    eslint-plugin-node@^7.0.1
+    eslint-plugin-promise@^4.0.1
+    eslint-plugin-standard@^4.0.0
+
+ package.json | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 40c25a9882502cf69973474d323f7abf052065ca
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:51:07 2018 +0900
+
+    Bump nopt@^4.0.1
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 34da3bf2baa4a61592e3610c2ce875dcc1c78564
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:50:33 2018 +0900
+
+    Bump electron@^3.0.6
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d7bb56d8891f7abbf9d7e785f1aaa367ea3e21c1
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:50:01 2018 +0900
+
+    Bump cordova-common@^2.2.5
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b0fa7275d7acc502444387f422b89884e414ae5c
+Author: エリス <ellis.bryan@gmail.com>
+Date:   Tue Sep 18 23:49:11 2018 +0900
+
+    Update Bug Tracker
+
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit abf1453f3abcfa0c352feb808db5f56f6f4b919e
+Merge: 06e144a 8760eec
+Author: Jesse MacFadyen <purplecabbage@gmail.com>
+Date:   Thu Jan 4 14:30:13 2018 -0800
+
+    Merge pull request #1 from purplecabbage/Catchup
+    
+    Electron as a first class citizen
+
+commit 8760eecfd639389738d82f8e8ec0abadbc6b2703
+Author: Jesse MacFadyen <purplecabbage@gmail.com>
+Date:   Mon Nov 27 12:29:11 2017 -0800
+
+    added  command, removed browser specific parts
+
+ bin/lib/create.js                 |  10 +----
+ bin/template/cordova/lib/build.js |   3 +-
+ bin/template/cordova/lib/run.js   |  13 +++---
+ bin/template/main.js              |  57 +++++++++++++++++++++++++
+ bin/template/www/favicon.ico      | Bin 1150 -> 0 bytes
+ bin/template/www/manifest.json    |  21 ----------
+ spec/manifest.spec.js             |  85 --------------------------------------
+ 7 files changed, 67 insertions(+), 122 deletions(-)
+
+commit fb376115ab205d79c93570603a908375b9bece06
+Author: Jesse MacFadyen <purplecabbage@gmail.com>
+Date:   Sun Nov 26 01:47:00 2017 -0800
+
+    updated everything
+
+ .eslintignore                                      |    1 +
+ .eslintrc.yml                                      |   10 +
+ .gitattributes                                     |   94 +
+ .gitignore                                         |    8 +
+ .travis.yml                                        |   12 +
+ LICENSE                                            |  317 +++
+ NOTICE                                             |    5 +
+ RELEASENOTES.md                                    |   23 +
+ VERSION                                            |    1 +
+ appveyor.yml                                       |   39 +
+ bin/create                                         |   69 +-
+ bin/lib/check_reqs.js                              |    8 +-
+ bin/lib/create.js                                  |  100 +-
+ bin/lib/update.js                                  |   38 +-
+ bin/template/config.xml                            |   24 +
+ bin/template/cordova/Api.js                        |  528 ++++
+ bin/{templates/project => template}/cordova/build  |    3 +-
+ .../project => template}/cordova/build.bat         |    0
+ bin/{templates/project => template}/cordova/clean  |    3 +-
+ bin/template/cordova/clean.bat                     |   26 +
+ .../project => template}/cordova/defaults.xml      |    0
+ bin/template/cordova/handler.js                    |  131 +
+ bin/template/cordova/lib/build.js                  |   37 +
+ .../project => template}/cordova/lib/clean.js      |   39 +-
+ .../spec/helper.js => template/cordova/lib/run.js} |   22 +-
+ .../project/cordova/run => template/cordova/log}   |   13 +-
+ bin/template/cordova/parser.js                     |  120 +
+ bin/template/cordova/run                           |   47 +
+ .../project => template}/cordova/run.bat           |    0
+ .../project => template}/cordova/version           |    2 +-
+ .../project => template}/cordova/version.bat       |    0
+ .../project => template}/www/css/index.css         |    0
+ bin/template/www/favicon.ico                       |  Bin 0 -> 1150 bytes
+ bin/template/www/img/logo.png                      |  Bin 0 -> 20554 bytes
+ bin/template/www/img/splash.png                    |  Bin 0 -> 37564 bytes
+ bin/{templates/project => template}/www/index.html |    3 +-
+ .../project => template}/www/js/index.js           |    8 +-
+ bin/template/www/manifest.json                     |   21 +
+ bin/templates/project/cordova/lib/build.js         |   63 -
+ bin/templates/project/cordova/lib/exec.js          |   46 -
+ bin/templates/project/cordova/lib/main.js          |   35 -
+ bin/templates/project/cordova/lib/run.js           |   16 -
+ bin/templates/project/www/img/logo.png             |  Bin 21814 -> 0 bytes
+ .../project/www/res/icon/android/icon-36-ldpi.png  |  Bin 3096 -> 0 bytes
+ .../project/www/res/icon/android/icon-48-mdpi.png  |  Bin 4090 -> 0 bytes
+ .../project/www/res/icon/android/icon-72-hdpi.png  |  Bin 6080 -> 0 bytes
+ .../project/www/res/icon/android/icon-96-xhdpi.png |  Bin 7685 -> 0 bytes
+ .../www/res/icon/bada-wac/icon-48-type5.png        |  Bin 4111 -> 0 bytes
+ .../www/res/icon/bada-wac/icon-50-type3.png        |  Bin 5758 -> 0 bytes
+ .../www/res/icon/bada-wac/icon-80-type4.png        |  Bin 7287 -> 0 bytes
+ .../project/www/res/icon/bada/icon-128.png         |  Bin 11401 -> 0 bytes
+ .../project/www/res/icon/blackberry/icon-80.png    |  Bin 7287 -> 0 bytes
+ .../project/www/res/icon/blackberry10/icon-80.png  |  Bin 7287 -> 0 bytes
+ .../project/www/res/icon/ios/icon-57-2x.png        |  Bin 7869 -> 0 bytes
+ bin/templates/project/www/res/icon/ios/icon-57.png |  Bin 3908 -> 0 bytes
+ .../project/www/res/icon/ios/icon-72-2x.png        |  Bin 11706 -> 0 bytes
+ bin/templates/project/www/res/icon/ios/icon-72.png |  Bin 4944 -> 0 bytes
+ .../project/www/res/icon/tizen/icon-128.png        |  Bin 11401 -> 0 bytes
+ .../project/www/res/icon/webos/icon-64.png         |  Bin 5463 -> 0 bytes
+ .../www/res/icon/windows-phone/icon-173-tile.png   |  Bin 22878 -> 0 bytes
+ .../project/www/res/icon/windows-phone/icon-48.png |  Bin 4111 -> 0 bytes
+ .../www/res/icon/windows-phone/icon-62-tile.png    |  Bin 7324 -> 0 bytes
+ .../res/screen/android/screen-hdpi-landscape.png   |  Bin 218302 -> 0 bytes
+ .../res/screen/android/screen-hdpi-portrait.png    |  Bin 222148 -> 0 bytes
+ .../res/screen/android/screen-ldpi-landscape.png   |  Bin 42616 -> 0 bytes
+ .../res/screen/android/screen-ldpi-portrait.png    |  Bin 42034 -> 0 bytes
+ .../res/screen/android/screen-mdpi-landscape.png   |  Bin 92347 -> 0 bytes
+ .../res/screen/android/screen-mdpi-portrait.png    |  Bin 90555 -> 0 bytes
+ .../res/screen/android/screen-xhdpi-landscape.png  |  Bin 489604 -> 0 bytes
+ .../res/screen/android/screen-xhdpi-portrait.png   |  Bin 504508 -> 0 bytes
+ .../www/res/screen/bada-wac/screen-type3.png       |  Bin 90555 -> 0 bytes
+ .../www/res/screen/bada-wac/screen-type4.png       |  Bin 222148 -> 0 bytes
+ .../www/res/screen/bada-wac/screen-type5.png       |  Bin 107580 -> 0 bytes
+ .../www/res/screen/bada/screen-portrait.png        |  Bin 222148 -> 0 bytes
+ .../www/res/screen/blackberry/screen-225.png       |  Bin 16776 -> 0 bytes
+ .../res/screen/blackberry10/splash-1280x768.png    |  Bin 60771 -> 0 bytes
+ .../www/res/screen/blackberry10/splash-720x720.png |  Bin 50431 -> 0 bytes
+ .../res/screen/blackberry10/splash-768x1280.png    |  Bin 57145 -> 0 bytes
+ .../res/screen/ios/screen-ipad-landscape-2x.png    |  Bin 1534088 -> 0 bytes
+ .../www/res/screen/ios/screen-ipad-landscape.png   |  Bin 407370 -> 0 bytes
+ .../www/res/screen/ios/screen-ipad-portrait-2x.png |  Bin 1610434 -> 0 bytes
+ .../www/res/screen/ios/screen-ipad-portrait.png    |  Bin 422441 -> 0 bytes
+ .../res/screen/ios/screen-iphone-landscape-2x.png  |  Bin 339639 -> 0 bytes
+ .../www/res/screen/ios/screen-iphone-landscape.png |  Bin 92301 -> 0 bytes
+ .../res/screen/ios/screen-iphone-portrait-2x.png   |  Bin 350593 -> 0 bytes
+ .../screen/ios/screen-iphone-portrait-568h-2x.png  |  Bin 34225 -> 0 bytes
+ .../www/res/screen/ios/screen-iphone-portrait.png  |  Bin 93897 -> 0 bytes
+ .../project/www/res/screen/tizen/README.md         |    3 -
+ .../project/www/res/screen/webos/screen-64.png     |  Bin 5463 -> 0 bytes
+ .../res/screen/windows-phone/screen-portrait.jpg   |  Bin 22066 -> 0 bytes
+ bin/templates/project/www/spec.html                |   68 -
+ bin/templates/project/www/spec/index.js            |   67 -
+ .../project/www/spec/lib/jasmine-1.2.0/MIT.LICENSE |   20 -
+ .../www/spec/lib/jasmine-1.2.0/jasmine-html.js     |  616 -----
+ .../project/www/spec/lib/jasmine-1.2.0/jasmine.css |   81 -
+ .../project/www/spec/lib/jasmine-1.2.0/jasmine.js  | 2529 --------------------
+ bin/update                                         |    4 +-
+ cordova-js-src/confighelper.js                     |   13 +-
+ cordova-js-src/exec.js                             |   92 +-
+ cordova-js-src/platform.js                         |   10 +
+ cordova-lib/cordova.js                             |  973 +++++---
+ package.json                                       |   63 +-
+ spec/.eslintrc.yml                                 |    2 +
+ spec/create.spec.js                                |  114 +
+ spec/handler.spec.js                               |   54 +
+ spec/manifest.spec.js                              |   85 +
+ spec/projectApi.spec.js                            |  118 +
+ spec/support/jasmine.json                          |   10 +
+ 108 files changed, 2736 insertions(+), 4098 deletions(-)
+
+commit 06e144a3705f4dc7e0e706bc0c5cf9464d38e6d1
+Author: Shazron Abdullah <shazron@apache.org>
+Date:   Tue Oct 4 22:35:10 2016 -0700
+
+    Add github pull request template
+
+ .github/PULL_REQUEST_TEMPLATE.md | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+commit 7f4ef642c825739fe6d3e340b52eed8e18410dc4
+Author: Steve Gill <stevengill97@gmail.com>
+Date:   Sat May 30 18:02:08 2015 -0700
+
+    updated readme
+
+ README.md | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit b1748a257c57c0c96b0ac41e361295952387fecc
+Author: Steve Gill <stevengill97@gmail.com>
+Date:   Sat May 30 18:01:05 2015 -0700
+
+    added npm install step
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 10b8c6613fdcdb9f000f16190505b6e2ab9e0931
+Author: Steve Gill <stevengill97@gmail.com>
+Date:   Sat May 30 17:59:39 2015 -0700
+
+    added necessary files to run
+
+ CONTRIBUTING.md                                    |   37 +
+ README.md                                          |   27 +
+ bin/create                                         |   35 +
+ bin/create.bat                                     |   26 +
+ bin/lib/check_reqs.js                              |   26 +
+ bin/lib/create.js                                  |   76 +
+ bin/lib/update.js                                  |   56 +
+ bin/templates/project/cordova/build                |   33 +
+ bin/templates/project/cordova/build.bat            |   26 +
+ bin/templates/project/cordova/clean                |   37 +
+ bin/templates/project/cordova/defaults.xml         |   22 +
+ bin/templates/project/cordova/lib/build.js         |   63 +
+ bin/templates/project/cordova/lib/clean.js         |   48 +
+ bin/templates/project/cordova/lib/exec.js          |   46 +
+ bin/templates/project/cordova/lib/main.js          |   35 +
+ bin/templates/project/cordova/lib/run.js           |   16 +
+ bin/templates/project/cordova/run                  |   31 +
+ bin/templates/project/cordova/run.bat              |   26 +
+ bin/templates/project/cordova/version              |   25 +
+ bin/templates/project/cordova/version.bat          |   26 +
+ bin/templates/project/www/css/index.css            |  115 +
+ bin/templates/project/www/img/logo.png             |  Bin 0 -> 21814 bytes
+ bin/templates/project/www/index.html               |   43 +
+ bin/templates/project/www/js/index.js              |   49 +
+ .../project/www/res/icon/android/icon-36-ldpi.png  |  Bin 0 -> 3096 bytes
+ .../project/www/res/icon/android/icon-48-mdpi.png  |  Bin 0 -> 4090 bytes
+ .../project/www/res/icon/android/icon-72-hdpi.png  |  Bin 0 -> 6080 bytes
+ .../project/www/res/icon/android/icon-96-xhdpi.png |  Bin 0 -> 7685 bytes
+ .../www/res/icon/bada-wac/icon-48-type5.png        |  Bin 0 -> 4111 bytes
+ .../www/res/icon/bada-wac/icon-50-type3.png        |  Bin 0 -> 5758 bytes
+ .../www/res/icon/bada-wac/icon-80-type4.png        |  Bin 0 -> 7287 bytes
+ .../project/www/res/icon/bada/icon-128.png         |  Bin 0 -> 11401 bytes
+ .../project/www/res/icon/blackberry/icon-80.png    |  Bin 0 -> 7287 bytes
+ .../project/www/res/icon/blackberry10/icon-80.png  |  Bin 0 -> 7287 bytes
+ .../project/www/res/icon/ios/icon-57-2x.png        |  Bin 0 -> 7869 bytes
+ bin/templates/project/www/res/icon/ios/icon-57.png |  Bin 0 -> 3908 bytes
+ .../project/www/res/icon/ios/icon-72-2x.png        |  Bin 0 -> 11706 bytes
+ bin/templates/project/www/res/icon/ios/icon-72.png |  Bin 0 -> 4944 bytes
+ .../project/www/res/icon/tizen/icon-128.png        |  Bin 0 -> 11401 bytes
+ .../project/www/res/icon/webos/icon-64.png         |  Bin 0 -> 5463 bytes
+ .../www/res/icon/windows-phone/icon-173-tile.png   |  Bin 0 -> 22878 bytes
+ .../project/www/res/icon/windows-phone/icon-48.png |  Bin 0 -> 4111 bytes
+ .../www/res/icon/windows-phone/icon-62-tile.png    |  Bin 0 -> 7324 bytes
+ .../res/screen/android/screen-hdpi-landscape.png   |  Bin 0 -> 218302 bytes
+ .../res/screen/android/screen-hdpi-portrait.png    |  Bin 0 -> 222148 bytes
+ .../res/screen/android/screen-ldpi-landscape.png   |  Bin 0 -> 42616 bytes
+ .../res/screen/android/screen-ldpi-portrait.png    |  Bin 0 -> 42034 bytes
+ .../res/screen/android/screen-mdpi-landscape.png   |  Bin 0 -> 92347 bytes
+ .../res/screen/android/screen-mdpi-portrait.png    |  Bin 0 -> 90555 bytes
+ .../res/screen/android/screen-xhdpi-landscape.png  |  Bin 0 -> 489604 bytes
+ .../res/screen/android/screen-xhdpi-portrait.png   |  Bin 0 -> 504508 bytes
+ .../www/res/screen/bada-wac/screen-type3.png       |  Bin 0 -> 90555 bytes
+ .../www/res/screen/bada-wac/screen-type4.png       |  Bin 0 -> 222148 bytes
+ .../www/res/screen/bada-wac/screen-type5.png       |  Bin 0 -> 107580 bytes
+ .../www/res/screen/bada/screen-portrait.png        |  Bin 0 -> 222148 bytes
+ .../www/res/screen/blackberry/screen-225.png       |  Bin 0 -> 16776 bytes
+ .../res/screen/blackberry10/splash-1280x768.png    |  Bin 0 -> 60771 bytes
+ .../www/res/screen/blackberry10/splash-720x720.png |  Bin 0 -> 50431 bytes
+ .../res/screen/blackberry10/splash-768x1280.png    |  Bin 0 -> 57145 bytes
+ .../res/screen/ios/screen-ipad-landscape-2x.png    |  Bin 0 -> 1534088 bytes
+ .../www/res/screen/ios/screen-ipad-landscape.png   |  Bin 0 -> 407370 bytes
+ .../www/res/screen/ios/screen-ipad-portrait-2x.png |  Bin 0 -> 1610434 bytes
+ .../www/res/screen/ios/screen-ipad-portrait.png    |  Bin 0 -> 422441 bytes
+ .../res/screen/ios/screen-iphone-landscape-2x.png  |  Bin 0 -> 339639 bytes
+ .../www/res/screen/ios/screen-iphone-landscape.png |  Bin 0 -> 92301 bytes
+ .../res/screen/ios/screen-iphone-portrait-2x.png   |  Bin 0 -> 350593 bytes
+ .../screen/ios/screen-iphone-portrait-568h-2x.png  |  Bin 0 -> 34225 bytes
+ .../www/res/screen/ios/screen-iphone-portrait.png  |  Bin 0 -> 93897 bytes
+ .../project/www/res/screen/tizen/README.md         |    3 +
+ .../project/www/res/screen/webos/screen-64.png     |  Bin 0 -> 5463 bytes
+ .../res/screen/windows-phone/screen-portrait.jpg   |  Bin 0 -> 22066 bytes
+ bin/templates/project/www/spec.html                |   68 +
+ bin/templates/project/www/spec/helper.js           |   33 +
+ bin/templates/project/www/spec/index.js            |   67 +
+ .../project/www/spec/lib/jasmine-1.2.0/MIT.LICENSE |   20 +
+ .../www/spec/lib/jasmine-1.2.0/jasmine-html.js     |  616 +++++
+ .../project/www/spec/lib/jasmine-1.2.0/jasmine.css |   81 +
+ .../project/www/spec/lib/jasmine-1.2.0/jasmine.js  | 2529 ++++++++++++++++++++
+ bin/update                                         |   33 +
+ bin/update.bat                                     |   26 +
+ cordova-js-src/confighelper.js                     |   95 +
+ cordova-js-src/exec.js                             |   48 +
+ cordova-js-src/platform.js                         |   36 +
+ cordova-lib/cordova.js                             | 1628 +++++++++++++
+ package.json                                       |   27 +
+ 85 files changed, 6234 insertions(+)
+
