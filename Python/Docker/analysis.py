@@ -121,8 +121,8 @@ def run_analysis(dir):
 
                 size = get_microservice_size(details, dir + "/" + project_dir)
                 project.add_microservice({
-                    name: name,
-                    size: size
+                    'name': name,
+                    'size': size
                 })
 
                 if 'depends_on' in details:
