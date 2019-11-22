@@ -26,12 +26,6 @@ def write_to_txt(string1, filename):
     f.write(string1+"\n")
     f.close()
 
-def write_to_dependencies_txt(string1):
-    # Writes string1 to the txt-file and adds a newline character.
-    f = open("dependencies.txt", "a")
-    f.write(string1 + "\n")
-    f.close()
-
 def date_normalization(date):
     # expects input of the form 'Date:   Tue Nov 19 16:52:55 2019 +0000 [...]"; outputs 2019-11-19.
     output = ""
@@ -138,7 +132,7 @@ def return_all_links(url):
             if x.endswith("/") and not x.endswith("../"):
                 print("Proceeding to: "+ url + x)
                 deepscan_url(url + x)
-"""
+
 
 def create_dependency_from_str_soup(soup):
     # The output looks like this: MyProject/MyProject/1.4.2::, which encodes groupId, artifactId and version
@@ -164,13 +158,42 @@ def create_dependency_from_str_soup(soup):
         outputline = outputline + "none"
 
     return(outputline)
+"""
 
+def dependency_line(string_list, file_type):
+    # Needs a string list as input (from either pom.xml or build.gradle files) and file_type ("pom.xml" or "build.gradle")
+    # and creates a string as an output of the form groupID/artifactID/version;groupID/artifactID/version;..., containing
+    # every dependency found in string_list.
+    output_string = ""
+    if file_type == "pom.xml":
+        for idx,val in enumerate(string_list):
+            if val == "<dependency>" and string_list[idx+1].startswith("<groupId>") and string_list[idx+3].startswith("<version>"):
+                output_string = output_string +\
+                                string_list[idx+1][9:string_list[idx+1].rindex("<")]+\
+                                "/"\
+                                +string_list[idx+2][12:string_list[idx+2].rindex("<")]+\
+                                "/"\
+                                +string_list[idx+3][9:string_list[idx+3].rindex("<")]+\
+                                ","
+        return output_string
+    else:
+        print("For Claudia")
+
+def dependency_number(string_list, file_type):
+    # for pom.xml or build.gradle files: couunts the number of dependencies in that file.
+    if file_type == "pom.xml":
+        return string_list.count("<dependency>")
+    else:
+        print("For Claudia (again)")
+
+"""
 def dependencies_from_pom_url(url):
     response = requests.get(url)
     print(response)
     wait_random()
     soup = BeautifulSoup(response.text, 'html.parser')
     write_to_dependencies_txt(create_dependency_from_str_soup(str(soup)))
+"""
 
 def command_window(*args):
     # Allows command window inputs via String Arguments (separated by commas), i.e. ("git", "status") for "git status"
@@ -194,6 +217,9 @@ def file_to_stringlist(filename, directory):
         print("Error in file_to_string method.")
         content = ["~FILE NOT FOUND!~"]
     content = [x.strip() for x in content]
+    if len(content) == 0:
+        print("EMPTY FILE!")
+        content = ["EMPTY FILE!"]
     return content
 
 def filter_apache_repositories(Linklist):
@@ -291,41 +317,47 @@ def generate_Apache_link_list(upper_boundary):
         write_to_txt(i, "ApacheGithubLinks.txt")
     return Apache_Project_Links
 
-def write_dependency_timelines(txt, dir, smart_search):
+def write_dependency_timelines(txt, dir, MaxNumberOfClones=-1):
     # from the .txt file in directory dir: Uses the entries as links to clone the github repositories, extract the
-    # number of dependencies and write them into a file in the "timeline" folder. After that, it clears the
-    # "repositories" folder.
-    # If smart_search is True, repositories are cloned only if they contain either pom.xml or build.gradle files.
+    # number of dependencies and write them into a file in the "Dependencies" folder. After that, it clears the
+    # "Repositories" folder.
     for i in file_to_stringlist(txt, dir):
-        if smart_search:
-            pom_or_build = check_doc("https://github.com" + i)
-            print(pom_or_build)
-            if not pom_or_build[0] and not pom_or_build[1]:
-                print(i + " does not contain pom.xml or build.gradle. Proceeding to next link.")
-                continue
+        if MaxNumberOfClones==0:
+            break
+        elif MaxNumberOfClones>0:
+            print("Attempting to clone " + str(MaxNumberOfClones) + " more repositories")
+        dependency_filename = ""
+        if check_existence_on_github(i, "pom.xml"):
+            dependency_filename = "pom.xml"
+        elif check_existence_on_github(i, "build.gradle"):
+            dependency_filename = "build.gradle"
+        else:
+            print(i + " does not contain pom.xml or build.gradle. Proceeding to next link.")
+            continue
         clear_folder("Repositories")
         try:
             command_window("cwd=Repositories", "git", "clone", "https://github.com" + i, "-b", "master")
             print("Writing log for " + i[i.rindex("/"):])
             output = command_window("cwd=Repositories" + i[i.rindex("/"):], "git", "log", "--stat")
             write_to_txt(str(output), "Logs/Git_Log_" + i[i.rindex("/") + 1:] + ".txt")
+            MaxNumberOfClones -= 1
             time.sleep(0.1)
             output = file_to_stringlist("Git_Log_" + i[i.rindex("/") + 1:] + ".txt", "Logs/")
-            output = create_timeline(output, "pom.xml")
+            output = create_timeline(output, dependency_filename)
             for j in output:
                 try:
-                    command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], "pom.xml")
-                    depnumb = file_to_stringlist("pom.xml", "Repositories" + i[i.rindex("/"):] + "/").count(
-                        "<dependency>")
-                    print("Writing to file " + i[i.rindex("/") + 1:] + " : " + str(depnumb))
-                    write_to_txt(j[0] + " : " + str(depnumb), "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
+                    command_window("cwd=Repositories/" + i[i.rindex("/") + 1:], "git", "checkout", j[1][7:], dependency_filename)
+                    dep_file_line_list = file_to_stringlist(dependency_filename, "Repositories" + i[i.rindex("/"):] + "/")
+                    print("Writing dependencies for " + i[i.rindex("/") + 1:])
+                    write_to_txt(j[0] + " : " + str(dependency_number(dep_file_line_list, dependency_filename)),
+                                 "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
+                    write_to_txt(dependency_line(dep_file_line_list, dependency_filename),
+                                 "Dependencies/" + i[i.rindex("/") + 1:] + "_2.txt")
                     time.sleep(0.1)
                 except:
-                    print("Pom.xml did not exist for " + j[1])
+                    print(dependency_filename + " did not exist for " + j[1])
         except:
             print("Exception in cloning.")
-
-
 
 def write_release_timelines(txt, dir):
     for i in file_to_stringlist(txt, dir):
@@ -373,14 +405,14 @@ def check_doc(link):
         bollist[1] = True
     return bollist
 
-"""
+
 def check_existence_on_github(directory, filename):
     # Given the directory, i.e. /apache/pulsar, and a filename, i.e. pom.xml, checks if that file exists (returns True).
     page = requests.get("https://github.com"+directory+"/blob/master/"+filename)
     return page.status_code!=404
-    """
 
-def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", include_release_date = False):
+
+def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", include_release_date = True):
     # for each project in the file in the main directory (by default "ApacheGithubLinks.txt") writes per release in
     # the corresponding file (from the Releases folder) the number of dependencies directly before the release and
     # the number of bugs after release (by bug_time, by default 14 days, from Jira) into a line.
@@ -388,7 +420,8 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
     for i in content:
         for j in (file_to_stringlist(i[8:] + ".txt", "Releases/")):
             dependencies = file_to_stringlist(i[8:] + ".txt", "Dependencies/")
-            for k in dependencies:
+            dependencies_all = file_to_stringlist(i[8:] + "_2.txt", "Dependencies/")
+            for idx, k in enumerate(dependencies):
                 best_date = date_normalization(k)
                 if not date1_greater_date2(best_date, j[:10]):
                     l=-1
@@ -403,18 +436,22 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
                     except:
                         print("Invalid Jira request for bug number. Writing -1 instead.")
                         numb_bugs = str(-1)
+                    temp_string = ""
                     if include_release_date:
-                        write_to_txt(numb_dependencies + "::" + numb_release + "::" + numb_bugs, "Timelines/complete.txt")
-                        print("Writing: " + numb_dependencies + "::" + numb_release + "::" + numb_bugs)
-                    else:
-                        write_to_txt(numb_dependencies + "::" + numb_bugs, "Timelines/complete.txt")
-                        print("Writing: " + numb_dependencies + "::" + numb_bugs)
-                    break
+                        temp_string = temp_string + numb_release + "::"
+                    try:
+                        write_to_txt(numb_dependencies + "::" + temp_string + numb_bugs + "::" + dependencies_all[idx], "Timelines/complete.txt")
+                        print("Writing: " + numb_dependencies + "::" + temp_string + numb_bugs + "::" + dependencies_all[idx])
+                        break
+                    except:
+                        print("Can't write to txt: Index out of range or other error. Writing NONE instead.")
+                        write_to_txt(numb_dependencies + "::" + temp_string + numb_bugs + "::" + "NONE", "Timelines/complete.txt")
+                        break
 
 def clean_up(file, folder):
     temp_list = file_to_stringlist(file, folder)
     for i in temp_list:
-        if i[-2] != "-" and i[0].isdigit():
+        if i[i.rindex("::")-2] != "-" and i[0].isdigit():
             write_to_txt(i, "output_clean.txt")
 
 
