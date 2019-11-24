@@ -72,7 +72,7 @@ and starts up all the required containers automatically.
 
 Docker compose files contain a lot of valuable information and is the main resource for this section.
 
-#### Data 
+#### Getting data
 
 Note: Before running the script make sure that you have all the dependencies installed. Do:
 
@@ -82,7 +82,7 @@ pip install -r Python/Docker/requirements.txt
 
 The data can be fetched using the following command:
 
-```
+```shell script
 python Python/Docker/repo_fetching.py
 ```
 
@@ -96,20 +96,41 @@ steps.
 
 ```python
 res = session.get('https://api.github.com/search/code',
-                  params={'q': 'path:/ filename:docker-compose.yml',
-                          'sort': 'stars',
-                          'order': 'desc',
-                          'per_page': '100',
-                          'page': 1 })
+                              params={'q': 'path:/ filename:docker-compose.yml size:' + size,
+                                      'sort': 'stars',
+                                      'order': 'desc',
+                                      'per_page': per_page,
+                                      'page': page})
 ```
 
-This request is sent for all as many pages as wished, 10 times in our case.
-From this response the repository urls can be extracted and fetched in the next step. Downloading all the latest releases and
-extracting the last-updated date are then achieved.
+The Github API currently has a limit of 1000 repositories. In order to get more than 1000 results, we used a little trick:
+By splitting up the search into multiple size intervals results in two benefits. First, we are able to have more results, secondly,
+you automatically obtain a good mixture of smaller and bigger projects.
+
+From this response the repository urls can be extracted and fetched in the next step. 
+
+That way, most of the important data for later was
+extracted from the repository responses. The following data was extracted:
+
+1. Project name
+1. Creation & last updated date, which were then used to calculate the duration of the project
+2. Main language of the project
+3. Number of contributors to the project
+
+Those metrics were stored in pickle files, which is the python way of storing objects to disk.
+Also, in order to be able to analyze the microservices of each project, the content of the repositories have to be looked at.
+The first step included downloading all the latest releases of the projects.
+
+### Obtaining information about microservices
+
+The goal was to get the following information for all projects:
+1. Number of microservices
+2. Size of each microservice
 
 In order to get the actual size of all the microservices for each project, the docker image directory was changed to an
 external hard drive. That way we could prevent our machine from running out of memory and not delete all the images
-after each project, which would have been very inefficient in case of docker. For Ubuntu, create a file inside:
+after each project, which would have been very inefficient in case of docker. On Ubuntu, the default location for storing
+docker images can be changed by creating the following file:
 /etc/docker/deamon.json. Put into the file:
 
 ```json
@@ -118,22 +139,60 @@ after each project, which would have been very inefficient in case of docker. Fo
 }
 ```
 
-When it comes to getting the size of the images, the following cases have been distinguished:
-1. only "image" field
-2. only "build" field, either with or without subfields: build the image at the specified location. 
-   If it has subfields: build the image at location specified in "context". If "dockerfile" present, append the name to the path,
-   otherwise default to Dockerfile.
-3. "image" and "build": build as before, image is just the name
-4. If field contains variables: ignore
-5. If does not have any services: ignore 
+After that, we ran the analysis with the following command:
+
+```shell script
+python Python/Docker/analysis.py
+```
+
+This script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information.
+What is most important in our case, are the fields "image", "build", and "depends_on" inside "services". A complete specification of the docker-compose file can be
+found [here](https://docs.docker.com/compose/). An example of such a file looks like this:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    links:
+    - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+```
+
+To obtain the correct image size, we distinguish the following cases:
+
+1. If the file does not list any services: microservices = 0, size = -1
+2. Only "image" field is present: Pull the image
+3. "build" field is present, either with or without subfields: build the image 
+   1. Subfields: Build the image at location specified in "context". If "dockerfile" present, append the name to the path, otherwise the default "Dockerfile" is used
+   2. No subfields: Build the image located at "build"
+
+For building and pulling images [docker-py](https://github.com/docker/docker-py) was used. Both the pull and build functions return
+images which have a size attribute. For each service listed, it was stored inside the pickled project object (inside the microservices list) 
+with the name and its size. Therefore the number of microservices can be easily obtained by checking the length of this list.
+
+To get the dependencies between microservices, we counted all the entries in "depends_on" fields inside each microservice. It should be noted
+that these dependencies are of static nature.
 
 Note: In order to be able to run the script, it may be required to allow docker to run commands as a non-root user. In
 Linux this is done via the following commands:
 
-```python
+```shell script
 sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
+
+### Results
+
+Plots and stuff
 
 ### Part 3: Visualization
 
