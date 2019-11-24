@@ -26,18 +26,18 @@ def get_microservice_size(details, project_path):
             # subarray
             if 'context' in build and 'dockerfile' in build:
                 docker_file_loc = project_path + "/" + (build['context'] + "/" + build['dockerfile']).replace('./', '').replace('Dockerfile', '.')
-                print('building from', docker_file_loc)
+                #print('building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
 
             elif 'context' in build:
                 docker_file_loc = project_path + "/" + build['context'].replace('./', '')
-                print('building from', docker_file_loc)
+                #print('building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
 
             else:
                 # no subarray
                 docker_file_loc = project_path + "/" + build.replace('./', '')
-                print('building from', docker_file_loc)
+                #print('building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
                 # Get the size of the built image
 
@@ -46,7 +46,7 @@ def get_microservice_size(details, project_path):
         elif 'image' in details:
             image = details['image']
             docker_img_loc = project_path + "/" + image
-            print('pulling from', docker_img_loc)
+            #print('pulling from', docker_img_loc)
             if ':' not in image:
                 image += ':latest'
 

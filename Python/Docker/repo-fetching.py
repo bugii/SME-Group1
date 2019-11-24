@@ -22,66 +22,71 @@ session = requests.Session()
 session.auth = ('bugii', API_KEY)
 
 
-def search_github(page):
-    print('On page', page)
+def search_github():
     '''
-    Do 4 different queries based on different file sizes
+    Do 5 different queries based on different file sizes
     '''
-    sizes = ["1..1000", "1001..2000", "2001..3000", "3001..4000", "5001..6000", "6001..7000", "7001..8000", "8001..9000", "9001..10000"]
+
+    sizes = ["1..2000", "2001..4000", "4001..6000", "6001..8000", "8001..10000"]
 
     for size in sizes:
-        print(size)
+        print('size interval:', size)
+        print('-----------------------------')
 
-        res = session.get('https://api.github.com/search/code',
-                          params={'q': 'path:/ filename:docker-compose.yml size:' + size,
-                                  'sort': 'stars',
-                                  'order': 'desc',
-                                  'per_page': per_page,
-                                  'page': page})
+        for page in range(1, pages_to_query + 1):
+            print('page:', page)
+            print('-----------------------------')
 
-        if res.status_code != 200:
-            print('Something went wrong', res.status_code)
+            res = session.get('https://api.github.com/search/code',
+                              params={'q': 'path:/ filename:docker-compose.yml size:' + size,
+                                      'sort': 'stars',
+                                      'order': 'desc',
+                                      'per_page': per_page,
+                                      'page': page})
 
-        res_json = res.json()
+            if res.status_code != 200:
+                print('Something went wrong', res.status_code)
 
-        if page == 1:
-            total_repos = res_json['total_count']
-            print('Found:', total_repos)
+            res_json = res.json()
 
-        for i in res_json['items']:
-            time.sleep(5)
+            for i in res_json['items']:
+                time.sleep(5)
 
-            repo_url = i['repository']['url']
-            print('Repo:', repo_url)
+                repo_url = i['repository']['url']
 
-            # get the creation date of the project
+                # get the latest update date
+                repo = session.get(repo_url).json()
+                last_updated_at = datetime.fromisoformat(repo['updated_at'][:-1])
+                name = repo['full_name']
+                print(name)
+                print('url:', repo_url)
 
+                # get the creation date of the project
+                created_at = datetime.fromisoformat(repo['created_at'][:-1])
 
-            # get the latest update date
-            repo = session.get(repo_url).json()
-            last_updated_at = datetime.fromisoformat(repo['updated_at'][:-1])
-            name = repo['full_name']
+                # get the most used language
+                language = repo['language']
+                print('lang:', language)
 
-            # get the most used language
+                # get the contributors
+                contributors = session.get(repo['contributors_url']).json()
+                print('contributors:', len(contributors))
+                print('-----------------------------')
 
-            # get the contributors
+                # create object
+                project = Project(name=name, url=repo_url, created=created_at, last_updated=last_updated_at,
+                                  language=language, contributors=contributors)
 
-            # if language either python, java, c#, javascript, or go: run the following code
+                # download the repo and unzip it, delete compressed file afterwards
+                archive_path = wget.download(repo_url + '/tarball', 'repositories')
+                folder_name = archive_path[:-7]
+                tarfile.open(archive_path).extractall(folder_name)
+                os.remove(archive_path)
 
-            # # create object
-            # project = Project(name=name, url=repo_url, last_updated=last_updated_at)
-            #
-            # # download the repo and unzip it, delete compressed file afterwards
-            # archive_path = wget.download(repo_url + '/tarball', 'repositories')
-            # folder_name = archive_path[:-7]
-            # tarfile.open(archive_path).extractall(folder_name)
-            # os.remove(archive_path)
-            #
-            # # save project object inside the folder
-            # with open(folder_name + '/project.pkl', 'wb') as f:
-            #     pickle.dump(project, f, pickle.HIGHEST_PROTOCOL)
+                # save project object inside the folder
+                with open(folder_name + '/project.pkl', 'wb') as f:
+                    pickle.dump(project, f, pickle.HIGHEST_PROTOCOL)
 
 
 if __name__ == '__main__':
-    for page in range(1, pages_to_query + 1):
-        search_github(page)
+    search_github()

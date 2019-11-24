@@ -1,9 +1,9 @@
 class Project:
 
-    def __init__(self, name, url, creation, last_updated, language, contributors ):
+    def __init__(self, name, url, created, last_updated, language, contributors):
         self.name = name
         self.url = url
-        self.creation = creation
+        self.created = created
         self.last_updated = last_updated
         self.microservices = []
         self.depends_on = 0
