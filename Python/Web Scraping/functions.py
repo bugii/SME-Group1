@@ -8,6 +8,7 @@ import subprocess
 import re
 from datetime import datetime
 from datetime import timedelta
+import script
 
 def wait_random():
     # Generates a random wait time, usually around 1 to 2 seconds, with some longer intervals up to 7 seconds added for
@@ -176,15 +177,24 @@ def dependency_line(string_list, file_type):
                                 +string_list[idx+3][9:string_list[idx+3].rindex("<")]+\
                                 ","
         return output_string
+    elif file_type == "build.gradle":
+        auxlist = script.read_gradle(string_list)
+        for depen in auxlist:
+            output_string += depen[0]+"/"+depen[1]+"/"+depen[2]
+            if auxlist.index(depen) < len(auxlist)-1:
+                output_string += ";"
+        return output_string
     else:
-        print("For Claudia")
+        return "Fail"
 
 def dependency_number(string_list, file_type):
     # for pom.xml or build.gradle files: couunts the number of dependencies in that file.
     if file_type == "pom.xml":
         return string_list.count("<dependency>")
+    elif file_type == "build.gradle":
+        return script.get_number_dependencies(string_list)
     else:
-        print("For Claudia (again)")
+        return -1
 
 """
 def dependencies_from_pom_url(url):
