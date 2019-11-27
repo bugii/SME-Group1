@@ -500,7 +500,7 @@ def check_dependency_type(dependency, type):
                 return False
 
 def dependency_interpreter(filename, directory):
-    # Goes through the file (normally "output_clean.txt" and starts interpreting the dependencies, as in: tries to
+    # Goes through the file (normally "output_clean.txt") and starts interpreting the dependencies, as in: tries to
     # put them into categories. Once categorized, they are stored in a dictionary so that URL requests are only
     # performed when really necessary. Outputs a "output_interpreted.txt", where each line is almost the same as in
     # "output_clean.txt", but has two added numbers at the beginning: one for apache_count and one for apache_commons_

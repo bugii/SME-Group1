@@ -1,7 +1,9 @@
 import functions
+import excelconvert
 
 # I installed the requests library and bs4 library via the following command line input: "py -m pip install bs4" and
 # "py -m pip install requests"; alternatively, you can try "pip install bs4" and "pip install requests".
+# Furthermore, openpyxl is needed for excelconvert.
 
 # First, clear up all files and folders.
 # If you want to clear the output files, add "output_clean.txt" and "output_interpreted.txt" to the list.
@@ -26,6 +28,9 @@ import functions
 # Additional information extraction. In the end, the output file is named "output_interpreted.txt" and has (so far)
 # the following format: 10:5:3::2019-11-19::5:dependency1,dependency2...dependency10
 # Interpretation: 10 dependencies, 5 are from Apache, 3 are Apache commons for the release from 2019-11-19; there
-# were 5 bugs afterwards (bug_time, specified in write_complete_timeline); and the complete list of dependencies,
-# separated by comma.
-functions.dependency_interpreter("output_clean.txt", "")
+# were 5 bugs afterwards (within bug_time, specified in write_complete_timeline); followed by the complete list of
+# dependencies, separated by comma.
+#functions.dependency_interpreter("output_clean.txt", "")
+
+# The output can be converted into an excel sheet for further usage.
+excelconvert.convert_to_excel("output_interpreted.txt")
