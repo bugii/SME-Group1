@@ -1,0 +1,3 @@
+digraph {
+catalog->catalog_postgres[color=blue]
+}

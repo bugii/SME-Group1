@@ -8,6 +8,7 @@ import subprocess
 import re
 from datetime import datetime
 from datetime import timedelta
+import script
 
 def wait_random():
     # Generates a random wait time, usually around 1 to 2 seconds, with some longer intervals up to 7 seconds added for
@@ -176,15 +177,24 @@ def dependency_line(string_list, file_type):
                                 +string_list[idx+3][9:string_list[idx+3].rindex("<")]+\
                                 ","
         return output_string
+    elif file_type == "build.gradle":
+        auxlist = script.read_gradle(string_list)
+        for depen in auxlist:
+            output_string += depen[0]+"/"+depen[1]+"/"+depen[2]
+            if auxlist.index(depen) < len(auxlist)-1:
+                output_string += ";"
+        return output_string
     else:
-        print("For Claudia")
+        return "Fail"
 
 def dependency_number(string_list, file_type):
     # for pom.xml or build.gradle files: couunts the number of dependencies in that file.
     if file_type == "pom.xml":
         return string_list.count("<dependency>")
+    elif file_type == "build.gradle":
+        return script.get_number_dependencies(string_list)
     else:
-        print("For Claudia (again)")
+        return -1
 
 """
 def dependencies_from_pom_url(url):
@@ -427,7 +437,7 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
                     l=-1
                     while True:
                         l=l-1
-                        if k[l] == " " or l < -10:
+                        if k[l] == " ":
                             break
                     numb_dependencies = str(k[l+1:])
                     numb_release = str(j[:10])
@@ -449,12 +459,70 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
                         break
 
 def clean_up(file, folder):
+    # Clean-up of the complete.txt, which might still contain useless lines where there had been no bugs on Jira
+    # or no identifiable dependencies.
     temp_list = file_to_stringlist(file, folder)
     for i in temp_list:
-        if i[i.rindex("::")-2] != "-" and i[0].isdigit():
+        if i[i.rindex("::")-2] != "-" and i[0].isdigit() and not i.endswith(":"):
             write_to_txt(i, "output_clean.txt")
 
+def check_dependency_type(dependency, type):
+    # Expects a string of the format "org.apache.pulsar/pulsar-something/1.2.3". Then goes to check if this is
+    # a dependency of the specified type, i.e. of the apache ecosystem or an apache commons.
+    print("Checking dependency type of " + dependency + " for " + type)
+    if type == "apache":
+        if "apache" in dependency:
+            return True
+        else:
+            try:
+                temp_list = dependency.split("/")
+                temp_list = temp_list[0].split(".")
+                page = requests.get("https://github.com/apache/" + temp_list[-1])
+                if page.status_code != 404:
+                    return True
+                else:
+                    return False
+            except:
+                return False
+    elif type == "apache_commons":
+        if "commons" in dependency:
+            return True
+        else:
+            try:
+                temp_list = dependency.split("/")
+                temp_list = temp_list[0].split(".")
+                page = requests.get("https://github.com/apache/commons-" + temp_list[-1])
+                if page.status_code != 404:
+                    return True
+                else:
+                    return False
+            except:
+                return False
 
-
+def dependency_interpreter(filename, directory):
+    # Goes through the file (normally "output_clean.txt") and starts interpreting the dependencies, as in: tries to
+    # put them into categories. Once categorized, they are stored in a dictionary so that URL requests are only
+    # performed when really necessary. Outputs a "output_interpreted.txt", where each line is almost the same as in
+    # "output_clean.txt", but has two added numbers at the beginning: one for apache_count and one for apache_commons_
+    # count. I.e., 141::... becomes 141:3:5::..., if there were 3 apache and 5 commons dependencies.
+    dep_list = file_to_stringlist(filename, directory)
+    dictionary = {}
+    apache_count = 0
+    apache_commons_count = 0
+    for i in dep_list:
+        dep_line_list = i[i.rindex("::")+2:].split(",")
+        for j in dep_line_list:
+            if j not in dictionary:
+                dictionary[j] = []
+                dictionary[j].append(check_dependency_type(j, "apache"))
+                dictionary[j].append(check_dependency_type(j, "apache_commons"))
+            if dictionary[j][0]:
+                apache_count +=1
+            if dictionary[j][1]:
+                apache_commons_count +=1
+        write_to_txt(i[:i.index("::")+1] + str(apache_count) + ":" + str(apache_commons_count) + "::" + i[i.index("::")+2:],
+                     "output_interpreted.txt")
+        apache_count = 0
+        apache_commons_count = 0
 
 

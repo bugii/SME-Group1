@@ -1,0 +1,175 @@
+<svg width="2042px" height="155px"
+ viewBox="0.00 0.00 1531.73 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform=" rotate(0) translate(4 112)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 1527.7322,-112 1527.7322,4 -4,4"/>
+<!-- mqtt_source -->
+<g id="node1" class="node">
+<title>mqtt_source</title>
+<ellipse fill="none" stroke="#000000" cx="81.3091" cy="-90" rx="58.5482" ry="18"/>
+<text text-anchor="middle" x="81.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">mqtt_source</text>
+</g>
+<!-- eclipse_mosquitto -->
+<g id="node2" class="node">
+<title>eclipse_mosquitto</title>
+<ellipse fill="none" stroke="#000000" cx="81.3091" cy="-18" rx="81.1187" ry="18"/>
+<text text-anchor="middle" x="81.3091" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">eclipse_mosquitto</text>
+</g>
+<!-- mqtt_source&#45;&gt;eclipse_mosquitto -->
+<g id="edge1" class="edge">
+<title>mqtt_source&#45;&gt;eclipse_mosquitto</title>
+<path fill="none" stroke="#0000ff" d="M81.3091,-71.8314C81.3091,-64.131 81.3091,-54.9743 81.3091,-46.4166"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="84.8092,-46.4132 81.3091,-36.4133 77.8092,-46.4133 84.8092,-46.4132"/>
+</g>
+<!-- csv_source -->
+<g id="node3" class="node">
+<title>csv_source</title>
+<ellipse fill="none" stroke="#000000" cx="795.3091" cy="-90" rx="53.8731" ry="18"/>
+<text text-anchor="middle" x="795.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">csv_source</text>
+</g>
+<!-- message_queue -->
+<g id="node4" class="node">
+<title>message_queue</title>
+<ellipse fill="none" stroke="#000000" cx="939.3091" cy="-18" rx="71.7718" ry="18"/>
+<text text-anchor="middle" x="939.3091" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">message_queue</text>
+</g>
+<!-- csv_source&#45;&gt;message_queue -->
+<g id="edge2" class="edge">
+<title>csv_source&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M825.4962,-74.9064C846.4443,-64.4324 874.6189,-50.3451 897.6942,-38.8075"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="899.5303,-41.8026 906.9093,-34.1999 896.3997,-35.5416 899.5303,-41.8026"/>
+</g>
+<!-- database_source -->
+<g id="node5" class="node">
+<title>database_source</title>
+<ellipse fill="none" stroke="#000000" cx="649.3091" cy="-90" rx="74.1181" ry="18"/>
+<text text-anchor="middle" x="649.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">database_source</text>
+</g>
+<!-- database_source&#45;&gt;message_queue -->
+<g id="edge3" class="edge">
+<title>database_source&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M701.4902,-77.0447C751.1265,-64.7212 825.7972,-46.1823 878.1937,-33.1735"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="879.1722,-36.5369 888.0342,-30.7303 877.4855,-29.7431 879.1722,-36.5369"/>
+</g>
+<!-- cockroach1 -->
+<g id="node6" class="node">
+<title>cockroach1</title>
+<ellipse fill="none" stroke="#000000" cx="414.3091" cy="-18" rx="55.5811" ry="18"/>
+<text text-anchor="middle" x="414.3091" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">cockroach1</text>
+</g>
+<!-- database_source&#45;&gt;cockroach1 -->
+<g id="edge4" class="edge">
+<title>database_source&#45;&gt;cockroach1</title>
+<path fill="none" stroke="#0000ff" d="M603.1611,-75.861C563.2749,-63.6406 505.7346,-46.0112 464.6658,-33.4284"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="465.4489,-30.0078 454.8622,-30.4248 463.3982,-36.7007 465.4489,-30.0078"/>
+</g>
+<!-- weather_source -->
+<g id="node7" class="node">
+<title>weather_source</title>
+<ellipse fill="none" stroke="#000000" cx="939.3091" cy="-90" rx="71.7486" ry="18"/>
+<text text-anchor="middle" x="939.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">weather_source</text>
+</g>
+<!-- weather_source&#45;&gt;message_queue -->
+<g id="edge5" class="edge">
+<title>weather_source&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M939.3091,-71.8314C939.3091,-64.131 939.3091,-54.9743 939.3091,-46.4166"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="942.8092,-46.4132 939.3091,-36.4133 935.8092,-46.4133 942.8092,-46.4132"/>
+</g>
+<!-- weather_processor -->
+<g id="node8" class="node">
+<title>weather_processor</title>
+<ellipse fill="none" stroke="#000000" cx="1440.3091" cy="-90" rx="83.3461" ry="18"/>
+<text text-anchor="middle" x="1440.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">weather_processor</text>
+</g>
+<!-- weather_processor&#45;&gt;message_queue -->
+<g id="edge7" class="edge">
+<title>weather_processor&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M1379.5355,-77.5579C1369.1379,-75.5874 1358.4278,-73.6562 1348.3091,-72 1232.4509,-53.0364 1097.2812,-36.2189 1015.0278,-26.5737"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="1015.3556,-23.0882 1005.0171,-25.4046 1014.5435,-30.041 1015.3556,-23.0882"/>
+</g>
+<!-- hazelcast_payara -->
+<g id="node9" class="node">
+<title>hazelcast_payara</title>
+<ellipse fill="none" stroke="#000000" cx="1347.3091" cy="-18" rx="76.9637" ry="18"/>
+<text text-anchor="middle" x="1347.3091" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">hazelcast_payara</text>
+</g>
+<!-- weather_processor&#45;&gt;hazelcast_payara -->
+<g id="edge6" class="edge">
+<title>weather_processor&#45;&gt;hazelcast_payara</title>
+<path fill="none" stroke="#0000ff" d="M1417.7964,-72.5708C1405.8019,-63.2847 1390.8751,-51.7285 1377.8496,-41.6442"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="1379.6644,-38.6229 1369.6145,-35.2687 1375.3792,-44.158 1379.6644,-38.6229"/>
+</g>
+<!-- location_processor -->
+<g id="node10" class="node">
+<title>location_processor</title>
+<ellipse fill="none" stroke="#000000" cx="1255.3091" cy="-90" rx="83.9489" ry="18"/>
+<text text-anchor="middle" x="1255.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">location_processor</text>
+</g>
+<!-- location_processor&#45;&gt;message_queue -->
+<g id="edge9" class="edge">
+<title>location_processor&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M1197.7173,-76.8778C1142.5507,-64.3082 1059.499,-45.385 1002.5275,-32.4042"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="1003.087,-28.942 992.5593,-30.133 1001.5319,-35.7671 1003.087,-28.942"/>
+</g>
+<!-- location_processor&#45;&gt;hazelcast_payara -->
+<g id="edge8" class="edge">
+<title>location_processor&#45;&gt;hazelcast_payara</title>
+<path fill="none" stroke="#0000ff" d="M1277.5798,-72.5708C1289.4453,-63.2847 1304.2117,-51.7285 1317.097,-41.6442"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="1319.5256,-44.1881 1325.2436,-35.2687 1315.2114,-38.6755 1319.5256,-44.1881"/>
+</g>
+<!-- weather_sink -->
+<g id="node11" class="node">
+<title>weather_sink</title>
+<ellipse fill="none" stroke="#000000" cx="1091.3091" cy="-90" rx="62.5392" ry="18"/>
+<text text-anchor="middle" x="1091.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">weather_sink</text>
+</g>
+<!-- weather_sink&#45;&gt;message_queue -->
+<g id="edge10" class="edge">
+<title>weather_sink&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M1058.7013,-74.5542C1036.3687,-63.9756 1006.5183,-49.8359 982.2523,-38.3415"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="983.4504,-35.0363 972.9147,-33.9184 980.4538,-41.3624 983.4504,-35.0363"/>
+</g>
+<!-- weather_rdbms -->
+<g id="node12" class="node">
+<title>weather_rdbms</title>
+<ellipse fill="none" stroke="#000000" cx="486.3091" cy="-90" rx="70.6258" ry="18"/>
+<text text-anchor="middle" x="486.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">weather_rdbms</text>
+</g>
+<!-- weather_rdbms&#45;&gt;message_queue -->
+<g id="edge11" class="edge">
+<title>weather_rdbms&#45;&gt;message_queue</title>
+<path fill="none" stroke="#0000ff" d="M538.2595,-77.6972C547.5732,-75.667 557.2094,-73.6798 566.3091,-72 669.0916,-53.0265 788.8315,-36.7064 864.3495,-27.1156"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="865.2231,-30.5332 874.7055,-25.8074 864.3457,-23.5884 865.2231,-30.5332"/>
+</g>
+<!-- weather_rdbms&#45;&gt;cockroach1 -->
+<g id="edge12" class="edge">
+<title>weather_rdbms&#45;&gt;cockroach1</title>
+<path fill="none" stroke="#0000ff" d="M468.5114,-72.2022C459.5516,-63.2425 448.5505,-52.2414 438.8059,-42.4968"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="441.1997,-39.9408 431.6537,-35.3446 436.2499,-44.8906 441.1997,-39.9408"/>
+</g>
+<!-- cockroach2 -->
+<g id="node13" class="node">
+<title>cockroach2</title>
+<ellipse fill="none" stroke="#000000" cx="342.3091" cy="-90" rx="55.5811" ry="18"/>
+<text text-anchor="middle" x="342.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">cockroach2</text>
+</g>
+<!-- cockroach2&#45;&gt;cockroach1 -->
+<g id="edge13" class="edge">
+<title>cockroach2&#45;&gt;cockroach1</title>
+<path fill="none" stroke="#0000ff" d="M359.7383,-72.5708C368.7591,-63.55 379.9222,-52.387 389.797,-42.5121"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="392.4442,-44.8147 397.0404,-35.2687 387.4945,-39.8649 392.4442,-44.8147"/>
+</g>
+<!-- cockroach3 -->
+<g id="node14" class="node">
+<title>cockroach3</title>
+<ellipse fill="none" stroke="#000000" cx="213.3091" cy="-90" rx="55.5811" ry="18"/>
+<text text-anchor="middle" x="213.3091" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">cockroach3</text>
+</g>
+<!-- cockroach3&#45;&gt;cockroach1 -->
+<g id="edge14" class="edge">
+<title>cockroach3&#45;&gt;cockroach1</title>
+<path fill="none" stroke="#0000ff" d="M250.6446,-76.6261C283.541,-64.8423 331.6216,-47.6194 367.1639,-34.8879"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="368.5992,-38.0916 376.8331,-31.4243 366.2385,-31.5016 368.5992,-38.0916"/>
+</g>
+</g>
+</svg>
