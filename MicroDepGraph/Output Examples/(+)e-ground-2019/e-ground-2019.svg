@@ -1,0 +1,25 @@
+<svg width="213px" height="155px"
+ viewBox="0.00 0.00 159.86 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform=" rotate(0) translate(4 112)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 155.8624,-112 155.8624,4 -4,4"/>
+<!-- catalog -->
+<g id="node1" class="node">
+<title>catalog</title>
+<ellipse fill="none" stroke="#000000" cx="75.9312" cy="-90" rx="38.842" ry="18"/>
+<text text-anchor="middle" x="75.9312" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">catalog</text>
+</g>
+<!-- catalog_postgres -->
+<g id="node2" class="node">
+<title>catalog_postgres</title>
+<ellipse fill="none" stroke="#000000" cx="75.9312" cy="-18" rx="75.8624" ry="18"/>
+<text text-anchor="middle" x="75.9312" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">catalog_postgres</text>
+</g>
+<!-- catalog&#45;&gt;catalog_postgres -->
+<g id="edge1" class="edge">
+<title>catalog&#45;&gt;catalog_postgres</title>
+<path fill="none" stroke="#0000ff" d="M75.9312,-71.8314C75.9312,-64.131 75.9312,-54.9743 75.9312,-46.4166"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="79.4313,-46.4132 75.9312,-36.4133 72.4313,-46.4133 79.4313,-46.4132"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,16 @@
+digraph {
+mqtt_source->eclipse_mosquitto[color=blue]
+csv_source->message_queue[color=blue]
+database_source->message_queue[color=blue]
+database_source->cockroach1[color=blue]
+weather_source->message_queue[color=blue]
+weather_processor->hazelcast_payara[color=blue]
+weather_processor->message_queue[color=blue]
+location_processor->hazelcast_payara[color=blue]
+location_processor->message_queue[color=blue]
+weather_sink->message_queue[color=blue]
+weather_rdbms->message_queue[color=blue]
+weather_rdbms->cockroach1[color=blue]
+cockroach2->cockroach1[color=blue]
+cockroach3->cockroach1[color=blue]
+}
