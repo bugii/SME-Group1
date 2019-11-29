@@ -105,3 +105,4 @@ venv.bak/
 
 # repositories for analysis
 repositories/
+/Python/Docker/completed.pkl

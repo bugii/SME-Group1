@@ -1,0 +1,6 @@
+digraph {
+author_book_api->zipkin[color=blue]
+author_book_api->mysql[color=blue]
+book_review_api->zipkin[color=blue]
+book_review_api->mongodb[color=blue]
+}
