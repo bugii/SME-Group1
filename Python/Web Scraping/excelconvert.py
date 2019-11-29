@@ -1,45 +1,37 @@
 import pandas as pd
 import re
+from functions import file_to_stringlist
 
-def convert_to_excel(filename):
-    # We open the file and we read it and put in a list
-    file = open(filename,'r')
-    list = file.readlines()
-    file.close()
-    # we take out the spaces(\n) and we divide the list with the (::) patern
-    for elem in range(len(list)):
-        list[elem -1]=re.sub("\n","",list[elem-1])
-        list[elem -1]= list[elem - 1].split("::")
+def convert_to_excel(filename, date_as_int=False):
+    # Converts a given file into an excel sheet. date_as_int converts 2019-11-30 to 20191130 (for easier sorting).
 
-    # We create the dataframe so lately
+    list = file_to_stringlist(filename, "")
+
+    # Creating the dataframe
     df = pd.DataFrame()
 
-    #create six colums
+    # Creating output columns
     list1 =[]
     list2 =[]
     list3 =[]
-    list4 =[]
-    list5 =[]
-    list6 =[]
+    temp_val = ""
 
-    # We introduce the information we want in the respective colums
-    for elem in range(len(list)):
-        list1.append(list[elem-1][0])
-        list2.append(int(list[elem-1][2]))
-
-    for elem in range(len(list1)):
-        list3.append(list1[elem-1].split(":"))
-
-    for elem in range(len(list3)):
-        list4.append(int(list3[elem-1][0]))
-        list5.append(int(list3[elem-1][1]))
-        list6.append(int(list3[elem-1][2]))
+    for idx, val in enumerate(list):
+        temp_val = val.split("::")
+        list1.append(int(temp_val[0])) # Total dependencies
+        if date_as_int:
+            temp_list = temp_val[1].split("-")
+            temp_val2 = temp_list[0] + temp_list[1] + temp_list[2]
+            list2.append(int(temp_val2)) # Release dates
+        else:
+            list2.append(temp_val[1])  # Release dates
+        list3.append(int(temp_val[2])) # Number of bugs
 
     #In this part we declare the colums an then we write in excel
-    df['Total Dependencies']= list4
-    df['Apache']= list5
-    df['Apache Commons']= list6
-    df['Bugs']= list2
+    df['Total Dependencies']= list1
+    df['Release Dates'] = list2
+    df['Bugs']= list3
+
     df.to_excel('result.xlsx', index = False)
 
 
