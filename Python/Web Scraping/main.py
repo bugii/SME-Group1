@@ -10,7 +10,7 @@ import excelconvert
 #functions.clear_main(["f:Dependencies", "f:Logs", "f:Releases", "f:Repositories", "f:Timelines", "ApacheGithubLinks.txt"])
 
 # Here we scan Github for all Apache Source Projects.
-#functions.generate_Apache_link_list(1)
+#functions.generate_Apache_link_list(upper_boundary=1)
 
 # Goes through the txt, clones all projects one by one and writes the dependency time line into "Dependencies"
 #functions.write_dependency_timelines("ApacheGithubLinks.txt", "", MaxNumberOfClones=8)
@@ -32,5 +32,6 @@ import excelconvert
 # dependencies, separated by comma.
 #functions.dependency_interpreter("output_clean.txt", "")
 
-# The output can be converted into an excel sheet for further usage.
-excelconvert.convert_to_excel("output_interpreted.txt")
+# The output can be converted into an excel sheet for further usage. This only works for non-interpreted output
+# (output_clean.txt.)
+excelconvert.convert_to_excel("output_clean.txt", date_as_int=True)

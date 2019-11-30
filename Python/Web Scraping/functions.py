@@ -304,7 +304,7 @@ def get_bugs_period(project,from_date,to_date):
             bugs = re.sub(",.*","",bugs)
     return int(bugs) # if the project can't be found on Jira, it returns -1.
 
-def generate_Apache_link_list(upper_boundary):
+def generate_Apache_link_list(upper_boundary=1):
     # Scans the github Apache repositories (see "url") and copies all project links into a .txt file; also returns
     # them as a list.
     Apache_Project_Links = []
@@ -320,8 +320,8 @@ def generate_Apache_link_list(upper_boundary):
         else:
             output = filter_apache_repositories(output)
             Apache_Project_Links.extend(output)
-            print("Page " + str(i) + " done. Waiting 10 seconds...")
-            time.sleep(10.1)
+            print("Page " + str(i) + " done.")
+            time.sleep(1.1)
             i += 1
     for i in Apache_Project_Links:
         write_to_txt(i, "ApacheGithubLinks.txt")
