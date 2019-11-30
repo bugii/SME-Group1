@@ -2,59 +2,6 @@
 
 ### Part 1: Traditional Ecosystems
 
-#### What is Gradle?
-
-Gradle is an open-source build-automation system that builds upon the concepts of Apache Ant and Apache Maven and introduces a Groovy-based domain-specific language (DSL) instead of the XML form used by Apache Maven for declaring the project configuration.[2] Gradle uses a directed acyclic graph ("DAG") to determine the order in which tasks can be run.
-
-Gradle was designed for multi-project builds, which can grow to be quite large. It supports incremental builds by intelligently determining which parts of the build tree are up to date; any task dependent only on those parts does not need to be re-executed.
-
-Both Maven and Gradle are able to cache dependencies locally and download them in parallel. As a library consumer, Maven allows one to override a dependency, but only by version. Gradle provides customizable dependency selection and substitution rules that can be declared once and handle unwanted dependencies project-wide.
-
-#### What is dependency management?
-
-Software projects rarely work in isolation. Projects relies on reusable functionality in the form of libraries or is divided in individual components to compose a modularized system. DM is a technique for declaring, resolving and using dependencies requiered by the project in an automated way. 
-
-Gradle has build-in support for dependency management. A developer can declare dependecies for different scopes (just for compilation of code or fot executing test). In Gradle, the scope of a dependency is called a configuration.
-
-tipically dependencies come in form of MODULES. You need to tell Gradle where to find the modules so they can be consume by the build. The place we keep the modules is call REPOSITORY. By declaring repositories for a build, Gradle will know how to find and retireve modules. ##Repositories (local directory or remote repository).
-
-#### Dependency resolution 
-
-At runtime, Gradle will locate the declared dependencies if needed for operating a specific task. The dependencies might need to be downloaded from a remote repository, retrieved from a local directory or requires another project to be built in a multi-project setting. 
-
-Once resolved, the resolution mechanism stores the underlying files of a dependency in a local cache --> dependency cache. Future builds will reuse the files stored in the cache to avoid network calls. 
-
-Modules can provide addictional metadata as the coordinates for finding it in a repository, information about the project... A module can define that other modules are needed for it to work properly. --> Transitive dependencies. 
-
-Gradle provide tools to visualize, navigate and analyze the dependency graph of a project either with the help of a build scan or built-in tasks.
-
-#### How dependency resolution works (brief outline of how this work)
-
-1.Given a required dependency, Gradle attempts to resolve the dependency by searching for the module the dependency points at. Each repository is inspected in order. Gradle looks for metadata files describing the module (module, .pom or ivy.xml file) or directly for artifact files. 
-
-  *If the dependency is declared as a dynamic version, Gradle will resolve this to the highest available concrete version in the repository. For Maven repositories, this is done using the maven-metadata.xml file, while for Ivy repositories this is done by directory listing.
-  
-  *If the module metadata is a POM file that has a parent POM declared, Gradle will recusively attempt to resolve each of the parent modules for the POM.
-    
-2. Once each repository has been inspected for the module, Gradle will choose the best one to use by using the following criteria: 
-  *For a dynamic version, a 'higher' concrete version is preferred over a 'lower' version.
-  
-  *Modules declared by a module metadata file (.module, .pom or ivy.xml file) are preferred over modules that have an artifact file only.
-  
-  *Modules from earlier repositories are preferred over modules in later repositories.
-  
-  *When the dependency is declared by a concrete version and a module metadata file is found in a repository, there is no need to continue searching later repositories and the remainder of the process is short-circuited.
-
-3. All of the artifacts for the module are then requested from the same repository that was chosen in the process above.
-
-#### Dependencies in Apache projects
-
-In order to find out whether dependencies destabilize code, we built a tool to analyze Apache projects on Github.
-This tool, a python script, simply scans all Apache source projects for pom.xml (contain the dependencies of Maven projects) or build.gradle (Gradle projects) files.
-It then clones the repositories one by one, checks out all dependency files sequentially and stores the number of dependencies (including their date) in a text file in the Dependencies folder.
-Afterwards, it extracts all release dates and, based on those dates, sends a request to Jira to obtain the number of bugs following that release in a specified time window (i.e. two weeks).
-The raw data (dependencies, release date and bug count) is then written into a text file in the Timelines folder for further use.
-
 ### Part 2: Microservices
 
 #### Introduction to Docker and docker compose files
@@ -76,7 +23,7 @@ Docker compose files contain a lot of valuable information and is the main resou
 
 Note: Before running the script make sure that you have all the dependencies installed. Do:
 
-```python
+```shell script
 pip install -r Python/Docker/requirements.txt
 ```
 
@@ -138,11 +85,13 @@ docker images can be changed by creating the following file:
     "data-root": "/mnt/hdd/docker"
 }
 ```
+Note however, that for the amount of projects we analyzed, 2TB of storage was not enough and thus we had to
+clean up our images after some time in order to be able to continue the analysis.
 
 After that, we ran the analysis with the following command:
 
 ```shell script
-python Python/Docker/analysis.py
+python Python/Docker/get_services_size.py
 ```
 
 This script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information.
@@ -169,11 +118,22 @@ volumes:
 
 To obtain the correct image size, we distinguish the following cases:
 
-1. If the file does not list any services: microservices = 0, size = -1
-2. Only "image" field is present: Pull the image
-3. "build" field is present, either with or without subfields: build the image 
+1. Only "image" field is present: Pull the image
+2. "build" field is present, either with or without subfields: build the image 
    1. Subfields: Build the image at location specified in "context". If "dockerfile" present, append the name to the path, otherwise the default "Dockerfile" is used
    2. No subfields: Build the image located at "build"
+
+During this process, one can encounter many different errors. We found the following reasons for errors that occurred in our dataset:
+1. Private image, cannot download
+2. Error during building
+3. Image cannot be found
+4. Variables inside path names (variables are specified in '{}')
+5. No build or image was specified for a microservice
+6. Could not download image (HTTP Error)
+
+In all of the above cases, a value of -1 was returned from the get_service_size() function.
+Whenever there was a -1 response for at least one microservice in a project, the entire project was not considered for further
+analysis and was deleted. Consequently, we only considered project with none of the above errors.
 
 For building and pulling images [docker-py](https://github.com/docker/docker-py) was used. Both the pull and build functions return
 images which have a size attribute. For each service listed, it was stored inside the pickled project object (inside the microservices list) 
@@ -190,31 +150,26 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
+### Data
+Once both of the above script had been run, for each project there was a pickled python object stored on disk.
+The project object has the following properties:
+
+
+| Field Name | Description | Type |
+|------------|-------------|------|
+| name | github name of the project | string |
+| url | api url to the repository | string |
+| created | date of the creation | datetime |
+| last_updated | date of the last update | datetime |
+| microservices | List of all microservices in the project | list of dictionaries with fields: 'name' and 'size' |
+| depends_on | Number of dependencies of all microservices combined | int |  
+| language | Main language used in the project | string |
+| contributors | Number of contributors to the project | int |
+
 ### Results
 
 Plots and stuff
 
 ### Part 3: Visualization
-
-#### Requirements
-
-Java jdk8 or higher.
-
-#### How to use
-
-1. Get the tool from [MicroDepGraph](https://github.com/clowee/MicroDepGraph) and the jar file [here](https://wetransfer.com/downloads/2f0d080c8e9d09c814416a1f33d2cf6c20191011064223/3bcf007c7411057b72491349f8fa6c1a20191011064223/75c663).
-2. Get the java project developed with a microservice architectural style based on docker configuration to your local drive.
-3. Execute : java -jar microservices.comm.pattern.check-1.0-SNAPSHOT-jar-with-dependencies.jar  <absolute_path_of_the_cloned_repository> <project_name>
-
-#### Output
-
-It gives output in 2 folders:
-
-* in ../neo4jData/<project_name> a neo4j graph database
-* in ../<project_name> a DOT file describing the graph, a graphml file and a svg file.
-
-#### Dataset
-
-There are a list of projects analyzed on the Microservice Dataset repository [view](https://github.com/clowee/MicroserviceDataset)
 
 

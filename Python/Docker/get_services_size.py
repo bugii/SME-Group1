@@ -29,18 +29,18 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
             # subarray
             if 'context' in build and 'dockerfile' in build:
                 docker_file_loc = project_dir_lvl2 + "/" + (build['context'] + "/" + build['dockerfile']).replace('./', '').replace('Dockerfile', '.')
-                #print('building from', docker_file_loc)
+                print('building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
 
             elif 'context' in build:
                 docker_file_loc = project_dir_lvl2 + "/" + build['context'].replace('./', '')
-                #print('building from', docker_file_loc)
+                print('building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
 
             else:
                 # no subarray
                 docker_file_loc = project_dir_lvl2 + "/" + build.replace('./', '')
-                #print('building from', docker_file_loc)
+                print('building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
                 # Get the size of the built image
 
@@ -49,7 +49,7 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
         elif 'image' in details:
             image = details['image']
             docker_img_loc = project_dir_lvl2 + "/" + image
-            #print('pulling from', docker_img_loc)
+            print('pulling from', docker_img_loc)
             if ':' not in image:
                 image += ':latest'
 
@@ -69,7 +69,7 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
             docker_img_size = docker_img.attrs['Size']
 
         # remove all images after each step, because 2TB storage was not enough sadly
-        subprocess.run('docker system prune -a -f', shell=True)
+        # subprocess.run('docker system prune -a -f', shell=True)
         return docker_img_size
 
     except (docker.errors.ImageNotFound, docker.errors.BuildError, docker.errors.NotFound,
@@ -153,6 +153,7 @@ if __name__ == '__main__':
         save_obj(completed_projects, 'completed.pkl')
 
     completed_projects = load_obj('completed.pkl')
+    completed_count = 0
 
     for d in dirs:
         print('------------------------------------------------------------------')
@@ -162,7 +163,8 @@ if __name__ == '__main__':
             completed_projects.append(d)
             save_obj(completed_projects, 'completed.pkl')
         else:
-            print('Already done:', d)
+            completed_count += 1
+            print('#{} '.format(completed_count) + 'Already done:', d)
             obj = load_obj('repositories/' + d + '/project.pkl')
             print('Details:')
             print('Created:', obj.created)
