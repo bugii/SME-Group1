@@ -1,0 +1,1227 @@
+commit cb0d142c3e4ed39cb85b4beafeb9a7473f9d903f
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Fri Nov 29 14:35:42 2019 +0100
+
+    Ensure "double" arithmetics.
+    
+    Reported by "sonarcloud.io".
+
+ .../commons/statistics/distribution/BinomialDistribution.java      | 2 +-
+ .../commons/statistics/distribution/SaddlePointExpansionUtils.java | 7 ++++---
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+commit a080bae780308db1cf3c878c703213b65134b485
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Fri Nov 22 17:26:33 2019 +0100
+
+    Outside domain, use values consistent with other distributions (see "GammaDistribution").
+    
+    Reported as MATH-1503.
+
+ .../apache/commons/statistics/distribution/LevyDistribution.java    | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 96e8b8d3989443c2535b87b9304045a8d88b36b4
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Fri Nov 22 17:25:48 2019 +0100
+
+    Exclusions from RAT check.
+
+ pom.xml | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
+
+commit f685029b9c6eb33f090e084e4ed96faa11cd0b93
+Author: Alex Herbert <aherbert@apache.org>
+Date:   Wed Oct 2 23:32:50 2019 +0100
+
+    ChiSquaredDistribution: Use the gamma distribution to create a sampler.
+
+ .../distribution/ChiSquaredDistribution.java       | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+commit 97d23965e8c8770b2b52263b3576681ece4c43a0
+Author: aherbert <aherbert@apache.org>
+Date:   Wed Sep 11 17:10:26 2019 +0100
+
+    LogisticsDistribution: Fix the variance computation
+
+ .../commons/statistics/distribution/LogisticDistribution.java  |  2 +-
+ .../statistics/distribution/LogisticsDistributionTest.java     | 10 ++++++++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+
+commit 7977dfeabc46275afbf99d6dfd24723d095e35ab
+Author: Gary Gregory <gardgregory@gmail.com>
+Date:   Sun Jul 21 16:55:35 2019 -0400
+
+    Fix the site's source repository link.
+
+ src/site/xdoc/mail-lists.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5624849c776b4b6886f6e5284ad04408cd97b9e6
+Merge: b87e149 ca0b9ce
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Mon Jul 15 15:25:24 2019 +0200
+
+    Merge branch 'master' of https://gitbox.apache.org/repos/asf/commons-statistics
+
+commit b87e1491eca7008f935989e9081676d7cb37a1b9
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Mon Jul 15 15:23:43 2019 +0200
+
+    Remove outdated JVM.
+    
+    Spurious build failures on "Travis":
+      https://markmail.org/message/j26tn2bg4j5i6peu
+
+ .travis.yml | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit ca0b9ce156db5c739780ce96d4098026c3998d9b
+Author: Gary Gregory <gardgregory@gmail.com>
+Date:   Tue Jul 9 10:43:45 2019 -0400
+
+    Use HTTPS to access Apache resources.
+
+ src/site/xdoc/mail-lists.xml | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit aaa0aba6ac18298d45eed0e3a09c4b33fc3c918e
+Author: Gary Gregory <gardgregory@gmail.com>
+Date:   Sat Jul 6 20:53:27 2019 -0400
+
+    Use HTTPS to access Apache resources.
+
+ .../org/apache/commons/statistics/distribution/TDistributionTest.java   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fae92490b0bb1ddfa07a209746375d07f12f22f7
+Author: Gary Gregory <gardgregory@gmail.com>
+Date:   Sat Jul 6 20:52:08 2019 -0400
+
+    Use HTTPS to access Apache resources.
+
+ .../org/apache/commons/statistics/distribution/TDistributionTest.java   | 2 +-
+ pom.xml                                                                 | 2 +-
+ src/site/xdoc/developers.xml                                            | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 799d8c44c363d1f3d25c716b1faa88cb5d432fe1
+Author: Gary Gregory <gardgregory@gmail.com>
+Date:   Thu Jul 4 11:28:32 2019 -0400
+
+    Use HTTPS links to commons.apache.org.
+
+ pom.xml                              | 2 +-
+ src/site/resources/style/project.css | 2 +-
+ src/site/site.xml                    | 2 +-
+ src/site/xdoc/developers.xml         | 2 +-
+ src/site/xdoc/index.xml              | 2 +-
+ src/site/xdoc/mail-lists.xml         | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+commit 8dbd4933339a80bcdd13d6aba09dd267f0ff6a55
+Author: Alex Herbert <aherbert@apache.org>
+Date:   Fri Jun 14 21:36:41 2019 +0100
+
+    STATISTICS-19: Remove JUnit 4 dependencies.
+
+ pom.xml | 10 ----------
+ 1 file changed, 10 deletions(-)
+
+commit 60241f5b155b726801faff96e93ccb64e1cee34f
+Author: Alex Herbert <aherbert@apache.org>
+Date:   Fri Jun 14 21:32:49 2019 +0100
+
+    STATISTICS-19: Replace Assert with Assertions.
+    
+    Update String.format messages to lambdas.
+
+ .../AbstractContinuousDistributionTest.java        |  6 +--
+ .../AbstractDiscreteDistributionTest.java          | 38 ++++++++---------
+ .../distribution/BetaDistributionTest.java         | 33 +++++++--------
+ .../distribution/BinomialDistributionTest.java     | 24 +++++------
+ .../distribution/CauchyDistributionTest.java       | 13 +++---
+ .../distribution/ChiSquaredDistributionTest.java   | 14 +++----
+ .../ConstantContinuousDistributionTest.java        | 10 ++---
+ .../ContinuousDistributionAbstractTest.java        |  5 +--
+ .../DiscreteDistributionAbstractTest.java          | 49 ++++++++++++----------
+ .../distribution/ExponentialDistributionTest.java  | 29 +++++++------
+ .../statistics/distribution/FDistributionTest.java | 27 ++++++------
+ .../distribution/GammaDistributionTest.java        | 47 ++++++++++-----------
+ .../distribution/GeometricDistributionTest.java    | 10 ++---
+ .../distribution/GumbelDistributionTest.java       | 12 +++---
+ .../HypergeometricDistributionTest.java            | 41 +++++++++---------
+ .../distribution/LaplaceDistributionTest.java      | 12 +++---
+ .../distribution/LevyDistributionTest.java         | 12 +++---
+ .../distribution/LogNormalDistributionTest.java    | 33 +++++++--------
+ .../distribution/LogisticsDistributionTest.java    | 12 +++---
+ .../distribution/NakagamiDistributionTest.java     | 12 +++---
+ .../distribution/NormalDistributionTest.java       | 45 ++++++++++----------
+ .../distribution/ParetoDistributionTest.java       | 27 ++++++------
+ .../distribution/PascalDistributionTest.java       | 10 ++---
+ .../distribution/PoissonDistributionTest.java      | 43 +++++++++----------
+ .../statistics/distribution/TDistributionTest.java | 19 ++++-----
+ .../commons/statistics/distribution/TestUtils.java | 25 ++++++-----
+ .../distribution/TriangularDistributionTest.java   | 17 ++++----
+ .../UniformContinuousDistributionTest.java         | 19 ++++-----
+ .../UniformDiscreteDistributionTest.java           | 21 +++++-----
+ .../distribution/WeibullDistributionTest.java      | 15 ++++---
+ .../distribution/ZipfDistributionTest.java         |  5 +--
+ 31 files changed, 333 insertions(+), 352 deletions(-)
+
+commit 9835abf09e8ccd61d40c130ced9c1b19bcacf68b
+Author: Alex Herbert <aherbert@apache.org>
+Date:   Fri Jun 14 20:56:19 2019 +0100
+
+    STATISTICS-19: Update annotations to JUnit 5.
+    
+    Child test classes cannot override @BeforeEach methods in the parent
+    class and must have their own to set the tolerance.
+
+ .../AbstractContinuousDistributionTest.java        |  2 +-
+ .../AbstractDiscreteDistributionTest.java          |  2 +-
+ .../distribution/BetaDistributionTest.java         |  2 +-
+ .../distribution/BinomialDistributionTest.java     | 11 ++++----
+ .../distribution/CauchyDistributionTest.java       | 18 ++++++------
+ .../distribution/ChiSquaredDistributionTest.java   |  9 +++---
+ .../ConstantContinuousDistributionTest.java        | 10 +++----
+ .../ContinuousDistributionAbstractTest.java        | 28 +++++++++++--------
+ .../DiscreteDistributionAbstractTest.java          | 23 ++++++++--------
+ .../distribution/ExponentialDistributionTest.java  | 14 ++++++----
+ .../statistics/distribution/FDistributionTest.java | 18 ++++++------
+ .../distribution/GammaDistributionTest.java        | 18 ++++++------
+ .../distribution/GeometricDistributionTest.java    | 11 ++++----
+ .../distribution/GumbelDistributionTest.java       |  2 +-
+ .../HypergeometricDistributionTest.java            | 32 ++++++++++++----------
+ .../distribution/LaplaceDistributionTest.java      |  2 +-
+ .../distribution/LevyDistributionTest.java         |  2 +-
+ .../distribution/LogNormalDistributionTest.java    | 14 ++++++----
+ .../distribution/LogisticsDistributionTest.java    |  2 +-
+ .../distribution/NakagamiDistributionTest.java     |  2 +-
+ .../distribution/NormalDistributionTest.java       | 14 ++++++----
+ .../distribution/ParetoDistributionTest.java       | 14 ++++++----
+ .../distribution/PascalDistributionTest.java       |  8 +++---
+ .../distribution/PoissonDistributionTest.java      | 16 ++++++-----
+ .../statistics/distribution/TDistributionTest.java | 14 ++++++----
+ .../distribution/TriangularDistributionTest.java   | 27 +++++++++---------
+ .../UniformContinuousDistributionTest.java         | 19 +++++++------
+ .../UniformDiscreteDistributionTest.java           | 15 +++++-----
+ .../distribution/WeibullDistributionTest.java      | 11 ++++----
+ .../distribution/ZipfDistributionTest.java         | 20 ++++++++------
+ 30 files changed, 207 insertions(+), 173 deletions(-)
+
+commit fb0149b5679b1b77e757d0247957443cf760baeb
+Author: Alex Herbert <aherbert@apache.org>
+Date:   Fri Jun 14 20:02:55 2019 +0100
+
+    STATISTICS-19: Add JUnit Bill-of-Materials (BOM)
+
+ pom.xml | 23 ++++++++++++++++++++---
+ 1 file changed, 20 insertions(+), 3 deletions(-)
+
+commit dce8454a29b6fcee7232286518f5c1564eb90929
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sun Jun 9 09:59:20 2019 +0200
+
+    "BrentSolver" is moved to "Commons Numbers".
+    
+    Cf. JIRA: NUMBERS-112.
+
+ commons-statistics-distribution/pom.xml            |   5 +
+ .../AbstractContinuousDistribution.java            | 215 +--------------------
+ .../distribution/DistributionException.java        |   2 -
+ pom.xml                                            |   5 +
+ 4 files changed, 15 insertions(+), 212 deletions(-)
+
+commit 8a2d4d82879b75d269568bbbd06bd8ce261df84d
+Merge: 8e8de51 c92d17d
+Author: Alex Herbert <a.herbert@sussex.ac.uk>
+Date:   Fri May 24 23:07:53 2019 +0100
+
+    Merge pull request #15 from aherbert/eol-normalisation
+    
+    Introduce end-of-line normalization
+
+commit c92d17dcb5210864a705fcd3b635eaabdcfa1a23
+Author: aherbert <aherbert@apache.org>
+Date:   Fri May 24 17:19:51 2019 +0100
+
+    Introduce end-of-line normalization
+
+ .gitattributes                        |   1 +
+ src/site/xdoc/download_statistics.xml | 146 ++++++------
+ src/site/xdoc/issue-tracking.xml      | 204 ++++++++---------
+ src/site/xdoc/mail-lists.xml          | 410 +++++++++++++++++-----------------
+ 4 files changed, 381 insertions(+), 380 deletions(-)
+
+commit 8e8de51a343e95a61e455285991ae9163f246b6b
+Merge: 477f2ed 7594fcd
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Thu May 23 12:43:17 2019 -0400
+
+    Merge pull request #13 from aherbert/update-pmd
+    
+    Update PMD since the current rules are deprecated.
+
+commit 7594fcd6d2cd8a2bde4d629401f88f1720af0ba3
+Author: aherbert <aherbert@apache.org>
+Date:   Thu May 23 13:55:59 2019 +0100
+
+    Renamed SaddlePointExpansion to SaddlePointExpansionUtils.
+
+ .../commons/statistics/distribution/BinomialDistribution.java     | 2 +-
+ .../statistics/distribution/HypergeometricDistribution.java       | 6 +++---
+ .../commons/statistics/distribution/PoissonDistribution.java      | 4 ++--
+ .../{SaddlePointExpansion.java => SaddlePointExpansionUtils.java} | 4 ++--
+ src/main/resources/pmd/pmd-ruleset.xml                            | 8 --------
+ src/main/resources/spotbugs/spotbugs-exclude-filter.xml           | 2 +-
+ 6 files changed, 9 insertions(+), 17 deletions(-)
+
+commit fe76229827e08557d04d4fe379fedd4afc13ceea
+Author: aherbert <aherbert@apache.org>
+Date:   Thu May 23 12:22:12 2019 +0100
+
+    Update PMD since the current rules are deprecated.
+    
+    Fix code to:
+    - Use final local variables
+    - Return sampler method references directly
+    - Removed use of /* default */ for package-private
+    - Avoid reassigning parameters
+    - Avoid literals in conditional statements
+    - Compact code to avoid long methods (>100 lines)
+
+ .../AbstractContinuousDistribution.java            | 46 +++++------
+ .../distribution/AbstractDiscreteDistribution.java | 21 +++--
+ .../statistics/distribution/BetaDistribution.java  |  8 +-
+ .../distribution/DistributionException.java        | 14 ++--
+ .../distribution/ExponentialDistribution.java      |  4 +-
+ .../statistics/distribution/FDistribution.java     | 13 ++-
+ .../statistics/distribution/GammaDistribution.java |  5 +-
+ .../distribution/HypergeometricDistribution.java   | 23 +++---
+ .../distribution/LaplaceDistribution.java          |  5 +-
+ .../distribution/LogNormalDistribution.java        |  7 +-
+ .../distribution/NakagamiDistribution.java         |  9 +-
+ .../distribution/NormalDistribution.java           |  7 +-
+ .../distribution/ParetoDistribution.java           | 11 +--
+ .../distribution/PoissonDistribution.java          |  4 +-
+ .../distribution/SaddlePointExpansion.java         | 26 +++---
+ .../distribution/TriangularDistribution.java       | 16 ++--
+ .../UniformContinuousDistribution.java             |  6 +-
+ .../distribution/UniformDiscreteDistribution.java  |  6 +-
+ .../distribution/WeibullDistribution.java          |  2 +-
+ .../statistics/distribution/ZipfDistribution.java  |  5 +-
+ pom.xml                                            | 16 +++-
+ src/main/resources/pmd/pmd-ruleset.xml             | 96 +++++++++++++++++-----
+ 22 files changed, 205 insertions(+), 145 deletions(-)
+
+commit 477f2edba8f2b5f73d2f609ed571221908dbe006
+Author: Alex Herbert <aherbert@apache.org>
+Date:   Wed May 22 21:32:47 2019 +0100
+
+    Removed jacoco version 0.8.0. Parent 48 has 0.8.3 and supports JDK 11.
+
+ pom.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit a911c0e5a73e199fad00f5145adbe1e16f53a10c
+Merge: cbdb5d4 535db16
+Author: Alex Herbert <a.herbert@sussex.ac.uk>
+Date:   Wed May 22 21:29:40 2019 +0100
+
+    Merge pull request #10 from aherbert/update-checkstyle
+    
+    Updated checkstyle to enforce coding style.
+
+commit 535db16b12b587e55c2a72bcff27dc26c6940f92
+Author: aherbert <aherbert@apache.org>
+Date:   Tue May 21 12:34:44 2019 +0100
+
+    Updated checkstyle to enforce coding style.
+    
+    Use Checkstyle Sun checks as a template configuration.
+    Update the checks to match the coding style.
+    
+    Added additional checks from the old checkstyle config.
+    
+    Fixed all source and test source.
+
+ .../AbstractContinuousDistribution.java            |   2 +-
+ .../distribution/AbstractDiscreteDistribution.java |   8 +-
+ .../distribution/GeometricDistribution.java        |   2 +-
+ .../distribution/HypergeometricDistribution.java   |   2 +-
+ .../statistics/distribution/LevyDistribution.java  |   2 +-
+ .../distribution/LogNormalDistribution.java        |   4 +-
+ .../distribution/NormalDistribution.java           |   2 +-
+ .../distribution/SaddlePointExpansion.java         |  65 +++---
+ .../statistics/distribution/TDistribution.java     |   2 +-
+ .../distribution/UniformDiscreteDistribution.java  |   2 +-
+ .../AbstractDiscreteDistributionTest.java          |  31 ++-
+ .../distribution/BinomialDistributionTest.java     |  54 ++---
+ .../distribution/CauchyDistributionTest.java       |   4 +-
+ .../ConstantContinuousDistributionTest.java        |   2 +-
+ .../ContinuousDistributionAbstractTest.java        |  19 +-
+ .../DiscreteDistributionAbstractTest.java          |  16 +-
+ .../distribution/ExponentialDistributionTest.java  |  10 +-
+ .../statistics/distribution/FDistributionTest.java |   4 +-
+ .../distribution/GammaDistributionTest.java        |   8 +-
+ .../distribution/GeometricDistributionTest.java    |   8 +-
+ .../HypergeometricDistributionTest.java            |  39 ++--
+ .../distribution/LogNormalDistributionTest.java    |  49 +++--
+ .../distribution/NormalDistributionTest.java       |  26 +--
+ .../distribution/ParetoDistributionTest.java       |  27 ++-
+ .../distribution/PascalDistributionTest.java       |  37 ++--
+ .../distribution/PoissonDistributionTest.java      |  40 ++--
+ .../statistics/distribution/TDistributionTest.java |  30 +--
+ .../commons/statistics/distribution/TestUtils.java |  16 +-
+ .../distribution/TriangularDistributionTest.java   |  44 ++--
+ .../UniformContinuousDistributionTest.java         |  12 +-
+ .../UniformDiscreteDistributionTest.java           |   2 +-
+ .../distribution/WeibullDistributionTest.java      |   4 +-
+ .../distribution/ZipfDistributionTest.java         |  17 +-
+ pom.xml                                            |   2 +-
+ .../checkstyle/checkstyle-suppressions.xml         |   7 +
+ src/main/resources/checkstyle/checkstyle.xml       | 230 ++++++++++++++-------
+ 36 files changed, 467 insertions(+), 362 deletions(-)
+
+commit cbdb5d449480611972046e2341d177117f981217
+Merge: c5f40f3 aa7b93a
+Author: Alex Herbert <a.herbert@sussex.ac.uk>
+Date:   Wed May 22 16:40:07 2019 +0100
+
+    Merge pull request #9 from aherbert/method-refs-for-samplers
+    
+    Updated the createSampler methods to use method references.
+
+commit c5f40f30b17c610358d33af0274b47b182b96ee1
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 14:35:08 2019 +0100
+
+    Swap expected and observed arguments for Assert.
+
+ .../distribution/BetaDistributionTest.java         |  8 ++++----
+ .../distribution/BinomialDistributionTest.java     |  8 ++++----
+ .../distribution/ChiSquaredDistributionTest.java   |  8 ++++----
+ .../ConstantContinuousDistributionTest.java        |  4 ++--
+ .../distribution/ExponentialDistributionTest.java  |  8 ++++----
+ .../statistics/distribution/FDistributionTest.java |  6 +++---
+ .../distribution/GammaDistributionTest.java        |  8 ++++----
+ .../distribution/GeometricDistributionTest.java    |  8 ++++----
+ .../HypergeometricDistributionTest.java            | 20 ++++++++++----------
+ .../distribution/LogNormalDistributionTest.java    | 22 ++++++++++------------
+ .../distribution/NormalDistributionTest.java       | 20 ++++++++++----------
+ .../distribution/ParetoDistributionTest.java       | 16 ++++++++--------
+ .../distribution/PascalDistributionTest.java       |  8 ++++----
+ .../distribution/PoissonDistributionTest.java      |  8 ++++----
+ .../statistics/distribution/TDistributionTest.java |  6 +++---
+ .../distribution/TriangularDistributionTest.java   | 12 ++++++------
+ .../UniformContinuousDistributionTest.java         | 12 ++++++------
+ .../UniformDiscreteDistributionTest.java           |  8 ++++----
+ .../distribution/WeibullDistributionTest.java      | 14 +++++++-------
+ .../distribution/ZipfDistributionTest.java         |  9 ++++-----
+ 20 files changed, 105 insertions(+), 108 deletions(-)
+
+commit d2e17c371277747692e4a7d727f388ae398f8e24
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 14:18:35 2019 +0100
+
+    Updated checkstyle configuration to include the suppression filter.
+    
+    This is required to enable the Checkstyle plugin within eclipse.
+
+ src/main/resources/checkstyle/checkstyle-suppressions.xml | 4 ++--
+ src/main/resources/checkstyle/checkstyle.xml              | 6 ++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+commit 1095ca1c193e55d4dbb68b0db2550977ea18ac80
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 13:00:14 2019 +0100
+
+    Removed antrun plugin version.
+    
+    Version 1.8 is the same as the parent.
+
+ pom.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 61c9a368e66095eb7c30a3b67748b8d67bb59302
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 12:58:52 2019 +0100
+
+    Upgrade checkstyle version.
+    
+    Fix Java 8 checkstyle violation.
+
+ .../AbstractContinuousDistribution.java            |  2 +-
+ pom.xml                                            | 15 +++++-
+ src/main/resources/checkstyle/checkstyle.xml       | 63 +++++-----------------
+ 3 files changed, 27 insertions(+), 53 deletions(-)
+
+commit 33af4f6e3d612c940d37790068a228d5564ab7eb
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 12:47:25 2019 +0100
+
+    Fixed checkstyle for test sources
+
+ .../AbstractContinuousDistributionTest.java        |  5 ++--
+ .../AbstractDiscreteDistributionTest.java          |  2 +-
+ .../distribution/BetaDistributionTest.java         | 16 ++++++------
+ .../distribution/BinomialDistributionTest.java     | 23 +++++++++--------
+ .../ContinuousDistributionAbstractTest.java        | 30 +++++++++++-----------
+ .../DiscreteDistributionAbstractTest.java          | 18 ++++++-------
+ .../statistics/distribution/FDistributionTest.java |  2 +-
+ .../distribution/GammaDistributionTest.java        |  9 +++----
+ .../distribution/GeometricDistributionTest.java    | 23 +++++++++--------
+ .../distribution/NormalDistributionTest.java       | 13 +++++-----
+ .../distribution/PoissonDistributionTest.java      | 12 ++++-----
+ .../commons/statistics/distribution/TestUtils.java |  2 +-
+ .../distribution/ZipfDistributionTest.java         |  1 -
+ 13 files changed, 80 insertions(+), 76 deletions(-)
+
+commit 8cd79abd662663a1bef090f8c79c587273fceb84
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 12:47:05 2019 +0100
+
+    Consolidate checkstyle config for build.
+    
+    Enable fail on violation and checks for test sources.
+    
+    Add checkstyle suppressions file to exclude tests.
+
+ pom.xml                                            | 25 ++++++----------------
+ .../checkstyle/checkstyle-suppressions.xml         | 24 +++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 19 deletions(-)
+
+commit 2eb544c38623b937613256610652be15ab1d7c26
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 12:08:17 2019 +0100
+
+    Comment deliberately default methods and fields.
+
+ .../distribution/AbstractContinuousDistribution.java         |  8 ++++----
+ .../statistics/distribution/DistributionException.java       | 12 ++++++------
+ .../statistics/distribution/SaddlePointExpansion.java        |  8 ++++----
+ 3 files changed, 14 insertions(+), 14 deletions(-)
+
+commit f929f96fe0399c08e7a545cfe9bea2ceb0fab69f
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 11:58:45 2019 +0100
+
+    Added pmd plugin configuration to build.
+
+ pom.xml | 58 ++++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 38 insertions(+), 20 deletions(-)
+
+commit d45bbb2d0d17b20fc0a7e086e39c673c273e8bb3
+Author: aherbert <aherbert@apache.org>
+Date:   Mon May 20 11:32:21 2019 +0100
+
+    Update findbugs to spotbugs.
+    
+    Update spotbugs exclude filter to allow intentional float-point equality
+    tests.
+
+ pom.xml                                            | 23 +++++++++++-------
+ .../spotbugs-exclude-filter.xml}                   | 28 ++++++++++++++++++----
+ 2 files changed, 38 insertions(+), 13 deletions(-)
+
+commit 016c29ae543bda7509e1c22d5b8767bb61e08534
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 22:35:14 2019 -0400
+
+    commons-parent: 47 -> 48
+
+ commons-statistics-distribution/pom.xml | 16 ++++++++++++++++
+ pom.xml                                 |  2 +-
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+commit be238b93961fd5ce177a07704a6076620c99d6c7
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 22:20:12 2019 -0400
+
+    should we leave the travis build broken as incentive to clean things up?
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fb18083635ad7b2d0b4f836115372f0e024eb087
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 22:10:39 2019 -0400
+
+    (travis) remove jdk11 for coveralls report
+
+ .travis.yml | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 93a1125166d6e4975ffd7bec7514a82cb8f3e5e7
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 22:06:13 2019 -0400
+
+    (pom) get a clean build to coveralls
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 78e0970bbfe6f6f040d008158ee451cad1b9fab7
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 21:59:58 2019 -0400
+
+    (refactor) move validation targets into pom
+
+ .travis.yml | 8 +++++++-
+ pom.xml     | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+commit f4c50d88e120f35aca6b32572eaf9c6cc9b1ca9a
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 21:53:04 2019 -0400
+
+    (docs) nudge to get coveralls working??
+
+ README.md | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 848f428c4c9882afed41d660cf0e2e498fab0f37
+Author: Rob Tompkins <chtompki@gmail.com>
+Date:   Sat May 18 21:43:49 2019 -0400
+
+    (docs) nudge for travis build on master
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit aa7b93a0eff339c59f9b674cdcbb4b0e405cb445
+Author: aherbert <a.herbert@sussex.ac.uk>
+Date:   Fri May 17 18:00:33 2019 +0100
+
+    Updated the createSampler methods to use method references.
+
+ .../AbstractContinuousDistribution.java            | 31 +++-------------------
+ .../distribution/AbstractDiscreteDistribution.java | 31 +++-------------------
+ .../statistics/distribution/BetaDistribution.java  | 16 +++--------
+ .../ConstantContinuousDistribution.java            |  8 +-----
+ .../distribution/ExponentialDistribution.java      | 16 +++--------
+ .../statistics/distribution/GammaDistribution.java | 17 +++---------
+ .../distribution/LogNormalDistribution.java        | 17 +++---------
+ .../distribution/NormalDistribution.java           | 17 ++++--------
+ .../distribution/ParetoDistribution.java           | 16 +++--------
+ .../distribution/PoissonDistribution.java          | 15 +++--------
+ .../UniformContinuousDistribution.java             | 16 +++--------
+ .../distribution/UniformDiscreteDistribution.java  | 16 +++--------
+ .../statistics/distribution/ZipfDistribution.java  | 17 +++---------
+ 13 files changed, 44 insertions(+), 189 deletions(-)
+
+commit cd43074c95ac342aa9cc538625f4ae63f194844d
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sat May 18 00:06:46 2019 +0200
+
+    Travis.
+
+ .travis.yml | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+commit 5db052f143707a3487d5553ba233183e2349e04e
+Author: Gary Gregory <gardgregory@gmail.com>
+Date:   Thu May 16 14:12:31 2019 -0400
+
+    Update NOTICE file for 2019.
+
+ commons-statistics-distribution/NOTICE.txt | 2 +-
+ commons-statistics-regression/NOTICE.txt   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 93fe04a80ebf8d90f0235d9b04ba8f08934ac7d8
+Author: BBenNguyenn <41877700+BBenNguyenn@users.noreply.github.com>
+Date:   Wed May 8 13:48:58 2019 -0500
+
+    Initiated Regression Module (#5)
+    
+    * Initiated regression library
+
+ commons-statistics-distribution/README.md          |   2 +-
+ commons-statistics-regression/CONTRIBUTING.md      | 115 +++++++++
+ commons-statistics-regression/LICENSE.txt          | 275 +++++++++++++++++++++
+ commons-statistics-regression/NOTICE.txt           |   5 +
+ commons-statistics-regression/README.md            | 105 ++++++++
+ commons-statistics-regression/pom.xml              |  86 +++++++
+ .../src/site/resources/profile.jacoco              |  17 ++
+ pom.xml                                            |   6 +-
+ 8 files changed, 609 insertions(+), 2 deletions(-)
+
+commit 23a60849d2830a2a45db45f7b6acd422410be2f8
+Author: aherbert <a.herbert@sussex.ac.uk>
+Date:   Fri Feb 15 11:10:36 2019 +0000
+
+    Fixed MathJax Javadoc support for maven-javadoc-plugin version 3.
+
+ pom.xml | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+commit 10f20e7c38be70332c801dbee888e094c1986550
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Tue Jan 1 03:05:54 2019 +0100
+
+    Upgrade dependency.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8982bf7891ea4d47e4941edbe00d25e2a924b053
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Tue Dec 11 02:44:00 2018 +0100
+
+    INFRA-17380: Repository moved to "gitbox".
+
+ pom.xml                      | 15 +++++++++------
+ src/site/site.xml            |  2 +-
+ src/site/xdoc/developers.xml |  6 +++---
+ 3 files changed, 13 insertions(+), 10 deletions(-)
+
+commit aa5cbad11346df9e3feb789c5e3e85df29c1e3cc
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Tue May 15 13:06:19 2018 -0600
+
+    Typo: 'JavaDoc' -> 'Javadoc'.
+
+ README.md                                 | 210 +++++++++++++++---------------
+ commons-statistics-distribution/README.md | 210 +++++++++++++++---------------
+ 2 files changed, 210 insertions(+), 210 deletions(-)
+
+commit 12df0cf3dd6d06f8c385b95f96c1848582d5595c
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sat Jan 27 17:20:31 2018 +0100
+
+    Unnecessary assignments.
+
+ .../commons/statistics/distribution/TDistribution.java      | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+commit b34e783874339ac1a043f040584d52d54858feaf
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sat Jan 27 17:15:53 2018 +0100
+
+    Use "log1p(x)" instead of "log(1 + x)".
+
+ .../java/org/apache/commons/statistics/distribution/TDistribution.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9cadb96cbb82c37187b6b4833c73cc0340c08454
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sat Jan 27 14:55:07 2018 +0100
+
+    Cache value of mean and variance.
+
+ .../statistics/distribution/TDistribution.java     | 43 +++++++++-------------
+ 1 file changed, 18 insertions(+), 25 deletions(-)
+
+commit 33d1552f0140d207ba5ce5eab3eb7ec9b743ef28
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sat Jan 27 14:40:25 2018 +0100
+
+    Unnecessary method calls.
+
+ .../commons/statistics/distribution/TDistribution.java      | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
+
+commit 3eb53ba1748e680cdb94f515347ab3b762a59866
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 16:06:37 2018 +0100
+
+    Default method.
+
+ .../AbstractContinuousDistribution.java            | 23 ----------------------
+ .../distribution/ContinuousDistribution.java       | 10 +++++++++-
+ 2 files changed, 9 insertions(+), 24 deletions(-)
+
+commit a27fba7273bc6eee502b61a0ce639988fc715c09
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 15:40:34 2018 +0100
+
+    Default method.
+
+ .../statistics/distribution/AbstractDiscreteDistribution.java  | 10 ----------
+ .../commons/statistics/distribution/DiscreteDistribution.java  |  4 +++-
+ 2 files changed, 3 insertions(+), 11 deletions(-)
+
+commit 02146b04ae201d955bf29a68f1cea59bbf7e14c3
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 15:39:49 2018 +0100
+
+    Default methods.
+
+ .../distribution/AbstractContinuousDistribution.java | 20 --------------------
+ .../distribution/ContinuousDistribution.java         |  8 ++++++--
+ 2 files changed, 6 insertions(+), 22 deletions(-)
+
+commit 3a44cfd80b6afc4b1e15ede3785504777708d1b0
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 14:26:02 2018 +0100
+
+    Removed default constructors.
+    
+    Arguments naming and ordering differ among references; hence, the default
+    constructor is ambiguous.
+
+ .../commons/statistics/distribution/CauchyDistribution.java   |  8 --------
+ .../statistics/distribution/LogNormalDistribution.java        | 11 -----------
+ .../commons/statistics/distribution/NormalDistribution.java   |  8 --------
+ .../commons/statistics/distribution/ParetoDistribution.java   |  7 -------
+ .../distribution/UniformContinuousDistribution.java           |  8 --------
+ 5 files changed, 42 deletions(-)
+
+commit c6640dec400bbacef51493f37099c241de9b7e6e
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 14:17:39 2018 +0100
+
+    Hide undocumented parameters (and probably rarely used API).
+
+ .../distribution/PoissonDistribution.java          | 32 ++--------------------
+ 1 file changed, 3 insertions(+), 29 deletions(-)
+
+commit 9abbfc6d598561bdb84e8b276242a29f232254db
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 14:09:58 2018 +0100
+
+    Hide implementation details.
+
+ .../commons/statistics/distribution/AbstractContinuousDistribution.java | 2 +-
+ .../commons/statistics/distribution/AbstractDiscreteDistribution.java   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit e7e5dea8cea40c4ba36303ba4db781a0ba9b6798
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 14:09:37 2018 +0100
+
+    Javadoc.
+
+ .../org/apache/commons/statistics/distribution/PoissonDistribution.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 764dfb856e69a4fae2a5fcad48e67b7f15e665ce
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 12:24:34 2018 +0100
+
+    Changed ambiguous method names.
+    
+     getNumericalMean -> getMean
+     getNumericalVariance -> getVariance
+
+ .../AbstractContinuousDistribution.java            |  4 ++--
+ .../distribution/AbstractDiscreteDistribution.java |  4 ++--
+ .../statistics/distribution/BetaDistribution.java  |  4 ++--
+ .../distribution/BinomialDistribution.java         |  4 ++--
+ .../distribution/CauchyDistribution.java           |  4 ++--
+ .../distribution/ChiSquaredDistribution.java       |  4 ++--
+ .../ConstantContinuousDistribution.java            |  4 ++--
+ .../distribution/ContinuousDistribution.java       |  4 ++--
+ .../distribution/DiscreteDistribution.java         |  4 ++--
+ .../distribution/ExponentialDistribution.java      | 24 +++++-----------------
+ .../statistics/distribution/FDistribution.java     |  4 ++--
+ .../statistics/distribution/GammaDistribution.java |  4 ++--
+ .../distribution/GeometricDistribution.java        |  4 ++--
+ .../distribution/GumbelDistribution.java           |  4 ++--
+ .../distribution/HypergeometricDistribution.java   |  4 ++--
+ .../distribution/LaplaceDistribution.java          |  4 ++--
+ .../statistics/distribution/LevyDistribution.java  |  4 ++--
+ .../distribution/LogNormalDistribution.java        |  4 ++--
+ .../distribution/LogisticDistribution.java         |  4 ++--
+ .../distribution/NakagamiDistribution.java         |  4 ++--
+ .../distribution/NormalDistribution.java           | 21 ++++---------------
+ .../distribution/ParetoDistribution.java           |  4 ++--
+ .../distribution/PascalDistribution.java           |  4 ++--
+ .../distribution/PoissonDistribution.java          | 23 +++++----------------
+ .../statistics/distribution/TDistribution.java     |  4 ++--
+ .../distribution/TriangularDistribution.java       |  4 ++--
+ .../UniformContinuousDistribution.java             |  4 ++--
+ .../distribution/UniformDiscreteDistribution.java  |  4 ++--
+ .../distribution/WeibullDistribution.java          |  6 +++---
+ .../statistics/distribution/ZipfDistribution.java  |  4 ++--
+ .../AbstractContinuousDistributionTest.java        | 12 +++++------
+ .../AbstractDiscreteDistributionTest.java          |  4 ++--
+ .../distribution/BetaDistributionTest.java         | 12 +++++------
+ .../distribution/BinomialDistributionTest.java     |  8 ++++----
+ .../distribution/CauchyDistributionTest.java       |  8 ++++----
+ .../distribution/ChiSquaredDistributionTest.java   |  8 ++++----
+ .../ConstantContinuousDistributionTest.java        |  4 ++--
+ .../distribution/ExponentialDistributionTest.java  |  8 ++++----
+ .../statistics/distribution/FDistributionTest.java | 12 +++++------
+ .../distribution/GammaDistributionTest.java        |  8 ++++----
+ .../distribution/GeometricDistributionTest.java    |  8 ++++----
+ .../HypergeometricDistributionTest.java            |  8 ++++----
+ .../distribution/LogNormalDistributionTest.java    | 14 ++++++-------
+ .../distribution/NormalDistributionTest.java       | 12 +++++------
+ .../distribution/ParetoDistributionTest.java       |  8 ++++----
+ .../distribution/PascalDistributionTest.java       |  8 ++++----
+ .../distribution/PoissonDistributionTest.java      |  8 ++++----
+ .../statistics/distribution/TDistributionTest.java | 12 +++++------
+ .../distribution/TriangularDistributionTest.java   | 12 +++++------
+ .../UniformContinuousDistributionTest.java         | 12 +++++------
+ .../UniformDiscreteDistributionTest.java           | 12 +++++------
+ .../distribution/WeibullDistributionTest.java      | 12 +++++------
+ .../distribution/ZipfDistributionTest.java         |  4 ++--
+ 53 files changed, 176 insertions(+), 216 deletions(-)
+
+commit 9a9802d591a668a1fa292344e72b8aea8f949280
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Thu Jan 25 12:12:07 2018 +0100
+
+    Javadoc.
+
+ .../distribution/ContinuousDistribution.java       | 96 ++++++++++-----------
+ .../distribution/DiscreteDistribution.java         | 97 ++++++++++------------
+ 2 files changed, 88 insertions(+), 105 deletions(-)
+
+commit 5d64d7ef05e0f45897d0f550e57f86ac40621c6e
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Wed Jan 24 13:18:41 2018 +0100
+
+    Project files.
+
+ CONTRIBUTING.md                                 | 115 ++++++++++
+ LICENSE.txt                                     | 275 ++++++++++++++++++++++++
+ NOTICE.txt                                      |   5 +
+ README.md                                       | 105 +++++++++
+ commons-statistics-distribution/CONTRIBUTING.md | 115 ++++++++++
+ commons-statistics-distribution/README.md       | 105 +++++++++
+ 6 files changed, 720 insertions(+)
+
+commit 0db6c9ccab66b460c0add58941e1b6c35c2f0050
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Tue Jan 23 15:02:41 2018 +0100
+
+    Web site files.
+
+ .../src/site/resources/profile.jacoco              |  17 ++
+ src/assembly/bin.xml                               |  48 ++++
+ src/assembly/src.xml                               |  41 +++
+ .../resources/images/commons_statistics.small.png  | Bin 0 -> 66857 bytes
+ src/site/resources/profile.jacoco                  |  17 ++
+ src/site/resources/style/project.css               |  18 ++
+ src/site/site.xml                                  |  47 ++++
+ src/site/xdoc/developers.xml                       | 277 +++++++++++++++++++++
+ src/site/xdoc/download_statistics.xml              |  73 ++++++
+ src/site/xdoc/index.xml                            |  44 ++++
+ src/site/xdoc/issue-tracking.xml                   | 102 ++++++++
+ src/site/xdoc/mail-lists.xml                       | 205 +++++++++++++++
+ src/site/xdoc/userguide/distribution.xml           |  81 ++++++
+ src/site/xdoc/userguide/index.xml                  |  41 +++
+ src/site/xdoc/userguide/xdoc.xsl                   |  68 +++++
+ 15 files changed, 1079 insertions(+)
+
+commit 19079dec5a77be7514d15fcc998cc59ce927791c
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Tue Jan 23 01:17:14 2018 +0100
+
+    Javadoc.
+
+ .../commons/statistics/distribution/AbstractContinuousDistribution.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 0f2053bc53b6f9ae22571c562679a6d981f2d2b3
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Mon Jan 22 21:29:24 2018 +0100
+
+    Set correct JIRA "pid".
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9eb7fe81a938fd7f2e3e9140f6e0d42796a6697c
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 13:21:28 2018 -0700
+
+    Document as requires Java 8.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 954076b0646d7e50764841615d832b65a4da4ebd
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 12:52:19 2018 -0700
+
+    findbugs-maven-plugin 3.0.2 -> 3.0.5.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fed3e7503595baada0fb2ae1168bb1d7ef725e3b
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 12:51:42 2018 -0700
+
+    jacoco-maven-plugin 0.7.5.201505241946 -> 0.8.0.
+
+ pom.xml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 035089c8a6f06a4d54099ea77aa43cdbc803c65c
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 11:04:40 2018 -0700
+
+    clirr-maven-plugin 2.7. -> 2.8.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8ccb2dacc7c98e3f33a38534049496d6e440cdd4
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 11:02:14 2018 -0700
+
+    maven-pmd-plugin 3.5 -> 3.8.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d8f0c069037e0d024de76cec23e42e9f7c5e88e2
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 10:40:11 2018 -0700
+
+    maven-antrun-plugin 1.7 -> 1.8.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 95c759de63a14d1321db93347d652f0d9d9ac393
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 10:24:43 2018 -0700
+
+    Pick up apache-rat-plugin version from commons-parent.
+
+ pom.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 173b25b29332e2f538b911f02e249eb86b8ac7c2
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 10:24:18 2018 -0700
+
+    Pick up maven-compiler-plugin version from commons-parent.
+
+ pom.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 75f1502cdbb80efa99b74149ff49c569eba9e753
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 10:21:48 2018 -0700
+
+    GroupId is duplicate of parent groupId.
+
+ pom.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3259694b7fbc88504c93577b64387c4cf64d03fb
+Author: Gary Gregory <garydgregory@gmail.com>
+Date:   Mon Jan 22 10:21:16 2018 -0700
+
+    Update commons-parent from 41 to 43.
+
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8e509223e071b45f78161820e98a6f0b291c4dbd
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Mon Jan 22 02:28:32 2018 +0100
+
+    Javadoc.
+
+ .../statistics/distribution/AbstractContinuousDistribution.java        | 2 +-
+ .../commons/statistics/distribution/UniformContinuousDistribution.java | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit b9138827f50c34288b76084ee5b9ec26e9bdc491
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Mon Jan 22 02:23:27 2018 +0100
+
+    Typo (Javadoc).
+
+ .../org/apache/commons/statistics/distribution/GumbelDistribution.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 05626d011953939c0d2f3de50a516718f8a7253d
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Mon Jan 22 02:13:43 2018 +0100
+
+    Fixed file paths.
+
+ .../commons/statistics/distribution/AbstractContinuousDistribution.java   | 0
+ .../commons/statistics/distribution/AbstractDiscreteDistribution.java     | 0
+ .../apache}/commons/statistics/distribution/BetaDistribution.java         | 0
+ .../apache}/commons/statistics/distribution/BinomialDistribution.java     | 0
+ .../apache}/commons/statistics/distribution/CauchyDistribution.java       | 0
+ .../apache}/commons/statistics/distribution/ChiSquaredDistribution.java   | 0
+ .../commons/statistics/distribution/ConstantContinuousDistribution.java   | 0
+ .../apache}/commons/statistics/distribution/ContinuousDistribution.java   | 0
+ .../apache}/commons/statistics/distribution/DiscreteDistribution.java     | 0
+ .../apache}/commons/statistics/distribution/DistributionException.java    | 0
+ .../apache}/commons/statistics/distribution/ExponentialDistribution.java  | 0
+ .../{ => org/apache}/commons/statistics/distribution/FDistribution.java   | 0
+ .../apache}/commons/statistics/distribution/GammaDistribution.java        | 0
+ .../apache}/commons/statistics/distribution/GeometricDistribution.java    | 0
+ .../apache}/commons/statistics/distribution/GumbelDistribution.java       | 0
+ .../commons/statistics/distribution/HypergeometricDistribution.java       | 0
+ .../apache}/commons/statistics/distribution/LaplaceDistribution.java      | 0
+ .../apache}/commons/statistics/distribution/LevyDistribution.java         | 0
+ .../apache}/commons/statistics/distribution/LogNormalDistribution.java    | 0
+ .../apache}/commons/statistics/distribution/LogisticDistribution.java     | 0
+ .../apache}/commons/statistics/distribution/NakagamiDistribution.java     | 0
+ .../apache}/commons/statistics/distribution/NormalDistribution.java       | 0
+ .../apache}/commons/statistics/distribution/ParetoDistribution.java       | 0
+ .../apache}/commons/statistics/distribution/PascalDistribution.java       | 0
+ .../apache}/commons/statistics/distribution/PoissonDistribution.java      | 0
+ .../apache}/commons/statistics/distribution/SaddlePointExpansion.java     | 0
+ .../{ => org/apache}/commons/statistics/distribution/TDistribution.java   | 0
+ .../apache}/commons/statistics/distribution/TriangularDistribution.java   | 0
+ .../commons/statistics/distribution/UniformContinuousDistribution.java    | 0
+ .../commons/statistics/distribution/UniformDiscreteDistribution.java      | 0
+ .../apache}/commons/statistics/distribution/WeibullDistribution.java      | 0
+ .../apache}/commons/statistics/distribution/ZipfDistribution.java         | 0
+ .../{ => org/apache}/commons/statistics/distribution/package-info.java    | 0
+ 33 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 30d7c8f6b528f7859ae46b9dbdecd374c91ab383
+Merge: 0efff4b 9c794a1
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sun Jan 21 15:04:11 2018 +0100
+
+    Merge branch 'task_STATISTICS-2'
+
+commit 0efff4bffd4ebbffa8dea12fa701a3c3b3eafd9e
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sun Jan 21 15:03:16 2018 +0100
+
+    Report config files (copied from "Commons RNG").
+
+ src/main/resources/checkstyle/checkstyle.xml       | 202 +++++++++++++++++++++
+ src/main/resources/checkstyle/license-header.txt   |  16 ++
+ src/main/resources/clirr/clirr-ignored.xml         |  21 +++
+ .../resources/findbugs/findbugs-exclude-filter.xml |  28 +++
+ src/main/resources/pmd/pmd-ruleset.xml             |  57 ++++++
+ 5 files changed, 324 insertions(+)
+
+commit 021d0f17bf5b97e8775c36d23ade9c017b98d839
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sun Jan 21 15:02:26 2018 +0100
+
+    Create ".gitignore" file.
+
+ .gitignore | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit 9c794a15f75aafbe9d2ab4b62b7e43e1c32e7501
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Sun Jan 21 14:41:03 2018 +0100
+
+    STATISTICS-2: Migrate "o.a.c.math4.distribution" from Commons Math.
+    
+    "IntegerDistribution" was renamed "DiscreteDistribution".
+    "RealDistribution" was renamed "ContinuousDistribution".
+    
+    All exceptions are instances of "DistributionException" (package-private).
+    
+    Solver code (used by method "inverseCumulativeProbability") is a private
+    static inner class in "AbstractContinuousDistribution".
+    Tolerances are hard-coded. [Constructors that specified a tolerance were
+    removed.]
+    
+    Calls to "FastMath" were replaced by calls to JDK "Math".  This has led to
+    two unit tests failing in "GammaDistributionTest" for which the tolerance
+    had to be slightly increased. [The main source indicates which calls to
+    "Math" methods are responsible for the failures at the original tolerance.]
+
+ commons-statistics-distribution/LICENSE.txt        |  275 ++
+ commons-statistics-distribution/NOTICE.txt         |    5 +
+ commons-statistics-distribution/pom.xml            |   86 +
+ .../AbstractContinuousDistribution.java            |  453 +++
+ .../distribution/AbstractDiscreteDistribution.java |  220 ++
+ .../statistics/distribution/BetaDistribution.java  |  202 ++
+ .../distribution/BinomialDistribution.java         |  170 +
+ .../distribution/CauchyDistribution.java           |  166 +
+ .../distribution/ChiSquaredDistribution.java       |  119 +
+ .../ConstantContinuousDistribution.java            |  116 +
+ .../distribution/ContinuousDistribution.java       |  176 ++
+ .../distribution/DiscreteDistribution.java         |  163 +
+ .../distribution/DistributionException.java        |   61 +
+ .../distribution/ExponentialDistribution.java      |  197 ++
+ .../statistics/distribution/FDistribution.java     |  209 ++
+ .../statistics/distribution/GammaDistribution.java |  354 +++
+ .../distribution/GeometricDistribution.java        |  160 +
+ .../distribution/GumbelDistribution.java           |  128 +
+ .../distribution/HypergeometricDistribution.java   |  293 ++
+ .../distribution/LaplaceDistribution.java          |  132 +
+ .../statistics/distribution/LevyDistribution.java  |  161 +
+ .../distribution/LogNormalDistribution.java        |  266 ++
+ .../distribution/LogisticDistribution.java         |  128 +
+ .../distribution/NakagamiDistribution.java         |  117 +
+ .../distribution/NormalDistribution.java           |  216 ++
+ .../distribution/ParetoDistribution.java           |  225 ++
+ .../distribution/PascalDistribution.java           |  211 ++
+ .../distribution/PoissonDistribution.java          |  238 ++
+ .../distribution/SaddlePointExpansion.java         |  191 ++
+ .../statistics/distribution/TDistribution.java     |  180 ++
+ .../distribution/TriangularDistribution.java       |  222 ++
+ .../UniformContinuousDistribution.java             |  168 +
+ .../distribution/UniformDiscreteDistribution.java  |  159 +
+ .../distribution/WeibullDistribution.java          |  220 ++
+ .../statistics/distribution/ZipfDistribution.java  |  236 ++
+ .../statistics/distribution/package-info.java      |   20 +
+ .../AbstractContinuousDistributionTest.java        |  209 ++
+ .../AbstractDiscreteDistributionTest.java          |  130 +
+ .../distribution/BetaDistributionTest.java         |  381 +++
+ .../distribution/BinomialDistributionTest.java     |  173 +
+ .../distribution/CauchyDistributionTest.java       |  111 +
+ .../distribution/ChiSquaredDistributionTest.java   |  136 +
+ .../ConstantContinuousDistributionTest.java        |   92 +
+ .../ContinuousDistributionAbstractTest.java        |  456 +++
+ .../DiscreteDistributionAbstractTest.java          |  411 +++
+ .../distribution/ExponentialDistributionTest.java  |  132 +
+ .../statistics/distribution/FDistributionTest.java |  150 +
+ .../distribution/GammaDistributionTest.java        |  354 +++
+ .../distribution/GeometricDistributionTest.java    |  167 +
+ .../distribution/GumbelDistributionTest.java       |   70 +
+ .../HypergeometricDistributionTest.java            |  335 ++
+ .../distribution/LaplaceDistributionTest.java      |   70 +
+ .../distribution/LevyDistributionTest.java         |   81 +
+ .../distribution/LogNormalDistributionTest.java    |  250 ++
+ .../distribution/LogisticsDistributionTest.java    |   70 +
+ .../distribution/NakagamiDistributionTest.java     |   70 +
+ .../distribution/NormalDistributionTest.java       |  213 ++
+ .../distribution/ParetoDistributionTest.java       |  201 ++
+ .../distribution/PascalDistributionTest.java       |  132 +
+ .../distribution/PoissonDistributionTest.java      |  244 ++
+ .../statistics/distribution/TDistributionTest.java |  169 +
+ .../commons/statistics/distribution/TestUtils.java |  281 ++
+ .../distribution/TriangularDistributionTest.java   |  192 ++
+ .../UniformContinuousDistributionTest.java         |  123 +
+ .../UniformDiscreteDistributionTest.java           |  139 +
+ .../distribution/WeibullDistributionTest.java      |  118 +
+ .../distribution/ZipfDistributionTest.java         |  166 +
+ .../distribution/gamma-distribution-shape-1.csv    | 3215 +++++++++++++++++++
+ .../distribution/gamma-distribution-shape-10.csv   |  415 +++
+ .../distribution/gamma-distribution-shape-100.csv  |  408 +++
+ .../distribution/gamma-distribution-shape-1000.csv | 3325 ++++++++++++++++++++
+ .../distribution/gamma-distribution-shape-142.csv  |  775 +++++
+ .../distribution/gamma-distribution-shape-8.csv    | 3215 +++++++++++++++++++
+ .../statistics/distribution/gamma-distribution.mac |   73 +
+ .../commons/statistics/distribution/testData.txt   | 1000 ++++++
+ pom.xml                                            |   65 +-
+ 76 files changed, 24949 insertions(+), 11 deletions(-)
+
+commit 585178f823ac8f0df41a0f727a8301b21084c3f1
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Fri Jan 19 17:10:38 2018 +0100
+
+    New project: use Java 8.
+    
+    Initial versions will probably be "beta" (0.x).
+
+ pom.xml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit bb864a05b0a6a90c8701d913256e2004ed0ae628
+Author: Gilles Sadowski <gilles@harfang.homelinux.org>
+Date:   Wed Jan 3 02:57:38 2018 +0100
+
+    Create POM file (adapted from "Commons RNG").
+
+ pom.xml | 542 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 542 insertions(+)
+

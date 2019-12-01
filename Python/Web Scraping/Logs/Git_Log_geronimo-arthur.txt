@@ -1,0 +1,501 @@
+commit 03fca32dcb8f18ef48e23c2b7f1478ef87047dbe
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Fri Nov 29 11:21:03 2019 +0100
+
+    updating graalvm to 19.3.0
+
+ .../main/java/org/apache/geronimo/arthur/maven/mojo/ArthurMojo.java    | 2 +-
+ .../java/org/apache/geronimo/arthur/maven/mojo/NativeImageMojo.java    | 3 ++-
+ documentation/src/content/maven.adoc                                   | 2 +-
+ .../geronimo/arthur/integrationtests/container/MavenContainer.java     | 2 +-
+ knights/pom.xml                                                        | 2 +-
+ knights/winegrower-knight/pom.xml                                      | 2 +-
+ pom.xml                                                                | 2 +-
+ 7 files changed, 8 insertions(+), 7 deletions(-)
+
+commit d35f1e2d3d4e95d8a2a2de84c29bc239586add83
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Nov 13 15:47:34 2019 +0100
+
+    enables to register dynamic classes through ArthurExtension
+
+ .../generator/ConfigurationGenerator.java          | 29 +++++++++++++++
+ .../impl/nativeimage/generator/DefautContext.java  |  7 ++++
+ .../impl/nativeimage/CommandGeneratorTest.java     | 41 ++++++++++++++++++++++
+ .../geronimo/arthur/spi/ArthurExtension.java       |  9 +++++
+ 4 files changed, 86 insertions(+)
+
+commit 4f481d9f9c3c12097dafab96ccf4156fefcb5b89
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Nov 13 09:46:47 2019 +0100
+
+    no need of compiler in winegrower-knight
+
+ knights/winegrower-knight/pom.xml | 6 ------
+ 1 file changed, 6 deletions(-)
+
+commit 05f7ff8eb42e0fa200a57120a3951fc90abfae4e
+Author: Romain Manni-Bucau <rmannibucau@apache.org>
+Date:   Sun Nov 10 17:06:40 2019 +0100
+
+    adding documentation about CI and website generation
+
+ documentation/pom.xml                    |  2 +-
+ documentation/src/content/community.adoc | 32 +++++++++++++++++++++++++++++---
+ 2 files changed, 30 insertions(+), 4 deletions(-)
+
+commit b63f806fd8bccc422be1fc0468d6885e4212c9df
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Fri Nov 8 11:06:58 2019 +0100
+
+    yet another label indentation issue for github workflow
+
+ .github/workflows/maven.yml | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+commit 70217d206097b57dbcc57fecc91ca0005293a077
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Fri Nov 8 10:52:17 2019 +0100
+
+    adding ossindex:audit on github actions
+
+ .github/workflows/maven.yml | 19 +++++++++++++++++++
+ arthur-maven-plugin/pom.xml |  5 +++++
+ pom.xml                     | 17 +++++++++++++++++
+ 3 files changed, 41 insertions(+)
+
+commit ea036c33fa3da8b42c83b388d3bbabe100a2a441
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Nov 7 15:49:29 2019 +0100
+
+    maven-scm-publish-plugin.serverId removal to ensure doc publication works on pre-authenticated svn
+
+ documentation/pom.xml | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 9e26aee07ad33fb3402d8d965e2f89f975633c0e
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Nov 7 14:07:12 2019 +0100
+
+    ensure we can find easily wiengrower blocks to uncomment once released + removing IT dep on it until it is active
+
+ documentation/pom.xml                                                   | 2 +-
+ integration-test/pom.xml                                                | 2 ++
+ .../java/org/apache/geronimo/arthur/integrationtests/MavenTest.java     | 2 +-
+ knights/pom.xml                                                         | 2 +-
+ pom.xml                                                                 | 2 +-
+ 5 files changed, 6 insertions(+), 4 deletions(-)
+
+commit 2f03524e3b098f3f9bb3d4b5f8269699b34a6ae1
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Nov 7 14:01:59 2019 +0100
+
+    removing website publication from github actions since we'll deploy on buildbot + configuring System.out for documentation logs
+
+ .github/settings.xml        | 31 -------------------------------
+ .github/workflows/maven.yml | 28 ----------------------------
+ documentation/pom.xml       |  4 ++++
+ 3 files changed, 4 insertions(+), 59 deletions(-)
+
+commit 33d6c2959b2c7117de1ea79d76a8cc15c2986230
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Nov 7 11:25:38 2019 +0100
+
+    adding winegrower extension (commented until the first release)
+
+ .../nativeimage/ArthurNativeImageExecutor.java     |   5 +-
+ .../generator/ConfigurationGenerator.java          |  14 +-
+ .../impl/nativeimage/generator/DefautContext.java  |  78 +++++
+ .../nativeimage/generator/DefautContextTest.java   | 111 +++++++
+ .../extension/AnnotationExtensionTest.java         |   3 +-
+ arthur-maven-plugin/pom.xml                        |   6 +
+ .../geronimo/arthur/maven/mojo/ArthurMojo.java     |   3 +-
+ .../arthur/maven/mojo/NativeImageMojo.java         | 110 ++++++-
+ .../geronimo/arthur/spi/ArthurExtension.java       | 133 +++++++++
+ documentation/pom.xml                              |  24 ++
+ documentation/src/content/jsch-knight.adoc         |   2 -
+ documentation/src/content/maven.adoc               |   3 +
+ documentation/src/content/winegrower-knight.adoc   | 177 +++++++++++
+ integration-test/pom.xml                           |  26 ++
+ .../arthur/integrationtests/MavenTest.java         |  11 +-
+ .../arthur/integrationtests/junit5/Spec.java       |  12 +-
+ .../resources/integration-tests/cuilliere/pom.xml  |   6 +-
+ .../test/resources/integration-tests/jsch/pom.xml  |   6 +-
+ .../test/resources/integration-tests/scr/pom.xml   | 156 ++++++++++
+ .../arthur/integrationtests/Application.java       |  28 ++
+ .../geronimo/arthur/integrationtests/ScrMain.java  |  47 +++
+ .../arthur/knight/jsch/JschExtensionTest.java      |   2 +-
+ knights/pom.xml                                    |   5 +-
+ knights/winegrower-knight/pom.xml                  |  75 +++++
+ .../knight/winegrower/WinegrowerExtension.java     | 323 +++++++++++++++++++++
+ .../winegrower/feature/WinegrowerFeature.java      |  90 ++++++
+ .../org.apache.geronimo.arthur.spi.ArthurExtension |   1 +
+ .../org.graalvm.compiler.options.OptionDescriptors |   1 +
+ pom.xml                                            |   3 +
+ 29 files changed, 1437 insertions(+), 24 deletions(-)
+
+commit b20aca423d8a9b3510e33271f52732f3e9790012
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Tue Nov 5 11:07:33 2019 +0100
+
+    no need toclose testcontainers dockerclient (it is a singleton)
+
+ .../geronimo/arthur/integrationtests/container/MavenContainer.java  | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit b16b4fd0b76adb5294faf79496c33d25bb698f96
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Tue Nov 5 10:11:32 2019 +0100
+
+    caching custom maven container to avoid to apt update each time
+
+ integration-test/pom.xml                           |  9 ++++
+ .../integrationtests/container/MavenContainer.java | 52 +++++++++++++++-------
+ 2 files changed, 46 insertions(+), 15 deletions(-)
+
+commit 21c4a623fd7d40947b1468620ad39065200e9df8
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Tue Nov 5 09:17:53 2019 +0100
+
+    trying to override maven repository for github actions build to ensure we can cache it
+
+ .github/workflows/maven.yml | 22 ++++++++++++++--------
+ pom.xml                     |  1 +
+ 2 files changed, 15 insertions(+), 8 deletions(-)
+
+commit 895ac2000ff282f4e927b944fda2a29b133c2f0e
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Tue Nov 5 09:10:36 2019 +0100
+
+    trying to add cache on github actions and setting up a serverId for documentation deployment (defaulting on default apache deploymentId to avoid duplication of servers)
+
+ .github/settings.xml        | 31 +++++++++++++++++++++++++++++++
+ .github/workflows/maven.yml | 28 ++++++++++++++++++++++------
+ README.adoc                 |  2 ++
+ documentation/pom.xml       |  4 +++-
+ 4 files changed, 58 insertions(+), 7 deletions(-)
+
+commit 87ac31022b81a4df0727d70a0208cb8d41cd961f
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 17:57:51 2019 +0100
+
+    missing env for GH action website job
+
+ .github/workflows/maven.yml | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit edfd7cd4c0becb33be812b578afd4d226ba53f1c
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 17:56:48 2019 +0100
+
+    extracting website publication to a dedicated job in github actions (deactivated for now while we don't have secrets for it)
+
+ .github/workflows/maven.yml | 30 ++++++++++++++++++++++--------
+ 1 file changed, 22 insertions(+), 8 deletions(-)
+
+commit df2709a1117e4653c698e6f4e1715039cdae1fdf
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 17:48:56 2019 +0100
+
+    rat fixes
+
+ .github/workflows/maven.yml                                | 14 ++++++++++++++
+ .../org/apache/geronimo/arthur/maven/mojo/DockerMojo.java  |  3 ++-
+ pom.xml                                                    |  1 +
+ 3 files changed, 17 insertions(+), 1 deletion(-)
+
+commit 3a2aff718dea1d9427db84bc2fef2934b8b13567
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 17:45:46 2019 +0100
+
+    Adding a github action file (experimental)
+
+ .github/workflows/maven.yml | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+commit 6be0338ceb8de9c36b33e021aa9af1b72859cf11
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 17:29:02 2019 +0100
+
+    better mojo documentation formatting and adminition
+
+ .../arthur/maven/mojo/NativeImageMojo.java         | 11 +++----
+ .../arthur/documentation/command/Generate.java     | 16 ++++++++--
+ .../arthur/documentation/mojo/MojoParser.java      |  1 +
+ documentation/src/static/css/arthur.css            | 34 +++++++++-------------
+ 4 files changed, 35 insertions(+), 27 deletions(-)
+
+commit d803a1dae93f1268d71fba6323908720de7c1708
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 17:13:20 2019 +0100
+
+    activate title on documentation website
+
+ documentation/src/content/jsch-knight.adoc                             | 2 +-
+ documentation/src/content/knights.adoc                                 | 3 ++-
+ .../org/apache/geronimo/arthur/documentation/command/Generate.java     | 3 ++-
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+
+commit 07159315767db044a8a555f70fdb1c5606ffaa33
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Mon Nov 4 16:56:44 2019 +0100
+
+    adding knights parent module with jsch integration + fixing graalExtensions classloading for native-image mojo
+
+ .gitignore                                         |   2 +-
+ .../nativeimage/ArthurNativeImageExecutor.java     |  11 +-
+ .../impl/nativeimage/generator/DefautContext.java  |  20 ++
+ .../generator/extension/AnnotationExtension.java   |   5 +
+ arthur-maven-plugin/pom.xml                        |   4 +
+ .../maven/extension/MavenArthurExtension.java      |   5 +
+ .../geronimo/arthur/maven/mojo/ArthurMojo.java     | 156 ++++++++++++++
+ .../apache/geronimo/arthur/maven/mojo/JibMojo.java | 117 +++++++++-
+ .../arthur/maven/mojo/NativeImageMojo.java         | 235 ++++++++-------------
+ .../geronimo/arthur/spi/ArthurExtension.java       |   6 +
+ documentation/src/content/api.adoc                 |   4 +-
+ documentation/src/content/documentation.adoc       |   1 +
+ documentation/src/content/implementation.adoc      |   4 +-
+ documentation/src/content/jsch-knight.adoc         |  66 ++++++
+ documentation/src/content/knights.adoc             |  51 +++++
+ documentation/src/content/maven.adoc               |   2 +-
+ documentation/src/content/spi.adoc                 |   4 +-
+ integration-test/pom.xml                           |  14 +-
+ .../arthur/integrationtests/MavenTest.java         |  61 ++++++
+ .../integrationtests/container/MavenContainer.java |   6 +-
+ .../arthur/integrationtests/junit5/Invocation.java |  24 +++
+ .../arthur/integrationtests/junit5/Spec.java       | 151 ++++++++-----
+ .../resources/integration-tests/cuilliere/pom.xml  |   6 +-
+ .../test/resources/integration-tests/jsch/pom.xml  |  75 +++++++
+ .../geronimo/arthur/integrationtests/JschMain.java |  67 ++++++
+ knights/jsch-knight/pom.xml                        |  58 +++++
+ .../geronimo/arthur/knight/jsch/JschExtension.java |  80 +++++++
+ .../org.apache.geronimo.arthur.spi.ArthurExtension |   1 +
+ .../arthur/knight/jsch/JschExtensionTest.java      |  98 +++++++++
+ knights/pom.xml                                    |  78 +++++++
+ pom.xml                                            |  27 ++-
+ 31 files changed, 1209 insertions(+), 230 deletions(-)
+
+commit 5afec035ed9f019ddb9bdf2cdac20b1ce820324b
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Oct 31 17:18:09 2019 +0100
+
+    adding images on the landing doc page
+
+ documentation/src/content/index.adoc           |  10 ++++++++++
+ documentation/src/static/css/arthur.css        |   8 +++++++-
+ documentation/src/static/image/arthur.png      | Bin 0 -> 30924 bytes
+ documentation/src/static/image/arthur_rock.png | Bin 0 -> 25413 bytes
+ 4 files changed, 17 insertions(+), 1 deletion(-)
+
+commit 9590738c9bbbfe789f27eb48ab61b3ec8736a94b
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Oct 31 16:09:40 2019 +0100
+
+    adding unwrap to ArthurExtension#Context
+
+ .../arthur/impl/nativeimage/generator/DefautContext.java      | 11 +++++++++++
+ .../java/org/apache/geronimo/arthur/spi/ArthurExtension.java  |  2 ++
+ 2 files changed, 13 insertions(+)
+
+commit c96ec81942843e16658c6a0039551200e48b028b
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Oct 31 15:59:09 2019 +0100
+
+    import Richard Lecomte's logo
+
+ .../src/static/favicon/android-icon-144x144.png    | Bin 0 -> 13849 bytes
+ .../src/static/favicon/android-icon-192x192.png    | Bin 0 -> 19552 bytes
+ .../src/static/favicon/android-icon-36x36.png      | Bin 0 -> 2597 bytes
+ .../src/static/favicon/android-icon-48x48.png      | Bin 0 -> 3588 bytes
+ .../src/static/favicon/android-icon-72x72.png      | Bin 0 -> 5801 bytes
+ .../src/static/favicon/android-icon-96x96.png      | Bin 0 -> 8484 bytes
+ .../src/static/favicon/apple-icon-114x114.png      | Bin 0 -> 10332 bytes
+ .../src/static/favicon/apple-icon-120x120.png      | Bin 0 -> 10984 bytes
+ .../src/static/favicon/apple-icon-144x144.png      | Bin 0 -> 13849 bytes
+ .../src/static/favicon/apple-icon-152x152.png      | Bin 0 -> 15008 bytes
+ .../src/static/favicon/apple-icon-180x180.png      | Bin 0 -> 18461 bytes
+ .../src/static/favicon/apple-icon-57x57.png        | Bin 0 -> 4366 bytes
+ .../src/static/favicon/apple-icon-60x60.png        | Bin 0 -> 4627 bytes
+ .../src/static/favicon/apple-icon-72x72.png        | Bin 0 -> 5801 bytes
+ .../src/static/favicon/apple-icon-76x76.png        | Bin 0 -> 6217 bytes
+ .../src/static/favicon/apple-icon-precomposed.png  | Bin 0 -> 20124 bytes
+ documentation/src/static/favicon/apple-icon.png    | Bin 0 -> 20124 bytes
+ documentation/src/static/favicon/browserconfig.xml |   2 +
+ documentation/src/static/favicon/favicon-16x16.png | Bin 0 -> 1510 bytes
+ documentation/src/static/favicon/favicon-32x32.png | Bin 0 -> 2284 bytes
+ documentation/src/static/favicon/favicon-96x96.png | Bin 0 -> 8484 bytes
+ documentation/src/static/favicon/favicon.ico       | Bin 0 -> 1150 bytes
+ documentation/src/static/favicon/manifest.json     |  41 +++++++++++++++++++++
+ .../src/static/favicon/ms-icon-144x144.png         | Bin 0 -> 13849 bytes
+ .../src/static/favicon/ms-icon-150x150.png         | Bin 0 -> 14658 bytes
+ .../src/static/favicon/ms-icon-310x310.png         | Bin 0 -> 37229 bytes
+ documentation/src/static/favicon/ms-icon-70x70.png | Bin 0 -> 5618 bytes
+ documentation/src/static/image/logo.png            | Bin 0 -> 3878 bytes
+ documentation/src/template/header.html             |  23 +++++++++++-
+ pom.xml                                            |   1 +
+ 30 files changed, 66 insertions(+), 1 deletion(-)
+
+commit 19d8c093008ca4c03ced1858aed0f884a60d7220
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Oct 31 15:21:58 2019 +0100
+
+    adding e2e simple integration test to ensure we can go native with our command generator
+
+ README.adoc                                        |   3 +-
+ .../nativeimage/ArthurNativeImageExecutor.java     |   1 -
+ integration-test/pom.xml                           |  78 ++++++++
+ .../arthur/integrationtests/MavenTest.java         |  33 ++++
+ .../integrationtests/container/MavenContainer.java |  53 ++++++
+ .../arthur/integrationtests/junit5/Spec.java       | 211 +++++++++++++++++++++
+ .../resources/integration-tests/cuilliere/pom.xml  |  58 ++++++
+ .../geronimo/arthur/integrationtests/Cuillere.java |  30 +++
+ pom.xml                                            |   9 +
+ 9 files changed, 474 insertions(+), 2 deletions(-)
+
+commit 540e9b224c221688427e5e6b43d08a82042b7623
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Thu Oct 31 09:27:18 2019 +0100
+
+    adding more finders in extension Context
+
+ .../impl/nativeimage/ArthurNativeImageExecutor.java |  8 ++++++--
+ .../generator/ConfigurationGenerator.java           | 11 +++++++++--
+ .../impl/nativeimage/generator/DefautContext.java   | 17 +++++++++++++++--
+ .../extension/AnnotationExtensionTest.java          |  7 ++++++-
+ .../geronimo/arthur/maven/mojo/NativeImageMojo.java | 21 ++++++++++++++++++++-
+ .../apache/geronimo/arthur/spi/ArthurExtension.java |  5 +++++
+ documentation/pom.xml                               |  5 +++--
+ documentation/src/content/implementation.adoc       |  5 ++++-
+ 8 files changed, 68 insertions(+), 11 deletions(-)
+
+commit 4358f883c436224cfcc0efa1d8575b29a2a087ed
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Oct 30 18:08:37 2019 +0100
+
+    adding scanningExcludedArtifacts in nativeimagemojo
+
+ .../arthur/maven/mojo/NativeImageMojo.java         | 95 ++++++++++++++++++----
+ 1 file changed, 77 insertions(+), 18 deletions(-)
+
+commit 86549f7f87e61f35c7a64a605c62e97b600ff3d8
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Oct 30 17:39:12 2019 +0100
+
+    moving SdkmanGraalVMInstaller to implementation module
+
+ arthur-impl/pom.xml                                |  13 +
+ .../arthur/impl/nativeimage/archive/Extractor.java | 154 ++++++++++++
+ .../installer/SdkmanGraalVMInstaller.java          | 131 +++++++++++
+ .../SdkmanGraalVMInstallerConfiguration.java       |  40 ++++
+ .../installer/SdkmanGraalVMInstallerTest.java      |  27 ++-
+ arthur-maven-plugin/pom.xml                        |   1 -
+ .../maven/installer/SdkmanGraalVMInstaller.java    | 261 ---------------------
+ .../arthur/maven/mojo/NativeImageMojo.java         |  33 +--
+ documentation/src/content/implementation.adoc      |  43 ++++
+ pom.xml                                            |  11 +
+ 10 files changed, 426 insertions(+), 288 deletions(-)
+
+commit 6612c6c9c6da94baae89230e8f731966d0636508
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Oct 30 15:33:25 2019 +0100
+
+    fixing typo
+
+ documentation/src/content/index.adoc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bdbb6bd395c362ae1b0eb712521b674cb4e0ea68
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Oct 30 15:04:02 2019 +0100
+
+    using tomitribe-crest release for the website
+
+ documentation/pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit cba0b8a5db3ff809bb921beb8d8d1096db5df90d
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Wed Oct 30 14:21:52 2019 +0100
+
+    adding documentation and container mojos + small fixes
+
+ .gitignore                                         |   6 +
+ README.adoc                                        |  30 ++
+ .../generator/ConfigurationGenerator.java          |   5 +-
+ .../impl/nativeimage/generator/DefautContext.java  |  24 ++
+ .../extension/AnnotationExtensionTest.java         |   3 +-
+ arthur-maven-plugin/pom.xml                        |  11 +
+ .../geronimo/arthur/maven/mojo/ArthurMojo.java     |  35 +++
+ .../geronimo/arthur/maven/mojo/DockerMojo.java     |  33 +++
+ .../geronimo/arthur/maven/mojo/ImageMojo.java      |  69 +++++
+ .../apache/geronimo/arthur/maven/mojo/JibMojo.java | 303 ++++++++++++++++++++
+ .../arthur/maven/mojo/NativeImageMojo.java         |  33 ++-
+ documentation/pom.xml                              | 183 ++++++++++++
+ documentation/src/content/api.adoc                 |  65 +++++
+ documentation/src/content/community.adoc           |  35 +++
+ documentation/src/content/documentation.adoc       |  28 ++
+ documentation/src/content/downloads.adoc           |  20 ++
+ documentation/src/content/implementation.adoc      |  82 ++++++
+ documentation/src/content/index.adoc               |  23 ++
+ documentation/src/content/maven.adoc               | 315 +++++++++++++++++++++
+ documentation/src/content/spi.adoc                 |  58 ++++
+ .../DocumentationGeneratorLauncher.java            |  85 ++++++
+ .../arthur/documentation/command/Generate.java     | 292 +++++++++++++++++++
+ .../arthur/documentation/editor/PathEditor.java    |  32 +++
+ .../arthur/documentation/interpolation/Sys.java    |  34 +++
+ .../documentation/io/ConsumedPrintStream.java      | 102 +++++++
+ .../documentation/io/FolderConfiguration.java      |  42 +++
+ .../arthur/documentation/io/FolderVisitor.java     |  58 ++++
+ .../arthur/documentation/lang/PathPredicates.java  |  38 +++
+ .../arthur/documentation/mojo/MojoParser.java      | 121 ++++++++
+ .../documentation/renderer/AsciidocRenderer.java   |  65 +++++
+ .../renderer/TemplateConfiguration.java            |  37 +++
+ .../org.tomitribe.crest.contexts.DefaultsContext   |   1 +
+ .../src/main/resources/crest-commands.txt          |   1 +
+ documentation/src/static/css/arthur.css            |  31 ++
+ documentation/src/static/js/arthur.js              |  21 ++
+ documentation/src/template/footer.html             |  22 ++
+ documentation/src/template/header.html             |  67 +++++
+ .../documentation/lang/PathPredicatesTest.java     |  71 +++++
+ pom.xml                                            |   3 +
+ 39 files changed, 2472 insertions(+), 12 deletions(-)
+
+commit 8b16a48f8334d4a7fec88b4e5f5a505298aac839
+Author: Romain Manni-Bucau <rmannibucau@gmail.com>
+Date:   Tue Oct 29 08:51:11 2019 +0100
+
+    initial import
+
+ .gitignore                                         |   5 +
+ arthur-api/pom.xml                                 |  36 ++
+ .../apache/geronimo/arthur/api/RegisterClass.java  |  48 ++
+ .../apache/geronimo/arthur/api/RegisterField.java  |  29 ++
+ .../apache/geronimo/arthur/api/RegisterMethod.java |  28 ++
+ .../geronimo/arthur/api/RegisterResource.java      |  31 ++
+ arthur-impl/pom.xml                                |  75 +++
+ .../ArthurNativeImageConfiguration.java            | 134 ++++++
+ .../nativeimage/ArthurNativeImageExecutor.java     |  68 +++
+ .../generator/ConfigurationGenerator.java          | 126 +++++
+ .../impl/nativeimage/generator/DefautContext.java  |  73 +++
+ .../generator/extension/AnnotationExtension.java   | 148 ++++++
+ .../impl/nativeimage/graal/CommandGenerator.java   | 119 +++++
+ .../impl/nativeimage/process/ProcessExecutor.java  |  57 +++
+ .../org.apache.geronimo.arthur.spi.ArthurExtension |   1 +
+ .../impl/nativeimage/CommandGeneratorTest.java     | 102 ++++
+ .../extension/AnnotationExtensionTest.java         | 172 +++++++
+ arthur-maven-plugin/pom.xml                        | 148 ++++++
+ .../maven/extension/MavenArthurExtension.java      |  77 +++
+ .../maven/installer/SdkmanGraalVMInstaller.java    | 261 ++++++++++
+ .../arthur/maven/mojo/NativeImageMojo.java         | 532 +++++++++++++++++++++
+ .../org.apache.geronimo.arthur.spi.ArthurExtension |   1 +
+ .../installer/SdkmanGraalVMInstallerTest.java      | 181 +++++++
+ arthur-spi/pom.xml                                 |  36 ++
+ .../geronimo/arthur/spi/ArthurExtension.java       |  54 +++
+ .../arthur/spi/model/ClassReflectionModel.java     |  48 ++
+ .../arthur/spi/model/DynamicProxyModel.java        |  26 +
+ .../arthur/spi/model/ResourceBundleModel.java      |  24 +
+ .../geronimo/arthur/spi/model/ResourceModel.java   |  24 +
+ .../geronimo/arthur/spi/model/ResourcesModel.java  |  27 ++
+ pom.xml                                            | 223 +++++++++
+ 31 files changed, 2914 insertions(+)
+

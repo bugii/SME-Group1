@@ -1,0 +1,494 @@
+commit c542bac9c761d1d79d497abfa5ab2838dc2e38f1
+Author: Tilmann <zoodb@gmx.de>
+Date:   Fri Nov 29 23:34:41 2019 +0000
+
+    Update README.md
+
+ README.md | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+commit 53f415cee0112727461babe285979f9a203f0a40
+Author: Tilmann <zoodb@gmx.de>
+Date:   Fri Nov 29 23:23:16 2019 +0000
+
+    Some fixes
+
+ docs/annotations.html      | 17 +++++++----------
+ docs/attach_detach.html    | 17 +++++++----------
+ docs/class_types.html      | 17 +++++++----------
+ docs/cvs-usage.html        | 17 +++++++----------
+ docs/dependencies.html     | 17 +++++++----------
+ docs/downloads.html        | 17 +++++++----------
+ docs/enhancement.html      | 17 +++++++----------
+ docs/exceptions.html       | 17 +++++++----------
+ docs/extents.html          | 17 +++++++----------
+ docs/faq.html              | 17 +++++++----------
+ docs/fetchgroups.html      | 17 +++++++----------
+ docs/field_types.html      | 17 +++++++----------
+ docs/get-involved.html     | 17 +++++++----------
+ docs/glossary.html         | 17 +++++++----------
+ docs/guides.html           | 17 +++++++----------
+ docs/impls.html            | 17 +++++++----------
+ docs/index.html            | 17 +++++++----------
+ docs/issue-tracking.html   | 17 +++++++----------
+ docs/issuetracking.html    | 17 +++++++----------
+ docs/javadoc.html          | 17 +++++++----------
+ docs/jdo_3_0_overview.html | 17 +++++++----------
+ docs/jdo_dtd.html          | 17 +++++++----------
+ docs/jdo_v_jpa.html        | 17 +++++++----------
+ docs/jdo_v_jpa_api.html    | 17 +++++++----------
+ docs/jdo_v_jpa_orm.html    | 17 +++++++----------
+ docs/jdocentral.html       | 17 +++++++----------
+ docs/jdoconfig_dtd.html    | 17 +++++++----------
+ docs/jdohelper.html        | 17 +++++++----------
+ docs/jdoql.html            | 17 +++++++----------
+ docs/jdoql_methods.html    | 17 +++++++----------
+ docs/jdoql_result.html     | 17 +++++++----------
+ docs/jdoquery_dtd.html     | 17 +++++++----------
+ docs/mail-lists.html       | 17 +++++++----------
+ docs/maven-reports.html    | 17 +++++++----------
+ docs/metadata.html         | 17 +++++++----------
+ docs/newshistory.html      | 17 +++++++----------
+ docs/object_retrieval.html | 17 +++++++----------
+ docs/orm_dtd.html          | 17 +++++++----------
+ docs/pm.html               | 17 +++++++----------
+ docs/pmf.html              | 17 +++++++----------
+ docs/project-info.html     | 17 +++++++----------
+ docs/references.html       | 17 +++++++----------
+ docs/roadmap.html          | 17 +++++++----------
+ docs/specifications.html   | 17 +++++++----------
+ docs/state_transition.html | 17 +++++++----------
+ docs/svn.html              | 17 +++++++----------
+ docs/tck.html              | 17 +++++++----------
+ docs/team-list.html        | 17 +++++++----------
+ docs/transactions.html     | 17 +++++++----------
+ docs/types.html            | 17 +++++++----------
+ docs/why_jdo.html          | 17 +++++++----------
+ 51 files changed, 357 insertions(+), 510 deletions(-)
+
+commit 1f7962df4e9139f4edeeb5b5be57181dc0c0735f
+Author: Tilmann <zoodb@gmx.de>
+Date:   Fri Nov 29 23:22:43 2019 +0000
+
+    Complete menus and some fixes
+
+ docs/annotations.html                |  58 ++++++++++++++++++++++
+ docs/attach_detach.html              |  58 ++++++++++++++++++++++
+ docs/class_types.html                |  58 ++++++++++++++++++++++
+ docs/cvs-usage.html                  |  58 ++++++++++++++++++++++
+ docs/dependencies.html               |  58 ++++++++++++++++++++++
+ docs/downloads.html                  |  58 ++++++++++++++++++++++
+ docs/enhancement.html                |  58 ++++++++++++++++++++++
+ docs/exceptions.html                 |  58 ++++++++++++++++++++++
+ docs/extents.html                    |  58 ++++++++++++++++++++++
+ docs/faq.html                        |  58 ++++++++++++++++++++++
+ docs/fetchgroups.html                |  58 ++++++++++++++++++++++
+ docs/field_types.html                |  58 ++++++++++++++++++++++
+ docs/get-involved.html               |  58 ++++++++++++++++++++++
+ docs/glossary.html                   |  58 ++++++++++++++++++++++
+ docs/guides.html                     |  58 ++++++++++++++++++++++
+ docs/impls.html                      |  58 ++++++++++++++++++++++
+ docs/index.html                      |  58 ++++++++++++++++++++++
+ docs/issue-tracking.html             |  58 ++++++++++++++++++++++
+ docs/issuetracking.html              |  58 ++++++++++++++++++++++
+ docs/javadoc.html                    |  58 ++++++++++++++++++++++
+ docs/jdo_3_0_overview.html           |  58 ++++++++++++++++++++++
+ docs/jdo_dtd.html                    |  58 ++++++++++++++++++++++
+ docs/jdo_v_jpa.html                  |  58 ++++++++++++++++++++++
+ docs/jdo_v_jpa_api.html              |  58 ++++++++++++++++++++++
+ docs/jdo_v_jpa_orm.html              |  58 ++++++++++++++++++++++
+ docs/jdocentral.html                 |  58 ++++++++++++++++++++++
+ docs/jdoconfig_dtd.html              |  58 ++++++++++++++++++++++
+ docs/jdohelper.html                  |  58 ++++++++++++++++++++++
+ docs/jdoql.html                      |  58 ++++++++++++++++++++++
+ docs/jdoql_methods.html              |  58 ++++++++++++++++++++++
+ docs/jdoql_quickref.pdf              | Bin 0 -> 143023 bytes
+ docs/jdoql_result.html               |  58 ++++++++++++++++++++++
+ docs/jdoquery_dtd.html               |  58 ++++++++++++++++++++++
+ docs/mail-lists.html                 |  58 ++++++++++++++++++++++
+ docs/maven-reports.html              |  58 ++++++++++++++++++++++
+ docs/metadata.html                   |  58 ++++++++++++++++++++++
+ docs/newshistory.html                |  58 ++++++++++++++++++++++
+ docs/object_retrieval.html           |  58 ++++++++++++++++++++++
+ docs/orm_dtd.html                    |  58 ++++++++++++++++++++++
+ docs/pm.html                         |  58 ++++++++++++++++++++++
+ docs/pmf.html                        |  58 ++++++++++++++++++++++
+ docs/project-info.html               |  58 ++++++++++++++++++++++
+ docs/references.html                 |  58 ++++++++++++++++++++++
+ docs/roadmap.html                    |  58 ++++++++++++++++++++++
+ docs/specifications.html             |  58 ++++++++++++++++++++++
+ docs/state_transition.html           |  58 ++++++++++++++++++++++
+ docs/svn.html                        |  58 ++++++++++++++++++++++
+ docs/tck.html                        |  58 ++++++++++++++++++++++
+ docs/team-list.html                  |  58 ++++++++++++++++++++++
+ docs/transactions.html               |  58 ++++++++++++++++++++++
+ docs/types.html                      |  58 ++++++++++++++++++++++
+ docs/why_jdo.html                    |  58 ++++++++++++++++++++++
+ src/main/asciidoc/jdoql_quickref.pdf | Bin 0 -> 143023 bytes
+ src/main/template/document.html.erb  |  93 +++++++++++++++++++++++++++++++----
+ 54 files changed, 3041 insertions(+), 10 deletions(-)
+
+commit 1946c926ba5472f4b662106cfee7b1553327cd27
+Author: Tilmann <zoodb@gmx.de>
+Date:   Thu Nov 28 20:34:37 2019 +0000
+
+    Fix line feeds
+
+ .gitattributes | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 31fdd07388b636d64e756783cd763a768c6a8d6c
+Author: Tilmann <zoodb@gmx.de>
+Date:   Thu Nov 28 20:27:28 2019 +0000
+
+    Fix LF/CR
+
+ .gitattributes                      | 1 +
+ src/main/template/document.html.erb | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 1946b9a96986bc9dcbdc20b29042030fc6501fc9
+Author: Tilmann <tilmannz@apache.org>
+Date:   Sat Nov 23 18:01:49 2019 +0100
+
+    Create README.md
+
+ README.md | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+commit 2ec905c0ca338860dc63e1e49d5876f555738fef
+Author: Tilmann <zoodb@gmx.de>
+Date:   Sat Nov 23 17:55:32 2019 +0100
+
+    Added converter
+
+ LICENSE                    | 201 ---------------------------------------------
+ src/main/java/Convert.java | 198 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 198 insertions(+), 201 deletions(-)
+
+commit bc09634ff22f5395fbcb3bca5f4c4667df87440c
+Author: Tilmann <zoodb@gmx.de>
+Date:   Thu Nov 21 19:28:59 2019 +0100
+
+    Initial commit
+
+ .gitattributes                                     |    2 +
+ .gitignore                                         |   19 +
+ LICENSE                                            |  201 +
+ docs/annotations.html                              | 3961 +++++++++++
+ docs/attach_detach.html                            |  574 ++
+ docs/class_types.html                              |  370 ++
+ docs/css/asciidoctor/foundation.css                |  674 ++
+ docs/css/bootstrap-toc/0.4.1/bootstrap-toc.min.css |    4 +
+ docs/css/bootstrap/3.3.7/bootstrap.css             | 6757 +++++++++++++++++++
+ docs/css/bootswatch/3.3.7/bootstrap-cosmo.css      | 6938 ++++++++++++++++++++
+ docs/css/datanucleus_theme.css                     |   58 +
+ docs/cvs-usage.html                                |  280 +
+ docs/dependencies.html                             |  386 ++
+ docs/downloads.html                                |  345 +
+ docs/enhancement.html                              |  842 +++
+ docs/exceptions.html                               |  416 ++
+ docs/extents.html                                  |  308 +
+ docs/faq.html                                      |  314 +
+ docs/fetchgroups.html                              |  648 ++
+ docs/field_types.html                              | 1156 ++++
+ docs/get-involved.html                             |  355 +
+ docs/glossary.html                                 |  472 ++
+ docs/guides.html                                   |  292 +
+ docs/images/JDO_32x32.png                          |  Bin 0 -> 856 bytes
+ docs/images/JDO_44x44.png                          |  Bin 0 -> 1324 bytes
+ docs/images/JDOx120.png                            |  Bin 0 -> 9129 bytes
+ docs/images/JDOx150.png                            |  Bin 0 -> 9415 bytes
+ docs/images/add.png                                |  Bin 0 -> 497 bytes
+ docs/images/collapsed.png                          |  Bin 0 -> 69 bytes
+ docs/images/dot_clear.png                          |  Bin 0 -> 69 bytes
+ docs/images/expanded.png                           |  Bin 0 -> 69 bytes
+ docs/images/file.png                               |  Bin 0 -> 264 bytes
+ docs/images/fix.png                                |  Bin 0 -> 381 bytes
+ docs/images/folder-closed.png                      |  Bin 0 -> 512 bytes
+ docs/images/folder-open.png                        |  Bin 0 -> 519 bytes
+ docs/images/header_line.png                        |  Bin 0 -> 77 bytes
+ docs/images/help_logo.png                          |  Bin 0 -> 2746 bytes
+ docs/images/icon_alert.png                         |  Bin 0 -> 2317 bytes
+ docs/images/icon_alertsml.png                      |  Bin 0 -> 248 bytes
+ docs/images/icon_arrowfolder1_sml.png              |  Bin 0 -> 762 bytes
+ docs/images/icon_arrowfolder2_sml.png              |  Bin 0 -> 743 bytes
+ docs/images/icon_arrowfolderclosed1_sml.png        |  Bin 0 -> 672 bytes
+ docs/images/icon_arrowfolderopen2_sml.png          |  Bin 0 -> 777 bytes
+ docs/images/icon_arrowmembers1_sml.png             |  Bin 0 -> 755 bytes
+ docs/images/icon_arrowmembers2_sml.png             |  Bin 0 -> 745 bytes
+ docs/images/icon_arrowusergroups1_sml.png          |  Bin 0 -> 781 bytes
+ docs/images/icon_arrowusergroups2_sml.png          |  Bin 0 -> 753 bytes
+ docs/images/icon_arrowwaste1_sml.png               |  Bin 0 -> 557 bytes
+ docs/images/icon_arrowwaste2_sml.png               |  Bin 0 -> 551 bytes
+ docs/images/icon_confirmsml.png                    |  Bin 0 -> 180 bytes
+ docs/images/icon_doc_lrg.png                       |  Bin 0 -> 897 bytes
+ docs/images/icon_doc_sml.png                       |  Bin 0 -> 426 bytes
+ docs/images/icon_error_lrg.png                     |  Bin 0 -> 1614 bytes
+ docs/images/icon_error_sml.png                     |  Bin 0 -> 605 bytes
+ docs/images/icon_folder_lrg.png                    |  Bin 0 -> 1502 bytes
+ docs/images/icon_folder_sml.png                    |  Bin 0 -> 647 bytes
+ docs/images/icon_help_lrg.png                      |  Bin 0 -> 1339 bytes
+ docs/images/icon_help_sml.png                      |  Bin 0 -> 572 bytes
+ docs/images/icon_info_lrg.png                      |  Bin 0 -> 980 bytes
+ docs/images/icon_info_sml.png                      |  Bin 0 -> 469 bytes
+ docs/images/icon_infosml.png                       |  Bin 0 -> 134 bytes
+ docs/images/icon_members_lrg.png                   |  Bin 0 -> 1659 bytes
+ docs/images/icon_members_sml.png                   |  Bin 0 -> 642 bytes
+ docs/images/icon_sortdown.png                      |  Bin 0 -> 174 bytes
+ docs/images/icon_sortleft.png                      |  Bin 0 -> 171 bytes
+ docs/images/icon_sortright.png                     |  Bin 0 -> 164 bytes
+ docs/images/icon_sortup.png                        |  Bin 0 -> 150 bytes
+ docs/images/icon_success_lrg.png                   |  Bin 0 -> 1481 bytes
+ docs/images/icon_success_sml.png                   |  Bin 0 -> 559 bytes
+ docs/images/icon_usergroups_lrg.png                |  Bin 0 -> 1765 bytes
+ docs/images/icon_usergroups_sml.png                |  Bin 0 -> 661 bytes
+ docs/images/icon_warning_lrg.png                   |  Bin 0 -> 1429 bytes
+ docs/images/icon_warning_sml.png                   |  Bin 0 -> 500 bytes
+ docs/images/icon_waste_lrg.png                     |  Bin 0 -> 854 bytes
+ docs/images/icon_waste_sml.png                     |  Bin 0 -> 457 bytes
+ docs/images/javadoc.png                            |  Bin 0 -> 584 bytes
+ docs/images/jdo_text.png                           |  Bin 0 -> 3388 bytes
+ docs/images/logos/build-by-maven-black.png         |  Bin 0 -> 2294 bytes
+ docs/images/logos/build-by-maven-white.png         |  Bin 0 -> 2260 bytes
+ docs/images/logos/maven-bolt.png                   |  Bin 0 -> 1717 bytes
+ docs/images/logos/maven-brewed.png                 |  Bin 0 -> 2312 bytes
+ docs/images/logos/maven-build-successfull.png      |  Bin 0 -> 1070 bytes
+ docs/images/logos/maven-built.png                  |  Bin 0 -> 903 bytes
+ docs/images/logos/maven-bulldozer.png              |  Bin 0 -> 4387 bytes
+ docs/images/logos/maven-button-1.png               |  Bin 0 -> 3217 bytes
+ docs/images/logos/maven-button-2.png               |  Bin 0 -> 2697 bytes
+ docs/images/logos/maven-button-3.png               |  Bin 0 -> 3792 bytes
+ docs/images/logos/maven-button-4.png               |  Bin 0 -> 6377 bytes
+ docs/images/logos/maven-button-5.png               |  Bin 0 -> 4545 bytes
+ docs/images/logos/maven-button-black.png           |  Bin 0 -> 1970 bytes
+ docs/images/logos/maven-button-blue.png            |  Bin 0 -> 2063 bytes
+ docs/images/logos/maven-button-copper.png          |  Bin 0 -> 2497 bytes
+ docs/images/logos/maven-button-green.png           |  Bin 0 -> 1978 bytes
+ docs/images/logos/maven-button-pinky.png           |  Bin 0 -> 2585 bytes
+ docs/images/logos/maven-button-purple.png          |  Bin 0 -> 2473 bytes
+ docs/images/logos/maven-button-teal.png            |  Bin 0 -> 1911 bytes
+ docs/images/logos/maven-feather.png                |  Bin 0 -> 3330 bytes
+ docs/images/logos/maven-frankenstein.png           |  Bin 0 -> 1038 bytes
+ docs/images/logos/maven-mavenfactured.png          |  Bin 0 -> 1664 bytes
+ docs/images/logos/maven-petesucks.png              |  Bin 0 -> 337 bytes
+ docs/images/logos/maven-propaganda-2.png           |  Bin 0 -> 2875 bytes
+ docs/images/logos/maven-propaganda.png             |  Bin 0 -> 2153 bytes
+ docs/images/logos/maven-redgreen.png               |  Bin 0 -> 504 bytes
+ docs/images/pdf.png                                |  Bin 0 -> 465 bytes
+ docs/images/poweredby_036.png                      |  Bin 0 -> 1693 bytes
+ docs/images/product_logo.png                       |  Bin 0 -> 1955 bytes
+ docs/images/remove.png                             |  Bin 0 -> 580 bytes
+ docs/images/se_maj_rond.png                        |  Bin 0 -> 91 bytes
+ docs/images/state_transition.png                   |  Bin 0 -> 49209 bytes
+ docs/images/state_transition_delete.png            |  Bin 0 -> 15808 bytes
+ docs/images/state_transition_persist.png           |  Bin 0 -> 10975 bytes
+ docs/images/state_transition_update.png            |  Bin 0 -> 13946 bytes
+ docs/images/strich.png                             |  Bin 0 -> 72 bytes
+ docs/images/sw_maj_rond.png                        |  Bin 0 -> 93 bytes
+ docs/images/sw_med_rond.png                        |  Bin 0 -> 84 bytes
+ docs/images/sw_min.png                             |  Bin 0 -> 84 bytes
+ docs/images/update.png                             |  Bin 0 -> 422 bytes
+ docs/impls.html                                    |  440 ++
+ docs/index.html                                    |  514 ++
+ docs/issue-tracking.html                           |  280 +
+ docs/issuetracking.html                            |  341 +
+ docs/javadoc.html                                  |  375 ++
+ docs/jdo_3_0_overview.html                         |  517 ++
+ docs/jdo_dtd.html                                  |  330 +
+ docs/jdo_v_jpa.html                                |  509 ++
+ docs/jdo_v_jpa_api.html                            |  365 +
+ docs/jdo_v_jpa_orm.html                            |  613 ++
+ docs/jdocentral.html                               |  302 +
+ docs/jdoconfig_dtd.html                            |  331 +
+ docs/jdohelper.html                                |  423 ++
+ docs/jdoql.html                                    |  589 ++
+ docs/jdoql_methods.html                            |  672 ++
+ docs/jdoql_result.html                             |  442 ++
+ docs/jdoquery_dtd.html                             |  331 +
+ docs/js/bootstrap-toc/0.4.1/bootstrap-toc.min.js   |    5 +
+ docs/js/bootstrap/3.3.7/bootstrap.min.js           |    7 +
+ docs/mail-lists.html                               |  325 +
+ docs/maven-reports.html                            |  280 +
+ docs/metadata.html                                 |  345 +
+ docs/newshistory.html                              |  301 +
+ docs/object_retrieval.html                         |  368 ++
+ docs/orm_dtd.html                                  |  331 +
+ docs/pm.html                                       |  526 ++
+ docs/pmf.html                                      |  783 +++
+ docs/project-info.html                             |  280 +
+ docs/references.html                               |  360 +
+ docs/roadmap.html                                  |  298 +
+ docs/specifications.html                           |  343 +
+ docs/state_transition.html                         |  531 ++
+ docs/svn.html                                      |  576 ++
+ docs/tck.html                                      |  329 +
+ docs/team-list.html                                |  397 ++
+ docs/transactions.html                             |  344 +
+ docs/types.html                                    |  280 +
+ docs/why_jdo.html                                  |  478 ++
+ pom.xml                                            |  200 +
+ src/main/asciidoc/annotations.adoc                 | 1924 ++++++
+ src/main/asciidoc/attach_detach.adoc               |  265 +
+ src/main/asciidoc/class_types.adoc                 |   83 +
+ src/main/asciidoc/css/asciidoctor/foundation.css   |  674 ++
+ .../css/bootstrap-toc/0.4.1/bootstrap-toc.min.css  |    4 +
+ .../asciidoc/css/bootstrap/3.3.7/bootstrap.css     | 6757 +++++++++++++++++++
+ .../css/bootswatch/3.3.7/bootstrap-cosmo.css       | 6938 ++++++++++++++++++++
+ src/main/asciidoc/css/datanucleus_theme.css        |   58 +
+ src/main/asciidoc/cvs-usage.adoc                   |   13 +
+ src/main/asciidoc/dependencies.adoc                |   55 +
+ src/main/asciidoc/downloads.adoc                   |   62 +
+ src/main/asciidoc/enhancement.adoc                 |  570 ++
+ src/main/asciidoc/exceptions.adoc                  |  100 +
+ src/main/asciidoc/extents.adoc                     |   39 +
+ src/main/asciidoc/faq.adoc                         |   43 +
+ src/main/asciidoc/fetchgroups.adoc                 |  310 +
+ src/main/asciidoc/field_types.adoc                 |  605 ++
+ src/main/asciidoc/get-involved.adoc                |   59 +
+ src/main/asciidoc/glossary.adoc                    |  150 +
+ src/main/asciidoc/guides.adoc                      |   24 +
+ src/main/asciidoc/images/JDO_32x32.png             |  Bin 0 -> 856 bytes
+ src/main/asciidoc/images/JDO_44x44.png             |  Bin 0 -> 1324 bytes
+ src/main/asciidoc/images/JDOx120.png               |  Bin 0 -> 9129 bytes
+ src/main/asciidoc/images/JDOx150.png               |  Bin 0 -> 9415 bytes
+ src/main/asciidoc/images/add.png                   |  Bin 0 -> 497 bytes
+ src/main/asciidoc/images/collapsed.png             |  Bin 0 -> 69 bytes
+ src/main/asciidoc/images/dot_clear.png             |  Bin 0 -> 69 bytes
+ src/main/asciidoc/images/expanded.png              |  Bin 0 -> 69 bytes
+ src/main/asciidoc/images/file.png                  |  Bin 0 -> 264 bytes
+ src/main/asciidoc/images/fix.png                   |  Bin 0 -> 381 bytes
+ src/main/asciidoc/images/folder-closed.png         |  Bin 0 -> 512 bytes
+ src/main/asciidoc/images/folder-open.png           |  Bin 0 -> 519 bytes
+ src/main/asciidoc/images/header_line.png           |  Bin 0 -> 77 bytes
+ src/main/asciidoc/images/help_logo.png             |  Bin 0 -> 2746 bytes
+ src/main/asciidoc/images/icon_alert.png            |  Bin 0 -> 2317 bytes
+ src/main/asciidoc/images/icon_alertsml.png         |  Bin 0 -> 248 bytes
+ src/main/asciidoc/images/icon_arrowfolder1_sml.png |  Bin 0 -> 762 bytes
+ src/main/asciidoc/images/icon_arrowfolder2_sml.png |  Bin 0 -> 743 bytes
+ .../images/icon_arrowfolderclosed1_sml.png         |  Bin 0 -> 672 bytes
+ .../asciidoc/images/icon_arrowfolderopen2_sml.png  |  Bin 0 -> 777 bytes
+ .../asciidoc/images/icon_arrowmembers1_sml.png     |  Bin 0 -> 755 bytes
+ .../asciidoc/images/icon_arrowmembers2_sml.png     |  Bin 0 -> 745 bytes
+ .../asciidoc/images/icon_arrowusergroups1_sml.png  |  Bin 0 -> 781 bytes
+ .../asciidoc/images/icon_arrowusergroups2_sml.png  |  Bin 0 -> 753 bytes
+ src/main/asciidoc/images/icon_arrowwaste1_sml.png  |  Bin 0 -> 557 bytes
+ src/main/asciidoc/images/icon_arrowwaste2_sml.png  |  Bin 0 -> 551 bytes
+ src/main/asciidoc/images/icon_confirmsml.png       |  Bin 0 -> 180 bytes
+ src/main/asciidoc/images/icon_doc_lrg.png          |  Bin 0 -> 897 bytes
+ src/main/asciidoc/images/icon_doc_sml.png          |  Bin 0 -> 426 bytes
+ src/main/asciidoc/images/icon_error_lrg.png        |  Bin 0 -> 1614 bytes
+ src/main/asciidoc/images/icon_error_sml.png        |  Bin 0 -> 605 bytes
+ src/main/asciidoc/images/icon_folder_lrg.png       |  Bin 0 -> 1502 bytes
+ src/main/asciidoc/images/icon_folder_sml.png       |  Bin 0 -> 647 bytes
+ src/main/asciidoc/images/icon_help_lrg.png         |  Bin 0 -> 1339 bytes
+ src/main/asciidoc/images/icon_help_sml.png         |  Bin 0 -> 572 bytes
+ src/main/asciidoc/images/icon_info_lrg.png         |  Bin 0 -> 980 bytes
+ src/main/asciidoc/images/icon_info_sml.png         |  Bin 0 -> 469 bytes
+ src/main/asciidoc/images/icon_infosml.png          |  Bin 0 -> 134 bytes
+ src/main/asciidoc/images/icon_members_lrg.png      |  Bin 0 -> 1659 bytes
+ src/main/asciidoc/images/icon_members_sml.png      |  Bin 0 -> 642 bytes
+ src/main/asciidoc/images/icon_sortdown.png         |  Bin 0 -> 174 bytes
+ src/main/asciidoc/images/icon_sortleft.png         |  Bin 0 -> 171 bytes
+ src/main/asciidoc/images/icon_sortright.png        |  Bin 0 -> 164 bytes
+ src/main/asciidoc/images/icon_sortup.png           |  Bin 0 -> 150 bytes
+ src/main/asciidoc/images/icon_success_lrg.png      |  Bin 0 -> 1481 bytes
+ src/main/asciidoc/images/icon_success_sml.png      |  Bin 0 -> 559 bytes
+ src/main/asciidoc/images/icon_usergroups_lrg.png   |  Bin 0 -> 1765 bytes
+ src/main/asciidoc/images/icon_usergroups_sml.png   |  Bin 0 -> 661 bytes
+ src/main/asciidoc/images/icon_warning_lrg.png      |  Bin 0 -> 1429 bytes
+ src/main/asciidoc/images/icon_warning_sml.png      |  Bin 0 -> 500 bytes
+ src/main/asciidoc/images/icon_waste_lrg.png        |  Bin 0 -> 854 bytes
+ src/main/asciidoc/images/icon_waste_sml.png        |  Bin 0 -> 457 bytes
+ src/main/asciidoc/images/javadoc.png               |  Bin 0 -> 584 bytes
+ src/main/asciidoc/images/jdo_text.png              |  Bin 0 -> 3388 bytes
+ .../asciidoc/images/logos/build-by-maven-black.png |  Bin 0 -> 2294 bytes
+ .../asciidoc/images/logos/build-by-maven-white.png |  Bin 0 -> 2260 bytes
+ src/main/asciidoc/images/logos/maven-bolt.png      |  Bin 0 -> 1717 bytes
+ src/main/asciidoc/images/logos/maven-brewed.png    |  Bin 0 -> 2312 bytes
+ .../images/logos/maven-build-successfull.png       |  Bin 0 -> 1070 bytes
+ src/main/asciidoc/images/logos/maven-built.png     |  Bin 0 -> 903 bytes
+ src/main/asciidoc/images/logos/maven-bulldozer.png |  Bin 0 -> 4387 bytes
+ src/main/asciidoc/images/logos/maven-button-1.png  |  Bin 0 -> 3217 bytes
+ src/main/asciidoc/images/logos/maven-button-2.png  |  Bin 0 -> 2697 bytes
+ src/main/asciidoc/images/logos/maven-button-3.png  |  Bin 0 -> 3792 bytes
+ src/main/asciidoc/images/logos/maven-button-4.png  |  Bin 0 -> 6377 bytes
+ src/main/asciidoc/images/logos/maven-button-5.png  |  Bin 0 -> 4545 bytes
+ .../asciidoc/images/logos/maven-button-black.png   |  Bin 0 -> 1970 bytes
+ .../asciidoc/images/logos/maven-button-blue.png    |  Bin 0 -> 2063 bytes
+ .../asciidoc/images/logos/maven-button-copper.png  |  Bin 0 -> 2497 bytes
+ .../asciidoc/images/logos/maven-button-green.png   |  Bin 0 -> 1978 bytes
+ .../asciidoc/images/logos/maven-button-pinky.png   |  Bin 0 -> 2585 bytes
+ .../asciidoc/images/logos/maven-button-purple.png  |  Bin 0 -> 2473 bytes
+ .../asciidoc/images/logos/maven-button-teal.png    |  Bin 0 -> 1911 bytes
+ src/main/asciidoc/images/logos/maven-feather.png   |  Bin 0 -> 3330 bytes
+ .../asciidoc/images/logos/maven-frankenstein.png   |  Bin 0 -> 1038 bytes
+ .../asciidoc/images/logos/maven-mavenfactured.png  |  Bin 0 -> 1664 bytes
+ src/main/asciidoc/images/logos/maven-petesucks.png |  Bin 0 -> 337 bytes
+ .../asciidoc/images/logos/maven-propaganda-2.png   |  Bin 0 -> 2875 bytes
+ .../asciidoc/images/logos/maven-propaganda.png     |  Bin 0 -> 2153 bytes
+ src/main/asciidoc/images/logos/maven-redgreen.png  |  Bin 0 -> 504 bytes
+ src/main/asciidoc/images/pdf.png                   |  Bin 0 -> 465 bytes
+ src/main/asciidoc/images/poweredby_036.png         |  Bin 0 -> 1693 bytes
+ src/main/asciidoc/images/product_logo.png          |  Bin 0 -> 1955 bytes
+ src/main/asciidoc/images/remove.png                |  Bin 0 -> 580 bytes
+ src/main/asciidoc/images/se_maj_rond.png           |  Bin 0 -> 91 bytes
+ src/main/asciidoc/images/state_transition.png      |  Bin 0 -> 49209 bytes
+ .../asciidoc/images/state_transition_delete.png    |  Bin 0 -> 15808 bytes
+ .../asciidoc/images/state_transition_persist.png   |  Bin 0 -> 10975 bytes
+ .../asciidoc/images/state_transition_update.png    |  Bin 0 -> 13946 bytes
+ src/main/asciidoc/images/strich.png                |  Bin 0 -> 72 bytes
+ src/main/asciidoc/images/sw_maj_rond.png           |  Bin 0 -> 93 bytes
+ src/main/asciidoc/images/sw_med_rond.png           |  Bin 0 -> 84 bytes
+ src/main/asciidoc/images/sw_min.png                |  Bin 0 -> 84 bytes
+ src/main/asciidoc/images/update.png                |  Bin 0 -> 422 bytes
+ src/main/asciidoc/impls.adoc                       |   96 +
+ src/main/asciidoc/index.adoc                       |  171 +
+ src/main/asciidoc/issue-tracking.adoc              |   13 +
+ src/main/asciidoc/issuetracking.adoc               |   53 +
+ src/main/asciidoc/javadoc.adoc                     |   81 +
+ src/main/asciidoc/jdo_3_0_overview.adoc            |  206 +
+ src/main/asciidoc/jdo_dtd.adoc                     |   57 +
+ src/main/asciidoc/jdo_v_jpa.adoc                   |  138 +
+ src/main/asciidoc/jdo_v_jpa_api.adoc               |   42 +
+ src/main/asciidoc/jdo_v_jpa_orm.adoc               |  270 +
+ src/main/asciidoc/jdocentral.adoc                  |   32 +
+ src/main/asciidoc/jdoconfig_dtd.adoc               |   58 +
+ src/main/asciidoc/jdohelper.adoc                   |   94 +
+ src/main/asciidoc/jdoql.adoc                       |  258 +
+ src/main/asciidoc/jdoql_methods.adoc               |  235 +
+ src/main/asciidoc/jdoql_result.adoc                |  120 +
+ src/main/asciidoc/jdoquery_dtd.adoc                |   58 +
+ .../js/bootstrap-toc/0.4.1/bootstrap-toc.min.js    |    5 +
+ .../asciidoc/js/bootstrap/3.3.7/bootstrap.min.js   |    7 +
+ src/main/asciidoc/mail-lists.adoc                  |   47 +
+ src/main/asciidoc/maven-reports.adoc               |   13 +
+ src/main/asciidoc/metadata.adoc                    |   69 +
+ src/main/asciidoc/newshistory.adoc                 |   31 +
+ src/main/asciidoc/object_retrieval.adoc            |   88 +
+ src/main/asciidoc/orm_dtd.adoc                     |   58 +
+ src/main/asciidoc/pm.adoc                          |  236 +
+ src/main/asciidoc/pmf.adoc                         |  400 ++
+ src/main/asciidoc/project-info.adoc                |   13 +
+ src/main/asciidoc/references.adoc                  |   63 +
+ src/main/asciidoc/roadmap.adoc                     |   29 +
+ src/main/asciidoc/specifications.adoc              |   51 +
+ src/main/asciidoc/state_transition.adoc            |  204 +
+ src/main/asciidoc/svn.adoc                         |  248 +
+ src/main/asciidoc/tck.adoc                         |   49 +
+ src/main/asciidoc/team-list.adoc                   |   62 +
+ src/main/asciidoc/transactions.adoc                |   65 +
+ src/main/asciidoc/types.adoc                       |   13 +
+ src/main/asciidoc/why_jdo.adoc                     |  145 +
+ src/main/template/document.html.erb                |  219 +
+ 309 files changed, 63263 insertions(+)
+
+commit a5d3dfcc6c3b781a963a200d041389b66c2532c8
+Author: Tilmann <tilmann_dev@gmx.de>
+Date:   Tue Apr 30 18:44:03 2019 +0200
+
+    Initial files
+
+ LICENSE.txt | 202 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 202 insertions(+)
+

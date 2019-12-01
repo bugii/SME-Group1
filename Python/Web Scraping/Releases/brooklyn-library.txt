@@ -1,0 +1,10 @@
+2018-09-17 : rel%2Fapache-brooklyn-1.0.0-M1
+2018-09-12 : rel%2Fapache-brooklyn-1.0.0-M1-rc1
+2017-09-27 : rel%2Fapache-brooklyn-0.12.0
+2017-09-22 : rel%2Fapache-brooklyn-0.12.0-rc3
+2017-09-20 : rel%2Fapache-brooklyn-0.12.0-rc2
+2017-09-19 : rel%2Fapache-brooklyn-0.12.0-rc1
+2017-05-17 : rel%2Fapache-brooklyn-0.11.0
+2017-05-12 : rel%2Fapache-brooklyn-0.11.0-rc3
+2017-04-18 : rel%2Fapache-brooklyn-0.11.0-rc2
+2017-04-12 : rel%2Fapache-brooklyn-0.11.0-rc1

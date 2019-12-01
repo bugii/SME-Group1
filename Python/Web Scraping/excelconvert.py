@@ -2,38 +2,53 @@ import pandas as pd
 import re
 from functions import file_to_stringlist
 
-def convert_to_excel(filename, date_as_int=False):
-    # Converts a given file into an excel sheet. date_as_int converts 2019-11-30 to 20191130 (for easier sorting).
-
-    list = file_to_stringlist(filename, "")
+def write_to_excel(*args, filename="Excel/excel_output.xlsx", skip_empty_files=False):
+    # As it says: Writes the input to an excel file in the Excel folder. ekip_empty_files means that it will not
+    # write an excel file if the input lists are empty.
 
     # Creating the dataframe
     df = pd.DataFrame()
+
+    if skip_empty_files and len(args[0])==0:
+        print("Empty input for excel writer. Skipping and proceeding to next input.")
+    else:
+        for idx, val in enumerate(args):
+            df[idx] = val
+        df.to_excel(filename, index=False)
+
+def convert_to_excel(filename, date_as_int=False):
+    # Converts a given file into an excel sheet. date_as_int converts 2019-11-30 to 20191130 (for easier sorting).
+    list = file_to_stringlist(filename, "")
 
     # Creating output columns
     list1 =[]
     list2 =[]
     list3 =[]
     temp_val = ""
+    excel_name=""
 
     for idx, val in enumerate(list):
-        temp_val = val.split("::")
-        list1.append(int(temp_val[0])) # Total dependencies
-        if date_as_int:
-            temp_list = temp_val[1].split("-")
-            temp_val2 = temp_list[0] + temp_list[1] + temp_list[2]
-            list2.append(int(temp_val2)) # Release dates
+        if val.startswith("/"):
+            if excel_name == "":
+                excel_name = "Excel/" + val[val.rindex("/") + 1:] + ".xlsx"
+            else:
+                write_to_excel(list1, list2, list3, filename=excel_name, skip_empty_files=True)
+                list1.clear()
+                list2.clear()
+                list3.clear()
+                excel_name = "Excel/" + val[val.rindex("/") + 1:] +".xlsx"
         else:
-            list2.append(temp_val[1])  # Release dates
-        list3.append(int(temp_val[2])) # Number of bugs
-
-    #In this part we declare the colums an then we write in excel
-    df['Total Dependencies']= list1
-    df['Release Dates'] = list2
-    df['Bugs']= list3
-
-    df.to_excel('result.xlsx', index = False)
-
+            temp_val = val.split("::")
+            list1.append(int(temp_val[0])) # Total dependencies
+            if date_as_int:
+                temp_list = temp_val[1].split("-")
+                temp_val2 = temp_list[0] + temp_list[1] + temp_list[2]
+                list2.append(int(temp_val2)) # Release dates
+            else:
+                list2.append(temp_val[1])  # Release dates
+            list3.append(int(temp_val[2])) # Number of bugs
+    if excel_name=="":
+        write_to_excel(list1, list2, list3, skip_empty_files=True)
 
 
 

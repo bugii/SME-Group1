@@ -1,0 +1,8 @@
+2019-07-29 : nimble_1_2_0_tag
+2019-07-29 : nimble_1_2_0_rc2_tag
+2019-07-16 : nimble_1_2_0_rc1_tag
+2019-04-02 : nimble_1_1_0_tag
+2019-04-02 : nimble_1_1_0_rc2_tag
+2019-03-29 : nimble_1_1_0_rc1_tag
+2018-06-04 : nimble_1_0_0_tag
+2018-06-04 : nimble_1_0_0_rc1_tag
