@@ -3,66 +3,99 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from analysis import load_obj
+from get_services_size import load_obj
 
 projects = []
 
 for folder in os.listdir('repositories'):
     project = load_obj('repositories/' + folder + '/project.pkl')
+
+    size = 0
+    for microservice in project.microservices:
+        # this is only temporal, can be deleted once all was run
+        if microservice['size'] is not None:
+            size += microservice['size']
+        else:
+            size += 0
+
+    # this is only temporal, can be delted once all was run
+    if len(project.microservices) is not 0:
+        nr_microservices = len(project.microservices)
+    else:
+        nr_microservices = 1
+
     projects.append({
         'name': project.name,
+        'created': project.created,
         'updated': project.last_updated,
-        'nr microservices': len(project.microservices),
-        'microservices': project.microservices,
-        'depends on': project.depends_on
+        'duration': project.last_updated - project.created,
+        'nr microservices': nr_microservices,
+        'size': size,
+        'average size': size/nr_microservices,
+        'depends on': project.depends_on,
+        'contributors': len(project.contributors),
+        'language': project.language
     })
+
+
+
+'''
+Last updated
+'''
 
 df = pd.DataFrame(projects)
+df['year'] = df['updated'].dt.year
+df = pd.melt(df, id_vars=['year'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
+g = sns.FacetGrid(df, row='variable', sharey=False, aspect=1.5)
+g.map(sns.boxplot, 'year', 'value', palette="Set3")
 
-df = df.sort_values(by="updated")
-df = df.set_index('updated')
-
-df_avg = df.resample('W').mean()
-
-print(df.head(10))
-print(df.tail(10))
-
-df.plot(marker='.', linestyle='None', alpha=0.5, subplots=True)
-
-df_avg.plot(marker='.', linestyle='None', alpha=0.5, subplots=True)
+g.savefig('results/last_updated.pdf')
 
 
-project_sizes = []
+'''
+Influence of language
+'''
 
-for project in projects:
-    date = project['updated']
-    nr_services = 0
-    total_size = 0
-    for micro in project['microservices']:
-        nr_services += 1
-        if micro['size'] != -1 and micro['size'] is not None:
-            total_size += micro['size']
+df2 = pd.DataFrame(projects)
+df2['year'] = df2['updated'].dt.year
+# print(df2['language'].value_counts())
+languages = ['JavaScript', 'PHP', 'Java', 'Python']
+df2 = df2[df2['language'].isin(languages)]
+df2 = pd.melt(df2, id_vars=['year', 'language'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
+g2 = sns.FacetGrid(df2, row='variable', sharey=False, aspect=1.5, legend_out=True)
+g2.map(sns.boxplot, 'year', 'value', 'language', palette="Set3").add_legend()
 
-    try:
-        avg_size = total_size/nr_services/1000000
-    except ZeroDivisionError:
-        avg_size = 0
+g2.savefig('results/language.pdf')
 
-    project_sizes.append({
-        "date": date,
-        "# services": nr_services,
-        "total size": total_size/1000000,
-        "avg size": avg_size
-    })
 
-df_size = pd.DataFrame(project_sizes)
-df_size = df_size.set_index("date")
-print(df_size.head())
+'''
+Project Duration
+'''
 
-df_size.plot(marker='.', linestyle='None', alpha=0.5, subplots=True)
+df3 = pd.DataFrame(projects)
+df3['duration'] = df3['duration'].dt.days
+df3 = pd.melt(df3, id_vars=['duration'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
+g3 = sns.lmplot(data=df3, x='duration', y='value', row='variable', sharey=False, palette="Set3", aspect=1.5)
+
+axes = g3.axes
+axes[0][0].set_ylim(0, 100)
+axes[3][0].set_ylim(0, 100)
+
+g3.savefig('results/duration.pdf')
+
+'''
+Contributors
+'''
+
+df4 = pd.DataFrame(projects)
+df4 = pd.melt(df4, id_vars=['contributors'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
+g4 = sns.lmplot(data=df4, x='contributors', y='value', row='variable', sharey=False, palette="Set3", aspect=1.5)
+
+axes = g4.axes
+axes[0][0].set_ylim(0, 100)
+axes[3][0].set_ylim(0, 100)
+
+g4.savefig('results/contributors.pdf')
+
 
 plt.show()
-
-
-
-
