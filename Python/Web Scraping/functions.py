@@ -327,10 +327,11 @@ def generate_Apache_link_list(upper_boundary=1):
         write_to_txt(i, "ApacheGithubLinks.txt")
     return Apache_Project_Links
 
-def write_dependency_timelines(txt, dir, MaxNumberOfClones=-1):
+def write_dependency_timelines(txt, dir, MaxNumberOfClones=-1, include_dependency_names=False):
     # from the .txt file in directory dir: Uses the entries as links to clone the github repositories, extract the
     # number of dependencies and write them into a file in the "Dependencies" folder. After that, it clears the
-    # "Repositories" folder.
+    # "Repositories" folder. include_dependency_names means that all dependencies, i.e. apache-airflow/airflow/1.3.1
+    # will be written in a seperate file.
     for i in file_to_stringlist(txt, dir):
         if MaxNumberOfClones==0:
             break
@@ -361,7 +362,8 @@ def write_dependency_timelines(txt, dir, MaxNumberOfClones=-1):
                     print("Writing dependencies for " + i[i.rindex("/") + 1:])
                     write_to_txt(j[0] + " : " + str(dependency_number(dep_file_line_list, dependency_filename)),
                                  "Dependencies/" + i[i.rindex("/") + 1:] + ".txt")
-                    write_to_txt(dependency_line(dep_file_line_list, dependency_filename),
+                    if include_dependency_names:
+                        write_to_txt(dependency_line(dep_file_line_list, dependency_filename),
                                  "Dependencies/" + i[i.rindex("/") + 1:] + "_2.txt")
                     time.sleep(0.1)
                 except:
@@ -428,6 +430,7 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
     # the number of bugs after release (by bug_time, by default 14 days, from Jira) into a line.
     content = file_to_stringlist(filename, "")
     for i in content:
+        write_to_txt(i, "Timelines/complete.txt")
         for j in (file_to_stringlist(i[8:] + ".txt", "Releases/")):
             dependencies = file_to_stringlist(i[8:] + ".txt", "Dependencies/")
             dependencies_all = file_to_stringlist(i[8:] + "_2.txt", "Dependencies/")
@@ -458,13 +461,22 @@ def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", i
                         write_to_txt(numb_dependencies + "::" + temp_string + numb_bugs + "::" + "NONE", "Timelines/complete.txt")
                         break
 
-def clean_up(file, folder):
+def clean_up(file, folder, include_names=False):
     # Clean-up of the complete.txt, which might still contain useless lines where there had been no bugs on Jira
-    # or no identifiable dependencies.
+    # or no identifiable dependencies. If include_names is true, it will add the project names to the raw data.
     temp_list = file_to_stringlist(file, folder)
     for i in temp_list:
-        if i[i.rindex("::")-2] != "-" and i[0].isdigit() and not i.endswith(":"):
-            write_to_txt(i, "output_clean.txt")
+        try:
+            if include_names:
+                if i.startswith("/"):
+                    write_to_txt(i, "output_clean.txt")
+                elif i[i.rindex("::")-2] != "-" and i[0].isdigit() and not i.endswith(":"):
+                    write_to_txt(i, "output_clean.txt")
+            else:
+                if i[i.rindex("::")-2] != "-" and i[0].isdigit() and not i.endswith(":"):
+                    write_to_txt(i, "output_clean.txt")
+        except:
+            print("Probably index error in clean_up() method.")
 
 def check_dependency_type(dependency, type):
     # Expects a string of the format "org.apache.pulsar/pulsar-something/1.2.3". Then goes to check if this is

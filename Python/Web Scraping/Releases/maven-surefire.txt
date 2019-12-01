@@ -1,0 +1,10 @@
+2019-11-13 : surefire-3.0.0-M4
+2019-11-13 : surefire-3.0.0-M4_vote-1
+2019-04-25 : surefire-2.22.2
+2018-12-20 : surefire-3.0.0-M3
+2018-12-20 : surefire-3.0.0-M3_vote-1
+2018-12-05 : surefire-3.0.0-M2
+2018-12-05 : surefire-3.0.0-M2_vote-1
+2018-11-04 : surefire-3.0.0-M1
+2018-11-04 : surefire-3.0.0-M1_vote-2
+2018-11-02 : surefire-3.0.0-M1_vote-1

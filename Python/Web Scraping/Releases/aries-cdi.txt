@@ -1,0 +1,4 @@
+2019-11-25 : org.apache.aries.cdi-1.0.3
+2019-04-01 : org.apache.aries.cdi-1.0.2
+2019-03-07 : org.apache.aries.cdi-1.0.1
+2019-02-07 : org.apache.aries.cdi-1.0.0

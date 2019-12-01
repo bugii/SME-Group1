@@ -1,0 +1,10 @@
+2019-08-07 : release-ranger-2.0.0
+2019-08-01 : ranger-2.0.0-rc1
+2018-10-04 : release-ranger-1.2.0
+2018-09-27 : ranger-1.2.0-rc1
+2018-07-09 : release-ranger-1.1.0
+2018-07-05 : 1.1.0-rc1
+2018-07-05 : ranger-1.1.0-rc2
+2018-03-20 : release-ranger-1.0.0
+2018-03-14 : release-1.0.0-rc1
+2018-03-12 : release-1.0.0-rc0

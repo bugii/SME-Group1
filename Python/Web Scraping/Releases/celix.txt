@@ -1,0 +1,7 @@
+2018-01-30 : rel%2Fcelix-2.1.0
+2016-10-26 : rel%2Fcelix-2.0.0
+2016-10-18 : rel%2Fcelix-2.0.0.rc1
+2016-04-11 : rel%2Fcelix-2.0.0.alpha2
+2016-04-11 : rel%2Fcelix-2.0.0.alpha1
+2014-07-18 : celix-1.0.0.incubating
+2014-07-18 : celix-0.0.1-incubating

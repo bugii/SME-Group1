@@ -1,0 +1,10 @@
+2019-07-26 : mynewt_1_7_0_rc2_tag
+2019-07-16 : mynewt_1_7_0_tag
+2019-07-16 : mynewt_1_7_0_rc1_tag
+2019-04-02 : mynewt_1_6_0_rc2_tag
+2019-03-29 : mynewt_1_6_0_tag
+2019-03-29 : mynewt_1_6_0_rc1_tag
+2018-10-18 : mynewt_1_5_0_tag
+2018-10-18 : mynewt_1_5_0_rc1_tag
+2018-06-22 : mynewt_1_4_1_tag
+2018-06-22 : mynewt_1_4_1_rc1_tag

@@ -1,0 +1,10 @@
+2019-07-09 : commons-commons-collections-4.4
+2019-07-05 : commons-collections-4.4-RC1
+2019-02-05 : collections-4.3
+2018-12-26 : collections-4.3-RC2
+2018-12-18 : collections-4.3-RC1
+2018-07-11 : commons-collections-4.2
+2018-07-08 : commons-collections-4.2-RC1
+2017-07-11 : struts-1.1-RC1
+2017-07-11 : struts-1.1-B3
+2017-07-11 : struts-1.1-B2

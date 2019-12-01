@@ -1,3 +1,239 @@
+commit 7c1dfa04ce6f672dc8d1b4f542a1462a27af3b9d
+Author: Xiangdong Huang <hxdreg@qq.com>
+Date:   Sun Dec 1 15:36:38 2019 +0800
+
+    disable sonar analysis temporary (#611)
+
+ Jenkinsfile | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+commit fb3b8284a4ccc8afc594b3073bced78d6e76e911
+Merge: 06dfc7b67 28558f92c
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sun Dec 1 09:21:01 2019 +0800
+
+    Merge pull request #602 from LeiRui/bugfix
+    
+    [IOTDB-331] A groupBy query bug when axisOrigin-startTimeOfWindow is an integral multiple of interval
+
+commit 06dfc7b677aacefab6866d85cc4419aa14d26fec
+Merge: 5e7bff42d 82ad1e67b
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sun Dec 1 09:20:32 2019 +0800
+
+    Merge pull request #606 from apache/last
+    
+    [IOTDB-298] Refactor the "last" and "first" aggregators
+
+commit 82ad1e67b654870c01d5c0b7c9b7d46cd10c0f76
+Author: qiaojialin <646274302@qq.com>
+Date:   Sun Dec 1 08:35:46 2019 +0800
+
+    revert last first
+
+ .../apache/iotdb/db/qp/constant/SQLConstant.java   | 14 ++++++++
+ .../iotdb/db/query/factory/AggreFuncFactory.java   | 20 +++++------
+ .../org/apache/iotdb/db/service/TSServiceImpl.java | 19 +++++-----
+ .../tsfile/common/constant/StatisticConstant.java  | 41 ----------------------
+ .../filter}/StatisticsClassException.java          |  4 +--
+ .../file/metadata/statistics/BinaryStatistics.java |  1 +
+ .../metadata/statistics/BooleanStatistics.java     |  2 +-
+ .../file/metadata/statistics/Statistics.java       |  1 +
+ .../metadata/statistics/LongStatisticsTest.java    |  1 +
+ 9 files changed, 39 insertions(+), 64 deletions(-)
+
+commit 9c23f065809e8176a846424f382ca835532a203a
+Merge: deb04e9ca 5e7bff42d
+Author: qiaojialin <646274302@qq.com>
+Date:   Sun Dec 1 08:29:14 2019 +0800
+
+    Merge branch 'master' into last
+
+commit 5e7bff42d705ced42cac9e276df4365e49f79031
+Author: Xiangdong Huang <hxdreg@qq.com>
+Date:   Sun Dec 1 08:25:42 2019 +0800
+
+    Fix Travis CI for WinOS + OpenJDK11 (#605)
+    
+    * update travis jdk in windows
+
+ .travis.yml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit da32319b01cc58a642b6aae6383947bb4524456a
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sun Dec 1 08:25:17 2019 +0800
+
+    fix page writer in statistics (#603)
+    
+    * fix page writer in statistics
+
+ .../apache/iotdb/hive/TSFHiveInputFormatTest.java  |  2 +-
+ .../iotdb/tsfile/file/header/ChunkHeader.java      |  5 --
+ .../iotdb/tsfile/file/header/PageHeader.java       | 41 +++--------
+ .../tsfile/file/metadata/ChunkGroupMetaData.java   |  4 +-
+ .../iotdb/tsfile/file/metadata/ChunkMetaData.java  |  3 +-
+ .../file/metadata/statistics/BinaryStatistics.java | 10 +--
+ .../file/metadata/statistics/Statistics.java       | 12 ++-
+ .../iotdb/tsfile/utils/ReadWriteIOUtils.java       | 34 ++++-----
+ .../iotdb/tsfile/write/chunk/ChunkWriterImpl.java  | 12 +--
+ .../apache/iotdb/tsfile/write/page/PageWriter.java | 85 +---------------------
+ .../tsfile/file/metadata/utils/TestHelper.java     |  3 +-
+ .../tsfile/read/TsFileSequenceReaderTest.java      | 37 +++++++---
+ 12 files changed, 77 insertions(+), 171 deletions(-)
+
+commit 0d544ad7fe89db2be13a26cb6daceb7a904a0b39
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sat Nov 30 23:46:21 2019 +0800
+
+    Revert "Revert "Move the vulnera-checks section into the apache-release profile (#590)" (#599)" (#604)
+    
+    This reverts commit 094aefd454c05885fa197b495db0e8bd39addaf8.
+
+ pom.xml | 160 ++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 80 insertions(+), 80 deletions(-)
+
+commit af831ab803bf54193d5893e49ab5cc2f82628481
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sat Nov 30 18:31:11 2019 +0800
+
+    [IOTDB-325] Refactor Statistics (#587)
+    
+    * refactor statistics
+
+ .../apache/iotdb/hive/TSFHiveInputFormatTest.java  |   8 +-
+ .../db/query/aggregation/impl/AvgAggrFunc.java     |   2 +-
+ .../db/query/aggregation/impl/CountAggrFunc.java   |   2 +-
+ .../db/query/aggregation/impl/FirstAggrFunc.java   |   2 +-
+ .../db/query/aggregation/impl/LastAggrFunc.java    |   4 +-
+ .../db/query/aggregation/impl/MaxTimeAggrFunc.java |   2 +-
+ .../query/aggregation/impl/MaxValueAggrFunc.java   |   2 +-
+ .../db/query/aggregation/impl/MinTimeAggrFunc.java |   2 +-
+ .../query/aggregation/impl/MinValueAggrFunc.java   |   2 +-
+ .../groupby/GroupByWithoutValueFilterDataSet.java  |   8 +-
+ .../db/query/executor/AggregateEngineExecutor.java |   8 +-
+ .../resourceRelated/UnseqResourceMergeReader.java  |  19 +-
+ .../apache/iotdb/db/tools/TsFileSketchTool.java    |  65 +--
+ .../db/engine/memtable/MemTableFlushTaskTest.java  |   2 +-
+ .../merge/MaxSeriesMergeFileSelectorTest.java      |   1 -
+ .../engine/storagegroup/TsFileProcessorTest.java   |   6 +-
+ tsfile/format-changelist.md                        |   9 +
+ .../iotdb/tsfile/file/header/ChunkHeader.java      |  54 +-
+ .../iotdb/tsfile/file/header/PageHeader.java       | 128 +----
+ .../iotdb/tsfile/file/header/package-info.java     |   2 +-
+ .../tsfile/file/metadata/ChunkGroupMetaData.java   |  81 +--
+ .../iotdb/tsfile/file/metadata/ChunkMetaData.java  | 159 +-----
+ .../tsfile/file/metadata/TsDeviceMetadata.java     |  83 +--
+ .../file/metadata/statistics/BinaryStatistics.java | 192 +++----
+ .../metadata/statistics/BooleanStatistics.java     | 184 +++----
+ .../file/metadata/statistics/DoubleStatistics.java | 211 +++----
+ .../file/metadata/statistics/FloatStatistics.java  | 190 ++++---
+ .../metadata/statistics/IntegerStatistics.java     | 191 ++++---
+ .../file/metadata/statistics/LongStatistics.java   | 201 +++----
+ .../file/metadata/statistics/NoStatistics.java     | 181 ------
+ .../file/metadata/statistics/Statistics.java       | 609 ++++++++-------------
+ .../statistics/StatisticsClassException.java       |   5 +
+ .../iotdb/tsfile/read/TsFileSequenceReader.java    |  68 +--
+ .../iotdb/tsfile/read/filter/DigestForFilter.java  | 154 ------
+ .../iotdb/tsfile/read/filter/basic/Filter.java     |  10 +-
+ .../tsfile/read/filter/operator/AndFilter.java     |   6 +-
+ .../iotdb/tsfile/read/filter/operator/Eq.java      |  13 +-
+ .../iotdb/tsfile/read/filter/operator/Gt.java      |  11 +-
+ .../iotdb/tsfile/read/filter/operator/GtEq.java    |  11 +-
+ .../iotdb/tsfile/read/filter/operator/Lt.java      |  11 +-
+ .../iotdb/tsfile/read/filter/operator/LtEq.java    |  11 +-
+ .../iotdb/tsfile/read/filter/operator/NotEq.java   |  13 +-
+ .../tsfile/read/filter/operator/NotFilter.java     |   6 +-
+ .../tsfile/read/filter/operator/OrFilter.java      |   6 +-
+ .../query/executor/ExecutorWithTimeGenerator.java  |   2 +-
+ .../tsfile/read/query/executor/TsFileExecutor.java |   2 +-
+ .../tsfile/read/reader/chunk/ChunkReader.java      |   2 +-
+ .../read/reader/chunk/ChunkReaderByTimestamp.java  |   2 +-
+ .../read/reader/chunk/ChunkReaderWithFilter.java   |  10 +-
+ .../reader/chunk/ChunkReaderWithoutFilter.java     |   2 +-
+ .../reader/series/FileSeriesReaderByTimestamp.java |   2 +-
+ .../reader/series/FileSeriesReaderWithFilter.java  |  15 +-
+ .../tool/upgrade/TsfileUpgradeToolV0_8_0.java      |  28 +-
+ .../iotdb/tsfile/utils/ReadWriteIOUtils.java       |  14 +
+ .../iotdb/tsfile/write/chunk/ChunkWriterImpl.java  |  70 +--
+ .../iotdb/tsfile/write/chunk/IChunkWriter.java     |  10 -
+ .../apache/iotdb/tsfile/write/page/PageWriter.java |  64 +--
+ .../write/writer/RestorableTsFileIOWriter.java     |   2 +-
+ .../iotdb/tsfile/write/writer/TsFileIOWriter.java  |  61 +--
+ .../iotdb/tsfile/file/header/PageHeaderTest.java   |  66 +--
+ .../file/metadata/ChunkGroupMetaDataTest.java      |  52 --
+ .../tsfile/file/metadata/ChunkMetaDataTest.java    | 114 ----
+ .../tsfile/file/metadata/TsDeviceMetadataTest.java |  64 ---
+ .../metadata/statistics/BooleanStatisticsTest.java |  21 +-
+ .../metadata/statistics/DoubleStatisticsTest.java  |  30 +-
+ .../metadata/statistics/FloatStatisticsTest.java   |  30 +-
+ .../metadata/statistics/IntegerStatisticsTest.java |  30 +-
+ .../metadata/statistics/LongStatisticsTest.java    |  40 +-
+ .../metadata/statistics/StringStatisticsTest.java  |  23 +-
+ .../tsfile/file/metadata/utils/TestHelper.java     | 109 +---
+ .../iotdb/tsfile/file/metadata/utils/Utils.java    |  28 +-
+ .../iotdb/tsfile/read/ReadInPartitionTest.java     |   4 +-
+ .../iotdb/tsfile/read/ReadOnlyTsFileTest.java      |   4 +-
+ .../org/apache/iotdb/tsfile/read/ReadTest.java     |  16 +-
+ .../tsfile/read/TsFileSequenceReaderTest.java      |   4 +-
+ .../tsfile/read/controller/ChunkLoaderTest.java    |   3 +-
+ .../controller/IMetadataQuerierByFileImplTest.java |   4 +-
+ .../iotdb/tsfile/read/filter/DigestFilterTest.java | 116 ----
+ .../tsfile/read/filter/StatisticsFilterTest.java   | 108 ++++
+ .../iotdb/tsfile/read/reader/ReaderTest.java       |   2 +-
+ .../apache/iotdb/tsfile/utils/FileGenerator.java   |  23 +-
+ .../iotdb/tsfile/utils/TsFileGeneratorForTest.java |  12 +-
+ .../iotdb/tsfile/write/TsFileIOWriterTest.java     |   6 +-
+ .../write/writer/RestorableTsFileIOWriterTest.java |   2 +-
+ 84 files changed, 1268 insertions(+), 2864 deletions(-)
+
+commit 28558f92cb831c27dba1b36dac20670f4d6bc356
+Author: Lei Rui <1010953854@qq.com>
+Date:   Sat Nov 30 18:10:00 2019 +0800
+
+    fix a bug about groupby query
+
+ .../dataset/groupby/GroupByEngineDataSet.java      |  5 +++-
+ .../iotdb/db/integration/IOTDBGroupByIT.java       | 30 ++++++++++++++++++++++
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+
+commit 8437ad56627b9b51df58e8a0bdbcc0792a712213
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sat Nov 30 18:11:03 2019 +0800
+
+    Revert "[IOTDB-298] Refactor the "last" and "first" aggregators" (#601)
+    
+    * Revert "[IOTDB-298] Refactor the "last" and "first" aggregators (#594)"
+    
+    This reverts commit 2785bd157597cca70f201b4bb64aa32f146f776c.
+
+ .travis.yml                                        |  2 +-
+ .../5-Operation Manual/4-SQL Reference.md          | 14 +---
+ .../5-Operation Manual/4-SQL Reference.md          | 18 ++---
+ ...{FirstValueAggrFunc.java => FirstAggrFunc.java} |  4 +-
+ .../{LastValueAggrFunc.java => LastAggrFunc.java}  |  4 +-
+ .../db/query/executor/AggregateEngineExecutor.java |  6 +-
+ .../iotdb/db/query/factory/AggreFuncFactory.java   | 12 ++--
+ .../org/apache/iotdb/db/service/TSServiceImpl.java |  4 +-
+ .../org/apache/iotdb/db/integration/Constant.java  |  8 +--
+ .../iotdb/db/integration/IOTDBGroupByIT.java       | 28 ++++----
+ .../iotdb/db/integration/IoTDBAggregationIT.java   | 34 ++++-----
+ .../integration/IoTDBAggregationLargeDataIT.java   | 80 +++++++++++-----------
+ .../integration/IoTDBAggregationSmallDataIT.java   | 32 ++++-----
+ .../tsfile/common/constant/StatisticConstant.java  |  4 +-
+ 14 files changed, 115 insertions(+), 135 deletions(-)
+
+commit 094aefd454c05885fa197b495db0e8bd39addaf8
+Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
+Date:   Sat Nov 30 15:01:46 2019 +0800
+
+    Revert "Move the vulnera-checks section into the apache-release profile (#590)" (#599)
+    
+    This reverts commit 6bae410529b984d76331a21d4d4cf540e078dbad.
+
+ pom.xml | 160 ++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 80 insertions(+), 80 deletions(-)
+
 commit 2785bd157597cca70f201b4bb64aa32f146f776c
 Author: Yi Tao <thss15_yit@163.com>
 Date:   Fri Nov 29 16:19:43 2019 +0800
@@ -20,6 +256,44 @@ Date:   Fri Nov 29 16:19:43 2019 +0800
  .../integration/IoTDBAggregationSmallDataIT.java   | 32 ++++-----
  .../tsfile/common/constant/StatisticConstant.java  |  4 +-
  13 files changed, 134 insertions(+), 114 deletions(-)
+
+commit deb04e9cab29528d8feb7bf18d3ccdb3d64def6c
+Author: nlosilva1 <thss15_yit@163.com>
+Date:   Fri Nov 29 11:19:44 2019 +0800
+
+    modify docs in UserGuide
+
+ .../UserGuide/5-Operation Manual/4-SQL Reference.md    | 14 +++++++++++---
+ .../UserGuide/5-Operation Manual/4-SQL Reference.md    | 18 ++++++++++++++----
+ 2 files changed, 25 insertions(+), 7 deletions(-)
+
+commit 68eea7055e11731d5a681e5768b8c265614c42eb
+Author: nlosilva1 <thss15_yit@163.com>
+Date:   Fri Nov 29 00:59:13 2019 +0800
+
+    fix bug
+
+ .../test/java/org/apache/iotdb/db/integration/IoTDBAggregationIT.java   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e7d1049ca1750a99e99e6307f5c22d8a0710b6b7
+Author: nlosilva1 <thss15_yit@163.com>
+Date:   Thu Nov 28 23:08:13 2019 +0800
+
+    IOTDB-298 refactor: change aggregation function's name:last to last_value, first to first_value
+
+ ...{FirstAggrFunc.java => FirstValueAggrFunc.java} |  4 +-
+ .../{LastAggrFunc.java => LastValueAggrFunc.java}  |  4 +-
+ .../db/query/executor/AggregateEngineExecutor.java |  6 +-
+ .../iotdb/db/query/factory/AggreFuncFactory.java   | 12 ++--
+ .../org/apache/iotdb/db/service/TSServiceImpl.java |  4 +-
+ .../org/apache/iotdb/db/integration/Constant.java  |  8 +--
+ .../iotdb/db/integration/IOTDBGroupByIT.java       | 28 ++++----
+ .../iotdb/db/integration/IoTDBAggregationIT.java   | 32 ++++-----
+ .../integration/IoTDBAggregationLargeDataIT.java   | 80 +++++++++++-----------
+ .../integration/IoTDBAggregationSmallDataIT.java   | 32 ++++-----
+ .../tsfile/common/constant/StatisticConstant.java  |  4 +-
+ 11 files changed, 108 insertions(+), 106 deletions(-)
 
 commit 15643e1db8033a98d80a8c9367e61d3e45bd4117
 Author: Xiangdong Huang <hxdreg@qq.com>
@@ -212,7 +486,7 @@ Date:   Fri Nov 22 19:05:23 2019 +0800
  1 file changed, 6 insertions(+), 6 deletions(-)
 
 commit def4daf2addef0062fe04f698a825301ffa343bc
-Merge: 85d3bf9f 8e7861f2
+Merge: 85d3bf9f2 8e7861f27
 Author: Rui Liu <245422695@qq.com>
 Date:   Thu Nov 21 16:35:50 2019 +0800
 
@@ -295,7 +569,7 @@ Date:   Tue Nov 19 18:10:17 2019 +0800
  1 file changed, 6 insertions(+)
 
 commit 888e44db3ed960532a9d4ad9946022830ad0a9a9
-Merge: 1b4e5e62 d45fa1f1
+Merge: 1b4e5e629 d45fa1f1e
 Author: liuruiyiyang <245422695@qq.com>
 Date:   Tue Nov 19 17:44:07 2019 +0800
 
@@ -650,7 +924,7 @@ Date:   Fri Nov 15 20:19:50 2019 +0800
  9 files changed, 41 insertions(+), 5 deletions(-)
 
 commit e4e527f70d642a5a3f3bbb00acecd408e5d0c246
-Merge: 83af4f01 2eb8d60d
+Merge: 83af4f01b 2eb8d60df
 Author: liuruiyiyang <245422695@qq.com>
 Date:   Fri Nov 15 17:42:01 2019 +0800
 
@@ -669,7 +943,7 @@ Date:   Fri Nov 15 16:18:46 2019 +0800
  4 files changed, 31 insertions(+), 23 deletions(-)
 
 commit 2eb8d60df7a8b44a52963313bbede40743984a69
-Merge: 043af03c 3e18e112
+Merge: 043af03c9 3e18e112f
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Nov 15 15:21:24 2019 +0800
 
@@ -705,7 +979,7 @@ Date:   Fri Nov 15 15:20:50 2019 +0800
  21 files changed, 176 insertions(+), 118 deletions(-)
 
 commit c47967e7ff38175d1976e3482322ee4899ef5463
-Merge: 2056cf0a 3e18e112
+Merge: 2056cf0a4 3e18e112f
 Author: liuruiyiyang <245422695@qq.com>
 Date:   Fri Nov 15 10:32:23 2019 +0800
 
@@ -790,7 +1064,7 @@ Date:   Thu Nov 14 11:56:22 2019 +0800
  3 files changed, 160 insertions(+), 11 deletions(-)
 
 commit 41e7e5ff59706a55d039e06cea1b036d33c33273
-Merge: 719512a7 edf14ba4
+Merge: 719512a71 edf14ba4a
 Author: qiaojialin <646274302@qq.com>
 Date:   Wed Nov 13 19:17:46 2019 +0800
 
@@ -2609,7 +2883,7 @@ Date:   Tue Oct 22 20:58:01 2019 +0800
  4 files changed, 74 insertions(+)
 
 commit 9265f447b556aa6192c964402c892f426103ca9f
-Merge: 56348439 f3666550
+Merge: 56348439f f3666550a
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Oct 22 20:55:23 2019 +0800
 
@@ -2618,21 +2892,21 @@ Date:   Tue Oct 22 20:55:23 2019 +0800
     New doc pr
 
 commit f3666550ae9cdcdd0eb0cf35a9e1f80ea473882d
-Merge: 5adfcbb6 56348439
+Merge: 5adfcbb64 56348439f
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Oct 22 20:50:28 2019 +0800
 
     resolve conflict when merge pr450
 
 commit 5adfcbb64dd6d1e5f2b44a37c69e3aae9b4f8b3d
-Merge: 1a9798ea 00ad5faa
+Merge: 1a9798eae 00ad5faad
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Oct 22 20:46:01 2019 +0800
 
     Merge branch 'HTHou-doc-changes'
 
 commit 00ad5faad7ac3c3d4ecfd7755dabbd0bc9c88ddb
-Merge: 1a9798ea e6ca1f10
+Merge: 1a9798eae e6ca1f10c
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Oct 22 20:45:09 2019 +0800
 
@@ -2942,7 +3216,7 @@ Date:   Mon Oct 21 16:18:50 2019 +0800
  4 files changed, 37 insertions(+), 23 deletions(-)
 
 commit c5dadb83371c9d8b038b4b793833406f9f76ff61
-Merge: 2b482ef3 3369e338
+Merge: 2b482ef32 3369e3384
 Author: Haonan Hou <hhaonan@outlook.com>
 Date:   Mon Oct 21 16:00:25 2019 +0800
 
@@ -4711,7 +4985,7 @@ Date:   Mon Sep 23 19:08:32 2019 +0800
  3 files changed, 9 insertions(+), 11 deletions(-)
 
 commit ad3b9241b3f7918db186fd969cd578f91443c4d5
-Merge: 9de6e126 3a281cfb
+Merge: 9de6e126a 3a281cfbd
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Sep 21 20:11:15 2019 +0800
 
@@ -4720,7 +4994,7 @@ Date:   Sat Sep 21 20:11:15 2019 +0800
     Delete timeseries in session
 
 commit 9de6e126a80ad4f30ee82a8fb77ae583d67bde23
-Merge: 767a4aa0 ab3e684d
+Merge: 767a4aa0e ab3e684d5
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Sep 21 19:53:18 2019 +0800
 
@@ -5388,7 +5662,7 @@ Date:   Sun Sep 8 17:38:15 2019 +0800
  2 files changed, 137 insertions(+), 34 deletions(-)
 
 commit 0facdf24bd542846b05cff8ba0ccdfdd0a28cfea
-Merge: 6c009d86 ce17ef91
+Merge: 6c009d862 ce17ef911
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Sep 7 09:24:36 2019 +0800
 
@@ -5453,7 +5727,7 @@ Date:   Fri Sep 6 20:21:18 2019 +0800
  27 files changed, 367 insertions(+), 128 deletions(-)
 
 commit f0077d9fb2e178d454a03b9fb6b31fffd1d18e35
-Merge: e6199e4a e052e553
+Merge: e6199e4a7 e052e553b
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Sep 6 19:54:45 2019 +0800
 
@@ -5462,7 +5736,7 @@ Date:   Fri Sep 6 19:54:45 2019 +0800
     [IOTDB-202] fix tsfile example data type
 
 commit e6199e4a72196b4cd106cf704251225c938963df
-Merge: 89fdf9ea 69dc6e46
+Merge: 89fdf9eaf 69dc6e461
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Sep 6 17:33:06 2019 +0800
 
@@ -5471,7 +5745,7 @@ Date:   Fri Sep 6 17:33:06 2019 +0800
     1.remove the redundant field measurementSchemaList in Schema.java 2. Change all the str.length() to str.getBytes().length while calculating the serialized byte size
 
 commit 89fdf9eaf7d08b6f905c38df7684162ae8b16102
-Merge: e3d48fd0 75ef7cfb
+Merge: e3d48fd0c 75ef7cfbe
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Sep 6 17:17:55 2019 +0800
 
@@ -5499,7 +5773,7 @@ Date:   Fri Sep 6 16:13:58 2019 +0800
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 commit e3d48fd0c9694e880de7be883b769100252b15b5
-Merge: bdb2cae4 3d5d56d4
+Merge: bdb2cae47 3d5d56d4d
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Sep 6 16:06:22 2019 +0800
 
@@ -5569,7 +5843,7 @@ Date:   Fri Sep 6 09:50:27 2019 +0800
  1 file changed, 9 insertions(+), 18 deletions(-)
 
 commit bdb2cae4746537cbee74839ec74190e235f4f1c6
-Merge: c9a11a92 95768e8a
+Merge: c9a11a92c 95768e8aa
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Thu Sep 5 17:05:06 2019 +0800
 
@@ -5597,7 +5871,7 @@ Date:   Wed Sep 4 19:30:10 2019 +0800
  2 files changed, 165 insertions(+), 5 deletions(-)
 
 commit c9a11a92cd32bb9c826677514e24d42f6516cea7
-Merge: 33aedd11 63c992a7
+Merge: 33aedd112 63c992a78
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Sep 4 16:48:54 2019 +0800
 
@@ -5615,7 +5889,7 @@ Date:   Wed Sep 4 16:01:00 2019 +0800
  1 file changed, 10 insertions(+), 12 deletions(-)
 
 commit d1e305f42fa1032f9af8118229a9f973ea8a4a37
-Merge: 59c164c5 33aedd11
+Merge: 59c164c5b 33aedd112
 Author: qiaojialin <646274302@qq.com>
 Date:   Wed Sep 4 15:31:38 2019 +0800
 
@@ -5695,7 +5969,7 @@ Date:   Wed Sep 4 10:09:28 2019 +0800
  1 file changed, 2 deletions(-)
 
 commit dac0e93aa42dab74fccdd4fa76579f9f25b6ce4a
-Merge: 650d9534 db3bb2c7
+Merge: 650d9534a db3bb2c7a
 Author: RUI, LEI <33376433+LeiRui@users.noreply.github.com>
 Date:   Wed Sep 4 09:07:17 2019 +0800
 
@@ -5730,7 +6004,7 @@ Date:   Tue Sep 3 21:28:04 2019 +0800
  2 files changed, 959 insertions(+), 948 deletions(-)
 
 commit 8fd6248c484a2cf3f9734fc11199b6e38bf3550e
-Merge: 8ead902b 80ad447a
+Merge: 8ead902b0 80ad447aa
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Sep 3 19:52:58 2019 +0800
 
@@ -5739,7 +6013,7 @@ Date:   Tue Sep 3 19:52:58 2019 +0800
     fix maxConcurrentClientNum to rpcMaxConcurrentClientNum
 
 commit 8ead902b053b0db27a49e61d867f09898e25fca0
-Merge: 9065c5d8 c4b39b79
+Merge: 9065c5d86 c4b39b799
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Sep 3 19:45:01 2019 +0800
 
@@ -5784,7 +6058,7 @@ Date:   Tue Sep 3 15:39:04 2019 +0800
  3 files changed, 9 insertions(+), 10 deletions(-)
 
 commit 650d9534a73e10c0df44b80dbe6c6064a59d652a
-Merge: 146d0db5 9065c5d8
+Merge: 146d0db50 9065c5d86
 Author: RUI, LEI <33376433+LeiRui@users.noreply.github.com>
 Date:   Tue Sep 3 15:31:19 2019 +0800
 
@@ -5802,7 +6076,7 @@ Date:   Tue Sep 3 10:51:48 2019 +0800
  3 files changed, 6 insertions(+), 6 deletions(-)
 
 commit aa029b311475af23958bf8254ab529da809bd27e
-Merge: 6c4e432c 8656e1f5
+Merge: 6c4e432cd 8656e1f56
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Sep 2 18:51:42 2019 +0800
 
@@ -5846,7 +6120,7 @@ Date:   Mon Sep 2 14:50:49 2019 +0800
  4 files changed, 63 insertions(+), 39 deletions(-)
 
 commit 6c4e432cd0460824d5c5d8d58ac45a0ba9068bbd
-Merge: a9e0166c b5b2873f
+Merge: a9e0166c6 b5b2873f6
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Aug 31 15:49:00 2019 +0800
 
@@ -5864,7 +6138,7 @@ Date:   Fri Aug 30 15:41:58 2019 +0800
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 commit a9e0166c67d0fa38149d82be93a09acea8ec5308
-Merge: 89b8cbec dfb76af1
+Merge: 89b8cbeca dfb76af10
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Aug 30 15:35:37 2019 +0800
 
@@ -5909,7 +6183,7 @@ Date:   Fri Aug 30 12:31:36 2019 +0800
  6 files changed, 5 insertions(+), 6 deletions(-)
 
 commit e636c51078d727240e2ce692d67462fc55047fca
-Merge: 18ae6c76 f0e8b6b7
+Merge: 18ae6c768 f0e8b6b7c
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Aug 30 11:25:40 2019 +0800
 
@@ -5969,7 +6243,7 @@ Date:   Thu Aug 29 20:33:03 2019 +0800
  2 files changed, 47 insertions(+), 9 deletions(-)
 
 commit ce208810ce9f4600889bfbf2963e0dac13e222b2
-Merge: cbcd31e0 18ae6c76
+Merge: cbcd31e09 18ae6c768
 Author: qiaojialin <646274302@qq.com>
 Date:   Thu Aug 29 18:39:46 2019 +0800
 
@@ -5996,7 +6270,7 @@ Date:   Thu Aug 29 18:27:55 2019 +0800
  9 files changed, 50 insertions(+), 21 deletions(-)
 
 commit cbcd31e09f6718c5c57ae4b8dfab47cffc30d9b1
-Merge: 94239614 9ff28b19
+Merge: 942396149 9ff28b198
 Author: qiaojialin <646274302@qq.com>
 Date:   Thu Aug 29 16:10:55 2019 +0800
 
@@ -6069,7 +6343,7 @@ Date:   Wed Aug 28 14:49:26 2019 +0800
  20 files changed, 370 insertions(+), 10 deletions(-)
 
 commit 5ce810212b52459526ad1e5e153a04ac0d12223f
-Merge: bf830f12 e07870d5
+Merge: bf830f12c e07870d50
 Author: 151250176 <151250176@smail.nju.edu.cn>
 Date:   Wed Aug 28 12:10:36 2019 +0800
 
@@ -6122,14 +6396,14 @@ Date:   Wed Aug 28 09:54:55 2019 +0800
  2 files changed, 36 insertions(+), 74 deletions(-)
 
 commit 94239614973d3b73ee7def522bc43730dae8310c
-Merge: af9786cc e07870d5
+Merge: af9786ccb e07870d50
 Author: qiaojialin <646274302@qq.com>
 Date:   Wed Aug 28 10:21:26 2019 +0800
 
     Merge branch 'master' of github.com:apache/incubator-iotdb
 
 commit 624bc8160227df9e090f62f4eb66f9236a922d80
-Merge: 551f48ee e07870d5
+Merge: 551f48eec e07870d50
 Author: RUI, LEI <nezhalegend@163.com>
 Date:   Wed Aug 28 09:50:52 2019 +0800
 
@@ -6145,7 +6419,7 @@ Date:   Wed Aug 28 09:31:49 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 551f48eeccc4701e3aaecf92c1a5769c64b6bd25
-Merge: abb8bd6a f8d0902a
+Merge: abb8bd6af f8d0902af
 Author: RUI, LEI <33376433+LeiRui@users.noreply.github.com>
 Date:   Wed Aug 28 09:23:41 2019 +0800
 
@@ -6161,7 +6435,7 @@ Date:   Wed Aug 28 09:00:33 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit f8d0902af27332892c156793a34718ca2d386f94
-Merge: bfbccbe3 349cdfe8
+Merge: bfbccbe3c 349cdfe83
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Aug 27 22:43:40 2019 +0800
 
@@ -6170,7 +6444,7 @@ Date:   Tue Aug 27 22:43:40 2019 +0800
     [IOTDB-143]Development of merge
 
 commit 349cdfe83b74ae470bd931823c206c7b938e7442
-Merge: ea6daf13 bfbccbe3
+Merge: ea6daf131 bfbccbe3c
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Aug 27 22:34:52 2019 +0800
 
@@ -6208,7 +6482,7 @@ Date:   Tue Aug 27 22:23:05 2019 +0800
  21 files changed, 238 insertions(+), 213 deletions(-)
 
 commit ea6daf13129bd037902c86f2b85081a888c5a2f5
-Merge: d1428ba1 d3460734
+Merge: d1428ba1e d3460734d
 Author: jt <jt2594838@163.com>
 Date:   Tue Aug 27 20:25:20 2019 +0800
 
@@ -6230,7 +6504,7 @@ Date:   Tue Aug 27 19:45:36 2019 +0800
  2 files changed, 5 insertions(+), 5 deletions(-)
 
 commit d3460734dbc6fbefebfbcc5efc47343a19e20589
-Merge: 8827bdf9 a9ac3184
+Merge: 8827bdf98 a9ac31846
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Aug 27 19:31:04 2019 +0800
 
@@ -6304,7 +6578,7 @@ Date:   Tue Aug 27 14:24:10 2019 +0800
  21 files changed, 373 insertions(+), 264 deletions(-)
 
 commit b92e5df63730d44f96deef4a23d7dfa18e61235e
-Merge: fcddd513 f9a1d1ef
+Merge: fcddd5131 f9a1d1ef8
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Aug 27 13:46:53 2019 +0800
 
@@ -6327,7 +6601,7 @@ Date:   Tue Aug 27 12:35:48 2019 +0800
  6 files changed, 19 insertions(+), 16 deletions(-)
 
 commit d1428ba1e5a2fb7cc3e05a0e9549011cf2323ca6
-Merge: 8bb9b31d fcddd513
+Merge: 8bb9b31da fcddd5131
 Author: jt <jt2594838@163.com>
 Date:   Tue Aug 27 11:24:16 2019 +0800
 
@@ -6341,7 +6615,7 @@ Date:   Tue Aug 27 11:24:16 2019 +0800
     #       server/src/test/java/org/apache/iotdb/db/engine/storagegroup/StorageGroupProcessorTest.java
 
 commit fcddd5131777f8cb907223ae5d33c96af6151980
-Merge: d9e821ec d8ad79dd
+Merge: d9e821ecf d8ad79ddb
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Aug 27 10:23:41 2019 +0800
 
@@ -6350,7 +6624,7 @@ Date:   Tue Aug 27 10:23:41 2019 +0800
     Add a tool to print tsfileResources (each device's start and end time)
 
 commit 1c0cfcd7dbedda672c8223269777335bfb46b7e5
-Merge: 1337fda3 d9e821ec
+Merge: 1337fda35 d9e821ecf
 Author: RuiLei <ruileisurprise@gmail.com>
 Date:   Mon Aug 26 21:51:36 2019 +0800
 
@@ -6366,7 +6640,7 @@ Date:   Mon Aug 26 21:43:00 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 5b7006993f8c79c3e547b3d09e711f83d31100c8
-Merge: 498fd139 d9e821ec
+Merge: 498fd139d d9e821ecf
 Author: RUI, LEI <33376433+LeiRui@users.noreply.github.com>
 Date:   Mon Aug 26 21:39:48 2019 +0800
 
@@ -6397,7 +6671,7 @@ Date:   Mon Aug 26 16:36:49 2019 +0800
  1 file changed, 5 insertions(+)
 
 commit 35ae1c395efc4701dbf5084408abfc9ac60c41f1
-Merge: f022d109 84451ace
+Merge: f022d1095 84451ace4
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Aug 26 16:31:42 2019 +0800
 
@@ -6406,7 +6680,7 @@ Date:   Mon Aug 26 16:31:42 2019 +0800
     Remove unnecessary code and simplify assertEquals to assertFalse or assertTrue
 
 commit f022d109578e6956fc31b2b8c236206457dbd9dd
-Merge: 6ce1f413 de927f42
+Merge: 6ce1f4133 de927f42d
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Aug 26 16:30:43 2019 +0800
 
@@ -6454,7 +6728,7 @@ Date:   Mon Aug 26 15:53:06 2019 +0800
  8 files changed, 76 insertions(+), 70 deletions(-)
 
 commit 6ce1f4133a2c31279ccdd4488c6e670f3ecaaf1b
-Merge: 719e87ef 7714ec40
+Merge: 719e87eff 7714ec405
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Aug 26 14:46:32 2019 +0800
 
@@ -6463,7 +6737,7 @@ Date:   Mon Aug 26 14:46:32 2019 +0800
     [IOTDB-173] add batch rpc interface
 
 commit 719e87eff2f40c35373de3a757947bd0b2164894
-Merge: 53bda627 e6ba4daa
+Merge: 53bda627d e6ba4daac
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sun Aug 25 21:33:39 2019 +0800
 
@@ -6750,14 +7024,14 @@ Date:   Fri Aug 23 15:21:04 2019 +0800
  18 files changed, 265 insertions(+), 180 deletions(-)
 
 commit 9a872e74e8383c3aefae908b254df1c3634b954d
-Merge: eb0935fb 32902bf7
+Merge: eb0935fbd 32902bf7b
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Aug 23 16:25:55 2019 +0800
 
     Merge remote-tracking branch 'origin/rpc_client' into rpc_client
 
 commit eb0935fbdd64aebe9c9de92fc602e404c228d36f
-Merge: 22bab904 53bda627
+Merge: 22bab9047 53bda627d
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Aug 23 16:25:40 2019 +0800
 
@@ -6855,7 +7129,7 @@ Date:   Thu Aug 22 18:58:39 2019 +0800
  10 files changed, 71 insertions(+), 213 deletions(-)
 
 commit 8bb9b31da1af3dcefd5b0071c5354029285bd862
-Merge: 0e94676d ec4f0516
+Merge: 0e94676d9 ec4f05163
 Author: jt <jt2594838@163.com>
 Date:   Thu Aug 22 18:55:14 2019 +0800
 
@@ -6888,7 +7162,7 @@ Date:   Thu Aug 22 17:14:45 2019 +0800
  3 files changed, 10 insertions(+), 10 deletions(-)
 
 commit f0fb8c2353ecc74e857cdddf76bed98ed96fe2b9
-Merge: e31d4f5c ec4f0516
+Merge: e31d4f5c4 ec4f05163
 Author: qiaojialin <646274302@qq.com>
 Date:   Thu Aug 22 17:03:57 2019 +0800
 
@@ -7010,14 +7284,14 @@ Date:   Thu Aug 22 13:04:35 2019 +0800
  3 files changed, 684 insertions(+), 43 deletions(-)
 
 commit 7ebfbcb74177b3804a4d07cf615d405684853f3d
-Merge: e402f379 ec4f0516
+Merge: e402f379c ec4f05163
 Author: 151250176 <151250176@smail.nju.edu.cn>
 Date:   Thu Aug 22 13:03:45 2019 +0800
 
     Merge branch 'master' of https://github.com/apache/incubator-iotdb into xuekaifeng-spark-connector
 
 commit ec4f0516359bc640eaecaaebac56c816bce5a250
-Merge: 821a3b25 2e03a2ae
+Merge: 821a3b25e 2e03a2ae6
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Aug 21 15:35:18 2019 +0800
 
@@ -7060,7 +7334,7 @@ Date:   Wed Aug 21 14:20:48 2019 +0800
  7 files changed, 36 insertions(+), 3 deletions(-)
 
 commit 64376f1363b1b5f9ef11cfafc7b546221451e039
-Merge: fdc8d283 821a3b25
+Merge: fdc8d2833 821a3b25e
 Author: 张宇欣 <545952550@qq.com>
 Date:   Wed Aug 21 13:38:01 2019 +0800
 
@@ -7069,7 +7343,7 @@ Date:   Wed Aug 21 13:38:01 2019 +0800
     deal with TsFileWriteWithRowBatch
 
 commit e402f379c360a225d5a46ae1f19c2f5f4a588d91
-Merge: 210f10e8 821a3b25
+Merge: 210f10e87 821a3b25e
 Author: 151250176 <151250176@smail.nju.edu.cn>
 Date:   Wed Aug 21 13:18:38 2019 +0800
 
@@ -7137,7 +7411,7 @@ Date:   Mon Aug 19 22:09:19 2019 +0800
  17 files changed, 768 insertions(+), 177 deletions(-)
 
 commit 1077647f3df317bfb7d5f332730cab241e93c5a8
-Merge: fdc8d283 fc03f2d6
+Merge: fdc8d2833 fc03f2d63
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Aug 20 11:13:04 2019 +0800
 
@@ -7179,7 +7453,7 @@ Date:   Mon Aug 19 15:59:25 2019 +0800
  8 files changed, 60 insertions(+), 7 deletions(-)
 
 commit 0e94676d9716710e997d4307cf5857ce44b49622
-Merge: d5280c50 1c832372
+Merge: d5280c506 1c8323722
 Author: jt <jt2594838@163.com>
 Date:   Mon Aug 19 14:19:14 2019 +0800
 
@@ -7191,7 +7465,7 @@ Date:   Mon Aug 19 14:19:14 2019 +0800
     #       server/src/main/java/org/apache/iotdb/db/engine/cache/TsFileMetaDataCache.java
 
 commit 1c832372248621ad861d567cc554d39b2902e72f
-Merge: f7188375 94eac46a
+Merge: f71883756 94eac46a2
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Aug 19 14:16:14 2019 +0800
 
@@ -7200,7 +7474,7 @@ Date:   Mon Aug 19 14:16:14 2019 +0800
     [IOTDB-156]add -e option for iotdb client
 
 commit f71883756a5d8e865d34101ef66b2c4cc6a90857
-Merge: ac465f4d bdd129a3
+Merge: ac465f4d9 bdd129a31
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Aug 19 14:15:22 2019 +0800
 
@@ -7218,7 +7492,7 @@ Date:   Mon Aug 19 14:12:37 2019 +0800
  1 file changed, 4 deletions(-)
 
 commit a1308a3c41b30829cb64bf5c69c38f3c4081cffe
-Merge: 8e118f40 ac465f4d
+Merge: 8e118f409 ac465f4d9
 Author: RuiLei <ruileisurprise@gmail.com>
 Date:   Mon Aug 19 13:25:37 2019 +0800
 
@@ -7234,7 +7508,7 @@ Date:   Mon Aug 19 10:20:11 2019 +0800
  1 file changed, 13 deletions(-)
 
 commit f87ac42b9326adae43a09ccb44c0e0a6620412bc
-Merge: 177f5b24 ac465f4d
+Merge: 177f5b248 ac465f4d9
 Author: RUI, LEI <33376433+LeiRui@users.noreply.github.com>
 Date:   Mon Aug 19 08:51:24 2019 +0800
 
@@ -7260,7 +7534,7 @@ Date:   Sat Aug 17 15:04:13 2019 +0800
  1 file changed, 13 insertions(+)
 
 commit 4f1a92894f5f37a98c71a48b1c96f245cd0c8875
-Merge: 9767bd23 ac465f4d
+Merge: 9767bd23f ac465f4d9
 Author: EJTTianyu <1653503269@qq.com>
 Date:   Sat Aug 17 14:24:47 2019 +0800
 
@@ -7299,7 +7573,7 @@ Date:   Sat Aug 17 13:25:47 2019 +0800
  3 files changed, 259 insertions(+)
 
 commit 2028c1b4064dcaa4fe8169edb5abc8f7841a735d
-Merge: 10d1f548 5e865b8c
+Merge: 10d1f5480 5e865b8cc
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Aug 17 11:37:12 2019 +0800
 
@@ -7317,21 +7591,21 @@ Date:   Fri Aug 16 19:54:19 2019 +0800
  1 file changed, 11 insertions(+), 4 deletions(-)
 
 commit d5280c5060e769d14a177fac2074571cc6f007d1
-Merge: 2d4cfbaa 10d1f548
+Merge: 2d4cfbaa2 10d1f5480
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Aug 16 16:13:30 2019 +0800
 
     merge master
 
 commit 2d4cfbaa295ea54734f8a29d0411a01dcf71b213
-Merge: 8014e8ce d0754650
+Merge: 8014e8ce1 d07546501
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Aug 16 16:12:09 2019 +0800
 
     Merge branch 'master' into dev_merge
 
 commit 10d1f5480d8fe24ce852bf86dc859261f5e36f1a
-Merge: 123ceb46 521be407
+Merge: 123ceb468 521be407e
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Aug 16 16:07:36 2019 +0800
 
@@ -7396,7 +7670,7 @@ Date:   Fri Aug 16 16:00:26 2019 +0800
  48 files changed, 143 insertions(+), 150 deletions(-)
 
 commit 0f2e52d3c79dffcfb128c6f43f50ef0885cd7900
-Merge: d3758b0c 7a23ef2b
+Merge: d3758b0cf 7a23ef2b0
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Aug 16 14:57:55 2019 +0800
 
@@ -7451,7 +7725,7 @@ Date:   Fri Aug 16 12:31:45 2019 +0800
  17 files changed, 70 insertions(+), 171 deletions(-)
 
 commit 123ceb468e33ace00482e55621de21c70ab72e7f
-Merge: d0754650 61609e49
+Merge: d07546501 61609e49a
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Thu Aug 15 22:15:52 2019 +0800
 
@@ -7715,7 +7989,7 @@ Date:   Mon Aug 12 10:32:50 2019 +0800
  2 files changed, 1 insertion(+), 15 deletions(-)
 
 commit 09a1bf5320b45b070f9751de3f2c2f7e47092730
-Merge: 85785cc0 a0e51c90
+Merge: 85785cc08 a0e51c903
 Author: 江天 <jt2594838@163.com>
 Date:   Mon Aug 12 08:55:28 2019 +0800
 
@@ -7747,7 +8021,7 @@ Date:   Mon Jul 29 16:27:23 2019 +0800
  1 file changed, 29 insertions(+), 13 deletions(-)
 
 commit bbb8b4be5b4d6d345c7a7e7af9b4902ef5ecaa6d
-Merge: eef4f0a5 9b355955
+Merge: eef4f0a5a 9b355955e
 Author: Julian <j.feinauer@pragmaticminds.de>
 Date:   Tue Aug 6 14:59:54 2019 +0200
 
@@ -7826,7 +8100,7 @@ Date:   Mon Aug 5 14:41:25 2019 +0200
  47 files changed, 639 insertions(+), 268 deletions(-)
 
 commit 9767bd23f50758c6f12fc7d70e7d024e52c75f45
-Merge: 94bca89b eef4f0a5
+Merge: 94bca89ba eef4f0a5a
 Author: EJTTianyu <1653503269@qq.com>
 Date:   Mon Aug 5 10:00:36 2019 +0800
 
@@ -7901,7 +8175,7 @@ Date:   Wed Jul 31 16:45:29 2019 +0800
  1 file changed, 17 deletions(-)
 
 commit b4543d0a1889382fa9fd36d2a4fe6202ae91432e
-Merge: 8a2eefaa a3db2547
+Merge: 8a2eefaa5 a3db25477
 Author: RuiLei <ruileisurprise@gmail.com>
 Date:   Wed Jul 31 16:29:00 2019 +0800
 
@@ -7975,7 +8249,7 @@ Date:   Mon Jul 29 22:47:29 2019 +0800
  3 files changed, 240 insertions(+), 155 deletions(-)
 
 commit 94bca89ba5f4307e7042c4e7227df979b9d53f1c
-Merge: 1e09a2a2 8032fc23
+Merge: 1e09a2a22 8032fc23d
 Author: EJTTianyu <1653503269@qq.com>
 Date:   Mon Jul 29 21:29:44 2019 +0800
 
@@ -8048,7 +8322,7 @@ Date:   Mon Jul 29 14:14:33 2019 +0800
  2 files changed, 11 insertions(+), 11 deletions(-)
 
 commit 12a94fb1259f33d219cabcd83068954ea2c237a9
-Merge: d5142360 8032fc23
+Merge: d5142360e 8032fc23d
 Author: RuiLei <ruileisurprise@gmail.com>
 Date:   Mon Jul 29 13:52:12 2019 +0800
 
@@ -8066,7 +8340,7 @@ Date:   Mon Jul 29 13:47:06 2019 +0800
  3 files changed, 74 insertions(+), 29 deletions(-)
 
 commit 8032fc23dc225a1450bca039b66e32acb60754be
-Merge: d3f89830 215d7255
+Merge: d3f89830d 215d72555
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Jul 29 11:22:17 2019 +0800
 
@@ -8114,7 +8388,7 @@ Date:   Mon Jul 29 11:02:35 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 2bac929cd785441bc847649a0e86dad81711916c
-Merge: b6e7af66 d3f89830
+Merge: b6e7af66c d3f89830d
 Author: RuiLei <ruileisurprise@gmail.com>
 Date:   Mon Jul 29 10:51:53 2019 +0800
 
@@ -8155,7 +8429,7 @@ Date:   Sat Jul 27 18:39:40 2019 +0800
  3 files changed, 50 insertions(+), 84 deletions(-)
 
 commit 1e09a2a22d9babac92e203a376124e976b867698
-Merge: 1a920408 8e7f521c
+Merge: 1a9204080 8e7f521c5
 Author: EJTTianyu <1653503269@qq.com>
 Date:   Sun Jul 28 10:57:25 2019 +0800
 
@@ -8183,7 +8457,7 @@ Date:   Sat Jul 27 20:24:27 2019 +0800
  3 files changed, 169 insertions(+), 7 deletions(-)
 
 commit ea92189b4b366cd0d7c76efa03969dd992fd9f82
-Merge: a4e1a7f1 829f5170
+Merge: a4e1a7f11 829f51700
 Author: Tianan Li <litiananfa@163.com>
 Date:   Sat Jul 27 20:22:20 2019 +0800
 
@@ -8241,7 +8515,7 @@ Date:   Sat Jul 27 19:04:29 2019 +0800
  6 files changed, 194 insertions(+), 2 deletions(-)
 
 commit 3cfea15ea3b72043032225472f4b319553610c9e
-Merge: 3025bb0d d6f0ffcb
+Merge: 3025bb0d2 d6f0ffcb1
 Author: RuiLei <ruileisurprise@gmail.com>
 Date:   Sat Jul 27 16:45:43 2019 +0800
 
@@ -8311,7 +8585,7 @@ Date:   Sat Jul 27 12:41:44 2019 +0800
  2 files changed, 30 insertions(+), 6 deletions(-)
 
 commit 39d124c60bf170df2a453a265609e27e9f40e333
-Merge: a2d9c63d d6f0ffcb
+Merge: a2d9c63db d6f0ffcb1
 Author: 151250176 <151250176@smail.nju.edu.cn>
 Date:   Sat Jul 27 12:40:43 2019 +0800
 
@@ -8345,7 +8619,7 @@ Date:   Sat Jul 27 11:57:00 2019 +0800
  1 file changed, 98 insertions(+)
 
 commit d6f0ffcb1918bcf7bbe08690ec8d6691d4fbadca
-Merge: af66931b 50f935ac
+Merge: af66931b2 50f935ac1
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Jul 27 10:55:28 2019 +0800
 
@@ -8372,7 +8646,7 @@ Date:   Fri Jul 26 17:37:23 2019 +0800
  1 file changed, 2 insertions(+)
 
 commit af66931b295e0f6d56fac0108bb3145bf13a5dc8
-Merge: 0403bfa1 6b2bf220
+Merge: 0403bfa1b 6b2bf220d
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Jul 27 10:47:57 2019 +0800
 
@@ -8401,7 +8675,7 @@ Date:   Sat Jul 27 10:40:13 2019 +0800
  12 files changed, 13 insertions(+), 13 deletions(-)
 
 commit f179e0770453152bc2c1df44328893fbbff4db37
-Merge: 54025c81 0403bfa1
+Merge: 54025c81a 0403bfa1b
 Author: 江天 <jt2594838@163.com>
 Date:   Sat Jul 27 10:39:32 2019 +0800
 
@@ -8554,7 +8828,7 @@ Date:   Fri Jul 26 22:03:15 2019 +0800
  1 file changed, 9 insertions(+)
 
 commit f9e18ca23ca11e39f2dba96b87b7a334b85c1f97
-Merge: a17a7378 1ef5bfe5
+Merge: a17a73785 1ef5bfe52
 Author: 江天 <jt2594838@163.com>
 Date:   Fri Jul 26 21:03:21 2019 +0800
 
@@ -8571,7 +8845,7 @@ Date:   Fri Jul 26 21:02:43 2019 +0800
  2 files changed, 4 deletions(-)
 
 commit 1ef5bfe520f8284abdd3cb9012b685d28e94541a
-Merge: e2e5a84b 7557d3ed
+Merge: e2e5a84bc 7557d3ed0
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 26 19:53:09 2019 +0800
 
@@ -8702,7 +8976,7 @@ Date:   Fri Jul 26 11:45:01 2019 +0800
  3 files changed, 6 insertions(+), 1 deletion(-)
 
 commit e2e5a84bcac3fb5d80652876324a39fd8cc08e34
-Merge: 4ac6d7eb e2e02513
+Merge: 4ac6d7eb0 e2e02513c
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 26 10:34:42 2019 +0800
 
@@ -8834,7 +9108,7 @@ Date:   Thu Jul 25 14:50:05 2019 +0800
  7 files changed, 23 insertions(+), 17 deletions(-)
 
 commit 58554770ea7cb8f183911e0c7ac582d87d96acb7
-Merge: 81c4b305 126eac76
+Merge: 81c4b305d 126eac76d
 Author: 江天 <jt2594838@163.com>
 Date:   Thu Jul 25 14:38:22 2019 +0800
 
@@ -9028,7 +9302,7 @@ Date:   Wed Jul 24 19:52:20 2019 +0800
  1 file changed, 9 insertions(+), 13 deletions(-)
 
 commit 0e7977d48e5910c473498af9ab5206dcf81a7f44
-Merge: d1795ef1 1f155309
+Merge: d1795ef1d 1f1553091
 Author: 江天 <jt2594838@163.com>
 Date:   Wed Jul 24 19:36:33 2019 +0800
 
@@ -9058,7 +9332,7 @@ Date:   Wed Jul 24 19:34:44 2019 +0800
  11 files changed, 487 insertions(+), 377 deletions(-)
 
 commit 1f155309183cbf64ee8f953e2a76ecd7a050a95b
-Merge: 9816b203 70dd7732
+Merge: 9816b2031 70dd77323
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 24 17:21:51 2019 +0800
 
@@ -9257,7 +9531,7 @@ Date:   Thu May 30 15:20:56 2019 +0800
  5 files changed, 69 insertions(+)
 
 commit 43af5fefd7242fead315288b61cd1023f498765f
-Merge: e5e6cbb6 ab7d2db4
+Merge: e5e6cbb65 ab7d2db43
 Author: 江天 <jt2594838@163.com>
 Date:   Wed Jul 24 11:00:20 2019 +0800
 
@@ -9381,7 +9655,7 @@ Date:   Tue Jul 23 20:06:37 2019 +0900
  14 files changed, 494 insertions(+), 30 deletions(-)
 
 commit 633d6ed16cb41293de11342cb561b4deac5dd7fd
-Merge: d4b5057f 5f086ed2
+Merge: d4b5057f9 5f086ed2d
 Author: 江天 <jt2594838@163.com>
 Date:   Tue Jul 23 17:05:46 2019 +0800
 
@@ -9433,7 +9707,7 @@ Date:   Tue Jul 23 16:04:33 2019 +0800
  2 files changed, 7 insertions(+), 7 deletions(-)
 
 commit 3ece1445096e1dc36e5e8b254e8419c3fd612b20
-Merge: b2267c08 fcff4eec
+Merge: b2267c087 fcff4eec6
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Jul 23 16:57:34 2019 +0800
 
@@ -9473,7 +9747,7 @@ Date:   Tue Jul 23 16:16:54 2019 +0800
  6 files changed, 21 insertions(+), 9 deletions(-)
 
 commit a42622899adf43b33a6ebd425bc6f13f9645210c
-Merge: 4853bbb4 fcff4eec
+Merge: 4853bbb47 fcff4eec6
 Author: 江天 <jt2594838@163.com>
 Date:   Tue Jul 23 15:46:40 2019 +0800
 
@@ -9593,7 +9867,7 @@ Date:   Tue Jul 23 10:45:47 2019 +0800
  31 files changed, 94 insertions(+), 68 deletions(-)
 
 commit eabd2bd7586ce799c6d661cfd97cc774dabe6acc
-Merge: 4b1c927c de20faf4
+Merge: 4b1c927c8 de20faf4a
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Jul 23 14:39:54 2019 +0800
 
@@ -9611,7 +9885,7 @@ Date:   Tue Jul 23 11:10:15 2019 +0800
  1 file changed, 1 insertion(+), 7 deletions(-)
 
 commit de20faf4ac469a83effe653260585b2a45ec315b
-Merge: adff7423 c440c17a
+Merge: adff74235 c440c17a7
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Jul 23 11:06:57 2019 +0800
 
@@ -9630,7 +9904,7 @@ Date:   Tue Jul 23 11:04:30 2019 +0800
  4 files changed, 93 insertions(+), 27 deletions(-)
 
 commit c440c17a7b09a12258780fc7807b8cf1ad575e80
-Merge: 2185eeca 4b1c927c
+Merge: 2185eeca5 4b1c927c8
 Author: qiaojialin <646274302@qq.com>
 Date:   Tue Jul 23 11:04:15 2019 +0800
 
@@ -10321,7 +10595,7 @@ Date:   Mon Jul 22 19:44:18 2019 +0800
  7 files changed, 113 insertions(+), 77 deletions(-)
 
 commit adff7423597a76604f36186014ea8ce18b6aac0d
-Merge: edb150c9 24b981ed
+Merge: edb150c98 24b981ed6
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Mon Jul 22 17:25:56 2019 +0800
 
@@ -10387,7 +10661,7 @@ Date:   Mon Jul 22 15:30:42 2019 +0800
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 commit 8cd144f3121398ddda6e70bd31e69e24de6345d7
-Merge: d4dd3e85 edb150c9
+Merge: d4dd3e851 edb150c98
 Author: 江天 <jt2594838@163.com>
 Date:   Mon Jul 22 15:24:13 2019 +0800
 
@@ -10572,7 +10846,7 @@ Date:   Fri Jul 19 16:25:29 2019 +0800
  1 file changed, 16 insertions(+), 3 deletions(-)
 
 commit 26cecb69ad08e3753c98c170e5a915d9e4b0b651
-Merge: 49cd0429 05d28cf5
+Merge: 49cd04291 05d28cf54
 Author: Tianan Li <litiananfa@163.com>
 Date:   Fri Jul 19 16:20:57 2019 +0800
 
@@ -10581,7 +10855,7 @@ Date:   Fri Jul 19 16:20:57 2019 +0800
     remove unused exception
 
 commit 05d28cf54ca56fb88afa10c2f9fc375d94a9c3f5
-Merge: 38a29432 4c96985f
+Merge: 38a29432a 4c96985f9
 Author: lta <litiananfa@163.com>
 Date:   Fri Jul 19 16:18:41 2019 +0800
 
@@ -10683,7 +10957,7 @@ Date:   Fri Jul 19 15:56:10 2019 +0800
  13 files changed, 20 deletions(-)
 
 commit 0ae5fcd1f30334af835dde4a0fa407224bf66d0d
-Merge: 0b40b501 dcd7c356
+Merge: 0b40b501f dcd7c356d
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 19 15:55:42 2019 +0800
 
@@ -10702,7 +10976,7 @@ Date:   Fri Jul 19 15:48:09 2019 +0800
  2 files changed, 8 insertions(+), 8 deletions(-)
 
 commit 0b40b501f95db2d3c260b53325e0cd128095adbd
-Merge: cced269e 01f6f62c
+Merge: cced269e8 01f6f62ce
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 19 15:00:09 2019 +0800
 
@@ -10730,7 +11004,7 @@ Date:   Fri Jul 19 14:27:46 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit cced269e8dee2587122e80a61d86358d67eb0e20
-Merge: 348a86da a95557bd
+Merge: 348a86dab a95557bda
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 19 14:04:46 2019 +0800
 
@@ -10768,7 +11042,7 @@ Date:   Fri Jul 19 12:37:11 2019 +0900
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 commit 348a86dab68a6c9126a84af085382cbff9f90878
-Merge: 4c10597e e8c92368
+Merge: 4c10597ef e8c92368e
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 19 11:17:30 2019 +0800
 
@@ -10846,7 +11120,7 @@ Date:   Thu Jul 18 20:27:34 2019 +0800
  19 files changed, 88 insertions(+), 195 deletions(-)
 
 commit 4c10597efe6c0c99bd73a70f2e510163e62f33b9
-Merge: 226371c6 dfbd9dd1
+Merge: 226371c68 dfbd9dd17
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 19 10:53:24 2019 +0800
 
@@ -10865,7 +11139,7 @@ Date:   Fri Jul 19 11:04:45 2019 +0900
  2 files changed, 206 insertions(+), 67 deletions(-)
 
 commit 226371c68581cd312234f2d262c0484af31cc960
-Merge: cbe148e8 629b6dc9
+Merge: cbe148e8a 629b6dc91
 Author: Tianan Li <litiananfa@163.com>
 Date:   Fri Jul 19 09:51:20 2019 +0800
 
@@ -10904,7 +11178,7 @@ Date:   Thu Jul 18 20:13:57 2019 +0800
  3 files changed, 24 insertions(+), 20 deletions(-)
 
 commit b19659636a1c979b9611dd3fee282634286ef3ad
-Merge: 9813bb0b a1b906d7
+Merge: 9813bb0b6 a1b906d70
 Author: lta <litiananfa@163.com>
 Date:   Thu Jul 18 19:41:37 2019 +0800
 
@@ -10992,7 +11266,7 @@ Date:   Thu Jul 18 16:29:32 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 30b0f6ebc69350894ba2639d9f47fd48ccd14a64
-Merge: cc88f7d6 99c37c99
+Merge: cc88f7d68 99c37c99f
 Author: 江天 <jt2594838@163.com>
 Date:   Thu Jul 18 16:28:17 2019 +0800
 
@@ -11002,7 +11276,7 @@ Date:   Thu Jul 18 16:28:17 2019 +0800
     #       iotdb/src/main/java/org/apache/iotdb/db/query/reader/resourceRelated/UnseqResourceMergeReader.java
 
 commit 99c37c99f00687f7367b524a23c1146c343b30c4
-Merge: 6d297df8 f5caa99e
+Merge: 6d297df89 f5caa99e0
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Thu Jul 18 11:27:30 2019 +0800
 
@@ -11011,7 +11285,7 @@ Date:   Thu Jul 18 11:27:30 2019 +0800
     improve some code in UnseqResourceMergeReader
 
 commit 6d297df89ca71e31e36144258a204b428d1ec700
-Merge: 5c034448 327d2b26
+Merge: 5c0344485 327d2b26b
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Thu Jul 18 11:24:53 2019 +0800
 
@@ -11020,7 +11294,7 @@ Date:   Thu Jul 18 11:24:53 2019 +0800
     [IOTDB-142] Change String literal "UTF-8" into StandardCharsets.UTF_8
 
 commit 5c0344485d58d031e89f4b75fb0499dfc0e629fc
-Merge: cd83557f 29523ea9
+Merge: cd83557f9 29523ea94
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Thu Jul 18 11:19:16 2019 +0800
 
@@ -11087,7 +11361,7 @@ Date:   Wed Jul 17 20:32:15 2019 +0800
  2 files changed, 8 insertions(+), 1 deletion(-)
 
 commit 03483d77ca10b9427f25cbead1c76b50426834dc
-Merge: a301d7b8 cd83557f
+Merge: a301d7b89 cd83557f9
 Author: 江天 <jt2594838@163.com>
 Date:   Wed Jul 17 19:38:49 2019 +0800
 
@@ -11135,7 +11409,7 @@ Date:   Wed Jul 17 19:11:53 2019 +0800
  4 files changed, 14 insertions(+), 10 deletions(-)
 
 commit cd83557f90a24f275d1dedc9580caa7d52e6a61c
-Merge: 4e0f99af a4593e3a
+Merge: 4e0f99af0 a4593e3ac
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 17 16:32:05 2019 +0800
 
@@ -11144,7 +11418,7 @@ Date:   Wed Jul 17 16:32:05 2019 +0800
     Cherry picks from rel/0.8 to master
 
 commit 4e0f99af0ba30333a6d337c96f7b4acbd49a325b
-Merge: c9e2bfae d7281625
+Merge: c9e2bfae8 d7281625c
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 17 16:21:46 2019 +0800
 
@@ -11153,7 +11427,7 @@ Date:   Wed Jul 17 16:21:46 2019 +0800
     Fix errors in 1-Deployment.md
 
 commit c9e2bfae88fca96a746b4b6fc4ba76aaa4d77543
-Merge: f967491f 176288ea
+Merge: f967491f1 176288ea5
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 17 16:20:56 2019 +0800
 
@@ -11172,7 +11446,7 @@ Date:   Wed Jul 17 14:01:43 2019 +0800
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 commit 33af5f19cd1e4483156cb3cb9aa0967a55628815
-Merge: 88f8e5b3 67714b89
+Merge: 88f8e5b3e 67714b898
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 17 15:46:25 2019 +0800
 
@@ -11383,7 +11657,7 @@ Date:   Wed Jul 17 11:48:14 2019 +0800
  8 files changed, 1 insertion(+), 72 deletions(-)
 
 commit 06eef43fe34337983b1f4b0ea5c37f67ffab7399
-Merge: b5b7400d 88f8e5b3
+Merge: b5b7400d0 88f8e5b3e
 Author: 江天 <jt2594838@163.com>
 Date:   Wed Jul 17 11:41:37 2019 +0800
 
@@ -11606,7 +11880,7 @@ Date:   Tue Jul 16 09:44:33 2019 +0200
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 commit 19c56aa5c0500b5a281553986261fb7f8265dc6e
-Merge: 7e04cd6e d1522e7d
+Merge: 7e04cd6ee d1522e7d2
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Jul 16 15:24:42 2019 +0800
 
@@ -11683,7 +11957,7 @@ Date:   Tue Jul 16 11:23:48 2019 +0800
  9 files changed, 106 insertions(+), 38 deletions(-)
 
 commit 7e04cd6eeab97e1b5718e2d7f523853b0e2c9f9d
-Merge: 26789882 4fb28184
+Merge: 267898823 4fb281845
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Tue Jul 16 09:42:04 2019 +0800
 
@@ -11692,7 +11966,7 @@ Date:   Tue Jul 16 09:42:04 2019 +0800
     refactor readonly mode check
 
 commit 4fb281845842b2dc49cffa3133a2ed7173ef2758
-Merge: 2bf13d22 26789882
+Merge: 2bf13d22a 267898823
 Author: qiaojialin <646274302@qq.com>
 Date:   Mon Jul 15 21:45:32 2019 +0800
 
@@ -11899,7 +12173,7 @@ Date:   Sat Jul 13 19:03:48 2019 +0800
  1 file changed, 5 insertions(+)
 
 commit fc05734dd2ffe6885f9b40fb2c2ca83e002a96f6
-Merge: 52c87441 2f0f4f09
+Merge: 52c874410 2f0f4f091
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Sat Jul 13 13:25:43 2019 +0800
 
@@ -11938,7 +12212,7 @@ Date:   Sat Jul 13 11:26:18 2019 +0800
  3 files changed, 115 insertions(+), 45 deletions(-)
 
 commit 52c874410f96f3ad63a1e06a66c8d254da01e5d5
-Merge: 73f49365 a7815e3f
+Merge: 73f493652 a7815e3fd
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Jul 13 09:35:12 2019 +0800
 
@@ -11958,7 +12232,7 @@ Date:   Fri Jul 12 20:38:21 2019 +0800
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 commit 73f4936520732313c02b1f668e3c9af6df16f53d
-Merge: d24cb03b a300868f
+Merge: d24cb03b0 a300868fe
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 12 20:11:19 2019 +0800
 
@@ -11967,7 +12241,7 @@ Date:   Fri Jul 12 20:11:19 2019 +0800
     [IOTDB-133] Fix mistaken links in documents
 
 commit d24cb03b0d7b06ac2414898b2bdeaa4e1685f0a2
-Merge: 9a1f8a1e b36a120b
+Merge: 9a1f8a1ec b36a120b5
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Fri Jul 12 20:09:56 2019 +0800
 
@@ -12052,7 +12326,7 @@ Date:   Fri Jul 12 14:10:59 2019 +0800
  3 files changed, 15 insertions(+), 16 deletions(-)
 
 commit 9a1f8a1ec73c3697a54bb26d64bda6a88937c282
-Merge: 1e9449bf efe7db7b
+Merge: 1e9449bfe efe7db7bc
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Fri Jul 12 14:03:13 2019 +0800
 
@@ -12061,7 +12335,7 @@ Date:   Fri Jul 12 14:03:13 2019 +0800
     [IOTDB-128] Fix links of nav content in documents
 
 commit 4eca66e31e626846d505daefe0a3a1ac2e04cd6f
-Merge: ca9e0473 1e9449bf
+Merge: ca9e0473e 1e9449bfe
 Author: 江天 <jt2594838@163.com>
 Date:   Fri Jul 12 13:33:57 2019 +0800
 
@@ -12268,7 +12542,7 @@ Date:   Wed Jul 10 20:56:54 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 937d589e6e40f2cc4584d512f7af1d2837a58546
-Merge: 11d3316e 01e5e1b9
+Merge: 11d3316e5 01e5e1b9a
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 10 20:23:49 2019 +0800
 
@@ -12287,7 +12561,7 @@ Date:   Wed Jul 10 19:50:00 2019 +0800
  2 files changed, 37 insertions(+), 2 deletions(-)
 
 commit 11d3316e5c9c20c91a3f1af37f2960e3d3b504f9
-Merge: fd05a3c6 09d30d05
+Merge: fd05a3c63 09d30d050
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Wed Jul 10 18:44:40 2019 +0800
 
@@ -12566,7 +12840,7 @@ Date:   Mon Jul 8 10:35:23 2019 +0800
  1 file changed, 39 insertions(+)
 
 commit a294b4838d5e118400ca6f26dde98b599705b86a
-Merge: 3a16bd50 a62d3292
+Merge: 3a16bd505 a62d32922
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Fri Jul 5 22:31:46 2019 +0800
 
@@ -13097,7 +13371,7 @@ Date:   Fri Jul 5 16:26:56 2019 +0800
  460 files changed, 12768 insertions(+), 22026 deletions(-)
 
 commit fe39d33cfea832d43f2bc7bbdcc96931400e3e2a
-Merge: 10e4b4e1 b15ebc5e
+Merge: 10e4b4e18 b15ebc5e1
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Jul 3 19:30:26 2019 +0800
 
@@ -13117,7 +13391,7 @@ Date:   Wed Jul 3 14:46:34 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 10e4b4e18dd617f0ab80a0c534cc88d0fa8e9875
-Merge: bf272d6a 044fcce3
+Merge: bf272d6a7 044fcce3e
 Author: Zhang.Jinrui <xingtanzjr@163.com>
 Date:   Mon Jul 1 14:00:35 2019 +0800
 
@@ -13126,14 +13400,14 @@ Date:   Mon Jul 1 14:00:35 2019 +0800
     fix system memory check in iotdb-env.sh
 
 commit 044fcce3ec119fa07b85553918952db09d288c02
-Merge: 35fc6763 bf272d6a
+Merge: 35fc67636 bf272d6a7
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Sun Jun 30 11:08:15 2019 +0800
 
     Merge branch 'master' into fix_memorycheck_in_startsh
 
 commit bf272d6a7195ef1b36cc7aa1f7677d2b63578b22
-Merge: cec41673 5f9d5394
+Merge: cec416731 5f9d53941
 Author: Zhang.Jinrui <xingtanzjr@163.com>
 Date:   Sat Jun 29 16:57:39 2019 +0800
 
@@ -13188,7 +13462,7 @@ Date:   Fri Jun 28 10:47:57 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 6b28237a383ba70395666ab6b58798355d3c2b10
-Merge: c0c1aa2d 67a7c343
+Merge: c0c1aa2d0 67a7c343e
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Jun 27 22:52:51 2019 +0800
 
@@ -13295,7 +13569,7 @@ Date:   Wed Jun 19 09:22:19 2019 +0800
  34 files changed, 490 insertions(+), 351 deletions(-)
 
 commit 36484ac364a675dd473917cee6c7332e1fab7287
-Merge: 8a642a4c 4d84ef9f
+Merge: 8a642a4cb 4d84ef9f5
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Jun 13 15:26:16 2019 +0800
 
@@ -13315,7 +13589,7 @@ Date:   Tue Jun 11 10:20:19 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 8a642a4cb2a01e1ddaed1a3abd67075ca22441fe
-Merge: 6f40c057 a7c02215
+Merge: 6f40c0577 a7c02215b
 Author: Jialin Qiao <qjl16@mails.tsinghua.edu.cn>
 Date:   Thu Jun 6 21:03:28 2019 +0800
 
@@ -13334,7 +13608,7 @@ Date:   Thu Jun 6 09:34:55 2019 +0800
  2 files changed, 9 insertions(+), 4 deletions(-)
 
 commit 6f40c057754f6ff2e925b83e8917eb0b8fb183b6
-Merge: 5c15ac3b 68844b24
+Merge: 5c15ac3b7 68844b243
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Jun 5 15:24:50 2019 +0800
 
@@ -13711,7 +13985,7 @@ Date:   Mon May 13 14:06:55 2019 +0800
  1 file changed, 33 insertions(+)
 
 commit ec72e4e0128ca547ace1d04d89ddcc6b2ee950f5
-Merge: 3568b322 bf62685f
+Merge: 3568b3221 bf62685f6
 Author: Zhang.Jinrui <xingtanzjr@163.com>
 Date:   Sat May 11 13:47:57 2019 +0800
 
@@ -13849,7 +14123,7 @@ Date:   Tue May 7 13:20:18 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 0fb2a961ca89f095071afa208a333acdd91c0580
-Merge: 7c88b7d7 67647faf
+Merge: 7c88b7d78 67647faf0
 Author: Jialin Qiao <13520302880@163.com>
 Date:   Sun May 5 11:03:22 2019 +0800
 
@@ -14000,7 +14274,7 @@ Date:   Wed Apr 24 14:35:36 2019 +0800
  2 files changed, 13 insertions(+), 5 deletions(-)
 
 commit 30b36b73b41929b8131141bdd7cbfe56a13f5d57
-Merge: 6c7b8516 1b50cd04
+Merge: 6c7b85165 1b50cd047
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Tue Apr 23 10:39:54 2019 +0800
 
@@ -14048,7 +14322,7 @@ Date:   Mon Apr 22 14:02:50 2019 +0800
  5 files changed, 55 insertions(+), 51 deletions(-)
 
 commit 4cf09200ac594a493c9ac5514e71c3f991bdef0a
-Merge: a8ffbd9f f888966e
+Merge: a8ffbd9fe f888966e4
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Apr 20 15:42:34 2019 +0800
 
@@ -14088,7 +14362,7 @@ Date:   Sat Apr 20 12:59:17 2019 +0800
  2 files changed, 51 insertions(+), 134 deletions(-)
 
 commit 440c50f9a0b6eab1c0371238d825cb2a6efd68ff
-Merge: 4c8db59e fa385af0
+Merge: 4c8db59e0 fa385af0d
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Apr 20 12:35:31 2019 +0800
 
@@ -14106,7 +14380,7 @@ Date:   Sat Apr 20 12:06:53 2019 +0800
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 commit 4c8db59e0d2eddb8b6a7b912c1c88cb6ef619364
-Merge: 013c30c7 ff3aaa93
+Merge: 013c30c7e ff3aaa937
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Apr 20 11:55:21 2019 +0800
 
@@ -14307,7 +14581,7 @@ Date:   Tue Apr 9 15:38:57 2019 +0800
  4 files changed, 165 insertions(+), 15 deletions(-)
 
 commit 6aacb626c66db7bc40672fe3d8f9bd4bff145d03
-Merge: d3fda08d f949dd92
+Merge: d3fda08d0 f949dd926
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Apr 8 23:37:04 2019 +0800
 
@@ -14316,7 +14590,7 @@ Date:   Mon Apr 8 23:37:04 2019 +0800
     replace renameTo() with FileUtils.moveFile()
 
 commit d3fda08d0288e6365dce08eb11f54e366a2e0b79
-Merge: acb850de 96c87a07
+Merge: acb850de8 96c87a079
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Apr 8 21:46:32 2019 +0800
 
@@ -14367,7 +14641,7 @@ Date:   Thu Apr 4 20:27:04 2019 +0800
  14 files changed, 124 insertions(+), 20 deletions(-)
 
 commit 9749349850c472dbc22a56f47f4454b753a92a52
-Merge: e0d4e335 afea492f
+Merge: e0d4e3351 afea492fb
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Apr 4 10:58:51 2019 +0800
 
@@ -14609,7 +14883,7 @@ Date:   Sat Mar 30 13:14:14 2019 +0800
  1 file changed, 83 insertions(+), 2 deletions(-)
 
 commit b50c80d219dfb25b13a531c4730afc5010d748a2
-Merge: 59e2af7a 922bcbe2
+Merge: 59e2af7a4 922bcbe2d
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Fri Mar 29 23:13:34 2019 +0800
 
@@ -14618,7 +14892,7 @@ Date:   Fri Mar 29 23:13:34 2019 +0800
     move all generated tsfiles for test into the target folder
 
 commit 59e2af7a4566f8fd947bb2f25c11535aed8840a9
-Merge: 30c89ff4 693841f5
+Merge: 30c89ff4e 693841f57
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Fri Mar 29 23:09:40 2019 +0800
 
@@ -14637,7 +14911,7 @@ Date:   Fri Mar 29 18:00:27 2019 +0800
  2 files changed, 27 insertions(+), 17 deletions(-)
 
 commit 30c89ff4ea38dbc174c4e385bd67ecd5ee487952
-Merge: 6e4bc042 e0f265bd
+Merge: 6e4bc042c e0f265bd0
 Author: Tianan Li <litiananfa@163.com>
 Date:   Fri Mar 29 10:29:54 2019 +0800
 
@@ -14663,7 +14937,7 @@ Date:   Wed Mar 27 23:08:02 2019 +0800
  9 files changed, 252 insertions(+), 178 deletions(-)
 
 commit 6e4bc042c1d3a7aba20a712dd81fbefde1d6e956
-Merge: d21409f2 0e74fa1e
+Merge: d21409f29 0e74fa1e1
 Author: Tianan Li <litiananfa@163.com>
 Date:   Thu Mar 28 17:04:24 2019 +0800
 
@@ -14692,7 +14966,7 @@ Date:   Thu Mar 28 10:11:50 2019 +0800
  12 files changed, 179 insertions(+), 138 deletions(-)
 
 commit d21409f29826bf72646bc5fe07364cfb3476a2f5
-Merge: abc189cd 88294604
+Merge: abc189cd3 882946040
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Mar 28 09:19:16 2019 +0800
 
@@ -14804,7 +15078,7 @@ Date:   Wed Mar 27 19:15:04 2019 +0800
  5 files changed, 99 insertions(+)
 
 commit a92c7b3b174260f2d3c25cbdaebc2c023955889f
-Merge: bd3a7988 e3f97289
+Merge: bd3a79886 e3f972893
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Mar 27 08:40:12 2019 +0800
 
@@ -14831,7 +15105,7 @@ Date:   Tue Mar 26 17:25:27 2019 +0800
  8 files changed, 72 insertions(+), 66 deletions(-)
 
 commit f20590031e0048ae6933f4fddb02b0ef637a2178
-Merge: 53094487 306a6814
+Merge: 530944873 306a6814a
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Tue Mar 26 17:24:06 2019 +0800
 
@@ -14887,7 +15161,7 @@ Date:   Tue Mar 26 08:51:37 2019 +0800
  8 files changed, 431 insertions(+), 287 deletions(-)
 
 commit 59d1ae8d7654d71935f9666acfa0dd9fc711da7f
-Merge: 7dd3722b 0bbf2f35
+Merge: 7dd3722b7 0bbf2f35a
 Author: Tianan Li <litiananfa@163.com>
 Date:   Fri Mar 22 13:58:02 2019 +0800
 
@@ -14967,7 +15241,7 @@ Date:   Fri Mar 22 09:29:13 2019 +0800
  12 files changed, 612 insertions(+), 165 deletions(-)
 
 commit 5f247c615fc94c5faa231255e393abd391123813
-Merge: 41e3fbed ef46df96
+Merge: 41e3fbed5 ef46df963
 Author: suyue <2335813255@qq.com>
 Date:   Thu Mar 21 16:41:24 2019 +0800
 
@@ -15155,7 +15429,7 @@ Date:   Sun Mar 17 14:36:03 2019 +0800
  31 files changed, 1078 insertions(+), 924 deletions(-)
 
 commit 169959c16b2f2eb7d45b7248364cfefcd931d35e
-Merge: 7a563c0e f80955dc
+Merge: 7a563c0ec f80955dc8
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Mar 16 13:35:26 2019 +0800
 
@@ -15253,7 +15527,7 @@ Date:   Thu Mar 14 15:10:45 2019 +0100
  4 files changed, 146 insertions(+), 13 deletions(-)
 
 commit af199ad7050af5b24471d40adebe7ae08edb9893
-Merge: 742e6866 2fcc8d2c
+Merge: 742e6866c 2fcc8d2c6
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Mar 13 22:55:37 2019 +0800
 
@@ -15262,7 +15536,7 @@ Date:   Wed Mar 13 22:55:37 2019 +0800
     Added Initial Version of release notes as preparation for next Release
 
 commit 742e6866c1ad6fedeba94589f73534be797bcb54
-Merge: 8f38c8bd 77206b27
+Merge: 8f38c8bd8 77206b27b
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Mar 13 22:46:51 2019 +0800
 
@@ -15271,7 +15545,7 @@ Date:   Wed Mar 13 22:46:51 2019 +0800
     [IOTDB-39]add autoRepair option for NativeRestorableIOWriter
 
 commit 8f38c8bd85f9ae4465968297b7657dee42683c48
-Merge: c629c324 4b35aa3c
+Merge: c629c3248 4b35aa3c3
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Mar 13 12:59:58 2019 +0800
 
@@ -15280,7 +15554,7 @@ Date:   Wed Mar 13 12:59:58 2019 +0800
     [IOTDB-41] [phase 1/3] Refactor Overflow
 
 commit c629c324892246afe202f2456737398ebf0406e8
-Merge: 463b99c2 25ed3f13
+Merge: 463b99c21 25ed3f13d
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Mar 13 08:12:51 2019 +0800
 
@@ -15374,7 +15648,7 @@ Date:   Fri Mar 8 23:47:14 2019 +0800
  1 file changed, 22 insertions(+), 4 deletions(-)
 
 commit 90746f90d394b27c0c5522f2b70475568ad63b08
-Merge: db41e493 300254ad
+Merge: db41e4932 300254ade
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Fri Mar 8 19:35:21 2019 +0800
 
@@ -15711,7 +15985,7 @@ Date:   Thu Feb 28 17:02:43 2019 +0800
  7 files changed, 173 insertions(+), 19 deletions(-)
 
 commit c4b0fe4138fca4b6c22ebde579282760b63c2d6b
-Merge: 642c2b9d 632a15b1
+Merge: 642c2b9d5 632a15b14
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Feb 28 14:39:35 2019 +0800
 
@@ -15762,7 +16036,7 @@ Date:   Thu Feb 28 13:50:40 2019 +0800
  1 file changed, 3 insertions(+)
 
 commit 5c70337ccecdf920fd345704a4cf9c3756ba4eb6
-Merge: 959d20b1 f869c5da
+Merge: 959d20b1a f869c5da9
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Feb 28 13:25:35 2019 +0800
 
@@ -15782,7 +16056,7 @@ Date:   Thu Feb 28 13:20:13 2019 +0800
  2 files changed, 24 insertions(+)
 
 commit 959d20b1a8705ca313490eea2cbd814b76a9fe77
-Merge: 36f34ee1 1d91f6c8
+Merge: 36f34ee1c 1d91f6c83
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Feb 27 23:00:14 2019 +0800
 
@@ -15800,7 +16074,7 @@ Date:   Wed Feb 27 15:56:21 2019 +0100
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit 36f34ee1c65d4e0761ccfd59c5d15d9381957be6
-Merge: 2a472685 427631d2
+Merge: 2a472685a 427631d22
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Feb 27 22:33:54 2019 +0800
 
@@ -15818,7 +16092,7 @@ Date:   Wed Feb 27 15:30:43 2019 +0100
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 commit 2a472685afdb33b3cef7a60bd0152f56e7be0f7e
-Merge: a1e3a303 bbeb32fd
+Merge: a1e3a303a bbeb32fd1
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Wed Feb 27 21:47:10 2019 +0800
 
@@ -15827,7 +16101,7 @@ Date:   Wed Feb 27 21:47:10 2019 +0800
     Fix sonar bugs
 
 commit bbeb32fd185a743143159fcaaab3cd7de2658060
-Merge: 15c5801f a1e3a303
+Merge: 15c5801fb a1e3a303a
 Author: jt <jt2594838@163.com>
 Date:   Wed Feb 27 15:44:52 2019 +0800
 
@@ -15883,7 +16157,7 @@ Date:   Tue Feb 26 21:03:48 2019 +0800
  3 files changed, 4 insertions(+), 2 deletions(-)
 
 commit a5c354c60024545bd012e163588452c2f4c9bb99
-Merge: 647e1eba ade931b8
+Merge: 647e1eba9 ade931b88
 Author: Jialin Qiao <13520302880@163.com>
 Date:   Tue Feb 26 16:32:33 2019 +0800
 
@@ -15901,7 +16175,7 @@ Date:   Tue Feb 26 16:31:06 2019 +0800
  1 file changed, 1 insertion(+)
 
 commit 647e1eba9d005954445497a79cb8179696c6176d
-Merge: eb662d06 1f022e17
+Merge: eb662d06a 1f022e171
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Tue Feb 26 11:36:26 2019 +0800
 
@@ -15939,7 +16213,7 @@ Date:   Tue Feb 26 10:30:51 2019 +0800
  21 files changed, 441 insertions(+)
 
 commit f78ae5be6deb551ea48ad4a85eb4898c66327991
-Merge: a07d2b71 eb662d06
+Merge: a07d2b711 eb662d06a
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Tue Feb 26 09:36:38 2019 +0800
 
@@ -16040,7 +16314,7 @@ Date:   Sun Feb 24 15:39:20 2019 +0800
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 commit a07d2b711da76ea9c707a2f3801d44728dede93f
-Merge: ac707332 6819e330
+Merge: ac707332a 6819e330d
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Sun Feb 24 12:37:40 2019 +0800
 
@@ -16058,7 +16332,7 @@ Date:   Sat Feb 23 11:25:08 2019 +0800
  3 files changed, 9 insertions(+), 9 deletions(-)
 
 commit 722fbdc8ee8d561e4fb254d84c20aebb3b3b01be
-Merge: ee4a6472 22af4b52
+Merge: ee4a64723 22af4b52c
 Author: Jialin Qiao <13520302880@163.com>
 Date:   Sat Feb 23 13:56:56 2019 +0800
 
@@ -16178,7 +16452,7 @@ Date:   Thu Feb 21 16:52:04 2019 +0800
  2 files changed, 121 insertions(+), 108 deletions(-)
 
 commit 59e0ea286d7541e6c22103cba57611a5c41395fa
-Merge: b534412a 786a9562
+Merge: b534412ab 786a95621
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Feb 21 16:35:11 2019 +0800
 
@@ -16600,7 +16874,7 @@ Date:   Thu Feb 14 14:54:33 2019 +0800
  6 files changed, 73 insertions(+), 1 deletion(-)
 
 commit ecdd705985acf90c0163dc1893f4c2254c762441
-Merge: 4348849c c9eed255
+Merge: 4348849c5 c9eed2559
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Feb 14 09:14:00 2019 +0800
 
@@ -16650,7 +16924,7 @@ Date:   Wed Feb 13 13:36:44 2019 +0800
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 commit 567dd13a4c8cfd7cc64fabaebc9c5a15c4ae30c1
-Merge: b229a5e3 500198d3
+Merge: b229a5e32 500198d3a
 Author: Jialin Qiao <13520302880@163.com>
 Date:   Tue Feb 12 17:27:08 2019 +0800
 
@@ -16683,7 +16957,7 @@ Date:   Sat Feb 9 20:50:45 2019 +0800
  1 file changed, 76 insertions(+), 5 deletions(-)
 
 commit 657cb07cdb1bcf4ed000f339c82201e83ffb9ef5
-Merge: bf7f07fa cb0c6718
+Merge: bf7f07fa1 cb0c6718e
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Feb 9 20:14:04 2019 +0800
 
@@ -16692,7 +16966,7 @@ Date:   Sat Feb 9 20:14:04 2019 +0800
     [IOTDB-18] Improve startup script compatible for jdk11
 
 commit bf7f07fa10e9725e6574819be4cd91f94d0ff492
-Merge: 70db28dd 8304f96b
+Merge: 70db28dde 8304f96b1
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Feb 2 09:16:34 2019 +0800
 
@@ -16719,7 +16993,7 @@ Date:   Sat Feb 2 00:59:16 2019 +0800
  1 file changed, 8 insertions(+), 5 deletions(-)
 
 commit 70db28dde43d39369731d408326bd761f44a46bf
-Merge: f2523d67 7e78ce4b
+Merge: f2523d672 7e78ce4b4
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Fri Feb 1 23:19:01 2019 +0800
 
@@ -16823,14 +17097,14 @@ Date:   Tue Jan 29 13:00:53 2019 +0800
  4 files changed, 18 insertions(+), 18 deletions(-)
 
 commit f53f8ae5a823756da09346c5189fb27d4f431eb1
-Merge: 43e3a5d7 f2523d67
+Merge: 43e3a5d7d f2523d672
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Tue Jan 29 00:00:52 2019 +0800
 
     Merge remote-tracking branch 'origin/master' into fix_sonar_jt
 
 commit f2523d6721b42644f9bc13382d6d2a58ff7622a4
-Merge: 2c03bb48 ea0caf5e
+Merge: 2c03bb489 ea0caf5ef
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Jan 28 23:59:02 2019 +0800
 
@@ -16953,7 +17227,7 @@ Date:   Sat Jan 26 10:01:15 2019 +0800
  5 files changed, 67 insertions(+), 85 deletions(-)
 
 commit f31b37a386309d3b022e744e417b42abb42eed7a
-Merge: 57c303c8 9c073354
+Merge: 57c303c8f 9c0733546
 Author: 江天 <jt2594838@163.com>
 Date:   Sat Jan 26 09:46:00 2019 +0800
 
@@ -17012,7 +17286,7 @@ Date:   Fri Jan 25 23:45:28 2019 +0800
  10 files changed, 22 insertions(+), 11 deletions(-)
 
 commit b9217eca082d1446caaccbb6e56cce2b92c76f29
-Merge: 0aa13fa8 0e371fe1
+Merge: 0aa13fa87 0e371fe1c
 Author: lta <litiananfa@163.com>
 Date:   Fri Jan 25 22:38:56 2019 +0800
 
@@ -17046,14 +17320,14 @@ Date:   Fri Jan 25 22:31:56 2019 +0800
  1 file changed, 9 deletions(-)
 
 commit cc799cb8035f5dafca6b926796706c651a45d368
-Merge: b3f81978 b677b49d
+Merge: b3f819788 b677b49d7
 Author: 江天 <jt2594838@163.com>
 Date:   Fri Jan 25 22:05:41 2019 +0800
 
     Merge branch 'fix_sonar' into fix_sonar_jt
 
 commit b677b49d775d92974d04095e42e6b015f71d9de8
-Merge: 839d8de7 56964270
+Merge: 839d8de7e 569642704
 Author: lta <litiananfa@163.com>
 Date:   Fri Jan 25 21:50:23 2019 +0800
 
@@ -17092,7 +17366,7 @@ Date:   Fri Jan 25 21:48:17 2019 +0800
  24 files changed, 221 insertions(+), 579 deletions(-)
 
 commit b3f819788b8782fc7c099de9eed68e7c8f8b4f8a
-Merge: a0aa6f9e 56964270
+Merge: a0aa6f9e2 569642704
 Author: 江天 <jt2594838@163.com>
 Date:   Fri Jan 25 21:42:29 2019 +0800
 
@@ -17202,7 +17476,7 @@ Date:   Fri Jan 25 20:17:06 2019 +0800
  41 files changed, 1689 insertions(+), 1993 deletions(-)
 
 commit fda59480b5658a3c95d2b3a1bc339c94d31b6618
-Merge: e0f883af 85a78aba
+Merge: e0f883af1 85a78aba3
 Author: lta <litiananfa@163.com>
 Date:   Fri Jan 25 20:06:10 2019 +0800
 
@@ -17251,7 +17525,7 @@ Date:   Fri Jan 25 19:34:11 2019 +0800
  22 files changed, 76 insertions(+), 85 deletions(-)
 
 commit faf7d7d9372f1667d8f84a6bbbe278a34b30aec8
-Merge: 5745144b d3f0bd27
+Merge: 5745144b5 d3f0bd27d
 Author: lta <litiananfa@163.com>
 Date:   Fri Jan 25 17:08:35 2019 +0800
 
@@ -17300,7 +17574,7 @@ Date:   Fri Jan 25 16:57:30 2019 +0800
  10 files changed, 45 insertions(+), 35 deletions(-)
 
 commit 15dd89b3343cb09e9b9334571c316e5f56c23b47
-Merge: 4123fdd8 8e1dae1b
+Merge: 4123fdd8d 8e1dae1b5
 Author: kr11 <3095717866@qq.com>
 Date:   Fri Jan 25 16:21:08 2019 +0800
 
@@ -17362,7 +17636,7 @@ Date:   Fri Jan 25 11:23:12 2019 +0800
  10 files changed, 54 insertions(+), 41 deletions(-)
 
 commit cbd3a668fca9c167129d60f10549fddf0395f36b
-Merge: c3def622 a797e38b
+Merge: c3def6222 a797e38b0
 Author: lta <litiananfa@163.com>
 Date:   Fri Jan 25 10:33:12 2019 +0800
 
@@ -17385,7 +17659,7 @@ Date:   Fri Jan 25 10:32:48 2019 +0800
  8 files changed, 636 insertions(+), 670 deletions(-)
 
 commit a797e38b0575a2b75face68d825eed9cf73cde3b
-Merge: dd0bd13e 2c03bb48
+Merge: dd0bd13e3 2c03bb489
 Author: kr11 <3095717866@qq.com>
 Date:   Fri Jan 25 10:15:18 2019 +0800
 
@@ -17413,14 +17687,14 @@ Date:   Fri Jan 25 09:54:22 2019 +0800
  13 files changed, 35 insertions(+), 133 deletions(-)
 
 commit ade75b0fc8ceb5c3355b5987f7f42c501898ff27
-Merge: 15f5bf48 dd0bd13e
+Merge: 15f5bf48a dd0bd13e3
 Author: lta <litiananfa@163.com>
 Date:   Fri Jan 25 09:15:52 2019 +0800
 
     Merge branch 'fix_sonar' of github.com:apache/incubator-iotdb into fix_sonar
 
 commit 4331084dc2538648598a3ee8b4266e6f33e07465
-Merge: 731fe4b4 4914c396
+Merge: 731fe4b4b 4914c396f
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Jan 24 23:41:01 2019 +0800
 
@@ -17448,14 +17722,14 @@ Date:   Thu Jan 24 23:24:11 2019 +0800
  2 files changed, 26 insertions(+), 24 deletions(-)
 
 commit af0045936b0aace6617851c70576eaa2acdef901
-Merge: 62a29d3d 69f31952
+Merge: 62a29d3d8 69f319528
 Author: liuruiyiyang <245422695@qq.com>
 Date:   Thu Jan 24 23:15:31 2019 +0800
 
     Merge branch 'fix_sonar' of github.com:apache/incubator-iotdb into fix_sonar
 
 commit 731fe4b4b86f9a29ffae714a98a2531fda71e3d9
-Merge: 69f31952 2b5bbee2
+Merge: 69f319528 2b5bbee27
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Jan 24 23:02:10 2019 +0800
 
@@ -17484,7 +17758,7 @@ Date:   Thu Jan 24 22:35:18 2019 +0800
  3 files changed, 31 insertions(+), 30 deletions(-)
 
 commit 69f31952845de32ac1779c941c2db2a3e2c19233
-Merge: 6efe9e5a f6351051
+Merge: 6efe9e5a1 f63510517
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Thu Jan 24 21:31:48 2019 +0800
 
@@ -17493,28 +17767,28 @@ Date:   Thu Jan 24 21:31:48 2019 +0800
     Fix many code debt reported by sonar
 
 commit 15f5bf48aaf81764a361dcd6ab694ad5c3310682
-Merge: b41039bf f6351051
+Merge: b41039bfe f63510517
 Author: lta <litiananfa@163.com>
 Date:   Thu Jan 24 21:30:11 2019 +0800
 
     Merge branch 'fix_sonar' of github.com:apache/incubator-iotdb into fix_sonar
 
 commit f63510517d705f583528bfd4053e98bfa06d5b7e
-Merge: a5c8dde5 6efe9e5a
+Merge: a5c8dde50 6efe9e5a1
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jan 24 21:29:08 2019 +0800
 
     Merge branch 'master' into fix_sonar
 
 commit b41039bfea1ae3cbc9945196f162e05d3d7b7e4f
-Merge: ef7f57a2 6efe9e5a
+Merge: ef7f57a20 6efe9e5a1
 Author: lta <litiananfa@163.com>
 Date:   Thu Jan 24 21:27:14 2019 +0800
 
     Merge branch 'master' into fix_sonar
 
 commit 6efe9e5a1c44c0216a368dc61e27fa55348df17a
-Merge: 25c7c4cd 179662db
+Merge: 25c7c4cda 179662db2
 Author: Tianan Li <litiananfa@163.com>
 Date:   Thu Jan 24 21:15:49 2019 +0800
 
@@ -17523,7 +17797,7 @@ Date:   Thu Jan 24 21:15:49 2019 +0800
     Remove generated thrift file of postback service function
 
 commit a5c8dde503c696a3e91d1c3e03968097ca09e13b
-Merge: 73fe916e ef7f57a2
+Merge: 73fe916e4 ef7f57a20
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Thu Jan 24 21:10:56 2019 +0800
 
@@ -17544,7 +17818,7 @@ Date:   Thu Jan 24 21:10:37 2019 +0800
  6 files changed, 29 insertions(+), 34 deletions(-)
 
 commit ef7f57a20b5dbf53c06b7d1e35c859bff6c0e21c
-Merge: 17b6e055 f54663fb
+Merge: 17b6e0557 f54663fbd
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jan 24 21:04:42 2019 +0800
 
@@ -17561,7 +17835,7 @@ Date:   Thu Jan 24 20:50:57 2019 +0800
  2 files changed, 16 insertions(+), 7908 deletions(-)
 
 commit f54663fbd05e8f3ba8f7e0d179f7d3d96f7427ef
-Merge: c5e6ab60 f5563c1d
+Merge: c5e6ab60d f5563c1d5
 Author: mdf369 <952945925@qq.com>
 Date:   Thu Jan 24 20:11:11 2019 +0800
 
@@ -17589,7 +17863,7 @@ Date:   Thu Jan 24 20:10:56 2019 +0800
  13 files changed, 51 insertions(+), 43 deletions(-)
 
 commit f5563c1d5b43bb7f1334feab16195dfebe66643b
-Merge: 98be1f93 16fe041f
+Merge: 98be1f937 16fe041fc
 Author: kr11 <3095717866@qq.com>
 Date:   Thu Jan 24 17:31:02 2019 +0800
 
@@ -17606,7 +17880,7 @@ Date:   Thu Jan 24 17:29:56 2019 +0800
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 commit 62a29d3d89a44da3a0eadbda87691f953dbc038a
-Merge: 68bd9da2 16fe041f
+Merge: 68bd9da2c 16fe041fc
 Author: liuruiyiyang <245422695@qq.com>
 Date:   Thu Jan 24 16:46:06 2019 +0800
 
@@ -17648,7 +17922,7 @@ Date:   Thu Jan 24 16:18:15 2019 +0800
  10 files changed, 40 insertions(+), 31 deletions(-)
 
 commit 1860aaf1c4d2157b3f4f889c1cb690dd37e2087c
-Merge: 6edb3e5f a7f06e09
+Merge: 6edb3e5ff a7f06e09a
 Author: liukun <451564319@qq.com>
 Date:   Thu Jan 24 15:46:38 2019 +0800
 
@@ -17709,7 +17983,7 @@ Date:   Thu Jan 24 13:52:59 2019 +0800
  3 files changed, 13 insertions(+), 32 deletions(-)
 
 commit 383ca1e20aa743c0064fc65b364765843da05d6b
-Merge: 2ba1de87 82f4aaa7
+Merge: 2ba1de87e 82f4aaa75
 Author: liukun <451564319@qq.com>
 Date:   Thu Jan 24 12:55:52 2019 +0800
 
@@ -17741,14 +18015,14 @@ Date:   Thu Jan 24 10:25:33 2019 +0800
  7 files changed, 64 insertions(+), 40 deletions(-)
 
 commit dd90d8bf56131e3310e496100bb63dec2d536f23
-Merge: f5955aae 231381c4
+Merge: f5955aaeb 231381c4e
 Author: liuruiyiyang <245422695@qq.com>
 Date:   Thu Jan 24 09:39:07 2019 +0800
 
     Merge branch 'fix_sonar' of github.com:apache/incubator-iotdb into fix_sonar
 
 commit 231381c4e66cc0ea52b7e3873deb3107da8c5ed6
-Merge: a2518415 66571d2c
+Merge: a2518415a 66571d2cf
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Wed Jan 23 21:41:59 2019 +0800
 
@@ -17775,7 +18049,7 @@ Date:   Wed Jan 23 21:10:07 2019 +0800
  3 files changed, 61 insertions(+), 42 deletions(-)
 
 commit 8cecd2615e0e344849b19d9cb2490d9072da20f7
-Merge: d37c8ed3 8c654f26
+Merge: d37c8ed39 8c654f264
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jan 23 20:35:00 2019 +0800
 
@@ -17795,7 +18069,7 @@ Date:   Wed Jan 23 20:34:34 2019 +0800
  5 files changed, 68 insertions(+), 91 deletions(-)
 
 commit 8c654f264efe893ed6277d431838ca20dc3d9412
-Merge: ad08ec9f 1129c605
+Merge: ad08ec9f3 1129c6056
 Author: kr11 <3095717866@qq.com>
 Date:   Wed Jan 23 20:04:08 2019 +0800
 
@@ -17874,7 +18148,7 @@ Date:   Wed Jan 23 19:55:40 2019 +0800
  26 files changed, 1672 deletions(-)
 
 commit 215f3814da3c3c6e4de8d8f9a43b53fd9c0e0c27
-Merge: 5a1d000f f813d673
+Merge: 5a1d000f8 f813d6736
 Author: kr11 <3095717866@qq.com>
 Date:   Wed Jan 23 19:23:05 2019 +0800
 
@@ -17926,7 +18200,7 @@ Date:   Wed Jan 23 19:18:02 2019 +0800
  36 files changed, 211 insertions(+), 223 deletions(-)
 
 commit f813d6736ef420ba1ce5b294b486b196e0d7fc95
-Merge: a0d03ba7 537a1d30
+Merge: a0d03ba78 537a1d30b
 Author: mdf369 <952945925@qq.com>
 Date:   Wed Jan 23 17:49:14 2019 +0800
 
@@ -17947,14 +18221,14 @@ Date:   Wed Jan 23 17:48:52 2019 +0800
  6 files changed, 51 insertions(+), 10 deletions(-)
 
 commit 537a1d30b3cdcef6d879839c46d9e2511d004c21
-Merge: 575f6902 6c89da53
+Merge: 575f6902d 6c89da534
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jan 23 17:19:33 2019 +0800
 
     Merge branch 'fix_sonar' of github.com:apache/incubator-iotdb into fix_sonar
 
 commit 6c89da5344aff8ca1045e5e5c8cb42bbddaf6a0d
-Merge: c182815c 35e98ec5
+Merge: c182815c5 35e98ec51
 Author: mdf369 <952945925@qq.com>
 Date:   Wed Jan 23 17:12:12 2019 +0800
 
@@ -18009,7 +18283,7 @@ Date:   Wed Jan 23 16:50:23 2019 +0800
  9 files changed, 30 insertions(+), 74 deletions(-)
 
 commit 35e98ec51401beabff71e08a8f22c08182e5902f
-Merge: 9326ceb1 3e8a36be
+Merge: 9326ceb14 3e8a36be3
 Author: MyXOF <xuyi556677@163.com>
 Date:   Wed Jan 23 16:29:58 2019 +0800
 
@@ -18052,7 +18326,7 @@ Date:   Wed Jan 23 16:18:05 2019 +0800
  11 files changed, 27 insertions(+), 295 deletions(-)
 
 commit 25c7c4cda481ecfeeb3f6c143ca8052afaf1bed5
-Merge: 45c531e4 25fb174b
+Merge: 45c531e4c 25fb174b8
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Tue Jan 22 23:20:35 2019 +0800
 
@@ -18061,7 +18335,7 @@ Date:   Tue Jan 22 23:20:35 2019 +0800
     [IOTDB-7] Fix open file num util test failure
 
 commit 25fb174b8e632b14e4af9f4f1e2124841d7f74ac
-Merge: 884f526e 45c531e4
+Merge: 884f526ee 45c531e4c
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Tue Jan 22 22:47:42 2019 +0800
 
@@ -18122,7 +18396,7 @@ Date:   Tue Jan 22 21:15:13 2019 +0800
  3 files changed, 66 insertions(+), 27 deletions(-)
 
 commit 45c531e4cd323494a6dda90abf0c63a4d3d9e1e9
-Merge: 699e8966 69372609
+Merge: 699e8966d 69372609b
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Tue Jan 22 19:51:21 2019 +0800
 
@@ -18138,7 +18412,7 @@ Date:   Tue Jan 22 19:20:24 2019 +0800
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit 699e8966d12b498b8bd5998a607bec813b3e7361
-Merge: 87a8b010 76e46984
+Merge: 87a8b0100 76e469849
 Author: Rui Liu <245422695@qq.com>
 Date:   Tue Jan 22 10:27:29 2019 +0800
 
@@ -18157,7 +18431,7 @@ Date:   Tue Jan 22 10:24:04 2019 +0800
  2 files changed, 5 insertions(+), 1 deletion(-)
 
 commit 87a8b01009dd4eb2d96b508826c7c2c5b48f5fdb
-Merge: fbb3eff1 fd304b1a
+Merge: fbb3eff10 fd304b1ad
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Mon Jan 21 23:02:24 2019 +0800
 
@@ -18173,7 +18447,7 @@ Date:   Mon Jan 21 22:48:34 2019 +0800
  1 file changed, 2 deletions(-)
 
 commit fbb3eff105291ebe4bc56970580d028820995ed9
-Merge: c7d7c597 868758ee
+Merge: c7d7c597d 868758ee4
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Mon Jan 21 22:38:58 2019 +0800
 
@@ -18201,7 +18475,7 @@ Date:   Mon Jan 21 22:22:59 2019 +0800
  3 files changed, 44 insertions(+), 24 deletions(-)
 
 commit c7d7c597dc382dfe1e814fa9cea4c6d6d73065c0
-Merge: c3061927 a0ad0a95
+Merge: c30619271 a0ad0a954
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Mon Jan 21 21:06:11 2019 +0800
 
@@ -18218,7 +18492,7 @@ Date:   Mon Jan 21 21:05:33 2019 +0800
  2 files changed, 5 insertions(+), 4 deletions(-)
 
 commit c3061927165add1b8018a59c85e50491f2d39e9f
-Merge: f2f81c5f 2e608e6e
+Merge: f2f81c5f4 2e608e6e4
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Mon Jan 21 20:39:25 2019 +0800
 
@@ -18235,7 +18509,7 @@ Date:   Mon Jan 21 20:38:14 2019 +0800
  2 files changed, 11 insertions(+), 1 deletion(-)
 
 commit f2f81c5f4d0c7b4dcffe09bb015b118abf3d44e7
-Merge: c7c5ac2d 3665e48e
+Merge: c7c5ac2d3 3665e48e7
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Jan 21 19:42:29 2019 +0800
 
@@ -18263,7 +18537,7 @@ Date:   Mon Jan 21 19:35:33 2019 +0800
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 commit 5a11aaebaae1fd342a3536f759fa0e4f5c1e8f9b
-Merge: 12f9a378 8d61c441
+Merge: 12f9a3786 8d61c4415
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Jan 21 19:30:01 2019 +0800
 
@@ -18272,7 +18546,7 @@ Date:   Mon Jan 21 19:30:01 2019 +0800
     modify ASF header for each file and add related maven plugin
 
 commit 12f9a378629843611cc65e9eda8d455c0156ee73
-Merge: a4d1bc98 109bc657
+Merge: a4d1bc98e 109bc6576
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Jan 21 19:26:21 2019 +0800
 
@@ -18301,7 +18575,7 @@ Date:   Mon Jan 21 15:09:58 2019 +0800
  3 files changed, 35 insertions(+), 24 deletions(-)
 
 commit 2b271a2f6fa24226adee55f3d528a59f65163f41
-Merge: 3a6e7195 a1e096c6
+Merge: 3a6e7195f a1e096c66
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Mon Jan 21 15:00:12 2019 +0800
 
@@ -18327,7 +18601,7 @@ Date:   Mon Jan 21 14:58:23 2019 +0800
  2 files changed, 37 insertions(+), 39 deletions(-)
 
 commit 4a55823ab8a972aa48581925b01c71f9bca59ac4
-Merge: f7b9c64f eb922eaf
+Merge: f7b9c64f7 eb922eaf8
 Author: xiangdong huang <sainthxd@gmail.com>
 Date:   Mon Jan 21 14:32:53 2019 +0800
 
@@ -18343,7 +18617,7 @@ Date:   Mon Jan 21 14:29:31 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit eb922eaf8fe506996d6312cb4635ddc2b3101c3e
-Merge: 682b74b6 620fe6c2
+Merge: 682b74b61 620fe6c2c
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Jan 21 14:15:54 2019 +0800
 
@@ -18352,7 +18626,7 @@ Date:   Mon Jan 21 14:15:54 2019 +0800
     [IOTDB-4] Force WAL in thread periodically
 
 commit 682b74b61fa4eea3ee076cb2dea3cf5b0afec68f
-Merge: 09174f6f 4dfba6f5
+Merge: 09174f6f5 4dfba6f57
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Mon Jan 21 14:07:19 2019 +0800
 
@@ -19272,7 +19546,7 @@ Date:   Sat Jan 19 17:03:52 2019 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 09174f6f5bad09db727041d1297b953c235f9b63
-Merge: 33d5a217 e6153b37
+Merge: 33d5a2179 e6153b374
 Author: Xiangdong Huang <hxdreg@qq.com>
 Date:   Sat Jan 19 12:38:16 2019 +0800
 
@@ -25763,7 +26037,7 @@ Date:   Thu Oct 25 21:34:08 2018 +0800
  3 files changed, 80 insertions(+), 12 deletions(-)
 
 commit de1bdf23cd86121c1a370348a1a80d41aebe881b
-Merge: 511f1629 1c0b60f7
+Merge: 511f16294 1c0b60f73
 Author: Jiang Tian <jt2594838@163.com>
 Date:   Fri Oct 19 14:44:54 2018 +0800
 
@@ -25772,7 +26046,7 @@ Date:   Fri Oct 19 14:44:54 2018 +0800
     Bufferwrite: clean code
 
 commit 1c0b60f73eebb622123b78bc38c222ee2755caf9
-Merge: 68149b64 511f1629
+Merge: 68149b64b 511f16294
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Fri Oct 19 14:09:30 2018 +0800
 
@@ -25832,14 +26106,14 @@ Date:   Thu Sep 20 19:44:29 2018 +0800
  2 files changed, 3 insertions(+), 4 deletions(-)
 
 commit 975c4c2decc1f45744d3ff14b7761abb12e3ec57
-Merge: ee5f6b89 ee5e8faf
+Merge: ee5f6b890 ee5e8faf6
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Thu Sep 20 19:42:17 2018 +0800
 
     clean bufferwrite
 
 commit ee5f6b890b12405b50d94193f09b23efbb9222d5
-Merge: f16f038c 8f5a1034
+Merge: f16f038c2 8f5a10347
 Author: Jiang Tian <jt2594838@163.com>
 Date:   Thu Sep 13 16:14:02 2018 +0800
 
@@ -26063,21 +26337,21 @@ Date:   Thu Sep 6 13:17:53 2018 +0800
  12 files changed, 75 insertions(+), 292 deletions(-)
 
 commit 8241a365bb4a850c7fb1b1485498f251b3403ba4
-Merge: 5133a3c6 f16f038c
+Merge: 5133a3c65 f16f038c2
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Wed Sep 5 10:28:03 2018 +0800
 
     update 0.8.0-SNAPSHOT
 
 commit 5133a3c659a15e3158c7d8ca20cfa0caa086f4a3
-Merge: fc7bb652 7351e857
+Merge: fc7bb6529 7351e857a
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Wed Sep 5 09:52:32 2018 +0800
 
     merge master
 
 commit f16f038c20f05b35945191a5778ca643e17341cd
-Merge: 3f942fe1 d3cfc9b8
+Merge: 3f942fe1f d3cfc9b85
 Author: Jiang Tian <jt2594838@163.com>
 Date:   Sat Sep 1 12:32:30 2018 +0800
 
@@ -26086,7 +26360,7 @@ Date:   Sat Sep 1 12:32:30 2018 +0800
     Add merge experiment and mmap support
 
 commit 3f942fe1f29df0c66d2e3144ba084f961f59ff65
-Merge: b127d0f9 fb485a63
+Merge: b127d0f9b fb485a635
 Author: Jiang Tian <jt2594838@163.com>
 Date:   Sat Sep 1 12:18:26 2018 +0800
 
@@ -26143,7 +26417,7 @@ Date:   Sat Jul 28 21:05:10 2018 +0800
  17 files changed, 341 insertions(+), 2 deletions(-)
 
 commit 1e23303b2a94a983c0eb7433eb4b0752dce8bd9e
-Merge: 8ab01d9f 876d9869
+Merge: 8ab01d9fc 876d9869c
 Author: Gaofei Cao <cgf1993@foxmail.com>
 Date:   Thu Jun 28 10:54:37 2018 +0800
 
@@ -26266,7 +26540,7 @@ Date:   Mon Jun 4 16:39:19 2018 +0800
  2 files changed, 10 insertions(+), 13 deletions(-)
 
 commit e0f51922988753822a7361c6d8786f108243894a
-Merge: 5b0764ef 3471f31e
+Merge: 5b0764ef7 3471f31ea
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon Jun 4 11:07:15 2018 +0800
 
@@ -26293,7 +26567,7 @@ Date:   Mon Jun 4 11:06:16 2018 +0800
  12 files changed, 58 insertions(+), 45 deletions(-)
 
 commit 3471f31ea2f4fdafe4717abce33f8be82c01bf9f
-Merge: 5935976e 8e693bad
+Merge: 5935976e5 8e693bada
 Author: suyue <2335813255@qq.com>
 Date:   Sat Jun 2 19:57:26 2018 +0800
 
@@ -26334,7 +26608,7 @@ Date:   Fri Jun 1 17:55:10 2018 +0800
  2 files changed, 9 insertions(+), 11 deletions(-)
 
 commit fe2a5f72e9d7a5e5785c748ab7e435183d236243
-Merge: cc8923d5 40dc613e
+Merge: cc8923d56 40dc613ed
 Author: suyue <2335813255@qq.com>
 Date:   Thu May 31 19:04:24 2018 +0800
 
@@ -26412,7 +26686,7 @@ Date:   Thu May 31 16:52:55 2018 +0800
  3 files changed, 69 insertions(+), 73 deletions(-)
 
 commit f2172ef41c93de4ba5e5dd08bd49946622d2a2bb
-Merge: ebf843d3 c546f0f9
+Merge: ebf843d3b c546f0f9d
 Author: suyue <2335813255@qq.com>
 Date:   Thu May 31 16:21:32 2018 +0800
 
@@ -26536,7 +26810,7 @@ Date:   Wed May 30 22:53:36 2018 +0800
  4 files changed, 173 insertions(+), 39 deletions(-)
 
 commit a1383dcec8087cee3fe14607408cf13c7b3c3726
-Merge: 1a9b08ed aade7b67
+Merge: 1a9b08ede aade7b673
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Wed May 30 20:38:37 2018 +0800
 
@@ -26552,7 +26826,7 @@ Date:   Wed May 30 19:49:20 2018 +0800
  1 file changed, 41 insertions(+), 12 deletions(-)
 
 commit aade7b673916c08bb27c661a585f4c5d8292e727
-Merge: cedfa472 bf0f20d5
+Merge: cedfa4724 bf0f20d5e
 Author: MyXOF <xuyi556677@163.com>
 Date:   Wed May 30 19:16:04 2018 +0800
 
@@ -26569,7 +26843,7 @@ Date:   Wed May 30 19:14:40 2018 +0800
  2 files changed, 67 insertions(+), 118 deletions(-)
 
 commit c546f0f9d8acc4dd1ce6c6d63e8bebca7bd8f10a
-Merge: d96b490f 8a0af65a
+Merge: d96b490f4 8a0af65a0
 Author: suyue <2335813255@qq.com>
 Date:   Wed May 30 16:45:21 2018 +0800
 
@@ -26611,7 +26885,7 @@ Date:   Wed May 30 11:42:42 2018 +0800
  16 files changed, 538 insertions(+), 326 deletions(-)
 
 commit 25d1de313a9c6ead731d94e6c882841046c943fb
-Merge: c0b482b2 c918d84e
+Merge: c0b482b24 c918d84e9
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Tue May 29 19:23:19 2018 +0800
 
@@ -26683,7 +26957,7 @@ Date:   Tue May 29 17:25:41 2018 +0800
  38 files changed, 442 insertions(+), 673 deletions(-)
 
 commit d96b490f45a911de521e6ed593fae3e31a8bf768
-Merge: bb5150cc b9c54f21
+Merge: bb5150cc8 b9c54f21d
 Author: suyue <2335813255@qq.com>
 Date:   Tue May 29 11:29:17 2018 +0800
 
@@ -26841,14 +27115,14 @@ Date:   Thu May 17 13:20:39 2018 +0800
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit e8c3b024048c962802a52a1759ababbfb4002640
-Merge: 5176a18f f1772573
+Merge: 5176a18fe f1772573a
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu May 17 11:37:16 2018 +0800
 
     Merge branch 'master' into add_merge_experiment_and_mmap
 
 commit 969c40302e537332299b6342cfe848e43d4d4f44
-Merge: 140ae8d1 ef09ee14
+Merge: 140ae8d17 ef09ee148
 Author: East <952945925@qq.com>
 Date:   Thu May 17 10:27:02 2018 +0800
 
@@ -26865,7 +27139,7 @@ Date:   Thu May 17 10:21:59 2018 +0800
  2 files changed, 179 insertions(+), 35 deletions(-)
 
 commit 140ae8d171bafb09318f791beb17001d71bcef36
-Merge: b3f2e8f3 7949a894
+Merge: b3f2e8f33 7949a8942
 Author: East <952945925@qq.com>
 Date:   Thu May 17 09:55:58 2018 +0800
 
@@ -26969,7 +27243,7 @@ Date:   Wed May 16 10:59:10 2018 +0800
  8 files changed, 42 insertions(+), 25 deletions(-)
 
 commit 4361f393f836e5af9a33a6017b7c26e15f1958ba
-Merge: 33033e06 7949a894
+Merge: 33033e067 7949a8942
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue May 15 19:05:08 2018 +0800
 
@@ -27157,7 +27431,7 @@ Date:   Mon May 7 23:31:31 2018 +0800
  1 file changed, 16 deletions(-)
 
 commit e9ccbc09b0da5cff1250fd28b428c2ea5b1e3fa3
-Merge: 85b77830 25254be6
+Merge: 85b778307 25254be66
 Author: East <952945925@qq.com>
 Date:   Mon May 7 23:26:50 2018 +0800
 
@@ -27192,7 +27466,7 @@ Date:   Mon May 7 10:06:13 2018 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit d13247eba9d6289b06b6da9dde24f7708a2338e6
-Merge: d99c8311 f2c6daca
+Merge: d99c83112 f2c6dacaf
 Author: Stefanie Zhao <xyzhao16@mails.tsinghua.edu.cn>
 Date:   Sun May 6 17:45:21 2018 +0800
 
@@ -27210,7 +27484,7 @@ Date:   Sun May 6 17:43:47 2018 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit d99c83112cdcd691c23a5631b599140a0b494922
-Merge: 03dc388a 4a8ab0e5
+Merge: 03dc388a7 4a8ab0e57
 Author: Stefanie Zhao <xyzhao16@mails.tsinghua.edu.cn>
 Date:   Sun May 6 17:37:54 2018 +0800
 
@@ -27269,7 +27543,7 @@ Date:   Sat May 5 10:32:56 2018 +0800
  3 files changed, 20 insertions(+)
 
 commit 282683c458739193e33392441a58d4b416339b6d
-Merge: bca4b0c3 91a003a2
+Merge: bca4b0c35 91a003a2a
 Author: East <952945925@qq.com>
 Date:   Mon Apr 30 00:25:22 2018 +0800
 
@@ -28153,7 +28427,7 @@ Date:   Wed Jan 17 10:45:41 2018 +0800
  7 files changed, 27 insertions(+), 15 deletions(-)
 
 commit 3348e82e3afb0526dc44049afb3d6dff02adc896
-Merge: e7eaa4a7 47da0896
+Merge: e7eaa4a7b 47da08964
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Tue Jan 16 15:30:04 2018 +0800
 
@@ -28186,7 +28460,7 @@ Date:   Tue Jan 16 00:24:40 2018 +0800
  4 files changed, 16 insertions(+), 11 deletions(-)
 
 commit be364148e7a255f345b6c51647626bcf53178f01
-Merge: 5039f97e e7eaa4a7
+Merge: 5039f97e9 e7eaa4a7b
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Jan 15 23:46:53 2018 +0800
 
@@ -28445,7 +28719,7 @@ Date:   Fri Jan 5 11:47:15 2018 +0800
  21 files changed, 41 insertions(+), 7 deletions(-)
 
 commit 280c9b78a86c373d1bbead2227c7fc6bacbee8f3
-Merge: db968352 cba7f509
+Merge: db9683522 cba7f509a
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri Jan 5 11:23:29 2018 +0800
 
@@ -28454,7 +28728,7 @@ Date:   Fri Jan 5 11:23:29 2018 +0800
     configure logback settings dynamically by JMX
 
 commit cba7f509a550418ac76331b9a0ca98610338ffa3
-Merge: ff500a81 87b4636a
+Merge: ff500a814 87b4636a5
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri Jan 5 10:58:05 2018 +0800
 
@@ -28495,7 +28769,7 @@ Date:   Thu Jan 4 10:28:45 2018 +0800
  1 file changed, 1 insertion(+)
 
 commit c92bb48d0255ed303cf73b1bcd8cc912d12c0fa2
-Merge: 8445b08c fbd64ce8
+Merge: 8445b08cd fbd64ce8c
 Author: qiaojialin <13520302880@163.com>
 Date:   Sat Dec 30 02:56:34 2017 +0800
 
@@ -28797,7 +29071,7 @@ Date:   Mon Dec 25 19:58:15 2017 +0800
  7 files changed, 140 insertions(+), 10 deletions(-)
 
 commit b400a168620b15a47edebb221ca3f71267582dfc
-Merge: 9fdbcefb 17f61f4a
+Merge: 9fdbcefba 17f61f4a8
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Mon Dec 25 16:05:32 2017 +0800
 
@@ -29163,7 +29437,7 @@ Date:   Mon Dec 18 11:34:57 2017 +0800
  50 files changed, 1380 insertions(+), 1618 deletions(-)
 
 commit 7c38c72264c947de4aa28159e13d91406256d992
-Merge: fda1d575 0579bf5f
+Merge: fda1d5750 0579bf5f8
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Sun Dec 17 18:15:28 2017 +0800
 
@@ -29306,7 +29580,7 @@ Date:   Tue Dec 12 13:17:04 2017 +0800
  3 files changed, 66 insertions(+), 50 deletions(-)
 
 commit f726a6e8de67df9f8cfd58956bed28c4f9e1a515
-Merge: 86d9e486 53dc6e2c
+Merge: 86d9e486e 53dc6e2cd
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Sat Dec 9 10:54:14 2017 +0800
 
@@ -29427,7 +29701,7 @@ Date:   Wed Dec 6 18:56:30 2017 +0800
  40 files changed, 2905 insertions(+), 3391 deletions(-)
 
 commit 50767f17a070cc351b2f1bed0aae47a0b966599e
-Merge: dbee9ed2 f2e0c56a
+Merge: dbee9ed27 f2e0c56aa
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon Dec 4 23:54:52 2017 +0800
 
@@ -29609,7 +29883,7 @@ Date:   Fri Dec 1 04:34:42 2017 +0800
  26 files changed, 1020 insertions(+), 281 deletions(-)
 
 commit 87b67ca37558c383cb1669445243f3d1d0f3072d
-Merge: a05e9c18 2541bc78
+Merge: a05e9c18b 2541bc780
 Author: liukun06 <451564319@qq.com>
 Date:   Fri Dec 1 04:01:30 2017 +0800
 
@@ -29903,7 +30177,7 @@ Date:   Wed Nov 29 22:17:52 2017 +0800
  8 files changed, 12 insertions(+), 9 deletions(-)
 
 commit 8c7bd948b47099227a250c1241c9d97de77bb062
-Merge: 64de2600 bcc008e9
+Merge: 64de26002 bcc008e99
 Author: nelbdss <31505467+nelbdss@users.noreply.github.com>
 Date:   Wed Nov 29 11:41:54 2017 +0800
 
@@ -29912,7 +30186,7 @@ Date:   Wed Nov 29 11:41:54 2017 +0800
     fix a bug for batch update false
 
 commit 64de260022fd597e4318fa10f016c5ce5f312d64
-Merge: a67d9f48 37adb605
+Merge: a67d9f482 37adb6057
 Author: qiaojialin <13520302880@163.com>
 Date:   Tue Nov 28 09:25:09 2017 +0800
 
@@ -29966,7 +30240,7 @@ Date:   Tue Nov 21 17:08:27 2017 +0800
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 commit a67d9f48217b2a72e1de7b2e24d7bae0b6ed5be4
-Merge: 26ee03e8 2409a27d
+Merge: 26ee03e85 2409a27dd
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Fri Nov 17 10:55:57 2017 +0800
 
@@ -29975,7 +30249,7 @@ Date:   Fri Nov 17 10:55:57 2017 +0800
     Add group by feature
 
 commit 2409a27dd1cf3a8596b5ce2066c2dfa7f2748cfe
-Merge: f692c694 26ee03e8
+Merge: f692c6948 26ee03e85
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Nov 17 10:51:47 2017 +0800
 
@@ -30135,7 +30409,7 @@ Date:   Wed Nov 8 17:23:19 2017 +0800
  5 files changed, 60 insertions(+), 18 deletions(-)
 
 commit b86de9b7de003e68f54fbc9d8e85ca0bc261677b
-Merge: 11c3d7e3 ce2333e6
+Merge: 11c3d7e3a ce2333e6b
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Wed Nov 8 15:35:16 2017 +0800
 
@@ -30161,7 +30435,7 @@ Date:   Wed Nov 8 15:34:26 2017 +0800
  11 files changed, 80 insertions(+), 93 deletions(-)
 
 commit ce2333e6bc974f3be80d1a1a2fce081546e58306
-Merge: 2dbd10a6 184633c9
+Merge: 2dbd10a68 184633c9f
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Nov 8 09:55:45 2017 +0800
 
@@ -30335,14 +30609,14 @@ Date:   Fri Nov 3 13:53:50 2017 +0800
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit fd1398c96013677cabcdd42b6e3db28a4ac2ae12
-Merge: 3c42b151 c0fa61ce
+Merge: 3c42b1516 c0fa61cef
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Nov 2 21:41:33 2017 +0800
 
     merge with master
 
 commit c0fa61cef4bb07f989a015e74880e906a2e98666
-Merge: 5d93f92c fcdf0485
+Merge: 5d93f92c0 fcdf0485e
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Thu Nov 2 21:31:34 2017 +0800
 
@@ -30351,7 +30625,7 @@ Date:   Thu Nov 2 21:31:34 2017 +0800
     update for fitting tsfile's new write API
 
 commit fcdf0485ec884ad9c1cdebaf61501afcf319f023
-Merge: 29a85150 5d93f92c
+Merge: 29a851502 5d93f92c0
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Thu Nov 2 21:27:44 2017 +0800
 
@@ -30452,7 +30726,7 @@ Date:   Sat Oct 28 15:35:22 2017 +0800
  5 files changed, 33 insertions(+), 51 deletions(-)
 
 commit f011dc8080d5f935afe5aa7b7503d16c6c090f51
-Merge: 308f9e04 667c14a4
+Merge: 308f9e045 667c14a44
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Sat Oct 28 15:18:15 2017 +0800
 
@@ -30512,7 +30786,7 @@ Date:   Fri Oct 20 09:24:27 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit be69938be165a0905d7ac03c54cbdafbe596d513
-Merge: 11e993dc 314e60c3
+Merge: 11e993dcd 314e60c3c
 Author: qiaojialin <13520302880@163.com>
 Date:   Thu Oct 19 06:52:57 2017 -0500
 
@@ -30530,7 +30804,7 @@ Date:   Thu Oct 19 17:28:45 2017 +0800
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 commit 11e993dcdd8d067237b386323cfdc99c4c49f1d9
-Merge: a794d38f d07b4458
+Merge: a794d38fb d07b44580
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Thu Oct 19 00:54:59 2017 -0500
 
@@ -30586,14 +30860,14 @@ Date:   Thu Oct 19 12:25:14 2017 +0800
  1 file changed, 8 insertions(+), 2 deletions(-)
 
 commit d216bf9f5981f5d17b7c26cf2a317b2ddf68442f
-Merge: 93d797df a794d38f
+Merge: 93d797dfe a794d38fb
 Author: liukun06 <451564319@qq.com>
 Date:   Thu Oct 19 11:42:00 2017 +0800
 
     merge master and solve the conflict
 
 commit a794d38fb126d2d6ece6ef3ab6ec62dbdbd49204
-Merge: bbc339e0 605054f4
+Merge: bbc339e03 605054f47
 Author: qiaojialin <13520302880@163.com>
 Date:   Wed Oct 18 22:26:30 2017 -0500
 
@@ -30602,7 +30876,7 @@ Date:   Wed Oct 18 22:26:30 2017 -0500
     Add aggregation with filter support
 
 commit bbc339e032f0c0d4e6dc18bdbe77619ef969d516
-Merge: 71eff45e 11b16082
+Merge: 71eff45ea 11b160828
 Author: qiaojialin <13520302880@163.com>
 Date:   Wed Oct 18 22:20:03 2017 -0500
 
@@ -30611,7 +30885,7 @@ Date:   Wed Oct 18 22:20:03 2017 -0500
     remove config file to conf directory
 
 commit 71eff45eadf2914f3119b26b212dc422fd1095f9
-Merge: e623fc21 b27ef022
+Merge: e623fc218 b27ef022c
 Author: qiaojialin <13520302880@163.com>
 Date:   Wed Oct 18 22:17:45 2017 -0500
 
@@ -30746,7 +31020,7 @@ Date:   Wed Oct 11 16:13:41 2017 +0800
  1 file changed, 1 deletion(-)
 
 commit 81b36369ef2a391717163ac1a5debe5730b5a12c
-Merge: 5f37b7f8 aa6463ab
+Merge: 5f37b7f83 aa6463abc
 Author: qiaojialin <13520302880@163.com>
 Date:   Wed Oct 11 03:10:20 2017 -0500
 
@@ -30788,7 +31062,7 @@ Date:   Wed Oct 11 15:05:22 2017 +0800
  2 files changed, 3 insertions(+), 5 deletions(-)
 
 commit 605054f471661a99fb297692d6784d621c6e525c
-Merge: 329c7be0 5f37b7f8
+Merge: 329c7be01 5f37b7f83
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Oct 11 10:36:32 2017 +0800
 
@@ -30804,7 +31078,7 @@ Date:   Wed Oct 11 10:34:54 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit b27ef022ca0f644426706c06eaa819b9a3eba081
-Merge: a1e51a77 b9d3ff2e
+Merge: a1e51a775 b9d3ff2e9
 Author: softpoeter <3095717866@qq.com>
 Date:   Wed Oct 11 10:18:29 2017 +0800
 
@@ -30831,14 +31105,14 @@ Date:   Tue Oct 10 22:21:21 2017 +0800
  3 files changed, 13 insertions(+), 11 deletions(-)
 
 commit 4908d2197a75ee2d8c35d78e028036e9f9dfcda6
-Merge: 4dacae6b 5f37b7f8
+Merge: 4dacae6bd 5f37b7f83
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Tue Oct 10 22:05:33 2017 +0800
 
     Merge remote-tracking branch 'origin/master' into fix_issue_94
 
 commit 5f37b7f8397e20c3d0cd55334b378f3cbc28c248
-Merge: 6b2bd785 41864b4c
+Merge: 6b2bd7850 41864b4c7
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Tue Oct 10 21:49:58 2017 +0800
 
@@ -30847,7 +31121,7 @@ Date:   Tue Oct 10 21:49:58 2017 +0800
     Fix a bug in system.log, logNodeMaps is not init when enableWAL is set to false
 
 commit 41864b4c7557f473949a78682e6b6fb37ae0b618
-Merge: 30e33b10 6b2bd785
+Merge: 30e33b104 6b2bd7850
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Oct 10 21:43:20 2017 +0800
 
@@ -30872,7 +31146,7 @@ Date:   Tue Oct 10 21:38:53 2017 +0800
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 commit 4dacae6bde106120a6f644e7db6372b4e222576d
-Merge: 6de11422 ce22f0cc
+Merge: 6de11422f ce22f0cc9
 Author: softpoeter <3095717866@qq.com>
 Date:   Tue Oct 10 19:15:30 2017 +0800
 
@@ -30890,14 +31164,14 @@ Date:   Tue Oct 10 19:13:25 2017 +0800
  3 files changed, 86 insertions(+), 84 deletions(-)
 
 commit ce22f0cc958209a2cc4d3a1fc8be6aeb741720e0
-Merge: b8d9f3eb 6b2bd785
+Merge: b8d9f3eb1 6b2bd7850
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Tue Oct 10 17:57:56 2017 +0800
 
     Merge branch 'master' into fix_issue_94
 
 commit 11b1608289221f0a0683afd2975daa2f568ba6e2
-Merge: 7cb8f855 6b2bd785
+Merge: 7cb8f8555 6b2bd7850
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Tue Oct 10 17:30:57 2017 +0800
 
@@ -31005,7 +31279,7 @@ Date:   Mon Oct 9 23:10:21 2017 +0800
  2 files changed, 97 deletions(-)
 
 commit 85886d282324f2ea4da240df457962d97ca38343
-Merge: 3283d414 6172d86c
+Merge: 3283d414c 6172d86c3
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Mon Oct 9 23:09:48 2017 +0800
 
@@ -31084,7 +31358,7 @@ Date:   Mon Sep 25 13:56:36 2017 +0800
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit cda0c1b97e73689f5d6e0d61bf78094299464a35
-Merge: 33e1cbee 6172d86c
+Merge: 33e1cbeea 6172d86c3
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Fri Sep 22 20:15:30 2017 +0800
 
@@ -31102,7 +31376,7 @@ Date:   Fri Sep 22 19:36:31 2017 +0800
  3 files changed, 18 insertions(+), 27 deletions(-)
 
 commit 33e1cbeeae453bc8fef26de38120d8164c82154d
-Merge: 11a91474 f2814476
+Merge: 11a914746 f28144768
 Author: softpoeter <3095717866@qq.com>
 Date:   Fri Sep 22 11:37:28 2017 +0800
 
@@ -31130,7 +31404,7 @@ Date:   Fri Sep 22 11:36:04 2017 +0800
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 commit 0a1a75830f885f9e03609d7eecc8a56b2c8c3ae1
-Merge: 5e22ef82 13a4c3b8
+Merge: 5e22ef822 13a4c3b8e
 Author: softpoeter <3095717866@qq.com>
 Date:   Fri Sep 22 11:05:21 2017 +0800
 
@@ -31473,7 +31747,7 @@ Date:   Thu Sep 14 09:36:00 2017 +0800
  31 files changed, 320 insertions(+), 604 deletions(-)
 
 commit 2d1d742cde17a621832e4155decb07bacddab1a8
-Merge: 050b1cfe feeeeae6
+Merge: 050b1cfee feeeeae6f
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Sat Sep 9 11:13:16 2017 +0800
 
@@ -31522,7 +31796,7 @@ Date:   Fri Sep 8 22:37:59 2017 +0800
  11 files changed, 12 insertions(+), 12 deletions(-)
 
 commit 0ceaf4340f936f5b508f111365238f45bf848a37
-Merge: 16509bdc 42cf70ba
+Merge: 16509bdc6 42cf70bae
 Author: kr11 <3095717866@qq.com>
 Date:   Fri Sep 8 22:01:30 2017 +0800
 
@@ -31820,7 +32094,7 @@ Date:   Fri Sep 8 21:55:05 2017 +0800
  281 files changed, 1135 insertions(+), 1205 deletions(-)
 
 commit 16509bdc682b7b8f773f1e5d67d7530c05e108c8
-Merge: c4d79e0d d0feff1c
+Merge: c4d79e0da d0feff1c2
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Fri Sep 8 21:45:43 2017 +0800
 
@@ -31839,7 +32113,7 @@ Date:   Fri Sep 8 21:41:10 2017 +0800
  2 files changed, 30 insertions(+), 5 deletions(-)
 
 commit c4d79e0dacf2631a15dd30693732bc7ba17335ad
-Merge: 4f272450 4f68ec20
+Merge: 4f2724506 4f68ec200
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Fri Sep 8 21:17:47 2017 +0800
 
@@ -31872,7 +32146,7 @@ Date:   Fri Sep 8 21:03:16 2017 +0800
  7 files changed, 7 insertions(+), 7 deletions(-)
 
 commit 4f272450637309c95b78c82a04c66b42cf8c1519
-Merge: d7e7068a 8cd03b86
+Merge: d7e7068a3 8cd03b863
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Fri Sep 8 20:52:23 2017 +0800
 
@@ -31989,7 +32263,7 @@ Date:   Fri Sep 8 14:35:31 2017 +0800
  51 files changed, 23 insertions(+), 30966 deletions(-)
 
 commit d92267cbde7204f9d422cdc7acd791953a427a07
-Merge: 4ae2c2bb 87d02172
+Merge: 4ae2c2bbf 87d021729
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Fri Sep 8 12:26:23 2017 +0800
 
@@ -32008,7 +32282,7 @@ Date:   Fri Sep 8 12:07:19 2017 +0800
  2 files changed, 4 insertions(+), 9 deletions(-)
 
 commit f8437c7bbd05ca3e81f8a6c1fb2b4bfe95f721ae
-Merge: bd4b1a87 bd04aeb8
+Merge: bd4b1a879 bd04aeb87
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Fri Sep 8 12:04:07 2017 +0800
 
@@ -32037,7 +32311,7 @@ Date:   Fri Sep 8 12:03:55 2017 +0800
  8 files changed, 92 insertions(+), 44 deletions(-)
 
 commit bd4b1a879bea7d466752356838a2e413670b7b71
-Merge: ca07b752 d08ca991
+Merge: ca07b752c d08ca9918
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Fri Sep 8 11:24:08 2017 +0800
 
@@ -32071,7 +32345,7 @@ Date:   Fri Sep 8 10:44:55 2017 +0800
  4 files changed, 148 insertions(+), 131 deletions(-)
 
 commit e45a20da1bb3f311e0af11e505afaecc9e3b6739
-Merge: 4861545c 52d1bd27
+Merge: 4861545c0 52d1bd279
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Fri Sep 8 10:40:22 2017 +0800
 
@@ -32089,7 +32363,7 @@ Date:   Fri Sep 8 10:35:14 2017 +0800
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 commit 4861545c0bdd19023c80ba2d741f170a8db983f5
-Merge: 896e2839 f14f2ad9
+Merge: 896e2839c f14f2ad98
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Fri Sep 8 10:34:51 2017 +0800
 
@@ -32116,7 +32390,7 @@ Date:   Fri Sep 8 00:03:01 2017 +0800
  1 file changed, 33 insertions(+), 35 deletions(-)
 
 commit 896e2839c75ed8fd62bb982ad2f0140b988bd3d8
-Merge: d2e6a4f8 853c2ee5
+Merge: d2e6a4f8b 853c2ee53
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Thu Sep 7 23:12:33 2017 +0800
 
@@ -32179,14 +32453,14 @@ Date:   Thu Sep 7 17:39:05 2017 +0800
  1 file changed, 2 insertions(+), 5 deletions(-)
 
 commit 5cd323d37e5a35f4a9b6f092b8d0de8246a7defb
-Merge: a51e87b6 98b005c2
+Merge: a51e87b64 98b005c25
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Thu Sep 7 17:10:51 2017 +0800
 
     add remove * and expand aggregations
 
 commit a51e87b64b3227942fe55fcab15bba84c899a68e
-Merge: 0397210c a60b3de6
+Merge: 0397210cc a60b3de63
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Thu Sep 7 16:29:21 2017 +0800
 
@@ -32277,7 +32551,7 @@ Date:   Tue Sep 5 16:31:08 2017 +0800
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 commit d5757a338858c52153779faf929830eb72006f6e
-Merge: 40b85122 5756d3d0
+Merge: 40b851220 5756d3d0c
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Sep 4 23:59:20 2017 +0800
 
@@ -32300,7 +32574,7 @@ Date:   Mon Sep 4 21:12:01 2017 +0800
  8 files changed, 47 insertions(+), 86 deletions(-)
 
 commit 08e2a0a0410d8e0c8c38e7cbe0675090622c8dac
-Merge: bc03e475 7982ad5a
+Merge: bc03e475c 7982ad5ab
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Mon Sep 4 20:03:15 2017 +0800
 
@@ -32332,7 +32606,7 @@ Date:   Mon Sep 4 19:58:27 2017 +0800
  6 files changed, 8 insertions(+), 8 deletions(-)
 
 commit 5756d3d0c72e23c506226a6964ee3d9a4084c337
-Merge: 6bfe9008 bc03e475
+Merge: 6bfe90089 bc03e475c
 Author: aoei.me <cgf1993@foxmail.com>
 Date:   Sun Sep 3 21:41:10 2017 +0800
 
@@ -32384,7 +32658,7 @@ Date:   Sun Sep 3 16:40:13 2017 +0800
  1 file changed, 13 insertions(+), 13 deletions(-)
 
 commit ffebdeceb47ec52d12582a7f597bbecf60a9fcbb
-Merge: de6c9a80 a0a964d2
+Merge: de6c9a80c a0a964d20
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Sun Sep 3 16:07:27 2017 +0800
 
@@ -32401,7 +32675,7 @@ Date:   Sun Sep 3 16:07:14 2017 +0800
  2 files changed, 35 insertions(+), 30 deletions(-)
 
 commit a0a964d202d790f211256682db3891d110d61ac9
-Merge: 0b058b18 917b0514
+Merge: 0b058b186 917b0514f
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Sun Sep 3 15:58:59 2017 +0800
 
@@ -32449,7 +32723,7 @@ Date:   Fri Sep 1 12:04:22 2017 +0800
  3 files changed, 33 insertions(+), 26 deletions(-)
 
 commit bc03e475c7c208c4183a5ac88b0887ff90a5c512
-Merge: 713bcba9 84b5193a
+Merge: 713bcba9e 84b5193af
 Author: XuYi <MyXOF@users.noreply.github.com>
 Date:   Fri Sep 1 11:44:24 2017 +0800
 
@@ -32458,7 +32732,7 @@ Date:   Fri Sep 1 11:44:24 2017 +0800
     Fix issue 44 : 查询多列（按string过滤）出错
 
 commit 9b5f433e18cb736a42154659aa61038c7d54d737
-Merge: b4b4d725 713bcba9
+Merge: b4b4d7254 713bcba9e
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Fri Sep 1 11:05:49 2017 +0800
 
@@ -32511,7 +32785,7 @@ Date:   Thu Aug 31 20:07:20 2017 +0800
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 commit aeb0395765cc960290083df4ce340a65f4905711
-Merge: 15245cf5 ac96a086
+Merge: 15245cf5a ac96a0869
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Thu Aug 31 17:46:48 2017 +0800
 
@@ -32606,7 +32880,7 @@ Date:   Thu Aug 31 12:20:06 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 8507fb321e869e84cbf085826ad8bcaf4619ab88
-Merge: 2dc4a5de 395bd4ad
+Merge: 2dc4a5def 395bd4ad4
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Thu Aug 31 12:14:38 2017 +0800
 
@@ -32779,7 +33053,7 @@ Date:   Tue Aug 29 21:52:09 2017 +0800
  6 files changed, 330 insertions(+), 35 deletions(-)
 
 commit 6fa85f3f9d2fb1a349c58849b6f161995d9d0fe3
-Merge: 9457c299 19e7e4bd
+Merge: 9457c2995 19e7e4bd1
 Author: 今晚的风甚是喧嚣啊 <cgf1993@foxmail.com>
 Date:   Fri Aug 25 16:14:22 2017 +0800
 
@@ -32949,7 +33223,7 @@ Date:   Wed Aug 23 16:16:00 2017 +0800
  108 files changed, 664 insertions(+), 634 deletions(-)
 
 commit 450a4cb4d5ee27bf4450256a70f7abef30922002
-Merge: 63a36448 ed5aadcc
+Merge: 63a364487 ed5aadcc8
 Author: liukun <451564319@qq.com>
 Date:   Wed Aug 23 14:31:38 2017 +0800
 
@@ -32986,14 +33260,14 @@ Date:   Fri Aug 18 18:06:12 2017 +0800
  3 files changed, 109 insertions(+), 74 deletions(-)
 
 commit b13707a4441b90d2b9be80f5cd1dec7da6343817
-Merge: 14270acf 63a36448
+Merge: 14270acf5 63a364487
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Aug 17 17:46:14 2017 +0800
 
     Merge branch 'master' into Cross_Read_Qp
 
 commit 63a364487e1a0fe4a24512567d650491504575aa
-Merge: 4a700600 dc5fdc02
+Merge: 4a7006000 dc5fdc02e
 Author: 今晚的风甚是喧嚣啊 <cgf1993@foxmail.com>
 Date:   Thu Aug 17 16:56:05 2017 +0800
 
@@ -33048,7 +33322,7 @@ Date:   Tue Aug 15 15:33:11 2017 +0800
  2 files changed, 16 insertions(+), 7 deletions(-)
 
 commit 4a7006000b20277cd7f2836fc37d71b3f1e83538
-Merge: 1def4cbd 675e8e4c
+Merge: 1def4cbd2 675e8e4c1
 Author: 今晚的风甚是喧嚣啊 <cgf1993@foxmail.com>
 Date:   Tue Aug 15 15:04:18 2017 +0800
 
@@ -33068,7 +33342,7 @@ Date:   Tue Aug 15 14:56:53 2017 +0800
  4 files changed, 69 insertions(+), 35 deletions(-)
 
 commit 1def4cbd20ff9deae15d466d8d459e6e9a0d38a5
-Merge: f293f106 5fc0b5f9
+Merge: f293f106f 5fc0b5f93
 Author: liukun <451564319@qq.com>
 Date:   Tue Aug 15 12:15:22 2017 +0800
 
@@ -33076,7 +33350,7 @@ Date:   Tue Aug 15 12:15:22 2017 +0800
     Merge pull request !126 from doge/fix_issue_IEFU5
 
 commit f293f106fd610de5642f16dde620f0c46b7ee923
-Merge: 23eb3399 17cceade
+Merge: 23eb33991 17cceade7
 Author: 今晚的风甚是喧嚣啊 <cgf1993@foxmail.com>
 Date:   Tue Aug 15 09:56:36 2017 +0800
 
@@ -33125,7 +33399,7 @@ Date:   Mon Aug 14 10:08:14 2017 +0800
  2 files changed, 2 insertions(+), 133 deletions(-)
 
 commit 23eb33991f90c7deb5490e23bcd5d6c28e8a9dd2
-Merge: 2c09cd0e d7c96044
+Merge: 2c09cd0ee d7c96044d
 Author: 今晚的风甚是喧嚣啊 <cgf1993@foxmail.com>
 Date:   Sun Aug 13 16:59:29 2017 +0800
 
@@ -33173,7 +33447,7 @@ Date:   Thu Aug 10 21:20:37 2017 +0800
  2 files changed, 49 insertions(+), 12 deletions(-)
 
 commit 2c09cd0ee65c903ba2c1f10bd0721ecf797120ec
-Merge: ade1c72b 92e6baa5
+Merge: ade1c72bc 92e6baa5b
 Author: 今晚的风甚是喧嚣啊 <cgf1993@foxmail.com>
 Date:   Thu Aug 10 17:21:49 2017 +0800
 
@@ -33181,7 +33455,7 @@ Date:   Thu Aug 10 17:21:49 2017 +0800
     Merge pull request !124 from 今晚的风甚是喧嚣啊/aggregation_ope_data_is_null
 
 commit ade1c72bc83b13bc8abf768ad0f9c49ecb44e78c
-Merge: 2bbd6f14 bfdf5f96
+Merge: 2bbd6f14c bfdf5f96c
 Author: liukun <451564319@qq.com>
 Date:   Thu Aug 10 16:36:33 2017 +0800
 
@@ -33229,14 +33503,14 @@ Date:   Thu Aug 10 15:31:16 2017 +0800
  1 file changed, 10 insertions(+), 1 deletion(-)
 
 commit b7b7dab7f9d6f15542a708fe654e4c3edff4c233
-Merge: df9d6d85 2bbd6f14
+Merge: df9d6d850 2bbd6f14c
 Author: liukun06 <451564319@qq.com>
 Date:   Thu Aug 10 11:46:03 2017 +0800
 
     merge master and handle the conflict
 
 commit 2bbd6f14cddce59d778d537c949cbb02326a00f6
-Merge: 56d7ebc0 3b89848f
+Merge: 56d7ebc0c 3b89848f0
 Author: liukun <451564319@qq.com>
 Date:   Thu Aug 10 11:33:09 2017 +0800
 
@@ -33263,7 +33537,7 @@ Date:   Thu Aug 10 11:09:57 2017 +0800
  2 files changed, 42 insertions(+), 17 deletions(-)
 
 commit 56d7ebc0cf37cfa82dc7cedd6abf494663a555b2
-Merge: 90ae3471 f4ccef01
+Merge: 90ae34712 f4ccef016
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Wed Aug 9 22:53:56 2017 +0800
 
@@ -33284,7 +33558,7 @@ Date:   Wed Aug 9 22:10:49 2017 +0800
  4 files changed, 14 insertions(+), 14 deletions(-)
 
 commit 92e6baa5badc97dc96230b57a07a5b3c450324fb
-Merge: e19016ae ccf7d7bc
+Merge: e19016ae2 ccf7d7bce
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Aug 9 17:18:02 2017 +0800
 
@@ -33384,7 +33658,7 @@ Date:   Tue Aug 8 11:28:08 2017 +0800
  2 files changed, 9 insertions(+), 9 deletions(-)
 
 commit 9b81bdfe70fb34e58ed5c028eb7878217ce77f58
-Merge: c62bd9e5 38f3d0df
+Merge: c62bd9e5c 38f3d0df9
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Mon Aug 7 17:13:30 2017 +0800
 
@@ -33436,7 +33710,7 @@ Date:   Sat Aug 5 09:32:31 2017 +0800
  1 file changed, 95 insertions(+), 94 deletions(-)
 
 commit 7836459f568a59ab4abde552b74745308c38ac0c
-Merge: d14942e2 530b42fc
+Merge: d14942e26 530b42fc9
 Author: doge <xuyithuss@126.com>
 Date:   Fri Aug 4 21:39:20 2017 +0800
 
@@ -33452,21 +33726,21 @@ Date:   Fri Aug 4 21:32:53 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit d14942e261d6ddf8de8bbd3491ddcb8973c9e07b
-Merge: 1b4787cd 6cf6491c
+Merge: 1b4787cdc 6cf6491c6
 Author: doge <xuyithuss@126.com>
 Date:   Fri Aug 4 21:19:54 2017 +0800
 
     Merge pull request !117 from doge/fix_issue_IE24O
 
 commit 6cf6491c660cf44b2a6ea561b29ed0a225a64443
-Merge: 4cfad8a5 1b4787cd
+Merge: 4cfad8a59 1b4787cdc
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Fri Aug 4 21:03:11 2017 +0800
 
     merge master
 
 commit 1b4787cdc277e926858e6ac3f8a1924c4811bf03
-Merge: e5673737 03ac1b6e
+Merge: e56737371 03ac1b6e6
 Author: doge <xuyithuss@126.com>
 Date:   Fri Aug 4 20:59:45 2017 +0800
 
@@ -33493,7 +33767,7 @@ Date:   Fri Aug 4 20:27:08 2017 +0800
  12 files changed, 50 insertions(+), 47 deletions(-)
 
 commit e56737371dfe3c7d4dcab325f9f324de52ed87ce
-Merge: 9b0be7e4 00e32f7b
+Merge: 9b0be7e4c 00e32f7b6
 Author: doge <xuyithuss@126.com>
 Date:   Fri Aug 4 14:12:40 2017 +0800
 
@@ -33543,7 +33817,7 @@ Date:   Fri Aug 4 11:11:28 2017 +0800
  13 files changed, 51 insertions(+), 45 deletions(-)
 
 commit 9b0be7e4cc0d7da6ee8d347ec835f7afb0ffd373
-Merge: 76d0329d a9bf2c13
+Merge: 76d0329db a9bf2c139
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Fri Aug 4 10:43:46 2017 +0800
 
@@ -33569,7 +33843,7 @@ Date:   Fri Aug 4 10:41:55 2017 +0800
  2 files changed, 4 insertions(+), 1 deletion(-)
 
 commit a9bf2c139fc81cc1dc90fb01dacd3b2dab74efba
-Merge: 26db0b3a 10186609
+Merge: 26db0b3a7 101866097
 Author: doge <xuyithuss@126.com>
 Date:   Fri Aug 4 10:37:45 2017 +0800
 
@@ -33594,7 +33868,7 @@ Date:   Fri Aug 4 10:35:45 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 26db0b3a769150398bfc55ba445c1ff6e97dff09
-Merge: 575beab8 68aa1af3
+Merge: 575beab81 68aa1af30
 Author: doge <xuyithuss@126.com>
 Date:   Fri Aug 4 10:31:25 2017 +0800
 
@@ -33619,7 +33893,7 @@ Date:   Fri Aug 4 10:27:58 2017 +0800
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 commit 575beab81e7f6fb318878f8e995d26b9c5300f36
-Merge: 314d2b87 b8f3c8a0
+Merge: 314d2b872 b8f3c8a04
 Author: doge <xuyithuss@126.com>
 Date:   Thu Aug 3 22:21:32 2017 +0800
 
@@ -33645,7 +33919,7 @@ Date:   Thu Aug 3 22:07:45 2017 +0800
  2 files changed, 19 insertions(+), 15 deletions(-)
 
 commit 314d2b87227f277ea9af32944c21b81a8bf04b3f
-Merge: 50a48a07 bcf84a7e
+Merge: 50a48a07c bcf84a7ee
 Author: doge <xuyithuss@126.com>
 Date:   Thu Aug 3 21:25:23 2017 +0800
 
@@ -33680,7 +33954,7 @@ Date:   Thu Aug 3 20:43:12 2017 +0800
  2 files changed, 6 insertions(+), 14 deletions(-)
 
 commit 50a48a07cc6583de7c5389a5d0c79eb8246a81ec
-Merge: 5e00dbae 82f6eb57
+Merge: 5e00dbae4 82f6eb57e
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Thu Aug 3 17:23:52 2017 +0800
 
@@ -33763,7 +34037,7 @@ Date:   Wed Aug 2 11:33:09 2017 +0800
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit cae09e4b8948ba8c5086bec12e68604a73940218
-Merge: 28744b18 7dbedf37
+Merge: 28744b180 7dbedf37a
 Author: doge <xuyithuss@126.com>
 Date:   Wed Aug 2 11:27:30 2017 +0800
 
@@ -33806,7 +34080,7 @@ Date:   Wed Aug 2 00:02:00 2017 +0800
  5 files changed, 482 insertions(+), 399 deletions(-)
 
 commit 28744b1805ae4435cac433b102b87055153aa8cc
-Merge: 78d1c351 49954832
+Merge: 78d1c3514 49954832a
 Author: doge <xuyithuss@126.com>
 Date:   Tue Aug 1 20:43:51 2017 +0800
 
@@ -33850,7 +34124,7 @@ Date:   Tue Aug 1 16:35:46 2017 +0800
  18 files changed, 3175 insertions(+), 160 deletions(-)
 
 commit 78d1c351444604c6e9a2280eab941e88c4287fd9
-Merge: feb6fb37 667904f7
+Merge: feb6fb376 667904f7b
 Author: doge <xuyithuss@126.com>
 Date:   Mon Jul 31 21:26:49 2017 +0800
 
@@ -33867,7 +34141,7 @@ Date:   Mon Jul 31 21:25:36 2017 +0800
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 commit feb6fb376c8583bb91032c7672ab08f5bcd06cc5
-Merge: 1dab1d1a 52c8fff9
+Merge: 1dab1d1a9 52c8fff97
 Author: doge <xuyithuss@126.com>
 Date:   Mon Jul 31 21:09:38 2017 +0800
 
@@ -33923,7 +34197,7 @@ Date:   Mon Jul 31 19:31:57 2017 +0800
  10 files changed, 470 insertions(+), 297 deletions(-)
 
 commit 1dab1d1a9dd8167fdf9923af679de17e4e95fa5b
-Merge: ba123088 86e634d5
+Merge: ba1230886 86e634d5d
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Sat Jul 29 15:41:52 2017 +0800
 
@@ -33939,7 +34213,7 @@ Date:   Sat Jul 29 15:41:36 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 86e634d5df29ff1a47b089563a883f28d48777f9
-Merge: 5d6a79f5 df306f07
+Merge: 5d6a79f57 df306f079
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sat Jul 29 14:15:42 2017 +0800
 
@@ -33956,7 +34230,7 @@ Date:   Sat Jul 29 14:15:30 2017 +0800
  2 files changed, 6 insertions(+), 6 deletions(-)
 
 commit df306f079e63f67df41ce6c53fefad7935a74c6c
-Merge: 20587031 c7213df5
+Merge: 20587031d c7213df54
 Author: doge <xuyithuss@126.com>
 Date:   Sat Jul 29 11:59:58 2017 +0800
 
@@ -33982,7 +34256,7 @@ Date:   Sat Jul 29 11:17:45 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 8a52843fa31e4ce02476fe9b8948efcdb2f96abd
-Merge: a4c67036 035baab3
+Merge: a4c67036a 035baab38
 Author: doge <xuyithuss@126.com>
 Date:   Sat Jul 29 10:21:52 2017 +0800
 
@@ -34056,7 +34330,7 @@ Date:   Fri Jul 28 21:48:21 2017 +0800
  2 files changed, 5 insertions(+), 1 deletion(-)
 
 commit b8d6d9f7d4ed20e195b82c37712be3a271f11d73
-Merge: 8df1c063 4df9aa3d
+Merge: 8df1c0638 4df9aa3db
 Author: liukun06 <451564319@qq.com>
 Date:   Fri Jul 28 21:13:33 2017 +0800
 
@@ -34073,14 +34347,14 @@ Date:   Fri Jul 28 21:13:24 2017 +0800
  2 files changed, 131 deletions(-)
 
 commit 4df9aa3db8726f1be20dc3f782cc540b1a46e075
-Merge: fe48f98f d1d39968
+Merge: fe48f98f9 d1d39968a
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Fri Jul 28 20:34:11 2017 +0800
 
     Merge pull request !103 from (／‵Д′)／~ ╧╧/read_process_modify_for_kvindex
 
 commit d1d39968abbfc9b4059754f98f187d33998ab12f
-Merge: 8b582f85 fe48f98f
+Merge: 8b582f852 fe48f98f9
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 28 20:12:26 2017 +0800
 
@@ -34097,14 +34371,14 @@ Date:   Fri Jul 28 20:10:09 2017 +0800
  2 files changed, 31 insertions(+), 16 deletions(-)
 
 commit fe48f98f961cbb2bcd93fe00add3cbd810cc9b85
-Merge: 9c0c07cf d59ae1cc
+Merge: 9c0c07cf9 d59ae1cc6
 Author: liukun <451564319@qq.com>
 Date:   Fri Jul 28 20:01:41 2017 +0800
 
     Merge pull request !99 from doge/fix_issue_IE7RE
 
 commit 9c0c07cf9b8c19bc0b5e9ad69f52784befc1069e
-Merge: 9ee67d8e a5254ccf
+Merge: 9ee67d8ea a5254ccfb
 Author: liukun <451564319@qq.com>
 Date:   Fri Jul 28 18:13:01 2017 +0800
 
@@ -34121,7 +34395,7 @@ Date:   Fri Jul 28 16:17:04 2017 +0800
  2 files changed, 131 insertions(+)
 
 commit bedebb40b0bb8a4bd84dfaaa03078b6d9fd88f24
-Merge: da23195e a6e55152
+Merge: da23195e8 a6e551528
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Fri Jul 28 09:19:24 2017 +0800
 
@@ -34179,7 +34453,7 @@ Date:   Thu Jul 27 18:15:33 2017 +0800
  2 files changed, 35 insertions(+), 6 deletions(-)
 
 commit da23195e80fb315815d7938603395b46f8d4c32c
-Merge: 8f45a24e e971481b
+Merge: 8f45a24e3 e971481bb
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Thu Jul 27 17:21:21 2017 +0800
 
@@ -34207,7 +34481,7 @@ Date:   Thu Jul 27 16:12:10 2017 +0800
  3 files changed, 61 insertions(+), 22 deletions(-)
 
 commit 8f45a24e3c5294812863aa1504680ffa06c381da
-Merge: 78f72706 12e009bf
+Merge: 78f72706b 12e009bfa
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Wed Jul 26 21:34:15 2017 +0800
 
@@ -34223,7 +34497,7 @@ Date:   Wed Jul 26 21:32:41 2017 +0800
  1 file changed, 6 insertions(+), 4 deletions(-)
 
 commit 78f72706b215e5f191096503d47798395863ecd7
-Merge: e9da1a24 ef8ff8bd
+Merge: e9da1a24b ef8ff8bdc
 Author: liukun <451564319@qq.com>
 Date:   Wed Jul 26 17:17:21 2017 +0800
 
@@ -34292,14 +34566,14 @@ Date:   Wed Jul 26 14:02:09 2017 +0800
  5 files changed, 56 insertions(+), 33 deletions(-)
 
 commit e9da1a24b4553618d5177f4b323c4842161e0db6
-Merge: 6f4bad42 dbd0ad1e
+Merge: 6f4bad420 dbd0ad1e5
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Wed Jul 26 11:37:42 2017 +0800
 
     Merge pull request !95 from (／‵Д′)／~ ╧╧/fix_cross_read_memory_and_oldRes_bug
 
 commit 9f6933c51a710ae53a0645046a87bb5ef2b18ca3
-Merge: 19fc50c5 6f4bad42
+Merge: 19fc50c58 6f4bad420
 Author: liukun06 <451564319@qq.com>
 Date:   Wed Jul 26 11:35:46 2017 +0800
 
@@ -34318,7 +34592,7 @@ Date:   Wed Jul 26 11:34:14 2017 +0800
  4 files changed, 70 insertions(+), 7 deletions(-)
 
 commit dbd0ad1e53b5f4de4797eec6768b9f555844cd70
-Merge: c0cc3315 6f4bad42
+Merge: c0cc3315e 6f4bad420
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 26 11:26:53 2017 +0800
 
@@ -34335,7 +34609,7 @@ Date:   Wed Jul 26 11:23:16 2017 +0800
  2 files changed, 198 insertions(+), 8 deletions(-)
 
 commit 6f4bad4204022fa5bd99089c9eaa03430edd9bc2
-Merge: 38325397 9798de64
+Merge: 383253977 9798de649
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Wed Jul 26 09:51:58 2017 +0800
 
@@ -34351,14 +34625,14 @@ Date:   Wed Jul 26 09:49:32 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 383253977a2b634b06b4361aa14f87b4b1239a8c
-Merge: d8168005 aa2f145a
+Merge: d8168005e aa2f145a0
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Tue Jul 25 21:52:27 2017 +0800
 
     Merge pull request !92 from (／‵Д′)／~ ╧╧/system_log_ordinal_fix
 
 commit d8168005efd42af6888530932a166196f8aa809c
-Merge: 9a0f4c1a 612b5fc9
+Merge: 9a0f4c1a2 612b5fc9b
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 25 21:43:45 2017 +0800
 
@@ -34384,7 +34658,7 @@ Date:   Tue Jul 25 21:15:22 2017 +0800
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 commit de9ad57fccb9eafccca16b885b08d0b20eeecdbf
-Merge: ff37d53a 9a0f4c1a
+Merge: ff37d53a5 9a0f4c1a2
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Tue Jul 25 20:46:20 2017 +0800
 
@@ -34401,14 +34675,14 @@ Date:   Tue Jul 25 20:45:34 2017 +0800
  2 files changed, 7 insertions(+), 1 deletion(-)
 
 commit 9a0f4c1a2f497c899175249d050389f1a057b8bf
-Merge: 7200222a 5480339c
+Merge: 7200222a8 5480339ca
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Tue Jul 25 20:16:50 2017 +0800
 
     Merge pull request !90 from liukun/issue_#IE5KN_liukun
 
 commit aa2f145a0d26ddc0e54e88fda10dbf2d829d2595
-Merge: 77c61667 7200222a
+Merge: 77c61667e 7200222a8
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 25 20:12:10 2017 +0800
 
@@ -34452,7 +34726,7 @@ Date:   Tue Jul 25 18:06:31 2017 +0800
  3 files changed, 8 insertions(+), 6 deletions(-)
 
 commit 7200222a876e2a69ecbbb992087af47a61618f7c
-Merge: 41c47701 b2842779
+Merge: 41c477012 b28427790
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 25 17:43:05 2017 +0800
 
@@ -34494,7 +34768,7 @@ Date:   Tue Jul 25 15:59:43 2017 +0800
  9 files changed, 1291 insertions(+), 1136 deletions(-)
 
 commit 41c4770123366580459352144290f311cf105446
-Merge: 2476fa34 13e29840
+Merge: 2476fa34f 13e29840c
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Tue Jul 25 11:16:23 2017 +0800
 
@@ -34510,7 +34784,7 @@ Date:   Tue Jul 25 11:09:07 2017 +0800
  1 file changed, 6 insertions(+), 3 deletions(-)
 
 commit 1831dbcecd408d3de6ee38a31b451de040c03ddb
-Merge: 60352757 2476fa34
+Merge: 60352757a 2476fa34f
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 25 10:44:43 2017 +0800
 
@@ -34564,14 +34838,14 @@ Date:   Tue Jul 25 09:24:59 2017 +0800
  3 files changed, 83 insertions(+), 29 deletions(-)
 
 commit 2476fa34fba9c96d10f9a33b0b84248daad112b2
-Merge: 66506bdc 08207019
+Merge: 66506bdc8 08207019b
 Author: (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Tue Jul 25 09:12:10 2017 +0800
 
     Merge pull request !85 from (／‵Д′)／~ ╧╧/update_with_tsfile
 
 commit 08207019b6ac049703e272d989a4347103acfbba
-Merge: f2ba3fa5 66506bdc
+Merge: f2ba3fa57 66506bdc8
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 25 08:59:13 2017 +0800
 
@@ -34602,7 +34876,7 @@ Date:   Tue Jul 25 08:55:03 2017 +0800
  16 files changed, 225 insertions(+), 215 deletions(-)
 
 commit 66506bdc86a9cc7fcdc59bb5c4dc1a361e36feb9
-Merge: b684fbb5 50b7dc76
+Merge: b684fbb57 50b7dc762
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 24 23:08:12 2017 +0800
 
@@ -34635,7 +34909,7 @@ Date:   Mon Jul 24 22:14:42 2017 +0800
  8 files changed, 212 insertions(+), 10 deletions(-)
 
 commit b684fbb577f1c1e69e33546885f8e05e57af6dfd
-Merge: bf5de130 b38ccdeb
+Merge: bf5de130d b38ccdeb9
 Author: doge <xuyithuss@126.com>
 Date:   Mon Jul 24 22:11:02 2017 +0800
 
@@ -34652,7 +34926,7 @@ Date:   Mon Jul 24 22:10:46 2017 +0800
  2 files changed, 6 insertions(+), 7 deletions(-)
 
 commit c144bf05dc1fde7e59c0024a1f01f5f6a5aa9947
-Merge: 051c337e bf5de130
+Merge: 051c337ee bf5de130d
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Mon Jul 24 21:51:56 2017 +0800
 
@@ -34669,7 +34943,7 @@ Date:   Mon Jul 24 21:49:05 2017 +0800
  2 files changed, 27 insertions(+), 8 deletions(-)
 
 commit bf5de130d6c8217474869d64e7f9418f7ea59d7a
-Merge: 3e3bd7df 8705738c
+Merge: 3e3bd7df8 8705738c5
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 24 21:32:33 2017 +0800
 
@@ -34725,7 +34999,7 @@ Date:   Mon Jul 24 20:47:33 2017 +0800
  1 file changed, 91 insertions(+), 77 deletions(-)
 
 commit 3e3bd7df8e7d79ea167a7b47a8d0bc36779e36fe
-Merge: b2d2f78d d7113f38
+Merge: b2d2f78d6 d7113f387
 Author: doge <xuyithuss@126.com>
 Date:   Mon Jul 24 19:22:52 2017 +0800
 
@@ -34750,7 +35024,7 @@ Date:   Mon Jul 24 17:42:51 2017 +0800
  1 file changed, 17 insertions(+), 6 deletions(-)
 
 commit b2d2f78d61189594beb1ca8907db66c8d69deb36
-Merge: 899e9042 6d9399e8
+Merge: 899e9042e 6d9399e82
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 24 17:35:46 2017 +0800
 
@@ -34856,7 +35130,7 @@ Date:   Mon Jul 24 10:45:45 2017 +0800
  3 files changed, 12 insertions(+), 5 deletions(-)
 
 commit 899e9042e69818e53218f4a023dfda775ff237f4
-Merge: eed9dcb1 6d06fd58
+Merge: eed9dcb1a 6d06fd580
 Author: 高飞曹 (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Mon Jul 24 09:43:51 2017 +0800
 
@@ -34872,7 +35146,7 @@ Date:   Mon Jul 24 09:41:03 2017 +0800
  1 file changed, 47 insertions(+), 1 deletion(-)
 
 commit eed9dcb1a6da67a0bcfa31a19c3f94f756a440b9
-Merge: eb2521b6 ba8caa22
+Merge: eb2521b6b ba8caa227
 Author: liukun <451564319@qq.com>
 Date:   Sun Jul 23 23:01:33 2017 +0800
 
@@ -34891,7 +35165,7 @@ Date:   Sun Jul 23 22:52:13 2017 +0800
  4 files changed, 129 insertions(+), 50 deletions(-)
 
 commit eb2521b6bc190d3d76f3640f62336950acd93ad8
-Merge: b8d8766d 0507a529
+Merge: b8d8766d1 0507a5292
 Author: liukun <451564319@qq.com>
 Date:   Sun Jul 23 11:29:40 2017 +0800
 
@@ -34907,7 +35181,7 @@ Date:   Sun Jul 23 10:46:30 2017 +0800
  1 file changed, 1 deletion(-)
 
 commit f8098dc68d2d6b48d009c6d538d945163d6b73ff
-Merge: a1ce9256 71593164
+Merge: a1ce9256f 71593164e
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Sat Jul 22 21:46:44 2017 +0800
 
@@ -34926,7 +35200,7 @@ Date:   Sat Jul 22 21:41:37 2017 +0800
  4 files changed, 22 insertions(+), 12 deletions(-)
 
 commit b8d8766d1437b35dbad3564ccf921518f3e2b5bf
-Merge: e952b128 301e107b
+Merge: e952b1280 301e107b0
 Author: doge <xuyithuss@126.com>
 Date:   Sat Jul 22 18:12:47 2017 +0800
 
@@ -34972,7 +35246,7 @@ Date:   Sat Jul 22 17:02:01 2017 +0800
  1 file changed, 2 insertions(+)
 
 commit 000d4f25f847573dfb0a2a21cfffffe6ccd78fa1
-Merge: 29c285ec df008f86
+Merge: 29c285eca df008f86c
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Sat Jul 22 16:52:35 2017 +0800
 
@@ -35013,7 +35287,7 @@ Date:   Sat Jul 22 16:21:33 2017 +0800
  5 files changed, 660 insertions(+), 652 deletions(-)
 
 commit 43ed02158bb2412debbb449dde30e247f715e023
-Merge: 80af56b7 e952b128
+Merge: 80af56b78 e952b1280
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Sat Jul 22 16:15:31 2017 +0800
 
@@ -35039,7 +35313,7 @@ Date:   Sat Jul 22 16:11:58 2017 +0800
  1 file changed, 13 insertions(+), 20 deletions(-)
 
 commit e952b1280d240cf317b262e646ec658a55dabe6c
-Merge: 6b11573e 20195c18
+Merge: 6b11573ef 20195c180
 Author: doge <xuyithuss@126.com>
 Date:   Sat Jul 22 16:06:27 2017 +0800
 
@@ -35055,7 +35329,7 @@ Date:   Sat Jul 22 16:05:52 2017 +0800
  1 file changed, 27 insertions(+), 10 deletions(-)
 
 commit 6b11573efe9a0f264d5a0e8b8430b82dfd0af4a2
-Merge: 25a16b17 955b250e
+Merge: 25a16b173 955b250ea
 Author: doge <xuyithuss@126.com>
 Date:   Sat Jul 22 15:54:09 2017 +0800
 
@@ -35146,7 +35420,7 @@ Date:   Sat Jul 22 11:26:13 2017 +0800
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 commit 955b250eaa4177fc33015ac745f79834637add5d
-Merge: add94fcd ff5469c1
+Merge: add94fcda ff5469c1f
 Author: XuYi <xuyithuss@126.com>
 Date:   Sat Jul 22 11:22:29 2017 +0800
 
@@ -35169,28 +35443,28 @@ Date:   Sat Jul 22 11:18:38 2017 +0800
  8 files changed, 65 insertions(+), 75 deletions(-)
 
 commit ff5469c1ff70c901164d3e14c30d12c8d7fc43fc
-Merge: 4ce13b1f 3d3c653f
+Merge: 4ce13b1fd 3d3c653f8
 Author: liukun06 <451564319@qq.com>
 Date:   Sat Jul 22 09:02:58 2017 +0800
 
     Merge branch 'master' of git.oschina.net:xingtanzjr/tsfiledb
 
 commit 3d3c653f8fea588c9ca23064cba50f3ad8148558
-Merge: d98d2df6 71593164
+Merge: d98d2df6e 71593164e
 Author: 高飞曹 (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Sat Jul 22 09:02:49 2017 +0800
 
     Merge pull request !72 from qiaojialin/f_qjl_check_path_pr
 
 commit 4ce13b1fd36e7f8c861cb969017aaa79a6f5f6f5
-Merge: 8f95a5ec d98d2df6
+Merge: 8f95a5ecd d98d2df6e
 Author: liukun06 <451564319@qq.com>
 Date:   Sat Jul 22 08:31:18 2017 +0800
 
     Merge branch 'master' of git.oschina.net:xingtanzjr/tsfiledb
 
 commit d98d2df6e6089b3a87f066a2f47190e4e17cd508
-Merge: 85a3e20e 2ccf2bfd
+Merge: 85a3e20e6 2ccf2bfda
 Author: 高飞曹 (／‵Д′)／~ ╧╧ <cgf1993@foxmail.com>
 Date:   Fri Jul 21 23:51:38 2017 +0800
 
@@ -35235,7 +35509,7 @@ Date:   Fri Jul 21 21:20:53 2017 +0800
  2 files changed, 15 insertions(+), 1 deletion(-)
 
 commit 85a3e20e61b5e2a436923e63bcaf3b967f103d9d
-Merge: 06627a77 e5bcd8de
+Merge: 06627a772 e5bcd8de4
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 21 21:00:07 2017 +0800
 
@@ -35260,14 +35534,14 @@ Date:   Fri Jul 21 20:51:27 2017 +0800
  1 file changed, 5 insertions(+), 14 deletions(-)
 
 commit 06627a772a2b04d658779c47ed4a1cf4d74b130b
-Merge: 9c04d5b3 cae48f2f
+Merge: 9c04d5b31 cae48f2f1
 Author: doge <xuyithuss@126.com>
 Date:   Fri Jul 21 20:03:37 2017 +0800
 
     Merge pull request !70 from doge/fix_issue_IDWXI
 
 commit 9c04d5b31919aa02979917f58f4a67ab3a77d296
-Merge: 9c10cfd8 fd7c71d5
+Merge: 9c10cfd8a fd7c71d58
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 21 19:51:33 2017 +0800
 
@@ -35294,7 +35568,7 @@ Date:   Fri Jul 21 19:11:32 2017 +0800
  2 files changed, 4 insertions(+), 6 deletions(-)
 
 commit fd7c71d588a710e440350f91915c02448a5ed13d
-Merge: eaacaf89 e609a1ff
+Merge: eaacaf89a e609a1ffb
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 21 18:55:49 2017 +0800
 
@@ -35341,14 +35615,14 @@ Date:   Fri Jul 21 18:05:02 2017 +0800
  2 files changed, 45 insertions(+), 16 deletions(-)
 
 commit 9c10cfd8a93ef29534be35587ece82507325c8fd
-Merge: 818151f9 64f7e824
+Merge: 818151f9b 64f7e8247
 Author: liukun <451564319@qq.com>
 Date:   Fri Jul 21 17:00:13 2017 +0800
 
     Merge pull request !69 from liukun/fix_issue_111
 
 commit 64f7e82476f7d3eb89d8b6d92d0feb57dfe05ddb
-Merge: 69585e53 beae5e26
+Merge: 69585e536 beae5e266
 Author: liukun06 <451564319@qq.com>
 Date:   Fri Jul 21 16:51:16 2017 +0800
 
@@ -35407,7 +35681,7 @@ Date:   Fri Jul 21 14:20:21 2017 +0800
  1 file changed, 9 deletions(-)
 
 commit 818151f9bc1b73472bb1f7f2eef2c6bf06b29441
-Merge: b9c6c914 77f718b0
+Merge: b9c6c914a 77f718b01
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 20 21:36:40 2017 +0800
 
@@ -35435,7 +35709,7 @@ Date:   Thu Jul 20 21:27:57 2017 +0800
  4 files changed, 81 insertions(+), 421 deletions(-)
 
 commit b9c6c914a67dee78d76a69cbaa2ee194d6ee0e06
-Merge: ad11e693 ec0fc78c
+Merge: ad11e6931 ec0fc78c7
 Author: doge <xuyithuss@126.com>
 Date:   Thu Jul 20 21:08:46 2017 +0800
 
@@ -35476,14 +35750,14 @@ Date:   Thu Jul 20 17:30:01 2017 +0800
  3 files changed, 17 insertions(+), 16 deletions(-)
 
 commit ad11e6931c422dcbe40b5025a6694547b3fcd659
-Merge: 86133f1d d0276299
+Merge: 86133f1da d02762990
 Author: liukun <451564319@qq.com>
 Date:   Thu Jul 20 16:40:33 2017 +0800
 
     Merge pull request !65 from liukun/issue163_enhancement
 
 commit 86133f1da95e940f3d8824edfb6ee34e219f2319
-Merge: 36b95701 d407c3a9
+Merge: 36b957015 d407c3a98
 Author: doge <xuyithuss@126.com>
 Date:   Thu Jul 20 16:34:34 2017 +0800
 
@@ -35524,21 +35798,21 @@ Date:   Thu Jul 20 16:23:32 2017 +0800
  7 files changed, 159 insertions(+), 29 deletions(-)
 
 commit 36b957015fd5e43e9471c79886e178f4072f918e
-Merge: c8a68310 3e641e35
+Merge: c8a68310c 3e641e354
 Author: liukun <451564319@qq.com>
 Date:   Thu Jul 20 16:21:34 2017 +0800
 
     Merge pull request !48 from doge/f_xuyi_server
 
 commit c8a68310ce1617ac35663b0dc44f9ee5497857f3
-Merge: 343490db 4a2726d5
+Merge: 343490dbb 4a2726d59
 Author: liukun <451564319@qq.com>
 Date:   Thu Jul 20 15:44:18 2017 +0800
 
     Merge pull request !64 from liukun/bug_issue159
 
 commit 343490dbb1069a3e78651ca2be3e342219f39cda
-Merge: 94538d85 1f83b68b
+Merge: 94538d851 1f83b68b6
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Thu Jul 20 15:19:22 2017 +0800
 
@@ -35554,7 +35828,7 @@ Date:   Thu Jul 20 15:15:33 2017 +0800
  1 file changed, 5 insertions(+), 7 deletions(-)
 
 commit 94538d851a1db0e10dfc89fea91fb88a286cf56a
-Merge: 9f3f704f f7ced2c1
+Merge: 9f3f704f3 f7ced2c10
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 20 14:38:17 2017 +0800
 
@@ -35581,21 +35855,21 @@ Date:   Thu Jul 20 10:47:49 2017 +0800
  2 files changed, 73 insertions(+), 84 deletions(-)
 
 commit 9f3f704f3ffe60ee281d9d59c6efaaf4bc4c0663
-Merge: 0a3cdbcc 7c0ee963
+Merge: 0a3cdbcc2 7c0ee9635
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 20 10:45:51 2017 +0800
 
     Merge branch 'master' of git.oschina.net:xingtanzjr/tsfiledb
 
 commit 7c0ee96354a6e712950b4d398f9a71f787860c57
-Merge: 9d963b30 2ba00490
+Merge: 9d963b304 2ba00490d
 Author: doge <xuyithuss@126.com>
 Date:   Thu Jul 20 10:45:15 2017 +0800
 
     Merge pull request !57 from doge/fix_issue_130
 
 commit 9d963b3043a2c59bb71ac8569734bfd6ff2838b6
-Merge: 747b5233 2a7bbf20
+Merge: 747b52335 2a7bbf208
 Author: liukun <451564319@qq.com>
 Date:   Thu Jul 20 10:43:17 2017 +0800
 
@@ -35620,7 +35894,7 @@ Date:   Thu Jul 20 10:34:51 2017 +0800
  1 file changed, 36 deletions(-)
 
 commit 8994a2345667d2c02d265aa12df038e9b072bbca
-Merge: e097c34c 747b5233
+Merge: e097c34c3 747b52335
 Author: carlin cheung <263604915@qq.com>
 Date:   Thu Jul 20 10:32:12 2017 +0800
 
@@ -35666,7 +35940,7 @@ Date:   Thu Jul 20 09:45:33 2017 +0800
  1 file changed, 2 insertions(+)
 
 commit 0a3cdbcc2a96c5e8b30a365b20b973160cb5ce05
-Merge: 110d73d1 747b5233
+Merge: 110d73d11 747b52335
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 20 09:09:50 2017 +0800
 
@@ -35699,7 +35973,7 @@ Date:   Wed Jul 19 23:10:09 2017 +0800
  7 files changed, 860 insertions(+), 487 deletions(-)
 
 commit 747b5233549e5bb20372be665f9030b191f81ea7
-Merge: b43acedd 3a24e862
+Merge: b43acedd8 3a24e862f
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 19 21:31:48 2017 +0800
 
@@ -35715,7 +35989,7 @@ Date:   Wed Jul 19 21:24:41 2017 +0800
  1 file changed, 9 insertions(+), 6 deletions(-)
 
 commit b43acedd8f1aeea87d36540a384fdb88443ed068
-Merge: 749c921a 92fc7db4
+Merge: 749c921a0 92fc7db46
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 19 21:19:41 2017 +0800
 
@@ -35731,7 +36005,7 @@ Date:   Wed Jul 19 21:18:32 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 749c921a0abc3ced62d5bda6e8bada5627ca7632
-Merge: 02238492 8accef16
+Merge: 02238492e 8accef16e
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 19 21:00:52 2017 +0800
 
@@ -35769,7 +36043,7 @@ Date:   Wed Jul 19 20:25:08 2017 +0800
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 commit 02238492e9eed14c9973bdcb3e0bf211648e7036
-Merge: 38e1b4fd b1aae8c6
+Merge: 38e1b4fdf b1aae8c62
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 19 20:17:11 2017 +0800
 
@@ -35827,7 +36101,7 @@ Date:   Wed Jul 19 17:24:08 2017 +0800
  1 file changed, 9 insertions(+), 11 deletions(-)
 
 commit 110d73d11b3dc84b62a45c43d9791763d6356057
-Merge: 672075c3 d5d33aa0
+Merge: 672075c3a d5d33aa09
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 19 17:04:36 2017 +0800
 
@@ -35843,7 +36117,7 @@ Date:   Wed Jul 19 17:03:49 2017 +0800
  1 file changed, 26 insertions(+), 23 deletions(-)
 
 commit 38e1b4fdf723c061df4ba5e50c16ddb659646369
-Merge: 672075c3 8c57cd3f
+Merge: 672075c3a 8c57cd3f9
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 19 17:01:23 2017 +0800
 
@@ -35869,7 +36143,7 @@ Date:   Wed Jul 19 16:39:41 2017 +0800
  1 file changed, 5 insertions(+), 6 deletions(-)
 
 commit 672075c3a39f41fa11960322d7637db7c7f9e47c
-Merge: 1d94a27c e6b10ad2
+Merge: 1d94a27c1 e6b10ad2d
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 19 16:24:47 2017 +0800
 
@@ -35904,7 +36178,7 @@ Date:   Wed Jul 19 16:09:56 2017 +0800
  2 files changed, 38 insertions(+), 5 deletions(-)
 
 commit 3e641e35418f8064f540bb507f26db3016ac2a08
-Merge: 7cb65fcd 1d94a27c
+Merge: 7cb65fcdd 1d94a27c1
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Wed Jul 19 15:38:42 2017 +0800
 
@@ -35950,21 +36224,21 @@ Date:   Wed Jul 19 14:43:24 2017 +0800
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit 0db49a91512ccbe93c425217a6dd4d0291796322
-Merge: 4e1fc7ba 1d94a27c
+Merge: 4e1fc7bad 1d94a27c1
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 19 14:16:27 2017 +0800
 
     Merge branch 'master' into dump_feature
 
 commit 03dbe6c9cfc0af136ab640f064584fff7c1c9a12
-Merge: 66ace8b1 1d94a27c
+Merge: 66ace8b1f 1d94a27c1
 Author: carlin cheung <263604915@qq.com>
 Date:   Wed Jul 19 11:32:38 2017 +0800
 
     Merge branch 'master' of https://git.oschina.net/xingtanzjr/tsfiledb into f_load_zgr
 
 commit 1d94a27c197825926307681a7d493a6c90c834df
-Merge: 7fdfcad0 129eb733
+Merge: 7fdfcad0a 129eb7337
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 19 11:32:37 2017 +0800
 
@@ -35980,7 +36254,7 @@ Date:   Wed Jul 19 11:30:36 2017 +0800
  1 file changed, 290 insertions(+), 284 deletions(-)
 
 commit 7fdfcad0aed641ae274fc8a96c101006cb189120
-Merge: 79f0d88f 1236a321
+Merge: 79f0d88fb 1236a321e
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 19 11:27:58 2017 +0800
 
@@ -36025,14 +36299,14 @@ Date:   Wed Jul 19 10:59:00 2017 +0800
  2 files changed, 7 insertions(+), 7 deletions(-)
 
 commit 8bbce2ea599d579bdc8d2edf998818d949006404
-Merge: ac055ed8 79f0d88f
+Merge: ac055ed8f 79f0d88fb
 Author: XuYi <xuyithuss@126.com>
 Date:   Wed Jul 19 10:43:24 2017 +0800
 
     rename byte array to text in db
 
 commit 79f0d88fb08e35919b0229ea82c80b39c2faf034
-Merge: 9ada7b2e 7912d03f
+Merge: 9ada7b2e4 7912d03f5
 Author: liukun <451564319@qq.com>
 Date:   Wed Jul 19 10:30:12 2017 +0800
 
@@ -36050,7 +36324,7 @@ Date:   Wed Jul 19 10:28:19 2017 +0800
  3 files changed, 275 insertions(+), 274 deletions(-)
 
 commit 1a93e01860f0d2dec310a6509b4cc1f53b3e4914
-Merge: 874c3ff6 3f2052db
+Merge: 874c3ff66 3f2052dbd
 Author: liukun06 <451564319@qq.com>
 Date:   Wed Jul 19 10:18:31 2017 +0800
 
@@ -36184,7 +36458,7 @@ Date:   Tue Jul 18 23:38:59 2017 +0800
  1 file changed, 342 insertions(+)
 
 commit dfe6c5b7a606c51e9e90afc40a581fd3123e0b97
-Merge: c0fcb046 10b0aae1
+Merge: c0fcb046b 10b0aae10
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 18 23:20:36 2017 +0800
 
@@ -36296,7 +36570,7 @@ Date:   Tue Jul 18 16:33:13 2017 +0800
  2 files changed, 36 insertions(+), 32 deletions(-)
 
 commit d054b8d3e15add352664ab41139a7f4c7c1a6a11
-Merge: 0c15012b 9ada7b2e
+Merge: 0c15012bc 9ada7b2e4
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 18 16:21:16 2017 +0800
 
@@ -36325,14 +36599,14 @@ Date:   Tue Jul 18 16:07:36 2017 +0800
  4 files changed, 24 insertions(+), 34 deletions(-)
 
 commit b8b3276ca2b56f0bdb80369ce92ac15d649db021
-Merge: b164e194 9ada7b2e
+Merge: b164e1947 9ada7b2e4
 Author: carlin cheung <263604915@qq.com>
 Date:   Tue Jul 18 15:24:27 2017 +0800
 
     Merge branch 'master' of https://git.oschina.net/xingtanzjr/tsfiledb into f_load_zgr
 
 commit 9ada7b2e451deaf31bf08ab63d33b968862b698d
-Merge: fd67cfb7 1dca2422
+Merge: fd67cfb78 1dca2422c
 Author: doge <xuyithuss@126.com>
 Date:   Tue Jul 18 15:23:28 2017 +0800
 
@@ -36371,14 +36645,14 @@ Date:   Tue Jul 18 14:10:25 2017 +0800
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 commit b164e1947a644aaf33ff06c858d7b01bcfcfc0c9
-Merge: 24ba6fdf fd67cfb7
+Merge: 24ba6fdff fd67cfb78
 Author: carlin cheung <263604915@qq.com>
 Date:   Tue Jul 18 12:01:45 2017 +0800
 
     Merge branch 'master' of https://git.oschina.net/xingtanzjr/tsfiledb into f_load_zgr
 
 commit fd67cfb78404aeb619a0db6cc327ef78ed89664f
-Merge: b428da5a 9fe304b6
+Merge: b428da5a3 9fe304b6e
 Author: doge <xuyithuss@126.com>
 Date:   Tue Jul 18 11:56:14 2017 +0800
 
@@ -36407,7 +36681,7 @@ Date:   Tue Jul 18 11:14:33 2017 +0800
  4 files changed, 531 insertions(+), 555 deletions(-)
 
 commit b3b24a3d1f029a957afc73ae78adb86dcacfe97a
-Merge: 19690fc6 204da86b
+Merge: 19690fc64 204da86b5
 Author: XuYi <xuyithuss@126.com>
 Date:   Tue Jul 18 10:46:09 2017 +0800
 
@@ -36457,21 +36731,21 @@ Date:   Tue Jul 18 10:09:22 2017 +0800
  2 files changed, 305 insertions(+)
 
 commit b428da5a3a6bf8deaf6cfb90cdb9cf9ff09c1557
-Merge: c0c52864 f14226f0
+Merge: c0c52864f f14226f0c
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 18 10:07:46 2017 +0800
 
     Merge pull request !44 from CGF/fix_unconsistent_datatype_bug
 
 commit c0c52864feeaf68776ff535c6257bd99470a6c6b
-Merge: 2e20e3ea 0a3b310b
+Merge: 2e20e3ea4 0a3b310b5
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 18 10:07:40 2017 +0800
 
     Merge pull request !38 from doge/f_xuyi_sql
 
 commit f14226f0cc252ee906dc7f26e548c205d00b7e0f
-Merge: fb57f54b 2e20e3ea
+Merge: fb57f54b3 2e20e3ea4
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 18 09:27:53 2017 +0800
 
@@ -36490,21 +36764,21 @@ Date:   Tue Jul 18 09:25:57 2017 +0800
  4 files changed, 230 insertions(+), 100 deletions(-)
 
 commit 2e20e3ea4e89fdd8cd42c63d5047f17f62ccf05f
-Merge: 3ef0cb28 fd15704c
+Merge: 3ef0cb284 fd15704c1
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Tue Jul 18 09:07:21 2017 +0800
 
     Merge pull request !41 from Jiaye Wu/f_wujy_client
 
 commit 3ef0cb284d346df9011882dcc42e8821e186c3c2
-Merge: 09c55687 0a075ce2
+Merge: 09c556874 0a075ce2b
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 18 09:07:10 2017 +0800
 
     Merge pull request !42 from liukun/bug_bufferwrite_multirowgroup_liukun
 
 commit 09c556874c0d19c214fcbc9a8aadc589433cafb3
-Merge: 7a73953b 57e62cf2
+Merge: 7a73953bf 57e62cf2a
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 18 09:04:01 2017 +0800
 
@@ -36585,7 +36859,7 @@ Date:   Mon Jul 17 19:06:12 2017 +0800
  1 file changed, 17 insertions(+), 19 deletions(-)
 
 commit 8f5bb13419a784e6069fadacfabae2d819e19aa9
-Merge: 3ade584c 7a73953b
+Merge: 3ade584c6 7a73953bf
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Mon Jul 17 17:12:22 2017 +0800
 
@@ -36614,28 +36888,28 @@ Date:   Mon Jul 17 17:02:21 2017 +0800
  1 file changed, 7 insertions(+), 3 deletions(-)
 
 commit 3ade584c6e6ffab99e3c85bc42f00ebad16b6eb7
-Merge: 5f400212 92e2374f
+Merge: 5f4002126 92e2374fe
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon Jul 17 17:00:55 2017 +0800
 
     update with origin
 
 commit 5f4002126bd257872383e6b4c93dce125a927ebb
-Merge: 59d68fc1 2e6895cd
+Merge: 59d68fc14 2e6895cd4
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon Jul 17 16:59:51 2017 +0800
 
     add delete more than one path
 
 commit 7a73953bf201880fa890115842b9f87bbb795aa5
-Merge: 16944e54 60a02868
+Merge: 16944e54f 60a028687
 Author: Jiaye Wu <wujysh@gmail.com>
 Date:   Mon Jul 17 16:45:00 2017 +0800
 
     Merge pull request !39 from Jiaye Wu/f_wujy_client
 
 commit 16944e54fdd51bd8670400999aeb18c81c28f9ed
-Merge: 034a83b9 d152e557
+Merge: 034a83b9d d152e557e
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 17 16:31:41 2017 +0800
 
@@ -36705,7 +36979,7 @@ Date:   Mon Jul 17 15:42:16 2017 +0800
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 commit eff59c3edd13025cc7977dceadabe868e21c7e33
-Merge: b5b6befd 034a83b9
+Merge: b5b6befd4 034a83b9d
 Author: carlin cheung <263604915@qq.com>
 Date:   Mon Jul 17 14:26:09 2017 +0800
 
@@ -36775,7 +37049,7 @@ Date:   Mon Jul 17 11:27:14 2017 +0800
  1 file changed, 3 insertions(+)
 
 commit 203d39fbf8bcd703d8717fd93a0511c0080d00d4
-Merge: e7f32055 034a83b9
+Merge: e7f320557 034a83b9d
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Mon Jul 17 11:16:17 2017 +0800
 
@@ -36793,21 +37067,21 @@ Date:   Mon Jul 17 10:58:33 2017 +0800
  3 files changed, 535 insertions(+), 459 deletions(-)
 
 commit f28fd8f9ce6d224a16bdc15bfe45d4a1b5b8f646
-Merge: 436ae581 799a649d
+Merge: 436ae5813 799a649d6
 Author: carlin cheung <263604915@qq.com>
 Date:   Mon Jul 17 10:58:27 2017 +0800
 
     Merge remote-tracking branch 'origin/master' into f_load_zgr
 
 commit 034a83b9de9a2bddc9b9d2f13baf621c9bf9cefa
-Merge: 799a649d a8f110ce
+Merge: 799a649d6 a8f110ce9
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 17 10:57:34 2017 +0800
 
     Merge pull request !37 from doge/f_xuyi_client
 
 commit 799a649d6e96ae9c1e88c272ca610893a055ffb0
-Merge: 21b575b9 48f43cd0
+Merge: 21b575b99 48f43cd06
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 17 10:50:08 2017 +0800
 
@@ -36835,14 +37109,14 @@ Date:   Mon Jul 17 10:07:33 2017 +0800
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 commit 436ae5813d11d48c27711a40f1555803aa75918f
-Merge: 27d64bc0 21b575b9
+Merge: 27d64bc01 21b575b99
 Author: carlin cheung <263604915@qq.com>
 Date:   Mon Jul 17 00:25:50 2017 +0800
 
     Merge remote-tracking branch 'origin/master' into f_load_zgr
 
 commit 21b575b99b887e0469e424265b7920043577197d
-Merge: bbf6a2f5 b25cf7da
+Merge: bbf6a2f5d b25cf7daf
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sun Jul 16 20:01:38 2017 +0800
 
@@ -36858,7 +37132,7 @@ Date:   Sun Jul 16 19:59:06 2017 +0800
  1 file changed, 109 insertions(+), 109 deletions(-)
 
 commit c1647b3dcef88f931a109bedc1ad7078dedaa59f
-Merge: 83b578b1 bbf6a2f5
+Merge: 83b578b14 bbf6a2f5d
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sun Jul 16 19:55:52 2017 +0800
 
@@ -36883,21 +37157,21 @@ Date:   Sun Jul 16 19:46:54 2017 +0800
  1 file changed, 64 insertions(+), 61 deletions(-)
 
 commit c04783f0d836c4542e4fe70ed623446e47ac01e8
-Merge: 92992c15 361fe412
+Merge: 92992c158 361fe4120
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sun Jul 16 19:43:08 2017 +0800
 
     Merge branch 'master' into f_xuyi_auto_test
 
 commit 361fe4120bd9d53af2a037b3828b7ea3d1085f7f
-Merge: c690b8b2 a61436e7
+Merge: c690b8b28 a61436e7a
 Author: liukun <451564319@qq.com>
 Date:   Sun Jul 16 19:41:42 2017 +0800
 
     Merge pull request !33 from liukun/f_metadata_concurrent_liukun
 
 commit c690b8b28d36b668f0585de45adff2ee02b0f2d7
-Merge: c4dd4f86 37e99de5
+Merge: c4dd4f86b 37e99de5d
 Author: liukun <451564319@qq.com>
 Date:   Sun Jul 16 19:41:21 2017 +0800
 
@@ -36942,7 +37216,7 @@ Date:   Sun Jul 16 17:18:24 2017 +0800
  1 file changed, 306 insertions(+), 164 deletions(-)
 
 commit c4dd4f86bc3a368d3608765b2a744e9602f1ec1a
-Merge: 16b3fa40 8bd35c9f
+Merge: 16b3fa40c 8bd35c9fb
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sun Jul 16 16:30:01 2017 +0800
 
@@ -36959,7 +37233,7 @@ Date:   Sun Jul 16 16:22:55 2017 +0800
  2 files changed, 40 insertions(+), 4 deletions(-)
 
 commit 27d64bc0157eee0bff86814b83c683255cdb11b2
-Merge: a6f1bc29 16b3fa40
+Merge: a6f1bc292 16b3fa40c
 Author: carlin cheung <263604915@qq.com>
 Date:   Sun Jul 16 16:20:00 2017 +0800
 
@@ -36988,14 +37262,14 @@ Date:   Sun Jul 16 14:58:18 2017 +0800
  3 files changed, 160 insertions(+), 1 deletion(-)
 
 commit 16b3fa40cc2fa170b49c79f661e5a3f1287a2321
-Merge: 27a885d5 8ea2d93a
+Merge: 27a885d52 8ea2d93a5
 Author: doge <xuyithuss@126.com>
 Date:   Sun Jul 16 14:47:04 2017 +0800
 
     Merge pull request !30 from liukun/f_liukun_jdbcseriestype
 
 commit 8ea2d93a5572ac4c25d393afa0c720aef9ac059f
-Merge: f0517760 2d61e1ee
+Merge: f05177605 2d61e1ee1
 Author: XuYi <xuyithuss@126.com>
 Date:   Sun Jul 16 11:52:55 2017 +0800
 
@@ -37023,7 +37297,7 @@ Date:   Sun Jul 16 11:38:37 2017 +0800
  1 file changed, 31 insertions(+)
 
 commit 27a885d52ed468a13253c92762898e15f4e171c4
-Merge: 25ba73cd b848ab33
+Merge: 25ba73cd3 b848ab335
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sun Jul 16 11:10:29 2017 +0800
 
@@ -37060,7 +37334,7 @@ Date:   Fri Jul 14 20:12:31 2017 +0800
  2 files changed, 1 insertion(+), 198 deletions(-)
 
 commit 25ba73cd3b3934142891ebdcc85424d3136b0d7d
-Merge: e600190f 2278b368
+Merge: e600190fa 2278b3686
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 14 20:05:06 2017 +0800
 
@@ -37077,7 +37351,7 @@ Date:   Fri Jul 14 16:42:00 2017 +0800
  2 files changed, 7 insertions(+), 3 deletions(-)
 
 commit d5fefead9f48faa4a0c0ee0a172ecba2d673a20c
-Merge: 7a0bb228 cf21d00f
+Merge: 7a0bb2284 cf21d00fa
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 14 15:06:52 2017 +0800
 
@@ -37152,7 +37426,7 @@ Date:   Thu Jul 13 18:12:14 2017 +0800
  1 file changed, 14 insertions(+), 33 deletions(-)
 
 commit e600190fa17fdbb6a4435118ff6b35a7ad261a6e
-Merge: f874f4ec 68eb9f2c
+Merge: f874f4ec2 68eb9f2cb
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 13 18:08:51 2017 +0800
 
@@ -37187,14 +37461,14 @@ Date:   Thu Jul 13 16:02:07 2017 +0800
  2 files changed, 190 insertions(+)
 
 commit f874f4ec2fc6d475523581867437ada08184ca99
-Merge: 257a492f 14e57630
+Merge: 257a492f0 14e576305
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 13 09:49:07 2017 +0800
 
     Merge pull request !27 from CGF/wal_adjust_feature
 
 commit 14e5763051700aea3892b09a5b65e0499fec7ba6
-Merge: 209819c1 7482ec69
+Merge: 209819c14 7482ec699
 Author: CGF <cgf1993@foxmail.com>
 Date:   Thu Jul 13 09:35:18 2017 +0800
 
@@ -37268,14 +37542,14 @@ Date:   Wed Jul 12 15:04:46 2017 +0800
  2 files changed, 136 insertions(+), 104 deletions(-)
 
 commit 257a492f0960e446b8b8df7aa59e3a784a4b7ef9
-Merge: 608f2871 f3e200b6
+Merge: 608f2871a f3e200b6d
 Author: doge <xuyithuss@126.com>
 Date:   Wed Jul 12 11:21:56 2017 +0800
 
     Merge pull request !22 from doge/f_xuyi_sql
 
 commit f3e200b6d21b6cdca57f76f7d1875f7a1f00aaa3
-Merge: 875996dd 608f2871
+Merge: 875996ddd 608f2871a
 Author: XuYi <xuyithuss@126.com>
 Date:   Wed Jul 12 11:00:19 2017 +0800
 
@@ -37328,7 +37602,7 @@ Date:   Tue Jul 11 21:00:18 2017 +0800
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 commit cdd14f99b040dcdd4b56a3cce796e965866e14a9
-Merge: 1c10c65d f3bba9b9
+Merge: 1c10c65d5 f3bba9b95
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 11 20:25:57 2017 +0800
 
@@ -37346,28 +37620,28 @@ Date:   Tue Jul 11 18:18:25 2017 +0800
  3 files changed, 7 insertions(+), 7 deletions(-)
 
 commit 8de012625403c24ab75dab8bc1a043bc4d36b2d1
-Merge: e3322f9f db0930bb
+Merge: e3322f9fd db0930bbd
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 11 17:18:46 2017 +0800
 
     handle the conflicts for pr
 
 commit db0930bbd8814d65b8c5d2afa6189dd45785b785
-Merge: b0a2f130 1c10c65d
+Merge: b0a2f130c 1c10c65d5
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 11 17:17:31 2017 +0800
 
     Merge branch 'master' of git.oschina.net:xingtanzjr/tsfiledb
 
 commit 1c10c65d53b9367b29017e032d16b1d81796f83f
-Merge: e1339c3f db0a3f39
+Merge: e1339c3f9 db0a3f396
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 11 17:16:24 2017 +0800
 
     Merge pull request !25 from CGF/fix_fetchSize_ThreadLocal
 
 commit e3322f9fd8c3931f17873108afdbb68c674d7dd0
-Merge: 65e1d92d b0a2f130
+Merge: 65e1d92d1 b0a2f130c
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 11 17:05:06 2017 +0800
 
@@ -37428,14 +37702,14 @@ Date:   Tue Jul 11 15:51:37 2017 +0800
  3 files changed, 32 insertions(+), 29 deletions(-)
 
 commit b0a2f130cf676ada2f46df5f09c2229919bd871c
-Merge: 84984fb1 e1339c3f
+Merge: 84984fb1f e1339c3f9
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 11 15:04:39 2017 +0800
 
     Merge branch 'master' of git.oschina.net:xingtanzjr/tsfiledb
 
 commit e1339c3f94707e87f125fdf054224bc510b62f59
-Merge: 1828fee4 c23c7188
+Merge: 1828fee48 c23c71881
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 11 15:04:22 2017 +0800
 
@@ -37461,14 +37735,14 @@ Date:   Tue Jul 11 14:53:20 2017 +0800
  1 file changed, 18 insertions(+), 11 deletions(-)
 
 commit 84984fb1f1757a2f60b76510b23c638d8590c98e
-Merge: b576a8ff 1828fee4
+Merge: b576a8ffa 1828fee48
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 11 14:50:02 2017 +0800
 
     Merge branch 'master' of git.oschina.net:xingtanzjr/tsfiledb
 
 commit 1828fee48b263ba65e5a1eea645cfb8d51c6ecd5
-Merge: 89431782 5f88d220
+Merge: 89431782e 5f88d220c
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 11 14:49:34 2017 +0800
 
@@ -37486,7 +37760,7 @@ Date:   Tue Jul 11 14:47:54 2017 +0800
  3 files changed, 31 insertions(+), 24 deletions(-)
 
 commit b576a8ffa345b2a8117461007ddc3f97f8678042
-Merge: 2ef6c66a 89431782
+Merge: 2ef6c66a6 89431782e
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 11 14:35:44 2017 +0800
 
@@ -37541,7 +37815,7 @@ Date:   Mon Jul 10 18:01:30 2017 +0800
  12 files changed, 100 insertions(+), 31 deletions(-)
 
 commit 89431782ebcee1ad35815b0e558b78a206b5b5b2
-Merge: 1302de67 7daf98eb
+Merge: 1302de679 7daf98eb1
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Jul 10 16:19:12 2017 +0800
 
@@ -37559,7 +37833,7 @@ Date:   Mon Jul 10 16:17:30 2017 +0800
  3 files changed, 1200 insertions(+), 1200 deletions(-)
 
 commit 1302de679f874ea0fecdd44cdf650c84667821db
-Merge: 8fea6df2 e68f2b82
+Merge: 8fea6df2a e68f2b82d
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Jul 10 15:50:16 2017 +0800
 
@@ -37592,21 +37866,21 @@ Date:   Mon Jul 10 15:32:57 2017 +0800
  9 files changed, 89 insertions(+), 141 deletions(-)
 
 commit 8fea6df2a4c4b61f7fe149b3ba5a39bd2e99f33f
-Merge: a43d472a 752b62af
+Merge: a43d472a1 752b62af8
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 10 15:21:01 2017 +0800
 
     Merge pull request !19 from liukun/bug_bufferwritefile_liukun_pr
 
 commit 752b62af8ef01b38e0ebe8567b451309c11f17b6
-Merge: aeae4f9f a43d472a
+Merge: aeae4f9f5 a43d472a1
 Author: liukun <451564319@qq.com>
 Date:   Mon Jul 10 14:56:58 2017 +0800
 
     Merge remote-tracking branch 'origin/master' into bug_bufferwritefile_liukun_pr
 
 commit a43d472a1f7a60a1eca9d363bbbfa0634fa3f268
-Merge: 5d3306ad 9c776592
+Merge: 5d3306ad2 9c7765921
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Jul 10 14:45:59 2017 +0800
 
@@ -37720,7 +37994,7 @@ Date:   Sun Jul 9 15:30:15 2017 +0800
  4 files changed, 10 insertions(+), 18 deletions(-)
 
 commit 8a505daf6a29f8d7fde76d5e01fb7aa8e3c1feb5
-Merge: ff523847 b812245e
+Merge: ff5238478 b812245eb
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sat Jul 8 20:17:32 2017 +0800
 
@@ -37759,7 +38033,7 @@ Date:   Sat Jul 8 17:46:30 2017 +0800
  13 files changed, 284 insertions(+), 185 deletions(-)
 
 commit ff5238478f29f355c98da620ddf7275f0a575fdc
-Merge: 6ae75ab2 6a0fe7d2
+Merge: 6ae75ab2f 6a0fe7d28
 Author: CGF <cgf1993@foxmail.com>
 Date:   Sat Jul 8 11:07:30 2017 +0800
 
@@ -37800,7 +38074,7 @@ Date:   Sat Jul 8 10:47:39 2017 +0800
  26 files changed, 366 insertions(+), 533 deletions(-)
 
 commit 6ae75ab2fcd3853976387402d4f3b2b04b15ca32
-Merge: 6e20a28d 8c9a2796
+Merge: 6e20a28d5 8c9a2796d
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri Jul 7 22:26:51 2017 +0800
 
@@ -37848,14 +38122,14 @@ Date:   Fri Jul 7 21:11:26 2017 +0800
  4 files changed, 5 insertions(+), 5 deletions(-)
 
 commit 667c35908983ea4f31bf8d4b24a637f84c51d2fc
-Merge: 30e8cf1c 75ead809
+Merge: 30e8cf1cf 75ead809a
 Author: liukun <451564319@qq.com>
 Date:   Fri Jul 7 20:41:17 2017 +0800
 
     Merge pull request !14 from liukun/read_process_refactor
 
 commit 75ead809ab4884beb2ae1f3d2dfef28d07160d33
-Merge: d7cc28f0 30e8cf1c
+Merge: d7cc28f09 30e8cf1cf
 Author: liukun06 <451564319@qq.com>
 Date:   Fri Jul 7 20:37:43 2017 +0800
 
@@ -37881,7 +38155,7 @@ Date:   Fri Jul 7 16:09:57 2017 +0800
  2 files changed, 11 insertions(+), 11 deletions(-)
 
 commit fb3421ed152f53d7aeb1c8cb89fc01729cca4771
-Merge: 53dbfd25 f1dd827a
+Merge: 53dbfd25d f1dd827a6
 Author: liukun06 <451564319@qq.com>
 Date:   Fri Jul 7 16:08:50 2017 +0800
 
@@ -37897,7 +38171,7 @@ Date:   Fri Jul 7 15:53:49 2017 +0800
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 commit c6e115cf9ca5aecf4a568495da4de7d06334f6e3
-Merge: d13234a7 5cb42c62
+Merge: d13234a7c 5cb42c625
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Fri Jul 7 15:49:03 2017 +0800
 
@@ -37934,7 +38208,7 @@ Date:   Fri Jul 7 15:31:31 2017 +0800
  1 file changed, 3 insertions(+)
 
 commit da805bf5bc13e271f9571da47a19375974e54bb4
-Merge: 12674307 f42ca652
+Merge: 12674307d f42ca6523
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 7 15:28:20 2017 +0800
 
@@ -37991,7 +38265,7 @@ Date:   Fri Jul 7 11:47:49 2017 +0800
  3 files changed, 1953 insertions(+), 1858 deletions(-)
 
 commit 041023873c5e46b22f5b068fdab82fe4534abcb8
-Merge: 933c4949 c5f9628b
+Merge: 933c49496 c5f9628b6
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Fri Jul 7 11:43:43 2017 +0800
 
@@ -38022,7 +38296,7 @@ Date:   Fri Jul 7 11:39:19 2017 +0800
  5 files changed, 174 insertions(+), 73 deletions(-)
 
 commit 30e8cf1cf90e82b5eaca2cf181e14d168e591ece
-Merge: c8e5a11f 7e07c6dc
+Merge: c8e5a11fa 7e07c6dc5
 Author: CGF <cgf1993@foxmail.com>
 Date:   Fri Jul 7 09:49:30 2017 +0800
 
@@ -38198,7 +38472,7 @@ Date:   Thu Jul 6 09:55:17 2017 +0800
  5 files changed, 248 insertions(+), 309 deletions(-)
 
 commit 7e07c6dc549b284c0403cfea95bb9a1e534ebd92
-Merge: 25a40143 af0b7acb
+Merge: 25a401438 af0b7acb7
 Author: kr11 <3095717866@qq.com>
 Date:   Wed Jul 5 21:10:17 2017 +0800
 
@@ -38246,14 +38520,14 @@ Date:   Wed Jul 5 18:35:05 2017 +0800
  1 file changed, 1 insertion(+), 10 deletions(-)
 
 commit 62f3e8518d7e5a7576a1ef2658f9d4bb50a0e0cc
-Merge: 1b7173ab 25a40143
+Merge: 1b7173ab2 25a401438
 Author: liukun06 <451564319@qq.com>
 Date:   Wed Jul 5 17:54:32 2017 +0800
 
     Merge branch 'master' into read_process_refactor
 
 commit 25a401438565b2f2932d30ca81ec3876d4584665
-Merge: 6532bd2e ac2e1ffb
+Merge: 6532bd2e3 ac2e1ffb2
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 5 17:46:05 2017 +0800
 
@@ -38339,7 +38613,7 @@ Date:   Wed Jul 5 15:14:03 2017 +0800
  49 files changed, 7691 insertions(+), 4114 deletions(-)
 
 commit 6532bd2e3071255030aec4e4f849ab19d921c288
-Merge: 52e84450 3c275c95
+Merge: 52e844508 3c275c95f
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed Jul 5 14:47:12 2017 +0800
 
@@ -38404,7 +38678,7 @@ Date:   Wed Jul 5 11:16:38 2017 +0800
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 commit 52e8445083ede9cd57522d5600873c142f278f2e
-Merge: 0552ecd9 4a328653
+Merge: 0552ecd96 4a328653c
 Author: liukun <451564319@qq.com>
 Date:   Wed Jul 5 10:45:13 2017 +0800
 
@@ -38459,14 +38733,14 @@ Date:   Tue Jul 4 20:26:14 2017 +0800
  1 file changed, 56 insertions(+), 46 deletions(-)
 
 commit 0c01a3011301e820287c7170a138e795abb9a9d0
-Merge: 56112c14 0552ecd9
+Merge: 56112c14b 0552ecd96
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 4 20:23:52 2017 +0800
 
     Merge branch 'master' into log_compact_timing
 
 commit ba6b74a5fed7d3855802ea8e7cd992350530fb46
-Merge: b143db7f 0552ecd9
+Merge: b143db7f3 0552ecd96
 Author: XuYi <xuyithuss@126.com>
 Date:   Tue Jul 4 19:49:41 2017 +0800
 
@@ -38514,7 +38788,7 @@ Date:   Tue Jul 4 18:53:19 2017 +0800
  13 files changed, 68 insertions(+), 56 deletions(-)
 
 commit 0552ecd969e514fd871c150809718a76fcb2a1b6
-Merge: f2154746 f90a28e6
+Merge: f21547465 f90a28e62
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 4 18:23:05 2017 +0800
 
@@ -38530,7 +38804,7 @@ Date:   Tue Jul 4 16:55:36 2017 +0800
  1 file changed, 10 insertions(+), 7 deletions(-)
 
 commit 4f802135d9f6135f5feb64844bbb9c5ec533c9bc
-Merge: df112ec9 71a2b075
+Merge: df112ec96 71a2b0754
 Author: liukun06 <451564319@qq.com>
 Date:   Tue Jul 4 16:24:50 2017 +0800
 
@@ -38570,7 +38844,7 @@ Date:   Tue Jul 4 16:10:17 2017 +0800
  1 file changed, 242 insertions(+), 74 deletions(-)
 
 commit f21547465b4d44f00069bf1978f96b398b28526f
-Merge: 63f67fee c416f950
+Merge: 63f67fee0 c416f950c
 Author: liukun <451564319@qq.com>
 Date:   Tue Jul 4 16:05:21 2017 +0800
 
@@ -38610,7 +38884,7 @@ Date:   Tue Jul 4 15:29:55 2017 +0800
  25 files changed, 637 insertions(+), 388 deletions(-)
 
 commit 8afd476187aaeef76bcffa1f32432b95780fd173
-Merge: ec94cb36 5ec63b99
+Merge: ec94cb366 5ec63b99e
 Author: XuYi <xuyithuss@126.com>
 Date:   Tue Jul 4 15:11:33 2017 +0800
 
@@ -38657,7 +38931,7 @@ Date:   Tue Jul 4 12:09:26 2017 +0800
  1 file changed, 11 insertions(+), 6 deletions(-)
 
 commit 63f67fee0bbd67c03e2adff22b45d64a9bddf616
-Merge: 62322ae6 a7f8aef8
+Merge: 62322ae63 a7f8aef84
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue Jul 4 11:19:54 2017 +0800
 
@@ -38759,7 +39033,7 @@ Date:   Mon Jul 3 20:09:13 2017 +0800
  4 files changed, 93 insertions(+), 48 deletions(-)
 
 commit 62322ae63b51a1a116a191afeb64712160391fc8
-Merge: 7f137a0e 126ba472
+Merge: 7f137a0ee 126ba4729
 Author: qiaojialin <646274302@qq.com>
 Date:   Mon Jul 3 10:13:33 2017 +0800
 
@@ -38826,7 +39100,7 @@ Date:   Sat Jun 24 00:12:54 2017 +0800
  16 files changed, 38 insertions(+), 154 deletions(-)
 
 commit 7f137a0ee67111e584926488cc6b907e05fdde51
-Merge: 8ada6e57 f2481fb2
+Merge: 8ada6e570 f2481fb27
 Author: qiaojialin <646274302@qq.com>
 Date:   Fri Jun 23 22:44:19 2017 +0800
 
@@ -39037,7 +39311,7 @@ Date:   Tue Jun 13 11:33:52 2017 +0800
  7 files changed, 14 insertions(+), 67 deletions(-)
 
 commit 1d8e54f4d3951dece3922df61e5eed45211b720c
-Merge: 1bd256b4 3c0c28b4
+Merge: 1bd256b45 3c0c28b49
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Tue Jun 13 11:26:37 2017 +0800
 
@@ -39233,21 +39507,21 @@ Date:   Mon Jun 12 17:50:02 2017 +0800
  30 files changed, 310 insertions(+), 467 deletions(-)
 
 commit b50cb62820d6ad52d12b534591e32dc8abd63f34
-Merge: 81f278a7 712ea4fd
+Merge: 81f278a77 712ea4fde
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon Jun 12 15:49:29 2017 +0800
 
     merge origin master
 
 commit 712ea4fdedbd182f251fc84d4d6e13b74a76e7b7
-Merge: 9bdaf87a 8ada6e57
+Merge: 9bdaf87a1 8ada6e570
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon Jun 12 15:43:16 2017 +0800
 
     merge origin master
 
 commit 8ada6e570d8f8a3e47c4b85b890636499f74539d
-Merge: 6749b7d0 adccd376
+Merge: 6749b7d05 adccd3762
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Jun 12 15:34:19 2017 +0800
 
@@ -39547,7 +39821,7 @@ Date:   Mon Jun 5 19:24:38 2017 +0800
  1 file changed, 80 deletions(-)
 
 commit cab39e77a7671b639cb6dbc663691d9bca67963f
-Merge: 10d67fca 3fda4cf9
+Merge: 10d67fca2 3fda4cf90
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon Jun 5 00:01:13 2017 +0800
 
@@ -39577,7 +39851,7 @@ Date:   Thu May 25 21:06:52 2017 +0800
  1 file changed, 32 deletions(-)
 
 commit 3078ac78b777e855552fc2f111833fc0a4ba2496
-Merge: 8f7f9cf1 885fb50e
+Merge: 8f7f9cf19 885fb50ee
 Author: CGF <cgf1993@foxmail.com>
 Date:   Wed May 24 20:54:31 2017 +0800
 
@@ -39635,7 +39909,7 @@ Date:   Wed May 24 17:51:34 2017 +0800
  4 files changed, 54 insertions(+), 10 deletions(-)
 
 commit 3b81d58e9cf837a64598eb717ee729c6324acb06
-Merge: 8abd25ca c7c4dfa5
+Merge: 8abd25cad c7c4dfa5c
 Author: liukun <451564319@qq.com>
 Date:   Wed May 24 15:58:58 2017 +0800
 
@@ -39689,7 +39963,7 @@ Date:   Tue May 23 16:45:12 2017 +0800
  1 file changed, 2 insertions(+)
 
 commit d9d73c6e0d2368d44797bf7bce98c0afdb2d6479
-Merge: c0ea0385 f1f02f87
+Merge: c0ea0385d f1f02f875
 Author: CGF <cgf1993@foxmail.com>
 Date:   Tue May 23 16:09:27 2017 +0800
 
@@ -39730,7 +40004,7 @@ Date:   Tue May 23 10:27:03 2017 +0800
  6 files changed, 22 insertions(+), 11 deletions(-)
 
 commit cdadcb0ec7321ba99b7516a299df934408cf00de
-Merge: 80c6751b c58a9676
+Merge: 80c6751b0 c58a96760
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon May 22 22:45:51 2017 +0800
 
@@ -39748,7 +40022,7 @@ Date:   Mon May 22 22:40:54 2017 +0800
  3 files changed, 7 insertions(+), 6 deletions(-)
 
 commit c58a96760c63b709735386a871c261f133b509e1
-Merge: d9c19c32 494436ec
+Merge: d9c19c327 494436ecc
 Author: leon <x_zhao16@163.com>
 Date:   Mon May 22 22:38:52 2017 +0800
 
@@ -39822,7 +40096,7 @@ Date:   Mon May 22 20:22:05 2017 +0800
  3 files changed, 51 insertions(+), 1 deletion(-)
 
 commit 3191888b3ca920f79a21524de8a86948f22c571b
-Merge: 7274eb6f d322a93c
+Merge: 7274eb6f7 d322a93c4
 Author: CGF <cgf1993@foxmail.com>
 Date:   Mon May 22 19:57:43 2017 +0800
 
@@ -39951,7 +40225,7 @@ Date:   Fri May 19 21:20:00 2017 +0800
  7 files changed, 59 insertions(+), 39 deletions(-)
 
 commit 85c74b5380d6dafd79f3d0e4895349bd459bde0c
-Merge: 2577307d 03bb259b
+Merge: 2577307d4 03bb259b2
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri May 19 21:00:03 2017 +0800
 
@@ -39970,7 +40244,7 @@ Date:   Fri May 19 21:00:00 2017 +0800
  4 files changed, 27 insertions(+), 5 deletions(-)
 
 commit 03bb259b2161f4969f99699129010377999b4a91
-Merge: 48fcdff6 1a94c19d
+Merge: 48fcdff6d 1a94c19d4
 Author: liukun <451564319@qq.com>
 Date:   Fri May 19 20:56:39 2017 +0800
 
@@ -39989,7 +40263,7 @@ Date:   Fri May 19 20:56:25 2017 +0800
  4 files changed, 35 insertions(+), 30 deletions(-)
 
 commit 1a94c19d401f7117e0a159e03e6e2b14c66b8346
-Merge: ed2b2d52 dd494a44
+Merge: ed2b2d52d dd494a441
 Author: Dark Templar <xuyi556677@163.com>
 Date:   Fri May 19 18:42:15 2017 +0800
 
@@ -40039,7 +40313,7 @@ Date:   Fri May 19 11:36:31 2017 +0800
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 commit a4c436e3fa714c439f97c2ae839d31fcbc50e3bc
-Merge: 570efc87 d8513d39
+Merge: 570efc87c d8513d39f
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri May 19 11:23:04 2017 +0800
 
@@ -40056,7 +40330,7 @@ Date:   Fri May 19 11:20:31 2017 +0800
  2 files changed, 14 insertions(+), 12 deletions(-)
 
 commit 570efc87c4bb6c5b6cea3732d112660628f06407
-Merge: 887a72f3 c2b34a93
+Merge: 887a72f3f c2b34a939
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri May 19 11:04:57 2017 +0800
 
@@ -40097,7 +40371,7 @@ Date:   Wed May 17 15:29:37 2017 +0800
  2 files changed, 3 insertions(+), 29 deletions(-)
 
 commit 63555336686452c87b3bf5ba5e8cf169c4e6a5db
-Merge: 9e8236d0 4532130b
+Merge: 9e8236d00 4532130bd
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Wed May 17 15:27:56 2017 +0800
 
@@ -40117,7 +40391,7 @@ Date:   Mon May 15 22:29:04 2017 +0800
  5 files changed, 30 insertions(+), 6 deletions(-)
 
 commit bfae6e6949b053640df62e8ca618c8863f3d4c34
-Merge: d4cad9ce 14ff0cb5
+Merge: d4cad9ce7 14ff0cb5e
 Author: liukun <451564319@qq.com>
 Date:   Mon May 15 21:06:08 2017 +0800
 
@@ -40147,7 +40421,7 @@ Date:   Mon May 15 09:51:12 2017 +0800
  2 files changed, 8 insertions(+)
 
 commit d885928c0827ddb86f82bf65c616608699b6a24b
-Merge: 250ed54f 14ff0cb5
+Merge: 250ed54fc 14ff0cb5e
 Author: qiaojialingithub <646274302@qq.com>
 Date:   Mon May 15 09:45:57 2017 +0800
 
@@ -40185,7 +40459,7 @@ Date:   Sun May 14 22:53:38 2017 +0800
  5 files changed, 23 insertions(+), 10 deletions(-)
 
 commit 876aebcc37efaa81faef9d3c625ffe6a0f1988d0
-Merge: 82e59032 4b0616a9
+Merge: 82e590320 4b0616a91
 Author: liukun <451564319@qq.com>
 Date:   Sat May 13 23:41:45 2017 +0800
 
@@ -40254,7 +40528,7 @@ Date:   Sat May 13 10:58:59 2017 +0800
  5 files changed, 47 insertions(+), 26 deletions(-)
 
 commit 51b1a24c8038c07b50eb85182d1e872f3e26a803
-Merge: d726f14c 8422af09
+Merge: d726f14c6 8422af092
 Author: liukun <451564319@qq.com>
 Date:   Fri May 12 19:19:29 2017 +0800
 
@@ -40285,7 +40559,7 @@ Date:   Fri May 12 18:31:51 2017 +0800
  16 files changed, 150 insertions(+), 107 deletions(-)
 
 commit 8422af092672062200df0feb6a65b4c8aa869469
-Merge: e052577e 37c35486
+Merge: e052577ee 37c35486f
 Author: XuYi <xuyithuss@126.com>
 Date:   Fri May 12 15:50:07 2017 +0800
 
@@ -40352,7 +40626,7 @@ Date:   Fri May 12 12:16:53 2017 +0800
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit c13b2f1dee691eec6abf64e435263b423b60e230
-Merge: 03c2df6b 643c6c94
+Merge: 03c2df6bd 643c6c946
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri May 12 11:54:15 2017 +0800
 
@@ -40368,7 +40642,7 @@ Date:   Fri May 12 11:54:08 2017 +0800
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 commit 643c6c94634f4c69c7606e3e79cc79990fb936d5
-Merge: e0db590d db8d14a4
+Merge: e0db590df db8d14a45
 Author: liukun <451564319@qq.com>
 Date:   Fri May 12 11:22:51 2017 +0800
 
@@ -40397,7 +40671,7 @@ Date:   Fri May 12 11:20:25 2017 +0800
  3 files changed, 18 insertions(+), 10 deletions(-)
 
 commit 23e0b27e6e57904af2a1dc7ad97e1c23ce6f355b
-Merge: 2f9a71bb ecfb8f76
+Merge: 2f9a71bb9 ecfb8f760
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Fri May 12 09:31:11 2017 +0800
 
@@ -40419,7 +40693,7 @@ Date:   Fri May 12 09:30:31 2017 +0800
  7 files changed, 45 insertions(+), 239 deletions(-)
 
 commit ecfb8f76050014114b09f2cf6324c21390b571a9
-Merge: 5d7670fb a44e2052
+Merge: 5d7670fb4 a44e2052e
 Author: XuYi <xuyithuss@126.com>
 Date:   Thu May 11 18:30:26 2017 +0800
 
@@ -40543,7 +40817,7 @@ Date:   Wed May 10 19:46:37 2017 +0800
  1 file changed, 2 insertions(+), 4 deletions(-)
 
 commit ac5e3cee30a98bda0acac67a7a2e08419b47a362
-Merge: 0a730d6e 534298f7
+Merge: 0a730d6e6 534298f72
 Author: liukun <451564319@qq.com>
 Date:   Wed May 10 19:43:06 2017 +0800
 
@@ -40598,14 +40872,14 @@ Date:   Wed May 10 18:56:35 2017 +0800
  9 files changed, 807 insertions(+), 2 deletions(-)
 
 commit b0c1d1a41a33491a33fc244d2fccd0dfec9119c8
-Merge: b2f187e0 932a8ab5
+Merge: b2f187e01 932a8ab57
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Wed May 10 18:26:22 2017 +0800
 
     merge with engine_pr
 
 commit b2f187e0105bba68b2c1e6c38d214f8095d2f754
-Merge: 79955615 30108537
+Merge: 799556151 301085374
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Wed May 10 18:24:19 2017 +0800
 
@@ -40934,7 +41208,7 @@ Date:   Mon May 8 21:41:51 2017 +0800
  5 files changed, 56 insertions(+), 45 deletions(-)
 
 commit 7035a65bfc4d01d507f864fe600d944b812a48e8
-Merge: 77227d2d 2064209e
+Merge: 77227d2d5 2064209ed
 Author: liukun <451564319@qq.com>
 Date:   Mon May 8 20:23:13 2017 +0800
 
@@ -40966,7 +41240,7 @@ Date:   Mon May 8 19:57:25 2017 +0800
  5 files changed, 206 insertions(+), 5 deletions(-)
 
 commit 512c384ca4919260f25f67fa5e362bdd5cbc6ea6
-Merge: 123bfc65 ac01fd60
+Merge: 123bfc658 ac01fd60b
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Mon May 8 19:23:13 2017 +0800
 
@@ -41005,7 +41279,7 @@ Date:   Mon May 8 14:42:15 2017 +0800
  3 files changed, 150 insertions(+), 20 deletions(-)
 
 commit 129fb01583239c886b9420ec1289e0b72189964b
-Merge: ba714c0e 123bfc65
+Merge: ba714c0e6 123bfc658
 Author: liukun <451564319@qq.com>
 Date:   Sun May 7 21:47:20 2017 +0800
 
@@ -41104,7 +41378,7 @@ Date:   Sun May 7 17:44:30 2017 +0800
  12 files changed, 306 insertions(+), 151 deletions(-)
 
 commit b644585ad1f429f4b7ff5a2b18105f54aea3603b
-Merge: 5cf7901b 909df230
+Merge: 5cf7901ba 909df230d
 Author: xingtanzjr <xingtanzjr@163.com>
 Date:   Sun May 7 17:31:48 2017 +0800
 

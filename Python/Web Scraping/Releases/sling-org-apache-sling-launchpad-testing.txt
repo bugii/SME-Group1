@@ -1,0 +1,7 @@
+2018-10-19 : org.apache.sling.launchpad.testing-11
+2018-01-19 : org.apache.sling.launchpad.testing-10
+2017-06-07 : org.apache.sling.launchpad.testing-war-9
+2017-06-07 : org.apache.sling.launchpad.testing-9
+2011-03-13 : org.apache.sling.launchpad.testing-war-6
+2011-03-13 : org.apache.sling.launchpad.testing-6
+2009-06-18 : org.apache.sling.launchpad.testing-5-incubator

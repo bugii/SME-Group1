@@ -1,0 +1,10 @@
+2019-10-09 : apache-royale-0.9.6
+2019-09-25 : org.apache.royale.framework-0.9.6-rc3
+2019-09-18 : org.apache.royale.framework-0.9.6-rc2
+2019-09-16 : org.apache.royale.framework-0.9.6-rc1
+2018-12-08 : apache-royale-0.9.4
+2018-11-14 : org.apache.royale.framework-0.9.4-rc2
+2018-11-13 : org.apache.royale.framework-0.9.4-rc1
+2018-03-23 : apache-royale-0.9.2
+2018-03-13 : org.apache.royale.framework-0.9.2-rc2
+2018-03-12 : org.apache.royale.framework-0.9.2-rc1

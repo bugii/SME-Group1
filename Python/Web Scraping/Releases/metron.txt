@@ -1,0 +1,10 @@
+2019-05-08 : apache-metron_0.7.1-release
+2019-05-08 : apache-metron_0.7.1-rc2
+2019-04-25 : apache-metron_0.7.1-rc1
+2018-12-11 : apache-metron_0.7.0-release
+2018-12-11 : apache-metron-0.7.0-rc1
+2018-09-04 : apache-metron-0.6.0-release
+2018-09-04 : apache-metron-0.6.0-rc1
+2018-05-31 : apache-metron-0.5.0-rc2
+2018-05-24 : apache-metron-0.5.0-release
+2018-05-24 : apache-metron-0.5.0-rc1
