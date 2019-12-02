@@ -1,5 +1,6 @@
 import functions
 import excelconvert
+import MedianCalc
 
 # I installed the requests library and bs4 library via the following command line input: "py -m pip install bs4" and
 # "py -m pip install requests"; alternatively, you can try "pip install bs4" and "pip install requests".
@@ -23,7 +24,7 @@ import excelconvert
 #functions.write_complete_timeline(include_release_date=True)
 
 # Clean-up of complete.txt in the Timelines folder; outputs a "output_clean.txt" in the main directory.
-functions.clean_up("complete.txt", "Timelines/", include_names=True)
+#functions.clean_up("complete.txt", "Timelines/", include_names=True)
 
 # Additional information extraction. In the end, the output file is named "output_interpreted.txt" and has (so far)
 # the following format: 10:5:3::2019-11-19::5:dependency1,dependency2...dependency10
@@ -34,4 +35,7 @@ functions.clean_up("complete.txt", "Timelines/", include_names=True)
 
 # The output can be converted into an excel sheet for further usage. This only works for non-interpreted output
 # (output_clean.txt).
-excelconvert.convert_to_excel("output_clean.txt", date_as_int=True)
+#excelconvert.convert_to_excel("output_clean.txt", date_as_int=True)
+
+# List of all median dependency numbers
+print(MedianCalc.median_calc("output_clean.txt"))

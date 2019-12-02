@@ -224,7 +224,7 @@ def file_to_stringlist(filename, directory):
         with open(directory + filename, encoding="utf-8") as f:
             content = f.readlines()
     except:
-        print("Error in file_to_string method.")
+        print("Error in file_to_stringlist method.")
         content = ["~FILE NOT FOUND!~"]
     content = [x.strip() for x in content]
     if len(content) == 0:
