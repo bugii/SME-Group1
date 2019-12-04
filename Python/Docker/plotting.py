@@ -49,7 +49,7 @@ df = pd.melt(df, id_vars=['year'], value_vars=['nr microservices', 'size', 'aver
 g = sns.FacetGrid(df, row='variable', sharey=False, aspect=1.5)
 g.map(sns.boxplot, 'year', 'value', palette="Set3")
 
-g.savefig('results/last_updated.pdf')
+g.savefig('results/last_updated.png')
 
 
 '''
@@ -65,7 +65,7 @@ df2 = pd.melt(df2, id_vars=['year', 'language'], value_vars=['nr microservices',
 g2 = sns.FacetGrid(df2, row='variable', sharey=False, aspect=1.5, legend_out=True)
 g2.map(sns.boxplot, 'year', 'value', 'language', palette="Set3").add_legend()
 
-g2.savefig('results/language.pdf')
+g2.savefig('results/language.png')
 
 
 '''
@@ -81,7 +81,7 @@ axes = g3.axes
 axes[0][0].set_ylim(0, 100)
 axes[3][0].set_ylim(0, 100)
 
-g3.savefig('results/duration.pdf')
+g3.savefig('results/duration.png')
 
 '''
 Contributors
@@ -95,7 +95,7 @@ axes = g4.axes
 axes[0][0].set_ylim(0, 100)
 axes[3][0].set_ylim(0, 100)
 
-g4.savefig('results/contributors.pdf')
+g4.savefig('results/contributors.png')
 
 
 plt.show()

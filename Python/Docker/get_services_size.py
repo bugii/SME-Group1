@@ -3,6 +3,7 @@ import shutil
 import docker
 import os
 import subprocess
+import datetime
 
 import requests
 import yaml
@@ -29,18 +30,18 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
             # subarray
             if 'context' in build and 'dockerfile' in build:
                 docker_file_loc = project_dir_lvl2 + "/" + (build['context'] + "/" + build['dockerfile']).replace('./', '').replace('Dockerfile', '.')
-                print('building from', docker_file_loc)
+                print(datetime.datetime.now(), 'building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
 
             elif 'context' in build:
                 docker_file_loc = project_dir_lvl2 + "/" + build['context'].replace('./', '')
-                print('building from', docker_file_loc)
+                print(datetime.datetime.now(), 'building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
 
             else:
                 # no subarray
                 docker_file_loc = project_dir_lvl2 + "/" + build.replace('./', '')
-                print('building from', docker_file_loc)
+                print(datetime.datetime.now(), 'building from', docker_file_loc)
                 docker_img = client.images.build(path=docker_file_loc)
                 # Get the size of the built image
 
@@ -49,7 +50,7 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
         elif 'image' in details:
             image = details['image']
             docker_img_loc = project_dir_lvl2 + "/" + image
-            print('pulling from', docker_img_loc)
+            print(datetime.datetime.now(), 'pulling from', docker_img_loc)
             if ':' not in image:
                 image += ':latest'
 
@@ -73,7 +74,8 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
         return docker_img_size
 
     except (docker.errors.ImageNotFound, docker.errors.BuildError, docker.errors.NotFound,
-            TypeError, AttributeError, requests.exceptions.HTTPError, FileNotFoundError) as e:
+            TypeError, AttributeError, requests.exceptions.HTTPError, requests.exceptions.ReadTimeout,
+            FileNotFoundError) as e:
         print('Deleted:', project_dir_lvl2, e)
         # delete entire project if errors occured
         shutil.rmtree(project_dir_lvl1)

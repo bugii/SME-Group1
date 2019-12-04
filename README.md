@@ -1,4 +1,14 @@
-# An Empirical Investigation on the Evoultion of Project Dependencies in Modern Software Systems
+# An Empirical Investigation on the Evolution of Project Dependencies in Modern Software Systems
+
+### Introduction
+
+1. Modern software systems
+2. Dependencies
+2. Following chapters
+
+### Goals
+
+1. Research questions
 
 ### Part 1: Traditional Ecosystems
 
@@ -19,7 +29,8 @@ and starts up all the required containers automatically.
 
 Docker compose files contain a lot of valuable information and is the main resource for this section.
 
-#### Getting data
+#### Methodology
+##### Fetching projects
 
 Note: Before running the script make sure that you have all the dependencies installed. Do:
 
@@ -68,7 +79,7 @@ Those metrics were stored in pickle files, which is the python way of storing ob
 Also, in order to be able to analyze the microservices of each project, the content of the repositories have to be looked at.
 The first step included downloading all the latest releases of the projects.
 
-### Obtaining information about microservices
+##### Analyzing microservices
 
 The goal was to get the following information for all projects:
 1. Number of microservices
@@ -150,7 +161,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
-### Data
+#### Data
 Once both of the above script had been run, for each project there was a pickled python object stored on disk.
 The project object has the following properties:
 
@@ -166,9 +177,14 @@ The project object has the following properties:
 | language | Main language used in the project | string |
 | contributors | Number of contributors to the project | int |
 
-### Results
+#### Results
 
-Plots and stuff
+<img alt="Last updated" src="Python/Docker/results/last_updated.png" width="400" />
+<img alt="Duration" src="Python/Docker/results/duration.png" width="400" />
+<img alt="Language" src="Python/Docker/results/language.png" width="400" />
+<img alt="Contributors" src="Python/Docker/results/contributors.png" width="400" />
+
+#### Discussion
 
 ### Part 3: Visualization
 
