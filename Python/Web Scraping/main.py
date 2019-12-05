@@ -2,9 +2,10 @@ import functions
 import excelconvert
 import MedianCalc
 
-# I installed the requests library and bs4 library via the following command line input: "py -m pip install bs4" and
+# REQUIREMENTS
+# I installed the "requests" library and "bs4" library via the following command line input: "py -m pip install bs4" and
 # "py -m pip install requests"; alternatively, you can try "pip install bs4" and "pip install requests".
-# Furthermore, openpyxl is needed for excelconvert.
+# Furthermore, "openpyxl" is needed for excelconvert.
 
 # First, clear up all files and folders.
 # If you want to clear the output files, add "output_clean.txt" and "output_interpreted.txt" to the list.

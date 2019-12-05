@@ -82,6 +82,7 @@ def date1_greater_date2(date1, date2):
         return False
 
 def date_adder(date, days):
+    # Adds the number of days onto the date, returns the date as string.
     try:
         datetime_object = datetime.strptime(date, '%Y-%m-%d').date()
         datetime_object = datetime_object + timedelta(days)
@@ -92,6 +93,7 @@ def date_adder(date, days):
 
 
 def clear_folder(folder):
+    # Clears Folder by deleting it and then recreating it.
     try:
         print("Clearing folder: " + folder)
         command_window("rm", "-rf", folder)  # Erases folder
@@ -100,7 +102,7 @@ def clear_folder(folder):
         print("Cannot clear folder " + folder)
 
 def clear_main(list_to_clear):
-    # clears all folders in list_to_clear (i.e. "f:Folder034"); deletes the other files (i.e. "myfile01") in main directory
+    # Clears all folders in list_to_clear (i.e. "f:Folder034"); deletes the other files (i.e. "myfile01") in main directory
     for i in list_to_clear:
         if i.startswith("f:"):
             clear_folder(i[2:])
@@ -121,45 +123,6 @@ def return_all_links(url):
         for link in soup.find_all('a'):
             Linklist.append(link.get('href'))
         return Linklist
-
-"""def deepscan_url(url):
-# Note that this is a very specific block of code. It extracts all urls that end on .pom.
-    Linklist = return_all_links(url)
-    for x in Linklist:
-        if x.endswith(".pom"):
-            write_to_txt(url + x)
-            print("Writing to txt: " + url + x)
-        else:
-            if x.endswith("/") and not x.endswith("../"):
-                print("Proceeding to: "+ url + x)
-                deepscan_url(url + x)
-
-
-def create_dependency_from_str_soup(soup):
-    # The output looks like this: MyProject/MyProject/1.4.2::, which encodes groupId, artifactId and version
-    # of the project; this is followed by dependencies in the exact same format, seperated by a single colon.
-    # I.e.: MyProject/MyProject/1.4.2::jUnit/jUnit/1.2.7:OtherGroup/OtherArtifact/1.0.1
-    outputline = ""
-    outputline = outputline + str(soup[soup.find("<groupid>")+9:soup.find("</groupid>")]) + "/"
-    outputline = outputline + str(soup[soup.find("<artifactid>")+12:soup.find("</artifactid>")]) + "/"
-    outputline = outputline + str(soup[soup.find("<version>")+9:soup.find("</version>")]) + "::"
-    print(outputline)
-
-    if soup.find("<dependencies>") != -1:
-        dependencies = str(soup[soup.find("<dependencies>")+14:soup.find("</dependencies>")]).splitlines()
-        print(dependencies)
-        temp_string = ""
-        for x in dependencies:
-            if x.startswith("<groupid>") or x.startswith("<artifactid>"):
-                temp_string = temp_string + x[x.find(">")+1:x.find("</")] + "/"
-            elif x.startswith("<version>"):
-                outputline = outputline + temp_string + x[x.find(">")+1:x.find("</")] + ":"
-                temp_string = ""
-    else:
-        outputline = outputline + "none"
-
-    return(outputline)
-"""
 
 def dependency_line(string_list, file_type):
     # Needs a string list as input (from either pom.xml or build.gradle files) and file_type ("pom.xml" or "build.gradle")
@@ -195,15 +158,6 @@ def dependency_number(string_list, file_type):
         return script.get_number_dependencies(string_list)
     else:
         return -1
-
-"""
-def dependencies_from_pom_url(url):
-    response = requests.get(url)
-    print(response)
-    wait_random()
-    soup = BeautifulSoup(response.text, 'html.parser')
-    write_to_dependencies_txt(create_dependency_from_str_soup(str(soup)))
-"""
 
 def command_window(*args):
     # Allows command window inputs via String Arguments (separated by commas), i.e. ("git", "status") for "git status"
@@ -372,6 +326,7 @@ def write_dependency_timelines(txt, dir, MaxNumberOfClones=-1, include_dependenc
             print("Exception in cloning.")
 
 def write_release_timelines(txt, dir):
+    # Per line in txt: Searches for releases on github and writes them into the "Releases" folder.
     for i in file_to_stringlist(txt, dir):
         print("["+i+"]---")
         try:
@@ -382,47 +337,10 @@ def write_release_timelines(txt, dir):
         except:
             print("Could not write releases for " + i[i.rindex("/") + 1:])
 
-
-
-def check_doc(link):
-    # This function look for all the pom.xml and build.gradle int the project and keep their relative dir in a list
-    # In case it finds a pom.xml or a build.gradle in the main directory is gonna return a list having two booleans,[contains pom, contains gradle], true in case it found it, false otherwise.
-
-    i=1
-    list=[[],[]]
-    root= link
-    link+= "/search?q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle&unscoped_q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle"
-    page = requests.get(link)
-    data = page.text
-    soup = BeautifulSoup(data, features="html.parser")
-    while page.status_code== 200:
-        for element in soup.find_all("a"):
-            if re.search("/pom\.xml", element.get('href')):
-                link1 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
-                if link1 not in list[0]:
-                   list[0].append(link1)
-            if re.search("/build\.gradle", element.get('href')):
-                link2 = re.sub(".*/blob/([0-9A-Fa-f])*/", "", element.get("href"))
-                if link2 not in list[1]:
-                    list[1].append(link2)
-        i += 1
-        link = root + "/search?p="+ str(i) + "&q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle&unscoped_q=apache+filename%3Apom+extension%3Axml+OR+apache+filename%3Abuild+extension%3Agradle"
-        page = requests.get(link)
-        data = page.text
-        soup = BeautifulSoup(data, features="html.parser")
-    bollist = [False, False]
-    if "pom.xml" in list[0]:
-        bollist[0] = True
-    if "build.gradle" in list[1]:
-        bollist[1] = True
-    return bollist
-
-
 def check_existence_on_github(directory, filename):
     # Given the directory, i.e. /apache/pulsar, and a filename, i.e. pom.xml, checks if that file exists (returns True).
     page = requests.get("https://github.com"+directory+"/blob/master/"+filename)
-    return page.status_code!=404
-
+    return page.status_code != 404
 
 def write_complete_timeline(bug_time = 14, filename = "ApacheGithubLinks.txt", include_release_date = True):
     # for each project in the file in the main directory (by default "ApacheGithubLinks.txt") writes per release in
@@ -536,5 +454,3 @@ def dependency_interpreter(filename, directory):
                      "output_interpreted.txt")
         apache_count = 0
         apache_commons_count = 0
-
-
