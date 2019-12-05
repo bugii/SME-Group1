@@ -8,9 +8,69 @@
 
 ### Goals
 
-1. Research questions
+RQ1:  How does the usage of dependencies correlate with code destabilization, as measured by the amount of issues and bugs after a project release?
 
 ### Part 1: Traditional Ecosystems
+
+#### Introduction to Maven and Gradle
+
+The Gradle Build Tool and Apache Maven are some of the more well-known software project management tools. They are, amongst other things, managing project dependencies. Gradle stores its dependencies in a file named "build.gradle" in the main directory; Maven projects have a "pom.xml" file. Both files can be analyzed in order to extract the number of dependencies as well as several more details like version numbers. In our project, we focus exclusively on projects that have one of these files in the main directory.
+
+#### Hypotheses and Methodology
+
+In order to answer RQ1, we intended to analyze Maven and Gradle projects by fetching the number of dependencies over the project's respective lifespan, cross-match the dependencies with the releases of such a project and then fetch the number of bugs in the weeks following the release. We hypothesize that having more dependencies results in more bugs as well; and since dependencies are often added to projects with a care-free attitude, it seems important to understand how to add dependencies responsibly.
+
+We proceeded to write a python script that would allow us to automatically perform the aforementioned tasks by scanning the Apache ecosystem on Github. Specifically, our script works the following way:
+
+Identification of suitable projects -> Cloning into a local repository -> Creation of dependency timeline via checkout of the dependency file -> Creation of release timeline -> Fetching of bug data -> Merge available data into a single .txt file -> Clean-up of data, clearing folders
+
+#### Data mining
+
+The identification of suitable projects is done via repeated Github requests. Through string slicing, a list of projects is compiled from the response and then pre-checked for the existence of either a "build.gradle" or a "pom.xml" in its main directory.
+
+The script clones the Github projects one by one via command line calls. Before cloning, the folder is being cleared such that disk space does not run out in the process.
+
+Via repeated git checkout commands, the dependency files or each project are sequentially downloaded, and their dependencies stored (with their dates included).
+
+All releases of a project are fetched from Github via URL request and subsequent string analysis.
+
+Based on the releases, requests are sent to Jira, an online project management tool. The number of bug entries is fetched, as per standard the number of bugs up to two weeks after the release date. Note that not all projects have associated Jira pages and therefor, our script fails to provide a bug number.
+
+From the available data up to this point, a cumulative output is created and written into a .txt file. This output may be further analyzed and interpreted by our script (to gain more information about the type of dependencies per project) or written into excel files for further processing.
+
+### How to use the script
+
+In order to use the script, the following libraries have to be installed:
+
+- requests
+- bs4
+- openpyxl
+
+Depending on the python version, one of the following commands can be used for the installation:
+
+```shell script
+py -m pip install requests
+```
+
+or, alternatively
+
+```shell script
+pip install requests
+```
+
+Our script can be operated from "main.py". Open the file in an IDE of your choice. The following functions (from "functions.py") may be used:
+
+| Command | Description | Arguments |
+|------------|-------------|------|
+| clear_main | Clears all files and folders | List with file and folder names |
+| generate_Apache_link_list | Creates a .txt file with links to Apache projects on Github | Integer designating the number of pages to be fetched |
+| write_dependency_timelines | Clones all repositories one by one and writes their dependencies into a .txt file in the dependency folder | Filename and directory of the Apache link .txt, the maximum number of repositories to be downloaded and a boolean designating whether the dependencies should be spelled out |
+| write_release_timelines | Fetches the releases for each project in the Apache link .txt | Filename and directory |
+| write_complete_timeline | Crunches all available data into a single file and adds the number of bugs found on Jira | Filename, time period for which to fetch the number of bugs per release (set to 14 days by default) and whether or not to include the release dates in the output file |
+| clean_up | Cleans a .txt file such that only complete (as in: contain a dependency and a bug number) lines remain | Filename, directory and a boolean designating whether the project names should be included |
+| dependency_interpreter | For a given file with spelled out dependencies, fetches the number of dependencies with certain properties (see comments in "functions.py") | Filename and directory |
+| convert_to_excel | Converts a given file to excel | Filename and boolean as to whether the date should be converted to an integer for easier sorting |
+| median_calc | Supplementary function to calculate the median of the number of dependencies over the lifespan of a project | Filename |
 
 ### Part 2: Microservices
 
