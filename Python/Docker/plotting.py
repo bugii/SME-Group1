@@ -43,7 +43,7 @@ for folder in os.listdir('repositories'):
 Last updated
 '''
 
-df = pd.DataFrame(projects)
+df = pd.DataFrame(projects).head(1200)
 df['year'] = df['updated'].dt.year
 df = pd.melt(df, id_vars=['year'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
 g = sns.FacetGrid(df, row='variable', sharey=False, aspect=1.5)
@@ -56,7 +56,7 @@ g.savefig('results/last_updated.png')
 Influence of language
 '''
 
-df2 = pd.DataFrame(projects)
+df2 = pd.DataFrame(projects).head(1200)
 df2['year'] = df2['updated'].dt.year
 # print(df2['language'].value_counts())
 languages = ['JavaScript', 'PHP', 'Java', 'Python']
@@ -72,7 +72,7 @@ g2.savefig('results/language.png')
 Project Duration
 '''
 
-df3 = pd.DataFrame(projects)
+df3 = pd.DataFrame(projects).head(1200)
 df3['duration'] = df3['duration'].dt.days
 df3 = pd.melt(df3, id_vars=['duration'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
 g3 = sns.lmplot(data=df3, x='duration', y='value', row='variable', sharey=False, palette="Set3", aspect=1.5)
@@ -87,7 +87,7 @@ g3.savefig('results/duration.png')
 Contributors
 '''
 
-df4 = pd.DataFrame(projects)
+df4 = pd.DataFrame(projects).head(1200)
 df4 = pd.melt(df4, id_vars=['contributors'], value_vars=['nr microservices', 'size', 'average size', 'depends on'])
 g4 = sns.lmplot(data=df4, x='contributors', y='value', row='variable', sharey=False, palette="Set3", aspect=1.5)
 
