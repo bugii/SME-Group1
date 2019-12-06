@@ -70,13 +70,16 @@ def date_normalization(date):
         output = output + date[16:18]
     return(output)
 
-def date1_greater_date2(date1, date2):
+def date1_greater_date2(date1, date2, or_equal=False):
     # takes 2019-11-19, 2018-12-12 and compares the raw numbers for size; here, the first on is greater, so the function
     # returns True.
     try:
         date1 = date1[:4] + date1[5:7] + date1[8:]
         date2 = date2[:4] + date2[5:7] + date2[8:]
-        return int(date1)>int(date2)
+        if not or_equal:
+            return int(date1) > int(date2)
+        else:
+            return int(date1) >= int(date2)
     except:
         print("Invalid date comparison.")
         return False

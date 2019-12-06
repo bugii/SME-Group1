@@ -1,6 +1,7 @@
 import functions
 import excelconvert
 import MedianCalc
+import Accumulation
 
 # REQUIREMENTS
 # I installed the "requests" library and "bs4" library via the following command line input: "py -m pip install bs4" and
@@ -36,7 +37,13 @@ functions.clean_up("complete.txt", "Timelines/", include_names=True)
 
 # The output can be converted into an excel sheet for further usage. This only works for non-interpreted output
 # (output_clean.txt).
-excelconvert.convert_to_excel("output_clean.txt", date_as_int=True)
+#excelconvert.convert_to_excel("output_clean.txt", date_as_int=True)
 
 # List of all median dependency numbers
 print(MedianCalc.median_calc("output_clean.txt"))
+
+# Accumulates the output
+Accumulation.accumulation_by_release("output_clean.txt", "")
+
+# Writes the accumulated output into excel_output.xlsx in the Excel folder.
+excelconvert.convert_to_excel("output_accumulation.txt", date_as_int=True)
