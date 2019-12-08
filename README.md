@@ -9,6 +9,8 @@
 ### Goals
 
 RQ1:  How does the usage of dependencies correlate with code destabilization, as measured by the amount of issues and bugs after a project release?
+RQ2: Do newer (by looking at latest commit) projects have more and smaller (in terms of megabyte of the underlying container) microservices?
+RQ3: With increasing number of microservices in a project, how do the dependencies between them evolve?
 
 ### Part 1: Traditional Ecosystems
 
@@ -92,22 +94,7 @@ Docker compose files contain a lot of valuable information and is the main resou
 #### Methodology
 ##### Fetching projects
 
-Note: Before running the script make sure that you have all the dependencies installed. Do:
-
-```shell script
-pip install -r Python/Docker/requirements.txt
-```
-
-The data can be fetched using the following command:
-
-```shell script
-python Python/Docker/repo_fetching.py
-```
-
-Note, that you change the API_KEY variable to one of your own Github API keys before running the script and that
-you have all dependencies installed specified in the requirements.txt file.
-
-In a bit more detail, this script queries the Github API for repositories containing docker-compose.yml files in their
+With the help of a python script we query the Github API for repositories containing docker-compose.yml files in their
 root directory. This makes further analysis easier since you don't have to search for the file inside the repository.
 Furthermore, out of all the matching repositories, only the first 1000 were downloaded and will be analyzed in the next
 steps. 
@@ -156,16 +143,11 @@ docker images can be changed by creating the following file:
     "data-root": "/mnt/hdd/docker"
 }
 ```
+
 Note however, that for the amount of projects we analyzed, 2TB of storage was not enough and thus we had to
 clean up our images after some time in order to be able to continue the analysis.
 
-After that, we ran the analysis with the following command:
-
-```shell script
-python Python/Docker/get_services_size.py
-```
-
-This script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information.
+Our script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information.
 What is most important in our case, are the fields "image", "build", and "depends_on" inside "services". A complete specification of the docker-compose file can be
 found [here](https://docs.docker.com/compose/). An example of such a file looks like this:
 
@@ -213,14 +195,6 @@ with the name and its size. Therefore the number of microservices can be easily 
 To get the dependencies between microservices, we counted all the entries in "depends_on" fields inside each microservice. It should be noted
 that these dependencies are of static nature.
 
-Note: In order to be able to run the script, it may be required to allow docker to run commands as a non-root user. In
-Linux this is done via the following commands:
-
-```shell script
-sudo groupadd docker
-sudo usermod -aG docker $USER
-```
-
 #### Data
 Once both of the above script had been run, for each project there was a pickled python object stored on disk.
 The project object has the following properties:
@@ -239,12 +213,23 @@ The project object has the following properties:
 
 #### Results
 
-<img alt="Last updated" src="Python/Docker/results/last_updated.png" width="400" />
-<img alt="Duration" src="Python/Docker/results/duration.png" width="400" />
-<img alt="Language" src="Python/Docker/results/language.png" width="400" />
-<img alt="Contributors" src="Python/Docker/results/contributors.png" width="400" />
+RQ2:
 
-#### Discussion
+<img alt="Last updated" src="Python/Docker/results/last_updated_micro.png" width="400" />
+<img alt="Last updated lang" src="Python/Docker/results/last_updated_lang.png" width="400" />
+
+In addition I observed the duration, not only the last updated timestamp.
+
+<img alt="Duration" src="Python/Docker/results/duration_avg_size.png" width="400" />
+
+Also, contributors were analysed, however nothing interesting was the result. A better measure
+would be to a metric for effort, so I also had a look at commits
+
+<img alt="Duration" src="Python/Docker/results/commits_size_deps.png" width="400" />
+
+RQ3: 
+
+<img alt="Duration" src="Python/Docker/results/mirco_vs_deps.png" width="400" />
 
 ### Part 3: Visualization
 
