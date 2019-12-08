@@ -77,7 +77,7 @@ def get_microservice_size(details, project_dir_lvl2, project_dir_lvl1):
             TypeError, AttributeError, requests.exceptions.HTTPError, requests.exceptions.ReadTimeout,
             FileNotFoundError) as e:
         print('Deleted:', project_dir_lvl2, e)
-        # delete entire project if errors occured
+        # delete entire project if errors occurred
         shutil.rmtree(project_dir_lvl1)
         return -1
 
@@ -174,4 +174,5 @@ if __name__ == '__main__':
             print('Microservices:', obj.microservices)
             print('Dependencies:', obj.depends_on)
             print('Language:', obj.language)
-            print('Contributors:', len(obj.contributors))
+            print('Contributors:', obj.contributors)
+            print('Commits:', obj.commits)
