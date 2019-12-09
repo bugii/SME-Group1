@@ -21,7 +21,7 @@ you have all dependencies installed specified in the requirements.txt file.
 
 If you don't have enough space on your hard disk or in case you want to use an external disk, follow the next step.
 On Ubuntu, the default location for storing docker images can be changed by creating the following file:
-/etc/docker/deamon.json. Put into the file:
+/etc/docker/deamon.json. Add the following code snippet to the file, where "/mnt/hdd/docker" is replaced by your destination path:
 
 ```json
 {
