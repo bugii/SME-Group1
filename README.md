@@ -197,7 +197,7 @@ Once both of the above script had been run, for each project there was a pickled
 
 #### Results
 
-All plots can be found here: 
+The following plots are only a selection of all the created ones. All plots can be found [here](Python/Docker/results).
 
 In order to answer RQ2, we looked at the "last updated" timestamp of the Github repository. We found that there is only a slight trend towards newer projects having more microservices. However, there are more outliers on the upper bound in the year 2019. It should be noted that the plots for project size, average container size, and number of dependencies yield very similar result.
 
