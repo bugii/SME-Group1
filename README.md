@@ -235,7 +235,7 @@ The analysis of the data gave us this result:
 
 And the reviews provided us this 1 to 5 based average chart:
 
-<img alt="Reviews average" src="/MicroDepGraph/Average chart.png" width="800" />
+<img alt="Reviews average" src="/MicroDepGraph/Average chart.png" width="500" />
 
 
 #### Results
@@ -258,11 +258,11 @@ Based on this the 17 projects we analyzed (including the not reviewed as not use
 
 (*) We included the project lelylan in the Useful categorie even though it has a average that would categorize it as "Not useful" cause this average is based on the project being similar to the original architecture, but in this case the output of the tool is much more detailed and useful than the original propossed
 
-###### Comments before final results
+##### Comments before final results
 
 Maybe the tool would have worked on more projects and gave useful output, but the amount of projects we could analyze was quite small and we will base the results on the data that we could gather.
 
-###### Final Results
+##### Final Results
 
 So based on the results given we can say that at this moment at least with this tool it is not possible to for most projects we can have a architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
 
