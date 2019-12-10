@@ -235,10 +235,37 @@ The analysis of the data gave us this result:
 
 And the reviews provided us this 1 to 5 based average chart:
 
-<img alt="Reviews average" src="/MicroDepGraph/Data analysis.PNG" width="800" />
+<img alt="Reviews average" src="/MicroDepGraph/Average chart.png" width="800" />
 
 
 #### Results
+
+##### Data results
+
+So to answer the question we want to know if the tool is useful to understand the architecture of the project, for this we will mostly base our results on the review part, because the main point is if people can understand the tool output as the architecture. For this we got 3 categories based on the results of the interviews: 
+
+1. The projects that have an average below 3 are the not useful projects, this projects when analyzed with the tool we don't get an output that can help understand the architecture of the project
+2. The projects with average between 3 and 4 we understand as projects that have an useful output on the tool but we don't fully get the architecture if we don't look at the propossed one, being this the "help to understand" projects.
+3. The projects with an average over 4 we understand have an output good enough to understand the project architecture by itself without the need to look at the propossed architecture. This are the "useful" ones.
+
+Based on this the 17 projects we analyzed (including the not reviewed as not useful) would give this results: (*) 
+
+| Categorie | Number of projects |
+|-----------|--------------------|
+| Not useful | 10 |
+| Help to understand | 4 |
+| Useful | 3 |
+
+(*) We included the project lelylan in the Useful categorie even though it has a average that would categorize it as "Not useful" cause this average is based on the project being similar to the original architecture, but in this case the output of the tool is much more detailed and useful than the original propossed
+
+###### Comments before final results
+
+Maybe the tool would have worked on more projects and gave useful output, but the amount of projects we could analyze was quite small and we will base the results on the data that we could gather.
+
+###### Final Results
+
+So based on the results given we can say that at this moment at least with this tool it is not possible to for most projects we can have a architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
+
 
 
 
