@@ -205,7 +205,7 @@ To answer RQ3, a scatter plot was created to illustrate the relationship between
 
 #### Introduction to MicroDepGraph
 
-For ansewering RQ4 we focused on using the tool MicroDepGraph, this tool when used on a java project based on docker will present an output representing the architecture of the project based on the dependencies the project has.
+For answering RQ4 we focused on using the tool MicroDepGraph, this tool when used on a java project based on docker will present an output representing the architecture of the project based on the dependencies the project has.
 
 #### Methodology
 
@@ -248,7 +248,7 @@ So to answer the question we want to know if the tool is useful to understand th
 2. The projects with average between 3 and 4 we understand as projects that have an useful output on the tool but we don't fully get the architecture if we don't look at the propossed one, being this the "help to understand" projects.
 3. The projects with an average over 4 we understand have an output good enough to understand the project architecture by itself without the need to look at the propossed architecture. This are the "useful" ones.
 
-Based on this the 17 projects we analyzed (including the not reviewed as not useful) would give this results: (*) 
+Based on this the 17 projects we analyzed (including the not reviewed as not useful) would give this results: (1) 
 
 | Categorie | Number of projects |
 |-----------|--------------------|
@@ -256,7 +256,7 @@ Based on this the 17 projects we analyzed (including the not reviewed as not use
 | Help to understand | 4 |
 | Useful | 3 |
 
-(*) We included the project lelylan in the Useful categorie even though it has a average that would categorize it as "Not useful" cause this average is based on the project being similar to the original architecture, but in this case the output of the tool is much more detailed and useful than the original propossed
+(1) We included the project lelylan in the Useful categorie even though it has a average that would categorize it as "Not useful" cause this average is based on the project being similar to the original architecture, but in this case the output of the tool is much more detailed and useful than the original propossed
 
 ##### Comments before final results
 
@@ -264,7 +264,7 @@ Maybe the tool would have worked on more projects and gave useful output, but th
 
 ##### Final Results
 
-So based on the results given we can say that at this moment at least with this tool it is not possible to for most projects we can have a architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
+So, based on the results given we can say that at this moment at least with this tool it is not possible to for most projects we can have an architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
 
 
 
