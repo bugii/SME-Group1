@@ -203,4 +203,42 @@ To answer RQ3, a scatter plot was created to illustrate the relationship between
 
 ### Part 3: Visualization
 
+#### Introduction to MicroDepGraph
+
+For ansewering RQ4 we focused on using the tool MicroDepGraph, this tool when used on a java project based on docker will present an output representing the architecture of the project based on the dependencies the project has.
+
+#### Methodology
+
+##### Searching for projects
+
+The first hard task we encountered was to find projects that we could run on the tool and that had a propossed architecture by the developer of the project so we could compare the tool output.
+
+For this we used [the following query](https://github.com/search?l=Java&p=14&q=java+docker+microservices&type=Repositories) which presented us 14 pages of github projects, we manually analyzed the repositories in order to find some information related to the architecture of the project.
+
+With the propossed way to find projects we finally ended having 17 projects that we could run on the tool and had information related to the architecture. But for this projects we only could review 12 of them cause 5 gave an empty graph as output and another one is not useful at all cause it has too many nodes and relations.
+
+##### Analysing/Reviewing
+
+To analyze the data we focused on the information the graph presented (nodes,relations,names).
+
+Since we want to know if the tool output is useful for understanding the architecture we asked computer science related people (mostly students) and we presented this 
+> Hi, do you know about computer science? Then we need your help for a university project. 
+>We are testing a tool that when used on a microservice based java project gives an image showing what is supposed to be the architecture of it based on its dependencies.
+>For this test we are going to show you 12 pairs of images and ask you how similar/ how representative (from 1 to 5) is the second image (the tool result) from the first (proposed architecture).
+>with the 12 pairs of images (the propossed architecture and the output of the tool)
+
+#### Data
+
+The analysis of the data gave us this result:
+
+<img alt="Output analyzed" src="/MicroDepGraph/Data analysis.PNG" width="400" />
+
+And the reviews provided us this 1 to 5 based average chart:
+
+<img alt="Reviews average" src="/MicroDepGraph/Data analysis.PNG" width="400" />
+
+
+#### Results
+
+
 
