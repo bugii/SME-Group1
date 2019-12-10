@@ -264,7 +264,7 @@ Maybe the tool would have worked on more projects and gave useful output, but th
 
 ##### Final Results
 
-So, based on the results given we can say that at this moment at least with this tool it is not possible to for most projects we can have an architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
+So, based on the results given we can say that at this moment at least with this tool it is not possible for most projects to have an architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
 
 
 
