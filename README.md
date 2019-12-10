@@ -231,11 +231,11 @@ Since we want to know if the tool output is useful for understanding the archite
 
 The analysis of the data gave us this result:
 
-<img alt="Output analyzed" src="/MicroDepGraph/Data analysis.PNG" width="400" />
+<img alt="Output analyzed" src="/MicroDepGraph/Data analysis.PNG" width="800" />
 
 And the reviews provided us this 1 to 5 based average chart:
 
-<img alt="Reviews average" src="/MicroDepGraph/Data analysis.PNG" width="400" />
+<img alt="Reviews average" src="/MicroDepGraph/Data analysis.PNG" width="800" />
 
 
 #### Results
