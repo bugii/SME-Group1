@@ -45,8 +45,8 @@ From the available data up to this point, a cumulative output is created and wri
 
 Of the first 100 repositories, 37 were usable in terms of dependency files, releases on Github and bug reports on Jira. A total of 344 data tuples of the format "dependencies, release_date, bugs" were extracted and plotted. Figure 1 shows all tuples sorted by the number of dependencies (highest first), including linear trend lines. Figure 2 shows all tuples cumulated over time. Note that for presentation purposes, the time scale is not linear; it extends from 2014 to 2019 with comparatively few data points in the first years.
 
-<img alt="Duration" src="Python/Web Scraping/Figures/Figure1.png" />
-<img alt="Duration" src="Python/Web Scraping/Figures/Figure2.png" width="800" />
+<img alt="Duration" src="Python/Web Scraping/Figures/Figure1.png" width="900" />
+<img alt="Duration" src="Python/Web Scraping/Figures/Figure2.png" width="900" />
 
 #### Discussion
 
