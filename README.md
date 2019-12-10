@@ -52,7 +52,7 @@ Of the first 100 repositories, 37 were usable in terms of dependency files, rele
 
 Given Figure 1, it appears that the number of dependencies prior to a release does not affect the number of bugs in a 2-week time span after said release. A linear trend might become more obvious with more data points, but given that the trend line is almost horizontal, we are confident in saying that dependencies do not lead to bugs. Therefor, RQ1 can be answered simply: no correlation between dependencies and bugs could be detected.
 
-Regarding Figure 2, it would appear that the number of dependencies and bugs grow over time. Given that the time frame extends over 5 years in this particular figure and the datapoints represent cumulated numbers, we interpret this as the Apache ecosystem growing in size, which would obviously lead to more dependencies and bugs as a result. It is important to note that Figure 2 does not imply a link between dependencies and bugs, since the ecosystem size confounds the results.
+Regarding Figure 2, it would appear that the number of dependencies and bugs grow over time. Given that the time frame extends over 5 years in this particular figure and the datapoints represent cumulated numbers, we interpret this as the Apache ecosystem growing in size and numbers, which would obviously lead to more dependencies and bugs as a result. It is important to note that Figure 2 does not imply a link between dependencies and bugs, since the number of active projects in the ecosystem confounds the results.
 
 Though there seems to be no correlation between dependencies and bugs, more research might bring in additional results.
 
