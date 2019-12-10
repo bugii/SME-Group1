@@ -1,4 +1,4 @@
-### How to use the script
+# How to use the script
 
 In order to use the script, the following libraries have to be installed:
 
