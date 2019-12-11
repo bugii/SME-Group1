@@ -183,23 +183,23 @@ The following plots are only a selection of all the created ones. All plots can 
 
 In order to answer RQ2, we looked at the "last updated" timestamp of the Github repository. We found that there is only a slight trend towards newer projects having more microservices. However, there are more outliers on the upper bound in the year 2019. In that case, analyzing more projects could help to better understand whether those projects really are outliers. It should be noted that the plots for project size, average container size, and number of dependencies yield very similar result.
 
-<img alt="Last updated" src="Python/Docker/results/last_updated_micro.png" width="400" />
+<img alt="Last updated" src="Python/Docker compose/results/last_updated_micro.png" width="400" />
 
 A bit clearer results could be obtained by controlling for language: we observed that java had the most number of microservices and dependencies between microservices compared to all other chosen languages. We assume that this is the case because java is an established language and therefore often used in enterprise. Surprisingly, the same argument cannot be used for C#, which we expected to be used largely in enterprise as well.
 
-<img alt="Last updated lang" src="Python/Docker/results/last_updated_lang.png" width="400" />
+<img alt="Last updated lang" src="Python/Docker compose/results/last_updated_lang.png" width="400" />
 
 In addition to the "last updated" timestamp, the same analysis was performed for the project duration . Intuitively, it makes a lot of sense that projects with longer developement durations tend to have more microservices and dependencies. Also, the size of both the entire project and the average container size grows with longer project duration. The following figure illustrates the relationship between the average container size and the project duration. Very similar findings were found for the other 3 values (microservices, dependencies and total size).
 
-<img alt="Duration average size" src="Python/Docker/results/duration_avg_size.png" width="400" />
+<img alt="Duration average size" src="Python/Docker compose/results/duration_avg_size.png" width="400" />
 
 Also, contributors were analysed, however nothing interesting resulted. Looking at a measure that describes effort, such as commits, was more interesting. It seems that there is a trend for the project size to increase whereas dependencies remain more or less constant. It seems reasonable to us that dependencies are not dependent on the number of commits. The project architecture is often times defined in an early stage and later commits mainly add functionality to existing services. 
 
-<img alt="Duration commits" src="Python/Docker/results/commits_size_deps.png" width="400" />
+<img alt="Duration commits" src="Python/Docker compose/results/commits_size_deps.png" width="400" />
 
 To answer RQ3, the following plot illustrates the relationship between the number of microservices in a project and the total dependencies between them. Against our expectations, there seems to be a more or less linear relationship between the two factors, if any. We expected the relationship to be exponential.
 
-<img alt="Duration" src="Python/Docker/results/mirco_vs_deps.png" width="400" />
+<img alt="Duration" src="Python/Docker compose/results/mirco_vs_deps.png" width="400" />
 
 ### Part 3: Visualization
 
