@@ -61,7 +61,7 @@ Though there seems to be no correlation between dependencies and bugs, more rese
 
 #### Introduction to Docker and docker compose files
 
-Docker allow a user to create containers. Containers are self-contained, standalone bundles of software which are run in a closed a environment. Often Docker is compared to a Virtual Machine (VM), inspite of being implemented differently: Instead of allocating resources to each Virtual Machine and not sharing those across others, Docker containers run in the same operating system as its host. This way different containers can have access to a lot of the operating system resources, which leads to very lightweight containers. Nevertheless containers come with all they need, the app itself, all the required binaries and libraries. As a result, every computer with Docker installed is able to run those containers without any further configuration. This technology facilitates the deployment process drastically since it is ensured that containers run on every Docker client regardless of their underlying architecture.
+Docker is a tool to create and run so-called containers. Containers are self-contained, standalone bundles of software which are run in a closed a environment. Often Docker is compared to a Virtual Machine (VM). While they do have some similarities, they are implemented quite differently: Instead of allocating resources to a Virtual Machine and not sharing those across other VMs, Docker containers run in the same operating system as its host. This way different containers can have access to a lot of the operating system resources, which leads to very lightweight containers. Despite being small in size, containers come with all they need: the app itself and all the required binaries and libraries. As a result, every computer with Docker installed is able to run those containers without any further configuration. This technology facilitates the deployment process drastically since it is ensured that containers run on every Docker client regardless of their underlying architecture.
 
 To take it a step further, consider a system with many different containers and maybe even multiple instances of all of them, running them all manually can be very tedious. This is where a docker compose file comes into play. It allows to give all the required instructions in a single file. This file can be run with a single command and starts up all the required containers automatically. 
 
@@ -102,15 +102,15 @@ Those metrics were stored in pickle files, which is the python way of storing ob
 
 ##### Analyzing microservices
 
-After having downloaded all the lateste releases of the projects onto disk, the goal was to additionally get the following information for all projects:
+After having downloaded all the latest releases of all the projects onto disk, the goal was to additionally get the following information for all of them:
 
 1. Number of microservices
 2. Size of each microservice
 
 In order to get the actual size of all the microservices for each project, the docker image directory was changed to an
-external hard drive. That way we could prevent our machine from running out of memory and not delete all the images
-after each project, which would have been very inefficient in case of docker (because they use a hashing mechanism for images). On Ubuntu, the default location for storing docker images can be changed by creating the following file:
-/etc/docker/deamon.json. Add the following code snippet to the file, where "/mnt/hdd/docker" is replaced by your destination path:
+external hard drive. That way we could prevent our machine from running out of memory and we did not have to delete all the images
+after each project, which would have been very inefficient in case of docker (because internally it uses a hashing mechanism for efficien storage of docker images). On Ubuntu, the default location for storing docker images can be changed by creating the following file:
+/etc/docker/deamon.json. Add the following code snippet to the file, where "/mnt/hdd/docker" is replaced by your desired destination path:
 
 ```json
 {
@@ -118,9 +118,9 @@ after each project, which would have been very inefficient in case of docker (be
 }
 ```
 
-Note however, that for the amount of projects we analyzed, 2TB of storage was not enough and thus we had to clean up our images after some time in order to be able to continue the analysis.
+Note however, that for the amount of projects we analyzed, 2TB of storage was not enough and thus we had to clean up our docker images after some time in order to be able to continue the analysis.
 
-Our script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information we require.
+Our script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information we need.
 What is most important in our case are the fields "image", "build", and "depends_on" inside "services". A complete specification of the docker-compose file can be found [here](https://docs.docker.com/compose/). An example of such a file looks like this:
 
 ```yaml
@@ -149,17 +149,16 @@ To obtain the correct image size, we distinguish the following cases:
    2. No subfields: Build the image located at "build"
 
 During this process, one can encounter many different errors. We found the following reasons for errors that occurred in our dataset:
-1. Private image, cannot download
+1. Private image -> cannot be download
 2. Error during building
 3. Image cannot be found
 4. Variables inside path names (variables are specified in '{}')
 5. No build or image was specified for a microservice
 6. Could not download image (HTTP Error)
 
-In all of the above cases, a value of -1 was returned from the get_service_size() function. Whenever there was a -1 response for at least one microservice in a project, the entire project was not considered for further analysis and was deleted. Consequently, we only considered project with none of the above errors.
+In all of the above cases, a value of -1 was returned from the get_service_size() function. Whenever there was a -1 response for at least one microservice in a project, the entire project was not considered for further analysis and was therefore deleted. Consequently, we only considered project with none of the above errors.
 
-For building and pulling images [docker-py](https://github.com/docker/docker-py) was used. Both the pull and build functions return
-images which have a size attribute. For each service listed, it was stored inside the pickled project object (inside the microservices field)  with the name and its size. Therefore, the number of microservices can be easily obtained by checking the length of this list.
+For building and pulling images [docker-py](https://github.com/docker/docker-py), which is a python wrapper for docker, was used. Both the pull and build functions return images which in turn have a size attribute. For each service listed, it was stored inside the pickled project object (inside the microservices field)  with the name and its size. Therefore, the number of microservices can be easily obtained by checking the length of this list.
 
 To get the dependencies between microservices, we counted all the entries in "depends_on" fields inside each microservice. It should be noted that these dependencies are of static nature. Further research could also analyze a more dynamic view of the dependencies and compare them to our findings.
 
@@ -176,28 +175,29 @@ Once both of the above script had been run, for each project there was a pickled
 | depends_on | Number of dependencies of all microservices combined | int |  
 | language | Main language used in the project | string |
 | contributors | Number of contributors to the project | int |
+| commits | Number of commits in the project (not counting merge commits) | int |
 
 #### Results
 
 The following plots are only a selection of all the created ones. All plots can be found [here](Python/Docker/results).
 
-In order to answer RQ2, we looked at the "last updated" timestamp of the Github repository. We found that there is only a slight trend towards newer projects having more microservices. However, there are more outliers on the upper bound in the year 2019. It should be noted that the plots for project size, average container size, and number of dependencies yield very similar result.
+In order to answer RQ2, we looked at the "last updated" timestamp of the Github repository. We found that there is only a slight trend towards newer projects having more microservices. However, there are more outliers on the upper bound in the year 2019. In that case, analyzing more projects could help to better understand whether those projects really are outliers. It should be noted that the plots for project size, average container size, and number of dependencies yield very similar result.
 
 <img alt="Last updated" src="Python/Docker/results/last_updated_micro.png" width="400" />
 
-However, if we control for language as well, we observed that java had the most number of microservices and dependencies between them compared to all other chosen languages. We assume that this is the case because java is an established language and therefore often used in enterprise. Surprisingly, the same argument cannot be used for C#, which we expect to be used largely in enterprise as well.
+A bit clearer results could be obtained by controlling for language: we observed that java had the most number of microservices and dependencies between microservices compared to all other chosen languages. We assume that this is the case because java is an established language and therefore often used in enterprise. Surprisingly, the same argument cannot be used for C#, which we expected to be used largely in enterprise as well.
 
 <img alt="Last updated lang" src="Python/Docker/results/last_updated_lang.png" width="400" />
 
-In addition I observed the duration, not only the last updated timestamp. Intuitively, it makes a lot of sense that projects with longer developement durations tend to have more microservices and dependencies. Also, the size of both the entire project and the average container size grows with longer project duration. The following figure illustrates the relationship between the average container size and the project duration. Very similar findings were found for the other 3 values (microservices, dependencies and total size).
+In addition to the "last updated" timestamp, the same analysis was performed for the project duration . Intuitively, it makes a lot of sense that projects with longer developement durations tend to have more microservices and dependencies. Also, the size of both the entire project and the average container size grows with longer project duration. The following figure illustrates the relationship between the average container size and the project duration. Very similar findings were found for the other 3 values (microservices, dependencies and total size).
 
 <img alt="Duration average size" src="Python/Docker/results/duration_avg_size.png" width="400" />
 
-Also, contributors were analysed, however nothing interesting was the result. Looking at a measure that describes effort, such as commits, was more interesting. It seems that there is a trend for project size to go up but dependencies remaining constant. It seems reasonable to us that dependencies are not dependent on the number of commits. The project architecture seems to be defined in an early stage and later commits mainly add functionality to existing containers. 
+Also, contributors were analysed, however nothing interesting resulted. Looking at a measure that describes effort, such as commits, was more interesting. It seems that there is a trend for the project size to increase whereas dependencies remain more or less constant. It seems reasonable to us that dependencies are not dependent on the number of commits. The project architecture is often times defined in an early stage and later commits mainly add functionality to existing services. 
 
 <img alt="Duration commits" src="Python/Docker/results/commits_size_deps.png" width="400" />
 
-To answer RQ3, a scatter plot was created to illustrate the relationship between the number of microservices in a project and the total dependencies between them. Against our expectations, there seems to be a more or less linear relationship between the two factors. 
+To answer RQ3, the following plot illustrates the relationship between the number of microservices in a project and the total dependencies between them. Against our expectations, there seems to be a more or less linear relationship between the two factors, if any. We expected the relationship to be exponential.
 
 <img alt="Duration" src="Python/Docker/results/mirco_vs_deps.png" width="400" />
 

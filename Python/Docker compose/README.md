@@ -2,7 +2,7 @@
 
 ### Fetching projects from Github
 
-Note: Before running the script make sure that you have all the dependencies installed. Do:
+Note: Before running the script make sure that you have all the dependencies installed. Run the following:
 
 ```shell script
 pip install -r requirements.txt
@@ -14,8 +14,8 @@ The data can be fetched using the following command:
 python repo_fetching.py
 ```
 
-Note, that you change the API_KEY variable to one of your own Github API keys before running the script and that
-you have all dependencies installed specified in the requirements.txt file.
+Note that you should change the API_KEY variable to one of your own Github API keys before running the script and that
+you have all dependencies installed specified in the requirements.txt file. A Github API key can be generated in your account settings.
 
 ### Analyzing microservices
 
