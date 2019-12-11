@@ -250,13 +250,13 @@ So to answer the question we want to know if the tool is useful to understand th
 
 Based on this the 17 projects we analyzed (including the not reviewed as not useful) would give this results: (1) 
 
-| Categorie | Number of projects |
+| Category | Number of projects |
 |-----------|--------------------|
 | Not useful | 10 |
 | Help to understand | 4 |
 | Useful | 3 |
 
-(1) We included the project lelylan in the Useful categorie even though it has a average that would categorize it as "Not useful" cause this average is based on the project being similar to the original architecture, but in this case the output of the tool is much more detailed and useful than the original propossed
+(1) We included the project lelylan in the Useful category even though it has a average that would categorize it as "Not useful" cause this average is based on the project being similar to the original architecture, but in this case the output of the tool is much more detailed and useful than the original propossed
 
 ##### Comments before final results
 
