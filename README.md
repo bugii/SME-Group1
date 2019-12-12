@@ -13,7 +13,7 @@ The goal of this is project is to investigate how dependencies evolve in modern 
 - RQ3: With increasing number of microservices in a project, how do the dependencies between them evolve?
 - RQ4: Is it possible to deduct from its dependencies the architecture of a project with a microservice architectural style using a visualization tool?
 
-### RQ 1: Traditional Ecosystems
+### Part 1 (RQ 1): Traditional Ecosystems
 
 #### Introduction to Maven and Gradle
 
@@ -63,7 +63,7 @@ The same holds true for Figure 4: Despite a visible correlation between bugs and
 It is worth noting that Figures 3 and 4 use a smaller set of data points (145 compared to 344). In order to further clarify the situation, especially with regards to outliers, a larger data set might be helpful.
 
 
-### RQ 2 and RQ 3: Microservices
+### Part 2 (RQ 2 and 3): Microservices
 
 #### Introduction to Docker and docker compose files
 
@@ -207,7 +207,7 @@ To answer RQ3, the following plot illustrates the relationship between the numbe
 
 <img alt="Duration" src="Python/Docker compose/results/mirco_vs_deps.png" width="400" />
 
-### RQ 4: Visualization
+### Part 3 (RQ 4): Visualization
 
 #### Introduction to MicroDepGraph
 
