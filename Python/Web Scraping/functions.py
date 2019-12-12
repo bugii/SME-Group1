@@ -113,6 +113,15 @@ def clear_main(list_to_clear):
             print("Deleting: " + i)
             command_window("rm", "-rf", i)
 
+def create_main_structure():
+    # Creates the standard folder structure.
+    Folders = ["Dependencies", "Excel", "Logs", "Releases", "Repositories", "Timelines"]
+    for i in Folders:
+        try:
+            command_window("mkdir", i)
+        except:
+            print("Can't create folder, exists already.")
+
 def return_all_links(url):
     # As it says: Returns all links from a website. If the website does not respond with 200, it returns a list with 0 as
     # the only element.

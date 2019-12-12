@@ -8,6 +8,9 @@ import Accumulation
 # "py -m pip install requests"; alternatively, you can try "pip install bs4" and "pip install requests".
 # Furthermore, "openpyxl" is needed for excelconvert.
 
+# Create Folder structure
+functions.create_main_structure()
+
 # First, clear up all files and folders.
 # If you want to clear the output files, add "output_clean.txt" and "output_interpreted.txt" to the list.
 functions.clear_main(["f:Dependencies", "f:Logs", "f:Releases", "f:Repositories", "f:Timelines", "ApacheGithubLinks.txt"])
