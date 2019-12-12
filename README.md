@@ -47,6 +47,8 @@ Of the first 100 repositories, 37 were usable in terms of dependency files, rele
 
 <img alt="Duration" src="Python/Web Scraping/Figures/Figure1.png" width="600" />
 <img alt="Duration" src="Python/Web Scraping/Figures/Figure2.png" width="600" />
+<img alt="Duration" src="Python/Web Scraping/Figures/Figure3.png" width="600" />
+<img alt="Duration" src="Python/Web Scraping/Figures/Figure4.png" width="600" />
 
 #### Discussion
 
