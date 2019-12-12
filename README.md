@@ -43,7 +43,7 @@ From the available data up to this point, a cumulative output is created and wri
 
 #### Results
 
-Of the first 100 repositories, 37 were usable in terms of dependency files, releases on Github and bug reports on Jira. A total of 344 data tuples of the format "dependencies, release_date, bugs" were extracted and plotted. Figure 1 shows all tuples sorted by the number of dependencies (highest first), including linear trend lines. Figure 2 shows all tuples cumulated over time. Note that for presentation purposes, the time scale is not linear; it extends from 2014 to 2019 with comparatively few data points in the first years. Figures 3 and 4 show 145 data tuples, this time interpreted as dependencies on Apache projects (Figure 3) or Apache commons projects (Figure 4).
+Of the first 100 repositories, 37 were usable in terms of dependency files, releases on Github and bug reports on Jira. A total of 344 data tuples of the format "dependencies, release_date, bugs" were extracted and plotted. Figure 1 shows all tuples sorted by the number of dependencies (highest first), including linear trend lines. Figure 2 shows all tuples cumulated over time. Note that for presentation purposes, the time scale is not linear; it extends from 2014 to 2019 with comparatively few data points in the first years. Figures 3 and 4 show 145 data tuples each, this time dependencies on Apache projects (Figure 3) or Apache commons projects (Figure 4).
 
 <img alt="Duration" src="Python/Web Scraping/Figures/Figure1.png" width="600" />
 <img alt="Duration" src="Python/Web Scraping/Figures/Figure2.png" width="600" />
