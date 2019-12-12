@@ -8,12 +8,12 @@ Dependencies are a big part of current software as building everything from scra
 
 The goal of this is project is to investigate how dependencies evolve in modern ecosystems and affect their respective projects with a focus on the apache ecosystem, microservices projects, and visualization. We came up with the following research questions:
 
-- RQ1:  How does the usage of dependencies correlate with code destabilization, as measured by the amount of issues and bugs after a project release?
+- RQ1:  How does the usage of dependencies correlate with code destabilization, as measured by the amount of issues and bugs after a project release? Since dependencies are often added to projects with a care free attitude, it seems important to understand how to add dependencies responsibly.
 - RQ2: Do newer (by looking at latest commit) projects have more and smaller (in terms of megabyte of the underlying container) microservices?
 - RQ3: With increasing number of microservices in a project, how do the dependencies between them evolve?
 - RQ4: Is it possible to deduct from its dependencies the architecture of a project with a microservice architectural style using a visualization tool?
 
-### Part 1: Traditional Ecosystems
+### RQ 1: Traditional Ecosystems
 
 #### Introduction to Maven and Gradle
 
@@ -63,7 +63,7 @@ The same holds true for Figure 4: Despite a visible correlation between bugs and
 It is worth noting that Figures 3 and 4 use a smaller set of data points (145 compared to 344). In order to further clarify the situation, especially with regards to outliers, a larger data set might be helpful.
 
 
-### Part 2: Microservices
+### RQ 2 and RQ 3: Microservices
 
 #### Introduction to Docker and docker compose files
 
@@ -207,7 +207,7 @@ To answer RQ3, the following plot illustrates the relationship between the numbe
 
 <img alt="Duration" src="Python/Docker compose/results/mirco_vs_deps.png" width="400" />
 
-### Part 3: Visualization
+### RQ 4: Visualization
 
 #### Introduction to MicroDepGraph
 
