@@ -13,10 +13,10 @@ import Accumulation
 functions.clear_main(["f:Dependencies", "f:Logs", "f:Releases", "f:Repositories", "f:Timelines", "ApacheGithubLinks.txt"])
 
 # Here we scan Github for all Apache Source Projects.
-functions.generate_Apache_link_list(upper_boundary=10)
+functions.generate_Apache_link_list(upper_boundary=1)
 
 # Goes through the txt, clones all projects one by one and writes the dependency time line into "Dependencies"
-functions.write_dependency_timelines("ApacheGithubLinks.txt", "", MaxNumberOfClones=100, include_dependency_names=False)
+functions.write_dependency_timelines("ApacheGithubLinks.txt", "", MaxNumberOfClones=3, include_dependency_names=True)
 
 # Goes through the txt, writes the release time lines into "Releases"
 functions.write_release_timelines("ApacheGithubLinks.txt", "")
@@ -33,17 +33,13 @@ functions.clean_up("complete.txt", "Timelines/", include_names=True)
 # Interpretation: 10 dependencies, 5 are from Apache, 3 are Apache commons for the release from 2019-11-19; there
 # were 5 bugs afterwards (within bug_time, specified in write_complete_timeline); followed by the complete list of
 # dependencies, separated by comma.
-#functions.dependency_interpreter("output_clean.txt", "")
+functions.dependency_interpreter("output_clean.txt", "")
 
-# The output can be converted into an excel sheet for further usage. This only works for non-interpreted output
-# (output_clean.txt).
-#excelconvert.convert_to_excel("output_clean.txt", date_as_int=True)
+# The output can be converted into an excel sheet for further usage.
+excelconvert.convert_to_excel("output_interpreted.txt", date_as_int=True, interpreted=True)
 
-# List of all median dependency numbers
+# List of all median dependency numbers.
 print(MedianCalc.median_calc("output_clean.txt"))
 
-# Accumulates the output
+# Accumulates the output.
 Accumulation.accumulation_by_release("output_clean.txt", "")
-
-# Writes the accumulated output into excel_output.xlsx in the Excel folder.
-excelconvert.convert_to_excel("output_accumulation.txt", date_as_int=True)

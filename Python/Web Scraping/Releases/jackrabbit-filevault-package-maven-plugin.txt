@@ -1,5 +1,0 @@
-2019-07-16 : filevault-package-maven-plugin-1.0.4
-2018-08-31 : filevault-package-maven-plugin-1.0.3
-2018-08-30 : filevault-package-maven-plugin-1.0.2
-2017-12-14 : filevault-package-maven-plugin-1.0.1
-2017-10-24 : filevault-package-maven-plugin-1.0.0

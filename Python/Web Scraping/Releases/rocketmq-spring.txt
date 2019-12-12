@@ -1,5 +1,0 @@
-2019-11-12 : rocketmq-spring-all-2.0.4
-2019-05-31 : rocketmq-spring-all-2.0.3
-2019-03-11 : rocketmq-spring-all-2.0.2
-2019-01-18 : rocketmq-spring-all-2.0.1
-2018-12-07 : 2.0.0

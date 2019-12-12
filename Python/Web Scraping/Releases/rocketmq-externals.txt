@@ -1,5 +1,0 @@
-2017-08-22 : rocketmq-mysql-1.1.0
-2017-07-03 : rocketmq-mysql-1.0.0
-2017-06-15 : rocketmq-jms-1.0.0
-2017-06-15 : rocketmq-flume-1.0.0
-2017-06-15 : rocketmq-console-1.0.0

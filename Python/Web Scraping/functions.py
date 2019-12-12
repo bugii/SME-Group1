@@ -443,17 +443,18 @@ def dependency_interpreter(filename, directory):
     apache_count = 0
     apache_commons_count = 0
     for i in dep_list:
-        dep_line_list = i[i.rindex("::")+2:].split(",")
-        for j in dep_line_list:
-            if j not in dictionary:
-                dictionary[j] = []
-                dictionary[j].append(check_dependency_type(j, "apache"))
-                dictionary[j].append(check_dependency_type(j, "apache_commons"))
-            if dictionary[j][0]:
-                apache_count +=1
-            if dictionary[j][1]:
-                apache_commons_count +=1
-        write_to_txt(i[:i.index("::")+1] + str(apache_count) + ":" + str(apache_commons_count) + "::" + i[i.index("::")+2:],
-                     "output_interpreted.txt")
-        apache_count = 0
-        apache_commons_count = 0
+        if not i.startswith("/"):
+            dep_line_list = i[i.rindex("::")+2:].split(",")
+            for j in dep_line_list:
+                if j not in dictionary:
+                    dictionary[j] = []
+                    dictionary[j].append(check_dependency_type(j, "apache"))
+                    dictionary[j].append(check_dependency_type(j, "apache_commons"))
+                if dictionary[j][0]:
+                    apache_count +=1
+                if dictionary[j][1]:
+                    apache_commons_count +=1
+            write_to_txt(i[:i.index("::")+1] + str(apache_count) + ":" + str(apache_commons_count) + "::" + i[i.index("::")+2:],
+                         "output_interpreted.txt")
+            apache_count = 0
+            apache_commons_count = 0
