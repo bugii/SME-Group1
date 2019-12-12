@@ -9,8 +9,8 @@ Dependencies are a big part of current software as building everything from scra
 The goal of this is project is to investigate how dependencies evolve in modern ecosystems and affect their respective projects with a focus on the apache ecosystem, microservices projects, and visualization. We came up with the following research questions:
 
 - RQ1:  How does the usage of dependencies correlate with code destabilization, as measured by the amount of issues and bugs after a project release? Since dependencies are often added to projects with a care free attitude, it seems important to understand how to add dependencies responsibly.
-- RQ2: Do newer (by looking at latest commit) projects have more and smaller (in terms of megabyte of the underlying container) microservices?
-- RQ3: With increasing number of microservices in a project, how do the dependencies between them evolve?
+- RQ2: Do newer (by looking at latest commit) projects have more and smaller (in terms of megabyte of the underlying container) microservices? This is important to analyze since the main idea of the microservice approach is to have multiple small services. Observing the opposite could indicate that the architecture should be split up more and that there is a trend moving away from a true microservices architecture.
+- RQ3: With increasing number of microservices in a project, how do the dependencies between them evolve? With increase in dependencies between different microservices, updates should be made more carefully because other services depend on it. Also, it would underline the importance of visualisation tools (RQ4) in case there is an exponential relationship between the two, because remembering the real underlying architecture becomes almost impossible.
 - RQ4: Is it possible to deduct from its dependencies the architecture of a project with a microservice architectural style using a visualization tool?
 
 ### Part 1 (RQ 1): Traditional Ecosystems
