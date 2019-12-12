@@ -111,7 +111,10 @@ def clear_main(list_to_clear):
             clear_folder(i[2:])
         else:
             print("Deleting: " + i)
-            command_window("rm", "-rf", i)
+            try:
+                command_window("rm", "-rf", i)
+            except:
+                print("Can't delete "+ i)
 
 def create_main_structure():
     # Creates the standard folder structure.
