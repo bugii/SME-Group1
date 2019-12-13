@@ -108,15 +108,17 @@ Those metrics were stored in pickle files, which is the python way of storing ob
 
 ##### Analyzing microservices
 
-After having downloaded all the latest releases of all the projects onto disk, the goal was to additionally get the following information for all of them:
+It should be pointed out that there are two possible ways of analyzing dependencies for projects with a microservices architecture, namely either *statically* or *dynamically*. While the first one analyzes static configuration files, such as docker compose for instance, the latter looks at the system at runtime. Since in this project we performed a static analyis, it would be very interesting to see how a dynamic approach compares to our results.
+
+After having downloaded all the latest releases in the previous part, the goal was to additionally get the following information for all of them:
 
 1. Number of microservices
 2. Size of each microservice
+3. Dependencies between microservices
 
-In order to get the actual size of all the microservices for each project, the docker image directory was changed to an
-external hard drive. That way we could prevent our machine from running out of memory and we did not have to delete all the images
-after each project, which would have been very inefficient in case of docker (because internally it uses a hashing mechanism for efficien storage of docker images). On Ubuntu, the default location for storing docker images can be changed by creating the following file:
-/etc/docker/deamon.json. Add the following code snippet to the file, where "/mnt/hdd/docker" is replaced by your desired destination path:
+Here, we would like to point out that the size of a project does not necessarily correcty describe the project complexity because certain images might be simply bigger because of the underlying technology, not the code itself. In case of a dynamic analyis approach, there could be some other interesting indicators for complexity, such as number of API calls between the services for example. 
+
+In order to get the actual size of all the microservices for each project, the docker image directory was changed to an external hard drive. That way we could prevent our machine from running out of memory and we did not have to delete all the images after each project, which would have been very inefficient in case of docker (because internally it uses a hashing mechanism for efficien storage of docker images). On Ubuntu, the default location for storing docker images can be changed by creating the following file: /etc/docker/deamon.json. Add the following code snippet to the file, where "/mnt/hdd/docker" is replaced by your desired destination path:
 
 ```json
 {
@@ -126,8 +128,7 @@ after each project, which would have been very inefficient in case of docker (be
 
 Note however, that for the amount of projects we analyzed, 2TB of storage was not enough and thus we had to clean up our docker images after some time in order to be able to continue the analysis.
 
-Our script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information we need.
-What is most important in our case are the fields "image", "build", and "depends_on" inside "services". A complete specification of the docker-compose file can be found [here](https://docs.docker.com/compose/). An example of such a file looks like this:
+Our script runs an analysis on the docker-compose.yml file for each project. This file stores all the relevant information we need. What is most important in our case are the fields "image", "build", and "depends_on" inside "services". A complete specification of the docker-compose file can be found [here](https://docs.docker.com/compose/). An example of such a file looks like this:
 
 ```yaml
 version: '3'
@@ -166,10 +167,12 @@ In all of the above cases, a value of -1 was returned from the get_service_size(
 
 For building and pulling images [docker-py](https://github.com/docker/docker-py), which is a python wrapper for docker, was used. Both the pull and build functions return images which in turn have a size attribute. For each service listed, it was stored inside the pickled project object (inside the microservices field)  with the name and its size. Therefore, the number of microservices can be easily obtained by checking the length of this list.
 
-To get the dependencies between microservices, we counted all the entries in "depends_on" fields inside each microservice. It should be noted that these dependencies are of static nature. Further research could also analyze a more dynamic view of the dependencies and compare them to our findings.
+To get the dependencies between microservices, we counted all the entries in "depends_on" fields inside each microservice. It should be noted that these dependencies are of static nature. Further research could also analyze a more dynamic view of the dependencies and compare them to our findings. 
 
 #### Data
-Once both of the above script had been run, for each project there was a pickled python object stored on disk. The project object has the following properties:
+Out of the initially 6000 downloaded Github repositories, only 1626 were completely buildable, that is without any error occuring on any of the underlying microservices. This exteremely low ratio 27.1% was however expected from our side since similar results have been found for Helm Charts.
+
+For each project there was a pickled python object stored onto disk. The project object has the following properties:
 
 | Field Name | Description | Type |
 |------------|-------------|------|
@@ -191,7 +194,7 @@ In order to answer RQ2, we looked at the "last updated" timestamp of the Github 
 
 <img alt="Last updated" src="Python/Docker compose/results/last_updated_micro.png" width="400" />
 
-A bit clearer results could be obtained by controlling for language: we observed that java had the most number of microservices and dependencies between microservices compared to all other chosen languages. We assume that this is the case because java is an established language and therefore often used in enterprise. Surprisingly, the same argument cannot be used for C#, which we expected to be used largely in enterprise as well.
+A bit clearer results could be obtained by controlling for language: we observed that java had the most number of microservices and dependencies between microservices compared to all other chosen languages. We assume that this is the case because java is an established language and therefore often used in enterprise. Surprisingly, the same argument cannot be used for C#, which we expected to be used largely in enterprise as well. It should be noted,that even though Java was found to have the most dependencies among the other languages, all dependencies were treated as the same, thus no dependency types were dinstinguished. 
 
 <img alt="Last updated lang" src="Python/Docker compose/results/last_updated_lang.png" width="400" />
 
