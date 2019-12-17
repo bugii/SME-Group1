@@ -18,6 +18,7 @@ def write_to_excel(*args, filename="Excel/excel_output.xlsx", skip_empty_files=F
 
 def convert_to_excel(filename, date_as_int=False, interpreted=False):
     # Converts a given file into an excel sheet. date_as_int converts 2019-11-30 to 20191130 (for easier sorting).
+    # If interpreted = True, it expects an interpreted line format, i.e. 140:3:5::2019-11-19::8::dependency1,...
     list = file_to_stringlist(filename, "")
 
     # Creating output columns

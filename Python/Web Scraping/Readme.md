@@ -32,5 +32,5 @@ Our script can be operated from "main.py". Open the file in an IDE of your choic
 | write_complete_timeline | Gathers all available data into a single file and adds the number of bugs found on Jira | Filename, time period for which to fetch the number of bugs per release (set to 14 days by default) and whether or not to include the release dates in the output file |
 | clean_up | Cleans a .txt file such that only complete (as in: contain a dependency and a bug number) lines remain | Filename, directory and a boolean designating whether the project names should be included |
 | dependency_interpreter | For a given file with spelled out dependencies, fetches the number of dependencies with certain properties (see comments in "functions.py") | Filename and directory |
-| convert_to_excel | Converts a given file to excel | Filename and boolean as to whether the date should be converted to an integer for easier sorting |
+| convert_to_excel | Converts a given file to excel | Filename and boolean as to whether the date should be converted to an integer for easier sorting, boolean if input is interpreted .txt file |
 | median_calc | Supplementary function to calculate the median of the number of dependencies over the lifespan of a project | Filename |
