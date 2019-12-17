@@ -18,6 +18,5 @@ def accumulation_by_release(filename, directory):
                         data_point[0] = int(data_point[0]) + int(data_point_2[0])
                         data_point[2] = int(data_point[2]) + int(data_point_2[2])
                         proceed_to_next_project = True
-            print(data_point)
             out_line = str(data_point[0]) + "::" + str(data_point[1]) + "::" + str(data_point[2])
             functions.write_to_txt(out_line, "output_accumulation.txt")

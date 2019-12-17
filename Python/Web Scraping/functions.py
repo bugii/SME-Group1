@@ -1,25 +1,12 @@
 import time
 import random
-import os
 import requests
-import urllib.request
 from bs4 import BeautifulSoup
 import subprocess
 import re
 from datetime import datetime
 from datetime import timedelta
 import script
-
-def wait_random():
-    # Generates a random wait time, usually around 1 to 2 seconds, with some longer intervals up to 7 seconds added for
-    # good measure.
-    int1 = random.random()
-    print("Pause for a short time...")
-    if(int1>0.8):
-        time.sleep(4+(3*int1))
-    else:
-        time.sleep(2.8)
-        time.sleep(int1*2)
 
 def write_to_txt(string1, filename):
     # Writes the string supplied into a txt file in the main directory.
@@ -93,7 +80,6 @@ def date_adder(date, days):
     except:
         print("Invalid Date adder.")
         return ""
-
 
 def clear_folder(folder):
     # Clears Folder by deleting it and then recreating it.
@@ -202,6 +188,7 @@ def file_to_stringlist(filename, directory):
     return content
 
 def filter_apache_repositories(Linklist):
+    # From a given list, extract everything that is an Apache repository link.
     Newlist = []
     for link in Linklist:
         if link.startswith("/apache/") and link.count("/")==2:

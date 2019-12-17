@@ -59,7 +59,7 @@ def convert_to_excel(filename, date_as_int=False, interpreted=False):
             list3.append(int(temp_val[data_indices[2]])) # Number of bugs
         if interpreted:
             list4.append(int(temp_val[data_indices[3]])) # Apache dependencies
-            list5.append(int(temp_val[data_indices[4]]))  # Apache dependencies
+            list5.append(int(temp_val[data_indices[4]]))  # Apache commons dependencies
     if excel_name=="":
         write_to_excel(list1, list2, list3, list4, list5, skip_empty_files=True)
 
