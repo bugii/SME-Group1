@@ -18,10 +18,13 @@ or, alternatively
 pip install requests
 ```
 
+Our script should runs without problems on Linux and Mac OS. On Windows, the command window calls need an interpreter. We recommend the installation of Cygwin64 (https://cygwin.com/install.html).
+
 Our script can be operated from "main.py". Open the file in an IDE of your choice. The following functions (from "functions.py") may be used:
 
 | Command | Description | Arguments |
 |------------|-------------|------|
+| create_main_directory | creates folder structure | None |
 | clear_main | Erases files and clears folders | List with file and folder names |
 | generate_Apache_link_list | Creates a .txt file with links to Apache projects on Github | Integer designating the number of pages to be fetched |
 | write_dependency_timelines | Clones all repositories one by one and writes their dependencies into a .txt file in the dependency folder | Filename and directory of the Apache link .txt, the maximum number of repositories to be downloaded and a boolean designating whether the dependencies should be spelled out |
