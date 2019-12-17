@@ -18,7 +18,7 @@ or, alternatively
 pip install requests
 ```
 
-Our script should runs without problems on Linux and Mac OS. On Windows, the command window calls need an interpreter. We recommend the installation of Cygwin64 (https://cygwin.com/install.html).
+Our script uses unix commands in its command window prompts. This should run without problems on Linux and Mac OS. On Windows, you might need the functionalities of a Linux distribution. We recommend the installation of Cygwin64 (https://cygwin.com/install.html). Alternatively, you can run the program via command line in Git Bash.
 
 Our script can be operated from "main.py". Open the file in an IDE of your choice. The following functions (from "functions.py") may be used:
 
