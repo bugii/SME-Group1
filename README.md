@@ -242,6 +242,10 @@ The analysis of the data gave us this result:
 
 <img alt="Output analyzed" src="/MicroDepGraph/Data analysis.PNG" width="800" />
 
+From this data we created the followign chart that shows the relation between the nodes and links from the original architecture and the tool output:
+
+<img alt="Ratios chart" src="/MicroDepGraph/Data analysis ratios.PNG" width="500" />
+
 And the reviews provided us this 1 to 5 based average chart:
 
 <img alt="Reviews average" src="/MicroDepGraph/Average chart.png" width="500" />
