@@ -236,6 +236,8 @@ Since we want to know if the tool output is useful for understanding the archite
 >For this test we are going to show you 12 pairs of images and ask you how similar/ how representative (from 1 to 5) is the second image (the tool result) from the first (proposed architecture).
 >with the 12 pairs of images (the propossed architecture and the output of the tool)
 
+From this we got 13 reviews.
+
 #### Data
 
 The analysis of the data gave us this result:
@@ -244,9 +246,9 @@ The analysis of the data gave us this result:
 
 From this data we created the followign chart that shows the relation between the nodes and links from the original architecture and the tool output:
 
-<img alt="Ratios chart" src="/MicroDepGraph/Data analysis ratios.PNG" width="500" />
+<img alt="Ratios chart" src="/MicroDepGraph/Data analysis ratios.PNG" width="650" />
 
-And the reviews provided us this 1 to 5 based average chart:
+And the 13 reviews provided us this 1 to 5 based average chart:
 
 <img alt="Reviews average" src="/MicroDepGraph/Average chart.png" width="500" />
 
@@ -277,7 +279,7 @@ Maybe the tool would have worked on more projects and gave useful output, but th
 
 ##### Final Results
 
-So, based on the results given we can say that at this moment at least with this tool it is not possible for most projects to have an architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
+So, based on the results  given, as most of the projects were located in the not useful category based on the opinions of people thinking that the output was not good enough to represent the model presented in the propossed architecture, we can say that at this moment at least with this tool it is not possible for most projects to have an architecture output by itself. Though for some projects we can have it and for some others it can be useful to understand the basics of the architecture.
 
 
 
